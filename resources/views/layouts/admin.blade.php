@@ -30,9 +30,9 @@
                 <span>Dashboard</span>
             </a>
             
-            <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
-                <i class="fas fa-images text-lg w-6 text-center"></i>
-                <span>Banner Principal</span>
+            <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-cog text-lg w-6 text-center"></i>
+                <span>Configurações Gerais</span>
             </a>
             
             <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
@@ -43,6 +43,15 @@
             <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-share-nodes text-lg w-6 text-center"></i>
                 <span>Redes Sociais</span>
+            </a>
+
+            <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-concierge-bell text-lg w-6 text-center"></i>
+                <span>Serviços</span>
+            </a>
+            <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-file-lines text-lg w-6 text-center"></i>
+                <span>Páginas</span>
             </a>
         </nav>
         
@@ -118,6 +127,11 @@
                         <i class="fas fa-share-nodes text-lg w-6 text-center"></i>
                         <span>Redes Sociais</span>
                     </a>
+
+                    <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-concierge-bell text-lg w-6 text-center"></i>
+                        <span>Serviços</span>
+                    </a>
                 </nav>
                 
                 <div class="p-4 border-t border-white/10 bg-[#00152b]">
@@ -186,5 +200,7 @@
             if (e.target === overlay) closeSidebar();
         });
     </script>
+    
+    @yield('scripts')
 </body>
 </html>

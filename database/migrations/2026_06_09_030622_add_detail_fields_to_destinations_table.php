@@ -31,7 +31,18 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('destinations', function (Blueprint $table) {
-            //
+            $table->dropColumn([
+                'slug',
+                'banner_image_path',
+                'full_price',
+                'date_range',
+                'nights',
+                'departure_date',
+                'return_date',
+                'departure_city',
+                'trip_type',
+                'highlights_icons',
+            ]);
         });
     }
 };

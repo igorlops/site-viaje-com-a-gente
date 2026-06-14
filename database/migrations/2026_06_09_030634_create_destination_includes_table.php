@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('destination_includes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->string('text');
+            $table->enum('type', ['included', 'not_included'])->default('included');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

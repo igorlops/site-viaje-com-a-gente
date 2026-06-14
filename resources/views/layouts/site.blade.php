@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if($banner?->page)
+        <meta name="title" content="{{ $banner?->page?->meta_title ?? 'Viaje com a Gente - Viagens e Turismo' }}">
+        <meta name="description" content="{{ $banner?->page?->meta_description ?? 'Viaje com a Gente - Viagens e Turismo' }}">
+        <meta name="keywords" content="{{ $banner?->page?->meta_keywords ?? 'Viaje com a Gente - Viagens e Turismo' }}">
+    @endif
     <title>@yield('title', 'Viaje com a Gente - Viagens e Turismo')</title>
     
     <!-- Font Awesome -->
@@ -10,6 +15,7 @@
     
     <!-- Vite CSS/JS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
 </head>
 <body class="font-sans bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
 
@@ -25,15 +31,44 @@
                 </div>
                 
                 <!-- Desktop Navigation Links -->
+                @php
+                    $menuServices = $menuServices ?? \App\Models\Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
+                @endphp
                 <nav class="hidden xl:flex space-x-4 2xl:space-x-6 text-[11px] 2xl:text-xs font-semibold uppercase tracking-wider">
-                    <a href="{{ route('home') }}" class="text-[#f2bd11] hover:text-white transition duration-200">Início</a>
-                    <a href="#destinos" class="hover:text-[#f2bd11] transition duration-200">Pacotes 2026/2027</a>
-                    <a href="#como-funciona" class="hover:text-[#f2bd11] transition duration-200">Bate e Volta</a>
-                    <a href="#depoimentos" class="hover:text-[#f2bd11] transition duration-200">Viagens em Grupo</a>
-                    <a href="#orcamento" class="hover:text-[#f2bd11] transition duration-200">Monte sua Viagem</a>
-                    <a href="#por-que-nos" class="hover:text-[#f2bd11] transition duration-200">Sobre</a>
-                    <a href="#duvidas" class="hover:text-[#f2bd11] transition duration-200">Dúvidas</a>
-                    <a href="#contato" class="hover:text-[#f2bd11] transition duration-200">Contato</a>
+                    <a href="{{ route('home') }}" class=" {{ request()->routeIs('home') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Início</a>
+                    <a href="{{ route('packages20262027') }}" class=" {{ request()->routeIs('packages20262027') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Pacotes 2026/2027</a>
+                    <a href="{{ route('short-trips') }}" class=" {{ request()->routeIs('short-trips') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Bate e Volta</a>
+                    <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Viagens em Grupo</a>
+                    <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destinations') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Destinos</a>
+
+                    {{-- Dropdown: Nossos Serviços --}}
+                    <div class="relative group">
+                        <button class="flex items-center gap-1 {{ request()->routeIs('services') || request()->routeIs('service.show') ? 'text-[#f2bd11]' : 'text-gray-300 hover:text-white' }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs">
+                            Nossos Serviços
+                            <i class="fas fa-chevron-down text-[9px] transition-transform duration-200 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50
+                                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                                    translate-y-1 group-hover:translate-y-0
+                                    transition-all duration-200">
+                            <a href="{{ route('services') }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100">
+                                <i class="fas fa-th-list text-[#f2bd11] w-4"></i>
+                                Ver Todos os Serviços
+                            </a>
+                            @forelse($menuServices as $svc)
+                                <a href="{{ route('service.show', $svc->slug) }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150">
+                                    <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
+                                    {{ $svc->title }}
+                                </a>
+                            @empty
+                                <span class="block px-4 py-2.5 text-xs text-gray-400 italic">Em breve...</span>
+                            @endforelse
+                        </div>
+                    </div>
+
+                    {{-- <a href="{{ route('home') }}#orcamento" class="hover:text-[#f2bd11] transition duration-200">Monte sua Viagem</a> --}}
+                    <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Dúvidas</a>
+                    <a href="{{ route('contact') }}" class=" {{ request()->routeIs('contact') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Contato</a>
                 </nav>
                 
                 <!-- WhatsApp Button / Action -->
@@ -64,13 +99,23 @@
         <div class="hidden xl:hidden bg-[#001f42] border-t border-[#002d5e]" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-[#f2bd11] hover:bg-[#002752] hover:text-white">Início</a>
-                <a href="#destinos" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Pacotes 2026/2027</a>
-                <a href="#como-funciona" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Bate e Volta</a>
-                <a href="#depoimentos" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Viagens em Grupo</a>
-                <a href="#orcamento" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Monte sua Viagem</a>
-                <a href="#por-que-nos" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Sobre</a>
-                <a href="#duvidas" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Dúvidas</a>
-                <a href="#contato" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Contato</a>
+                <a href="{{ route('packages20262027') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Pacotes 2026/2027</a>
+                <a href="{{ route('short-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Bate e Volta</a>
+                <a href="{{ route('group-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Viagens em Grupo</a>
+                <a href="{{ route('destination') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Destinos</a>
+
+                {{-- Serviços mobile --}}
+                <a href="{{ route('services') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Nossos Serviços</a>
+                @foreach($menuServices as $svc)
+                    <a href="{{ route('service.show', $svc->slug) }}" class="block px-3 py-2 ml-4 rounded-md text-sm font-medium text-gray-300 hover:bg-[#002752] hover:text-[#f2bd11]">
+                        <i class="fas fa-concierge-bell mr-1 text-[#109e4a] text-xs"></i>
+                        {{ $svc->title }}
+                    </a>
+                @endforeach
+
+                <a href="{{ route('home') }}#orcamento" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Monte sua Viagem</a>
+                <a href="{{ route('faq') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Dúvidas</a>
+                <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Contato</a>
                 
                 <div class="mt-4 px-3 py-2">
                     <a href="{{ $whatsappUrl }}" target="_blank" class="flex items-center justify-center bg-[#109e4a] hover:bg-[#0d9648] text-white py-3 rounded-lg font-bold transition duration-300 w-full gap-2">
@@ -84,94 +129,12 @@
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
+        @include('layouts.header')
         @yield('content')
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-[#00152b] text-white pt-16 pb-8 border-t-4 border-[#f2bd11]" id="contato">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-                <!-- Column 1: Brand -->
-                <div class="flex flex-col space-y-4">
-                    <img class="h-16 w-auto object-contain self-start bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Viaje com a Gente Logo">
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.
-                    </p>
-                    <!-- Social Media Links from DB -->
-                    <div class="flex space-x-3 pt-2">
-                        @foreach($socialLinks as $link)
-                            @if($link->active && strtolower($link->name) !== 'whatsapp')
-                                <a href="{{ $link->url }}" target="_blank" class="w-10 h-10 rounded-full bg-[#002752] hover:bg-[#f2bd11] hover:text-[#00152b] text-white flex items-center justify-center transition duration-300 shadow-sm" title="{{ $link->name }}">
-                                    <i class="{{ $link->icon }} text-lg"></i>
-                                </a>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- Column 2: Navigation Links -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f2bd11] mb-6">Navegação</h3>
-                    <ul class="space-y-3.5 text-sm">
-                        <li><a href="#destinos" class="text-gray-400 hover:text-white transition duration-200">Pacotes 2026/2027</a></li>
-                        <li><a href="#como-funciona" class="text-gray-400 hover:text-white transition duration-200">Bate e Volta</a></li>
-                        <li><a href="#depoimentos" class="text-gray-400 hover:text-white transition duration-200">Viagens em Grupo</a></li>
-                        <li><a href="#orcamento" class="text-gray-400 hover:text-white transition duration-200">Monte sua Viagem</a></li>
-                        <li><a href="#por-que-nos" class="text-gray-400 hover:text-white transition duration-200">Sobre Nós</a></li>
-                        <li><a href="#duvidas" class="text-gray-400 hover:text-white transition duration-200">Dúvidas Frequentes</a></li>
-                        <li><a href="#contato" class="text-gray-400 hover:text-white transition duration-200">Contato</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Information Links -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f2bd11] mb-6">Informações</h3>
-                    <ul class="space-y-3.5 text-sm">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Quem Somos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Política de Privacidade</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Termos de Uso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Formas de Pagamento</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 4: Contact/Support -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f2bd11] mb-6">Atendimento</h3>
-                    <ul class="space-y-4 text-sm text-gray-400">
-                        <li class="flex items-start gap-3">
-                            <i class="fab fa-whatsapp text-lg text-green-500 mt-0.5"></i>
-                            <div>
-                                <span class="block text-white font-semibold">(85) 9 9916-6421</span>
-                                <span class="text-xs">Clique e fale no WhatsApp</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="far fa-envelope text-lg text-[#f2bd11] mt-0.5"></i>
-                            <div>
-                                <span class="block text-white">atendimento@viajecomagente.com.br</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i class="fas fa-map-marker-alt text-lg text-red-500 mt-0.5"></i>
-                            <div>
-                                <span class="block text-white">Fortaleza - CE</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="pt-8 mt-8 border-t border-gray-800 text-center text-xs text-gray-500 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p>&copy; {{ date('Y') }} Viaje com a Gente - Viagens e Turismo. Todos os direitos reservados.</p>
-                <div class="flex gap-4">
-                    <a href="{{ route('login') }}" class="text-gray-500 hover:text-white text-xs transition duration-200">
-                        <i class="fas fa-lock mr-1"></i> Painel Admin
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    @include('layouts.footer')
     <!-- Mobile Menu Toggle Script -->
     <script>
         document.getElementById('mobile-menu-button').addEventListener('click', function() {

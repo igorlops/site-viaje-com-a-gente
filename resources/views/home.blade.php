@@ -3,68 +3,9 @@
 @section('title', 'Viaje com a Gente - Viagens e Turismo')
 
 @section('content')
-
-    <!-- HERO BANNER -->
-    @php
-        $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
-        $bannerUrl = $banner && $banner->image_path ? asset('storage/' . $banner->image_path) : asset('assets/images/page-home.jpeg');
-        $bannerTitle = $banner && $banner->title ? $banner->title : 'Sua próxima viagem está mais perto do que você imagina!';
-        $bannerSubtitle = $banner && $banner->subtitle ? $banner->subtitle : 'Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.';
-    @endphp
-    <section class="relative bg-cover bg-center h-[550px] lg:h-[650px] flex items-center" style="background-image: url('{{ $bannerUrl }}');">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-r from-[#001c3d]/90 via-[#001c3d]/60 to-transparent"></div>
-        
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
-            <div class="max-w-xl lg:max-w-2xl text-white">
-                <!-- Main Title -->
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                    {!! str_replace('perto do que você imagina!', '<span class="text-[#f2bd11]">perto do que você imagina!</span>', e($bannerTitle)) !!}
-                </h1>
-                
-                <!-- Subtitle -->
-                <p class="text-base sm:text-lg text-gray-200 mb-8 max-w-lg leading-relaxed">
-                    {{ $bannerSubtitle }}
-                </p>
-                
-                <!-- Feature Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-                    <!-- Feature 1 -->
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-3.5 py-3 rounded-lg border border-white/10">
-                        <div class="w-10 h-10 rounded bg-[#109e4a] text-white flex items-center justify-center shrink-0">
-                            <i class="fas fa-barcode text-xl"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs font-bold leading-tight uppercase">Parcelamento Facilitado no Boleto</span>
-                    </div>
-                    <!-- Feature 2 -->
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-3.5 py-3 rounded-lg border border-white/10">
-                        <div class="w-10 h-10 rounded bg-[#109e4a] text-white flex items-center justify-center shrink-0">
-                            <i class="fas fa-headset text-xl"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs font-bold leading-tight uppercase">Atendimento Humano pelo WhatsApp</span>
-                    </div>
-                    <!-- Feature 3 -->
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-3.5 py-3 rounded-lg border border-white/10">
-                        <div class="w-10 h-10 rounded bg-[#109e4a] text-white flex items-center justify-center shrink-0">
-                            <i class="fas fa-user-shield text-xl"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs font-bold leading-tight uppercase">Suporte antes, durante e após a viagem</span>
-                    </div>
-                </div>
-                
-                <!-- Buttons -->
-                <div class="flex flex-col sm:flex-row gap-4" id="orcamento">
-                    <a href="{{ $whatsappUrl }}" target="_blank" class="inline-flex justify-center items-center bg-[#f2bd11] hover:bg-white text-[#002752] hover:text-[#002752] px-8 py-4 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-lg">
-                        Quero um Orçamento
-                    </a>
-                    <a href="#destinos" class="inline-flex justify-center items-center bg-transparent hover:bg-white/10 text-white px-8 py-4 rounded-lg font-black text-sm tracking-wide uppercase border-2 border-white transition duration-300">
-                        Ver Pacotes 2026/2027
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
+@php
+     $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
+@endphp
     <!-- DESTINOS EM DESTAQUE -->
     <section class="py-20 bg-white" id="destinos">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -137,7 +78,7 @@
                                     $destWhatsapp = $destination->whatsapp_link ?: $whatsappUrl . '?text=' . urlencode('Olá, gostaria de mais informações sobre o pacote ' . $destination->title);
                                 @endphp
                                 <div class="flex gap-2">
-                                    <a href="{{ $destWhatsapp }}" target="_blank" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
+                                    <a href="{{ route('destination.show', $destination->slug) }}" target="_blank" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
                                         <span>Ver Pacote</span>
                                         <i class="fas fa-chevron-right text-[9px]"></i>
                                     </a>
@@ -157,7 +98,7 @@
             
             <!-- More Packages Button -->
             <div class="text-center">
-                <a href="{{ $whatsappUrl }}" target="_blank" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
+                <a href="{{ route('destination') }}" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
                     <span>Ver Todos os Pacotes</span>
                     <i class="fas fa-chevron-right text-xs"></i>
                 </a>

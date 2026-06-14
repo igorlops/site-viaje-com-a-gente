@@ -2,53 +2,106 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\Admin\ServiceDTO;
+use App\Http\Requests\Admin\ServiceRequest;
 use App\Models\Banner;
+use App\Models\ButtonBanner;
 use App\Models\Destination;
+use App\Models\FeatureBanner;
+use App\Models\Page;
+use App\Models\Service;
 use App\Models\SocialLink;
+use App\Repositories\ServiceRepository;
+use App\Services\Admin\ServiceService;
+use App\Services\BannerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
+    public function __construct(
+        protected BannerService $bannerService,
+        protected \App\Services\Admin\DestinationService $destinationService
+    ) {}
     /**
      * Display the admin dashboard.
      */
     public function dashboard()
     {
-        $bannersCount = Banner::count();
+        $bannersCount      = Banner::count();
         $destinationsCount = Destination::count();
-        $socialLinksCount = SocialLink::count();
+        $socialLinksCount  = SocialLink::count();
+        $servicesCount     = Service::count();
 
-        return view('admin.dashboard', compact('bannersCount', 'destinationsCount', 'socialLinksCount'));
+        return view('admin.dashboard', compact('bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount'));
     }
 
     /* BANNERS CRUD */
 
     public function banners()
     {
-        $banners = Banner::latest()->get();
+        $banners = Banner::with('page')->get();
         return view('admin.banners.index', compact('banners'));
     }
 
     public function bannerEdit(Banner $banner)
     {
-        return view('admin.banners.edit', compact('banner'));
+        $pages = Page::all();
+        $banner->load(['featureBanners','buttons']);
+        return view('admin.banners.edit', compact('banner', 'pages'));
+    }
+    public function bannerCreate()
+    {
+        $pages = Page::all();
+        return view('admin.banners.create', compact('pages'));
+    }
+
+    public function bannerStore(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'subtitle' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'page_id' => 'nullable',
+            'active' => 'boolean',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('banners', 'public');
+        }
+
+        $this->bannerService->create($data);
+
+        return redirect()->route('admin.banners.index')->with('success', 'Banner criado com sucesso!');
+    }
+    public function featureBannerDelete(FeatureBanner $featureBanner) {
+        $featureBanner->delete();
+        return redirect()->back()->with('success', 'Característica deletada com sucesso!');
+    }
+    public function buttonBannerDelete(ButtonBanner $buttonBanner) {
+        $buttonBanner->delete();
+        return redirect()->back()->with('success', 'Botão deletado com sucesso!');
     }
 
     public function bannerUpdate(Request $request, Banner $banner)
     {
-        $request->validate([
+        $data=$request->validate([
             'title' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'page_id' => 'nullable|integer',
             'active' => 'boolean',
+            'features' => 'nullable|array',
+            'features.*.name' => 'nullable|string|max:255',
+            'features.*.icon' => 'nullable|string|max:255',
+            'features.*.order' => 'nullable|integer',
+            'buttons' => 'nullable|array',
+            'buttons.*.text' => 'nullable|string|max:255',
+            'buttons.*.color' => 'nullable|string|max:255',
+            'buttons.*.url' => 'nullable|string|max:255',
+            'buttons.*.target' => 'nullable|string|max:255',
+            'buttons.*.order' => 'nullable|integer',
         ]);
-
-        $data = [
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'active' => $request->has('active'),
-        ];
 
         if ($request->hasFile('image')) {
             // Delete old image if it exists and is not the default seeder image
@@ -58,7 +111,31 @@ class AdminController extends Controller
             $data['image_path'] = $request->file('image')->store('banners', 'public');
         }
 
-        $banner->update($data);
+        if (isset($data['buttons'])) {
+            foreach ($data['buttons'] as $index => $button) {
+                if (!empty($button['text'])) {
+                    $data['buttons'][$index]['url'] = $button['url'] ?? '#';
+                    $data['buttons'][$index]['target'] = $button['target'] ?? '_self';
+                } else {
+                    unset($data['buttons'][$index]);
+                }
+            }
+            $data['buttons'] = array_values($data['buttons']);
+        }
+
+        if (isset($data['features'])) {
+            foreach ($data['features'] as $index => $feature) {
+                if (!empty($feature['name'])) {
+                    $data['features'][$index]['icon'] = $feature['icon'] ?? 'fa fa-star';
+                    $data['features'][$index]['order'] = $feature['order'] ?? $index + 1;
+                } else {
+                    unset($data['features'][$index]);
+                }
+            }
+            $data['features'] = array_values($data['features']);
+        }
+
+        $this->bannerService->update($banner->id, $data);
 
         return redirect()->route('admin.banners.index')->with('success', 'Banner atualizado com sucesso!');
     }
@@ -76,87 +153,31 @@ class AdminController extends Controller
         return view('admin.destinations.create');
     }
 
-    public function destinationStore(Request $request)
+    public function destinationStore(\App\Http\Requests\Admin\DestinationStoreRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120',
-            'duration' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'tag' => 'nullable|string|max:255',
-            'is_featured' => 'boolean',
-            'whatsapp_link' => 'nullable|url|max:255',
-        ]);
-
-        $imagePath = $request->file('image')->store('destinations', 'public');
-
-        Destination::create([
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'image_path' => $imagePath,
-            'duration' => $request->duration,
-            'category' => $request->category,
-            'price' => $request->price,
-            'tag' => $request->tag,
-            'is_featured' => $request->has('is_featured'),
-            'whatsapp_link' => $request->whatsapp_link,
-        ]);
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->create($dto, $request);
 
         return redirect()->route('admin.destinations.index')->with('success', 'Destino criado com sucesso!');
     }
 
     public function destinationEdit(Destination $destination)
     {
+        $destination->load(['includes','highlights','itineraryDays']);
         return view('admin.destinations.edit', compact('destination'));
     }
 
-    public function destinationUpdate(Request $request, Destination $destination)
+    public function destinationUpdate(\App\Http\Requests\Admin\DestinationStoreRequest $request, Destination $destination)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'subtitle' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-            'duration' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'tag' => 'nullable|string|max:255',
-            'is_featured' => 'boolean',
-            'whatsapp_link' => 'nullable|url|max:255',
-        ]);
-
-        $data = [
-            'title' => $request->title,
-            'subtitle' => $request->subtitle,
-            'duration' => $request->duration,
-            'category' => $request->category,
-            'price' => $request->price,
-            'tag' => $request->tag,
-            'is_featured' => $request->has('is_featured'),
-            'whatsapp_link' => $request->whatsapp_link,
-        ];
-
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($destination->image_path && !str_starts_with($destination->image_path, 'destinations/porto.png') && !str_starts_with($destination->image_path, 'destinations/gramado.png') && !str_starts_with($destination->image_path, 'destinations/rio.png') && !str_starts_with($destination->image_path, 'destinations/foz.png')) {
-                Storage::disk('public')->delete($destination->image_path);
-            }
-            $data['image_path'] = $request->file('image')->store('destinations', 'public');
-        }
-
-        $destination->update($data);
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->update($destination->id, $dto, $request);
 
         return redirect()->route('admin.destinations.index')->with('success', 'Destino atualizado com sucesso!');
     }
 
     public function destinationDestroy(Destination $destination)
     {
-        if ($destination->image_path && !str_starts_with($destination->image_path, 'destinations/porto.png') && !str_starts_with($destination->image_path, 'destinations/gramado.png') && !str_starts_with($destination->image_path, 'destinations/rio.png') && !str_starts_with($destination->image_path, 'destinations/foz.png')) {
-            Storage::disk('public')->delete($destination->image_path);
-        }
-
-        $destination->delete();
+        $this->destinationService->destroy($destination->id);
 
         return redirect()->route('admin.destinations.index')->with('success', 'Destino excluído com sucesso!');
     }
@@ -211,5 +232,96 @@ class AdminController extends Controller
     {
         $socialLink->delete();
         return redirect()->route('admin.social.index')->with('success', 'Rede social excluída com sucesso!');
+    }
+
+    /* SERVICES CRUD */
+
+    public function services(ServiceRepository $repository)
+    {
+        $services = $repository->all();
+        return view('admin.services.index', compact('services'));
+    }
+
+    public function serviceCreate()
+    {
+        return view('admin.services.create');
+    }
+
+    public function serviceStore(ServiceRequest $request, ServiceService $serviceService)
+    {
+        $dto = ServiceDTO::fromRequest($request);
+        $serviceService->create($dto, $request);
+
+        return redirect()->route('admin.services.index')->with('success', 'Serviço criado com sucesso!');
+    }
+
+    public function serviceEdit(Service $service)
+    {
+        return view('admin.services.edit', compact('service'));
+    }
+
+    public function serviceUpdate(ServiceRequest $request, Service $service, ServiceService $serviceService)
+    {
+        $dto = ServiceDTO::fromRequest($request);
+        $serviceService->update($dto, $service, $request);
+
+        return redirect()->route('admin.services.index')->with('success', 'Serviço atualizado com sucesso!');
+    }
+
+    public function serviceDestroy(Service $service, ServiceService $serviceService)
+    {
+        $serviceService->destroy($service);
+        return redirect()->route('admin.services.index')->with('success', 'Serviço excluído com sucesso!');
+    }
+
+    public function pages()
+    {
+        $pages = Page::all();
+        return view('admin.pages.index', compact('pages'));
+    }
+
+    public function pageEdit(Page $page)
+    {
+        return view('admin.pages.edit', compact('page'));
+    }
+
+    public function pageUpdate(Request $request, Page $page)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'meta_keywords' => 'nullable|string|max:500',
+        ]);
+
+        $page->update($data);
+
+        return redirect()->route('admin.pages.index')->with('success', 'Página atualizada com sucesso!');
+    }
+
+    public function pageCreate()
+    {
+        return view('admin.pages.create');
+    }
+
+    public function pageStore(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'meta_keywords' => 'nullable|string|max:500',
+        ]);
+        $page = Page::create($data);
+
+        return redirect()->route('admin.pages.index')->with('success', 'Página criada com sucesso!');
+    }
+
+    public function pageDestroy(Page $page)
+    {
+        $page->delete();
+        return redirect()->route('admin.pages.index')->with('success', 'Página excluída com sucesso!');
     }
 }

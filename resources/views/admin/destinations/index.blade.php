@@ -24,6 +24,7 @@
                         <th class="px-6 py-4">Título</th>
                         <th class="px-6 py-4">Subtítulo / Roteiro</th>
                         <th class="px-6 py-4">Duração</th>
+                        <th class="px-6 py-4">Tipo</th>
                         <th class="px-6 py-4">Preço</th>
                         <th class="px-6 py-4">Destaque</th>
                         <th class="px-6 py-4 text-right">Ações</th>
@@ -49,6 +50,17 @@
                             <td class="px-6 py-4 text-xs font-semibold text-gray-500">
                                 {{ $dest->duration }}
                             </td>
+                            <td class="px-6 py-4 text-xs font-bold text-gray-600 uppercase">
+                                @if($dest->type == 'pacote-principal')
+                                    Pacote Principal
+                                @elseif($dest->type == 'bate-e-volta')
+                                    Bate e Volta
+                                @elseif($dest->type == 'viagem-grupo')
+                                    Viagem em Grupo
+                                @else
+                                    -
+                                @endif
+                             </td>
                             <td class="px-6 py-4 font-bold text-[#109e4a]">
                                 R$ {{ number_format($dest->price, 2, ',', '.') }}
                             </td>

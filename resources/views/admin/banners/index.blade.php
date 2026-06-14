@@ -6,6 +6,10 @@
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
         <div class="p-6 border-b border-gray-200 flex justify-between items-center">
             <h2 class="font-bold text-gray-800">Lista de Banners</h2>
+            <a href="{{ route('admin.banners.create') }}" class="inline-flex items-center gap-2 bg-[#109e4a] hover:bg-[#0d9648] text-white px-5 py-2.5 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-200 shadow-sm">
+                <i class="fas fa-plus"></i>
+                <span>Nova Banner</span>
+            </a>
         </div>
 
         <div class="overflow-x-auto">
@@ -13,7 +17,8 @@
                 <thead>
                     <tr class="bg-gray-50 border-b border-gray-200 text-xs font-bold text-gray-500 uppercase tracking-wider">
                         <th class="px-6 py-4">Imagem</th>
-                        <th class="px-6 py-4">Título</th>
+                        <th class="px-6 py-4">Título</th> 
+                        <th class="px-6 py-4">Página</th>
                         <th class="px-6 py-4">Subtítulo</th>
                         <th class="px-6 py-4">Status</th>
                         <th class="px-6 py-4 text-right">Ações</th>
@@ -27,6 +32,9 @@
                             </td>
                             <td class="px-6 py-4 font-semibold text-[#002752] max-w-xs truncate">
                                 {{ $banner->title ?: '(Sem título)' }}
+                            </td>
+                            <td class="px-6 py-4 text-gray-500 max-w-sm truncate">
+                                {{ $banner?->page?->name ?: '(Sem página)' }}
                             </td>
                             <td class="px-6 py-4 text-gray-500 max-w-sm truncate">
                                 {{ $banner->subtitle ?: '(Sem subtítulo)' }}

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('destination_highlights', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->string('title');
+            $table->string('subtitle')->nullable();
+            $table->string('image_path');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

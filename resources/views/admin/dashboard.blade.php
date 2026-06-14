@@ -3,7 +3,7 @@
 @section('page_title', 'Dashboard')
 
 @section('admin_content')
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         <!-- Stat Card 1: Banners -->
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
             <div>
@@ -48,6 +48,21 @@
                 <i class="fas fa-share-nodes"></i>
             </div>
         </div>
+
+        <!-- Stat Card 4: Services -->
+        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
+            <div>
+                <span class="block text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Serviços</span>
+                <span class="block text-3xl font-black text-[#002752]">{{ $servicesCount }}</span>
+                <a href="{{ route('admin.services.index') }}" class="inline-flex items-center text-xs font-bold text-[#109e4a] hover:text-[#0b803a] mt-3 gap-1">
+                    <span>Gerenciar serviços</span>
+                    <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+            <div class="w-14 h-14 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-2xl shadow-inner">
+                <i class="fas fa-concierge-bell"></i>
+            </div>
+        </div>
     </div>
 
     <!-- Quick Actions -->
@@ -71,6 +86,11 @@
             <a href="{{ route('admin.social.index') }}" class="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-[#002752] rounded-xl hover:bg-gray-50 transition duration-200 text-center gap-3">
                 <i class="fas fa-link text-3xl text-[#f2bd11]"></i>
                 <span class="font-bold text-sm text-gray-700">Configurar Redes Sociais</span>
+            </a>
+            
+            <a href="{{ route('admin.services.create') }}" class="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-[#002752] rounded-xl hover:bg-gray-50 transition duration-200 text-center gap-3">
+                <i class="fas fa-concierge-bell text-3xl text-purple-500"></i>
+                <span class="font-bold text-sm text-gray-700">Cadastrar Novo Serviço</span>
             </a>
             
             <a href="{{ route('home') }}" target="_blank" class="flex flex-col items-center justify-center p-6 border border-gray-200 hover:border-[#002752] rounded-xl hover:bg-gray-50 transition duration-200 text-center gap-3">

@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('destination_itinerary_days', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->integer('day_number');
+            $table->string('date')->nullable();
+            $table->string('label')->nullable();
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
