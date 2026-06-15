@@ -41,30 +41,53 @@
                     <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Viagens em Grupo</a>
                     <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destinations') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Destinos</a>
 
-                    {{-- Dropdown: Nossos Serviços --}}
-                    <div class="relative group">
-                        <button class="flex items-center gap-1 {{ request()->routeIs('services') || request()->routeIs('service.show') ? 'text-[#f2bd11]' : 'text-gray-300 hover:text-white' }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs">
-                            Nossos Serviços
-                            <i class="fas fa-chevron-down text-[9px] transition-transform duration-200 group-hover:rotate-180"></i>
-                        </button>
-                        <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50
-                                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                                    translate-y-1 group-hover:translate-y-0
-                                    transition-all duration-200">
-                            <a href="{{ route('services') }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100">
-                                <i class="fas fa-th-list text-[#f2bd11] w-4"></i>
-                                Ver Todos os Serviços
-                            </a>
-                            @forelse($menuServices as $svc)
-                                <a href="{{ route('service.show', $svc->slug) }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150">
-                                    <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
-                                    {{ $svc->title }}
-                                </a>
-                            @empty
-                                <span class="block px-4 py-2.5 text-xs text-gray-400 italic">Em breve...</span>
-                            @endforelse
-                        </div>
-                    </div>
+<div
+    class="relative"
+    id="services-dropdown"
+>
+    <button
+        type="button"
+        id="services-button"
+        class="flex items-center gap-1 {{
+            request()->routeIs('services') || request()->routeIs('service.show')
+                ? 'text-[#f2bd11]'
+                : 'text-gray-300 hover:text-white'
+        }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs"
+    >
+        Nossos Serviços
+        <i
+            id="services-arrow"
+            class="fas fa-chevron-down text-[9px] transition-transform duration-200"
+        ></i>
+    </button>
+
+    <div
+        id="services-menu"
+        class="absolute left-0 top-full w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[999] hidden"
+    >
+        <a
+            href="{{ route('services') }}"
+            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100"
+        >
+            <i class="fas fa-th-list text-[#f2bd11] w-4"></i>
+            Ver Todos os Serviços
+        </a>
+
+        @forelse($menuServices as $svc)
+            <a
+                href="{{ route('service.show', $svc->slug) }}"
+                class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150"
+            >
+                <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
+                {{ $svc->title }}
+            </a>
+        @empty
+            <span class="block px-4 py-2.5 text-xs text-gray-400 italic">
+                Em breve...
+            </span>
+        @endforelse
+    </div>
+</div>
 
                     {{-- <a href="{{ route('home') }}#orcamento" class="hover:text-[#f2bd11] transition duration-200">Monte sua Viagem</a> --}}
                     <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Dúvidas</a>
@@ -151,6 +174,49 @@
                 icon.classList.add('fa-bars');
             }
         });
-    </script>
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const dropdown = document.getElementById('services-dropdown');
+    const button = document.getElementById('services-button');
+    const menu = document.getElementById('services-menu');
+    const arrow = document.getElementById('services-arrow');
+
+    let closeTimeout;
+
+    function openMenu() {
+        clearTimeout(closeTimeout);
+        menu.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+    }
+
+    function closeMenu() {
+        closeTimeout = setTimeout(() => {
+            menu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        }, 150);
+    }
+
+    // Desktop (hover)
+    dropdown.addEventListener('mouseenter', openMenu);
+    dropdown.addEventListener('mouseleave', closeMenu);
+
+    // Mobile e touch (click)
+    button.addEventListener('click', (e) => {
+        e.preventDefault();
+        menu.classList.toggle('hidden');
+        arrow.classList.toggle('rotate-180');
+    });
+
+    // Fecha ao clicar fora
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            menu.classList.add('hidden');
+            arrow.classList.remove('rotate-180');
+        }
+    });
+
+});
+</script>
 </body>
 </html>

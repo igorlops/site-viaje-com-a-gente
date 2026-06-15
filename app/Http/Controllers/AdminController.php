@@ -57,23 +57,66 @@ class AdminController extends Controller
     }
 
     public function bannerStore(Request $request)
-    {
-        $data = $request->validate([
-            'title' => 'nullable|string|max:255',
-            'subtitle' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-            'page_id' => 'nullable',
-            'active' => 'boolean',
-        ]);
+{
+    $data = $request->validate([
+        'title' => 'nullable|string|max:255',
+        'titulo_destaque' => 'nullable|string|max:255',
+        'subtitle' => 'nullable|string',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+        'page_id' => 'nullable',
+        'active' => 'boolean',
+        
+        // Incluindo a validação das Features (idêntico ao update)
+        'features' => 'nullable|array',
+        'features.*.name' => 'nullable|string|max:255',
+        'features.*.icon' => 'nullable|string|max:255',
+        'features.*.order' => 'nullable|integer',
+        
+        // Incluindo a validação dos Botões (idêntico ao update)
+        'buttons' => 'nullable|array',
+        'buttons.*.text' => 'nullable|string|max:255',
+        'buttons.*.color' => 'nullable|string|max:255',
+        'buttons.*.url' => 'nullable|string|max:255',
+        'buttons.*.target' => 'nullable|string|max:255',
+        'buttons.*.order' => 'nullable|integer',
+    ]);
 
-        if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('banners', 'public');
-        }
-
-        $this->bannerService->create($data);
-
-        return redirect()->route('admin.banners.index')->with('success', 'Banner criado com sucesso!');
+    // Upload da imagem
+    if ($request->hasFile('image')) {
+        $data['image_path'] = $request->file('image')->store('banners', 'public');
     }
+
+    // Tratamento dos botões (limpa vazios e aplica fallbacks)
+    if (isset($data['buttons'])) {
+        foreach ($data['buttons'] as $index => $button) {
+            if (!empty($button['text'])) {
+                $data['buttons'][$index]['url'] = $button['url'] ?? '#';
+                $data['buttons'][$index]['target'] = $button['target'] ?? '_self';
+            } else {
+                unset($data['buttons'][$index]);
+            }
+        }
+        $data['buttons'] = array_values($data['buttons']);
+    }
+
+    // Tratamento das features (limpa vazios e aplica fallbacks)
+    if (isset($data['features'])) {
+        foreach ($data['features'] as $index => $feature) {
+            if (!empty($feature['name'])) {
+                $data['features'][$index]['icon'] = $feature['icon'] ?? 'fa fa-star';
+                $data['features'][$index]['order'] = $feature['order'] ?? $index + 1;
+            } else {
+                unset($data['features'][$index]);
+            }
+        }
+        $data['features'] = array_values($data['features']);
+    }
+
+    // Envia tudo tratado para o Service criar no banco de dados
+    $this->bannerService->create($data);
+
+    return redirect()->route('admin.banners.index')->with('success', 'Banner criado com sucesso!');
+}
     public function featureBannerDelete(FeatureBanner $featureBanner) {
         $featureBanner->delete();
         return redirect()->back()->with('success', 'Característica deletada com sucesso!');
@@ -86,7 +129,8 @@ class AdminController extends Controller
     public function bannerUpdate(Request $request, Banner $banner)
     {
         $data=$request->validate([
-            'title' => 'nullable|string|max:255',
+            'title' => 'nullable|string|max:255', 
+            'titulo_destaque' => 'nullable|string|max:255', 
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'page_id' => 'nullable|integer',

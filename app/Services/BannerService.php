@@ -25,19 +25,34 @@ class BannerService
         
     }
     public function create($data) {
+        $dataFeature = [];
+        $dataButton = [];
         if(isset($data['features'])) {
             foreach ($data['features'] as $feature) {
-                $this->repository->createFeature($data['id'], $feature);
+                $dataFeature[] = $feature;
             }
             unset($data['features']);
         }
         if(isset($data['buttons'])) {
             foreach ($data['buttons'] as $button) {
-                $this->repository->createButton($data['id'], $button);
+                $dataButton[] = $button;
             }
             unset($data['buttons']);
         }
-        return $this->repository->create($data);
+
+        $banner = $this->repository->create($data);
+
+        if(isset($dataFeature)) {
+            foreach ($dataFeature as $feature) {
+                $this->repository->createFeature($banner->id, $feature);
+            }
+        }
+        if(isset($dataButton)) {
+            foreach ($dataButton as $button) {
+                $this->repository->createButton($banner->id, $button);
+            }
+        }
+        return $banner;
     }
 
     public function update(int $id, array $data): void

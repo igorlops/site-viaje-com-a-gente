@@ -2,7 +2,8 @@
 @php
     $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
     $bannerUrl = $banner && $banner->image_path ? asset('storage/' . $banner->image_path) : asset('assets/images/page-home.jpeg');
-    $bannerTitle = $banner && $banner->title ? $banner->title : 'Sua próxima viagem está mais perto do que você imagina!';
+    $bannerTitle = $banner && $banner->title ? $banner->title : 'Sua próxima viagem está';
+    $bannerTitleDestaque = $banner && $banner->titulo_destaque ? $banner->titulo_destaque : 'mais perto do que você imagina!';
     $bannerSubtitle = $banner && $banner->subtitle ? $banner->subtitle : 'Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.';
 @endphp
 <section class="relative bg-cover bg-center h-[550px] lg:h-[650px] flex items-center" style="background-image: url('{{ $bannerUrl }}');">
@@ -13,7 +14,7 @@
         <div class="max-w-xl lg:max-w-2xl text-white">
             <!-- Main Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                {!! str_replace('perto do que você imagina!', '<span class="text-[#f2bd11]">perto do que você imagina!</span>', e($bannerTitle)) !!}
+                {{ $bannerTitle }} <span class="text-[#f2bd11]">{{ $bannerTitleDestaque }}</span>
             </h1>
             
             <!-- Subtitle -->
