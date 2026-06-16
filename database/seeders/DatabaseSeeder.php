@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
         );
 
         // 2. Seed Banner
-        Banner::truncate();
+        // Banner::truncate();
         Banner::create([
             'title' => 'Sua próxima viagem está mais perto do que você imagina!',
             'subtitle' => 'Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.',
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 3. Seed Destinations
-        Destination::truncate();
+        // Destination::truncate();
         
         // Porto de Galinhas (2026)
         $porto = Destination::create([
@@ -208,7 +208,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // 4. Seed Social Links
-        SocialLink::truncate();
+        // SocialLink::truncate();
         
         SocialLink::create([
             'name' => 'Instagram',
