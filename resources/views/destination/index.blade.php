@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('layouts.pacotes')
 
 @section('title', 'Viaje com a Gente - Pacotes')
 

@@ -47,14 +47,12 @@ class ServiceRepository extends BaseRepository
         return $this->model->create($data);
     }
 
-    public function update(int $id, array $data)
-    {
-        return $this->model->update($data);
-    }
+    // update() removido — agora usa o da BaseRepository, que já está correto
 
     public function softDelete(int $id)
     {
-        return $this->model->delete();
+        $model = $this->model->find($id);
+        return $model->delete();
     }
 
     public function count(): int

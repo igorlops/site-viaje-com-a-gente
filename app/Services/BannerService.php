@@ -57,27 +57,56 @@ class BannerService
 
     public function update(int $id, array $data): void
     {
-        if(isset($data['features'])) {
-            foreach ($data['features'] as $feature) {
-                if(isset($feature['id'])) {
-                    $this->repository->updateFeature($id, $feature);
-                } else {
-                    $this->repository->createFeature($id, $feature);
-                }
-            }
-            unset($data['features']);
-        }
-        if(isset($data['buttons'])) {
-            foreach ($data['buttons'] as $button) {
-                if(isset($button['id'])) {
-                    $this->repository->updateButton($id, $button);
-                } else {
-                    $this->repository->createButton($id, $button);
-                }
-            }
-            unset($data['buttons']);
-        }
+        $this->syncFeatures($id, $data['features'] ?? []);
+        unset($data['features']);
+
+        $this->syncButtons($id, $data['buttons'] ?? []);
+        unset($data['buttons']);
+
         $this->repository->updateBanner($id, $data);
+    }
+
+    private function syncFeatures(int $bannerId, array $features): void
+    {
+        $idsToKeep = [];
+
+        foreach ($features as $feature) {
+            if (!empty($feature['id'])) {
+                $idsToKeep[] = $feature['id'];
+            }
+        }
+
+        // Remove quem não veio mais na lista (foi excluído no client-side)
+        $this->repository->deleteFeaturesNotIn($bannerId, $idsToKeep);
+
+        foreach ($features as $feature) {
+            if (!empty($feature['id'])) {
+                $this->repository->updateFeature($bannerId, $feature);
+            } else {
+                $this->repository->createFeature($bannerId, $feature);
+            }
+        }
+    }
+
+    private function syncButtons(int $bannerId, array $buttons): void
+    {
+        $idsToKeep = [];
+
+        foreach ($buttons as $button) {
+            if (!empty($button['id'])) {
+                $idsToKeep[] = $button['id'];
+            }
+        }
+
+        $this->repository->deleteButtonsNotIn($bannerId, $idsToKeep);
+
+        foreach ($buttons as $button) {
+            if (!empty($button['id'])) {
+                $this->repository->updateButton($bannerId, $button);
+            } else {
+                $this->repository->createButton($bannerId, $button);
+            }
+        }
     }
 
     public function delete(int $id): void

@@ -41,53 +41,53 @@
                     <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Viagens em Grupo</a>
                     <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destinations') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Destinos</a>
 
-<div
-    class="relative"
-    id="services-dropdown"
->
-    <button
-        type="button"
-        id="services-button"
-        class="flex items-center gap-1 {{
-            request()->routeIs('services') || request()->routeIs('service.show')
-                ? 'text-[#f2bd11]'
-                : 'text-gray-300 hover:text-white'
-        }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs"
-    >
-        Nossos Serviços
-        <i
-            id="services-arrow"
-            class="fas fa-chevron-down text-[9px] transition-transform duration-200"
-        ></i>
-    </button>
+                    <div
+                        class="relative"
+                        id="services-dropdown"
+                    >
+                        <button
+                            type="button"
+                            id="services-button"
+                            class="flex items-center gap-1 {{
+                                request()->routeIs('services') || request()->routeIs('service.show')
+                                    ? 'text-[#f2bd11]'
+                                    : 'text-gray-300 hover:text-white'
+                            }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs"
+                        >
+                            Nossos Serviços
+                            <i
+                                id="services-arrow"
+                                class="fas fa-chevron-down text-[9px] transition-transform duration-200"
+                            ></i>
+                        </button>
 
-    <div
-        id="services-menu"
-        class="absolute left-0 top-full w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[999] hidden"
-    >
-        <a
-            href="{{ route('services') }}"
-            class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100"
-        >
-            <i class="fas fa-th-list text-[#f2bd11] w-4"></i>
-            Ver Todos os Serviços
-        </a>
+                        <div
+                            id="services-menu"
+                            class="absolute left-0 top-full w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[999] hidden"
+                        >
+                            <a
+                                href="{{ route('services') }}"
+                                class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100"
+                            >
+                                <i class="fas fa-th-list text-[#f2bd11] w-4"></i>
+                                Ver Todos os Serviços
+                            </a>
 
-        @forelse($menuServices as $svc)
-            <a
-                href="{{ route('service.show', $svc->slug) }}"
-                class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150"
-            >
-                <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
-                {{ $svc->title }}
-            </a>
-        @empty
-            <span class="block px-4 py-2.5 text-xs text-gray-400 italic">
-                Em breve...
-            </span>
-        @endforelse
-    </div>
-</div>
+                            @forelse($menuServices as $svc)
+                                <a
+                                    href="{{ route('service.show', $svc->slug) }}"
+                                    class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150"
+                                >
+                                    <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
+                                    {{ $svc->title }}
+                                </a>
+                            @empty
+                                <span class="block px-4 py-2.5 text-xs text-gray-400 italic">
+                                    Em breve...
+                                </span>
+                            @endforelse
+                        </div>
+                    </div>
 
                     {{-- <a href="{{ route('home') }}#orcamento" class="hover:text-[#f2bd11] transition duration-200">Monte sua Viagem</a> --}}
                     <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f2bd11] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f2bd11]' }} transition duration-200">Dúvidas</a>
@@ -153,6 +153,7 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
         @include('layouts.header')
+        @include('layouts.breadcrumb')
         @yield('content')
     </main>
 

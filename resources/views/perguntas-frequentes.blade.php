@@ -4,30 +4,6 @@
 
 @section('content')
 
-<!-- INNER PAGE HERO -->
-<section class="relative bg-[#001c3d] py-16 lg:py-24 overflow-hidden">
-    <div class="absolute -right-10 -top-10 w-96 h-96 rounded-full bg-blue-900/20 blur-3xl"></div>
-    <div class="absolute -left-10 -bottom-10 w-96 h-96 rounded-full bg-yellow-900/10 blur-3xl"></div>
-    
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        <!-- Breadcrumbs -->
-        <nav class="flex mb-4 text-xs font-semibold uppercase tracking-wider text-gray-400">
-            <a href="{{ route('home') }}" class="hover:text-[#f2bd11] transition duration-200">Início</a>
-            <span class="mx-2 text-gray-600">/</span>
-            <span class="text-[#f2bd11]">Perguntas Frequentes</span>
-        </nav>
-        
-        <!-- Title and Subtitle -->
-        <div class="max-w-3xl">
-            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
-                Dúvidas <span class="text-[#f2bd11]">Frequentes</span>
-            </h1>
-            <p class="text-base sm:text-lg text-gray-300 leading-relaxed">
-                Tem alguma dúvida sobre sua próxima viagem? Reunimos aqui as respostas para as perguntas mais comuns dos nossos clientes.
-            </p>
-        </div>
-    </div>
-</section>
 
 <!-- FAQ SECTION -->
 <section class="py-20 bg-white">

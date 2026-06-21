@@ -40,7 +40,7 @@ class ServiceService
     /**
      * Atualiza um serviço existente com possível troca de imagens.
      */
-    public function update(ServiceDTO $dto, Service $service, Request $request): bool
+    public function update(ServiceDTO $dto, Service $service, Request $request)
     {
         $data = $dto->toArray();
 
@@ -59,7 +59,7 @@ class ServiceService
             $data['og_image'] = $this->uploadImage($request->file('og_image'), 'services/og');
         }
 
-        return $this->repository->update($service, $data);
+        return $this->repository->update($service->id, $data);
     }
 
     /**

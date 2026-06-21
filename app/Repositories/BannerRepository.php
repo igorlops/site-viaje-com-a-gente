@@ -49,11 +49,24 @@ class BannerRepository extends BaseRepository
     }
     public function updateFeature(int $bannerId, array $data): void
     {
-        $this->model->find($bannerId)->featureBanners()->update($data);
+        $featureId = $data['id'] ?? null;
+        unset($data['id']);
+
+        $this->model->find($bannerId)
+            ->featureBanners()
+            ->where('id', $featureId)
+            ->update($data);
     }
+
     public function updateButton(int $bannerId, array $data): void
     {
-        $this->model->find($bannerId)->buttons()->update($data);
+        $buttonId = $data['id'] ?? null;
+        unset($data['id']);
+
+        $this->model->find($bannerId)
+            ->buttons()
+            ->where('id', $buttonId)
+            ->update($data);
     }
 
     public function createFeature(int $bannerId, array $data): void
@@ -63,5 +76,14 @@ class BannerRepository extends BaseRepository
     public function createButton(int $bannerId, array $data): void
     {
         $this->model->find($bannerId)->buttons()->create($data);
+    }
+    public function deleteFeaturesNotIn(int $bannerId, array $ids): void
+    {
+        $this->model->find($bannerId)->featureBanners()->whereNotIn('id', $ids)->delete();
+    }
+
+    public function deleteButtonsNotIn(int $bannerId, array $ids): void
+    {
+        $this->model->find($bannerId)->buttons()->whereNotIn('id', $ids)->delete();
     }
 }

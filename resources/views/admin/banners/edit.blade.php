@@ -82,6 +82,7 @@
             <!-- Active Checkbox -->
             <div>
                 <label class="flex items-center gap-2.5 cursor-pointer select-none">
+                    <input type="hidden" name="active" value="0">
                     <input type="checkbox" name="active" value="1" {{ old('active', $banner->active) ? 'checked' : '' }}
                         class="w-4 h-4 rounded text-[#002752] focus:ring-[#002752] border-gray-300">
                     <span class="text-sm font-bold text-gray-700 uppercase tracking-wide">Banner Ativo</span>
@@ -114,34 +115,31 @@
                                 <span class="inline-flex items-center gap-2 text-[10px] font-bold text-[#001c3d] uppercase tracking-wider">
                                     <i class="fas fa-star text-[#f2bd11]"></i> Feature
                                 </span>
-                                <form action="{{ route('admin.feature-banner.delete', $feature->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button
-                                        type="submit"
-                                        class="remove-feature p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
-                                        <i class="fas fa-trash-alt text-sm pointer-events-none"></i>
-                                    </button>
-                                </form>
+                                <button
+                                    type="button"
+                                    class="remove-feature p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                    <i class="fas fa-trash-alt text-sm pointer-events-none"></i>
+                                </button>
                             </div>
 
                             <div class="p-5 grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <input type="hidden" name="features[{{ $featureIndex }}][id]" value="{{ $feature->id }}">
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Nome</label>
-                                    <input type="text" name="features[${featureIndex}][name]" placeholder="Ex: Wi-Fi Grátis" required
-                                        value="{{ old('features.{$featureIndex}.name', $feature->name) }}"
+                                    <input type="text" name="features[{{ $featureIndex }}][name]" placeholder="Ex: Wi-Fi Grátis" required
+                                        value="{{ old('features.'.$featureIndex.'.name', $feature->name) }}"
                                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Ícone (Font Awesome)</label>
-                                    <input type="text" name="features[${featureIndex}][icon]" placeholder="fa-solid fa-plane" required
-                                        value="{{ old('features.{$featureIndex}.icon', $feature->icon) }}"
+                                    <input type="text" name="features[{{ $featureIndex }}][icon]" placeholder="fa-solid fa-plane" required
+                                        value="{{ old('features.'.$featureIndex.'.icon', $feature->icon) }}"
                                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                 </div>
                                 <div>
                                     <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Ordem Exibição</label>
-                                    <input type="number" name="features[${featureIndex}][order]" placeholder="Ex: 1" required
-                                        value="{{ old('features.{$featureIndex}.order', $feature->order) }}"
+                                    <input type="number" name="features[{{ $featureIndex }}][order]" placeholder="Ex: 1" required
+                                        value="{{ old('features.'.$featureIndex.'.order', $feature->order) }}"
                                         class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                 </div>
                             </div>
@@ -172,17 +170,8 @@
 
                         <div class="button-item rounded-xl border border-slate-100 bg-white shadow-sm overflow-hidden transition-all">
 
-                            <form action="{{ route('admin.button-banner.delete', $button->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button
-                                    type="submit"
-                                    class="remove-button absolute top-2 right-2 text-red-500 font-bold">
-                                    X
-                                </button>
-                            </form>
-
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input type="hidden" name="buttons[{{ $buttonIndex }}][id]" value="{{ $button->id }}">
 
                                 <div class="flex items-center justify-between gap-2 px-4 py-2.5 bg-slate-50 border-b border-slate-100">
                                     <span class="inline-flex items-center gap-2 text-[10px] font-bold text-[#001c3d] uppercase tracking-wider">
@@ -196,33 +185,32 @@
                                 <div class="p-5 grid grid-cols-1 md:grid-cols-12 gap-4">
                                     <div class="md:col-span-4">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Texto do Botão</label>
-                                        <input type="text" name="buttons[${buttonIndex}][text]" placeholder="Ex: Saiba Mais" required
-                                            value="{{ old('buttons.{$buttonIndex}.text', $button->text) }}"
+                                        <input type="text" name="buttons[{{ $buttonIndex }}][text]" placeholder="Ex: Saiba Mais" required
+                                            value="{{ old('buttons.'.$buttonIndex.'.text', $button->text) }}"
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-3">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hexadecimal</label>
-                                        <input type="text" name="buttons[${buttonIndex}][color]" value="{{ old('buttons.{$buttonIndex}.color', $button->color) }}" required
+                                        <input type="text" name="buttons[{{ $buttonIndex }}][color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-5">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">URL / Link do Botão</label>
-                                        <input type="text" name="buttons[${buttonIndex}][url]" value="{{ old('buttons.{$buttonIndex}.url', $button->url) }}" placeholder="Ex: https://..." required
+                                        <input type="text" name="buttons[{{ $buttonIndex }}][url]" value="{{ old('buttons.'.$buttonIndex.'.url', $button->url) }}" placeholder="Ex: https://..." required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-6">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Target (Abertura)</label>
-                                        <select name="buttons[${buttonIndex}][target]" required
-                                            value="{{ old('buttons.{$buttonIndex}.target', $button->target) }}"
+                                        <select name="buttons[{{ $buttonIndex }}][target]" required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
-                                            <option value="_self">Mesma Aba</option>
-                                            <option value="_blank">Nova Aba (Guia externa)</option>
+                                            <option value="_self" {{ old('buttons.'.$buttonIndex.'.target', $button->target) == '_self' ? 'selected' : '' }}>Mesma Aba</option>
+                                            <option value="_blank" {{ old('buttons.'.$buttonIndex.'.target', $button->target) == '_blank' ? 'selected' : '' }}>Nova Aba (Guia externa)</option>
                                         </select>
                                     </div>
                                     <div class="md:col-span-6">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Ordem</label>
-                                        <input type="number" name="buttons[${buttonIndex}][order]" placeholder="Ex: 1" required
-                                            value="{{ old('buttons.{$buttonIndex}.order', $button->order) }}"
+                                        <input type="number" name="buttons[{{ $buttonIndex }}][order]" placeholder="Ex: 1" required
+                                            value="{{ old('buttons.'.$buttonIndex.'.order', $button->order) }}"
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                 </div>
@@ -248,8 +236,8 @@
 
 @section('scripts')
 <script>
-    let featureIndex = 0;
-    let buttonIndex = 0;
+    let featureIndex = {{ isset($banner->featureBanners) ? count($banner->featureBanners) : 0 }};
+    let buttonIndex = {{ isset($banner->buttons) ? count($banner->buttons) : 0 }};
 
     // Adicionar Linha de Feature
     document.getElementById('add-feature').addEventListener('click', function () {

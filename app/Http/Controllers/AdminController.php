@@ -128,18 +128,20 @@ class AdminController extends Controller
 
     public function bannerUpdate(Request $request, Banner $banner)
     {
-        $data=$request->validate([
-            'title' => 'nullable|string|max:255', 
-            'titulo_destaque' => 'nullable|string|max:255', 
+        $data = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'titulo_destaque' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'page_id' => 'nullable|integer',
             'active' => 'boolean',
             'features' => 'nullable|array',
+            'features.*.id' => 'nullable|integer',
             'features.*.name' => 'nullable|string|max:255',
             'features.*.icon' => 'nullable|string|max:255',
             'features.*.order' => 'nullable|integer',
             'buttons' => 'nullable|array',
+            'buttons.*.id' => 'nullable|integer',
             'buttons.*.text' => 'nullable|string|max:255',
             'buttons.*.color' => 'nullable|string|max:255',
             'buttons.*.url' => 'nullable|string|max:255',

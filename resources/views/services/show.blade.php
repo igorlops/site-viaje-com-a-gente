@@ -1,4 +1,4 @@
-@extends('layouts.site')
+@extends('layouts.servico')
 
 @section('title', ($service->meta_title ?: $service->title) . ' - Viaje com a Gente')
 
@@ -60,9 +60,12 @@
                 @endif
 
                 @if($service->summary)
-                    <p class="text-base text-gray-300 mb-8 max-w-2xl leading-relaxed">
-                        {{ $service->summary }}
-                    </p>
+                    <div class="text-base text-gray-300 mb-8 max-w-2xl leading-relaxed [&_p]:m-0 [&_a]:text-[#f2bd11] [&_a]:underline hover:[&_a]:text-white [&_strong]:text-white [&_strong]:font-bold [&_em]:italic">
+                        {!! \Illuminate\Support\Str::markdown($service->summary, [
+                            'html_input' => 'strip',
+                            'allow_unsafe_links' => false,
+                        ]) !!}
+                    </div>
                 @endif
 
                 <div class="flex flex-wrap gap-4">
@@ -91,15 +94,18 @@
                     {{-- Layout em 2 colunas: conteúdo + imagem destaque --}}
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
                         <div class="lg:col-span-2">
-                            <div class="prose prose-lg max-w-none
-                                prose-headings:text-[#002752] prose-headings:font-black
-                                prose-h1:text-3xl prose-h2:text-2xl prose-h2:border-b prose-h2:border-gray-100 prose-h2:pb-3 prose-h3:text-xl
-                                prose-p:text-gray-700 prose-p:leading-relaxed
-                                prose-a:text-[#109e4a] prose-a:font-semibold hover:prose-a:text-[#0d9648]
-                                prose-strong:text-gray-800
-                                prose-li:text-gray-700
-                                prose-ul:space-y-1
-                                prose-hr:border-gray-200 prose-hr:my-8">
+                            <div class="max-w-none text-gray-700 leading-relaxed
+                                [&_h1]:text-[#002752] [&_h1]:font-black [&_h1]:text-3xl [&_h1]:mb-4
+                                [&_h2]:text-[#002752] [&_h2]:font-black [&_h2]:text-2xl [&_h2]:border-b [&_h2]:border-gray-100 [&_h2]:pb-3 [&_h2]:mt-10 [&_h2]:mb-4
+                                [&_h3]:text-[#002752] [&_h3]:font-black [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-3
+                                [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:mb-5
+                                [&_a]:text-[#109e4a] [&_a]:font-semibold [&_a]:underline hover:[&_a]:text-[#0d9648]
+                                [&_strong]:text-gray-800 [&_strong]:font-bold
+                                [&_em]:italic
+                                [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1 [&_ul]:mb-5
+                                [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-1 [&_ol]:mb-5
+                                [&_li]:text-gray-700
+                                [&_hr]:border-gray-200 [&_hr]:my-8">
                                 {!! $htmlContent !!}
                             </div>
                         </div>
@@ -115,15 +121,18 @@
                 @elseif($htmlContent)
                     {{-- Apenas conteúdo (sem imagem de destaque) --}}
                     <div class="max-w-4xl mx-auto">
-                        <div class="prose prose-lg max-w-none
-                            prose-headings:text-[#002752] prose-headings:font-black
-                            prose-h1:text-3xl prose-h2:text-2xl prose-h2:border-b prose-h2:border-gray-100 prose-h2:pb-3 prose-h3:text-xl
-                            prose-p:text-gray-700 prose-p:leading-relaxed
-                            prose-a:text-[#109e4a] prose-a:font-semibold hover:prose-a:text-[#0d9648]
-                            prose-strong:text-gray-800
-                            prose-li:text-gray-700
-                            prose-ul:space-y-1
-                            prose-hr:border-gray-200 prose-hr:my-8">
+                        <div class="max-w-none text-gray-700 leading-relaxed
+                            [&_h1]:text-[#002752] [&_h1]:font-black [&_h1]:text-3xl [&_h1]:mb-4
+                            [&_h2]:text-[#002752] [&_h2]:font-black [&_h2]:text-2xl [&_h2]:border-b [&_h2]:border-gray-100 [&_h2]:pb-3 [&_h2]:mt-10 [&_h2]:mb-4
+                            [&_h3]:text-[#002752] [&_h3]:font-black [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-3
+                            [&_p]:text-gray-700 [&_p]:leading-relaxed [&_p]:mb-5
+                            [&_a]:text-[#109e4a] [&_a]:font-semibold [&_a]:underline hover:[&_a]:text-[#0d9648]
+                            [&_strong]:text-gray-800 [&_strong]:font-bold
+                            [&_em]:italic
+                            [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-1 [&_ul]:mb-5
+                            [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-1 [&_ol]:mb-5
+                            [&_li]:text-gray-700
+                            [&_hr]:border-gray-200 [&_hr]:my-8">
                             {!! $htmlContent !!}
                         </div>
                     </div>
