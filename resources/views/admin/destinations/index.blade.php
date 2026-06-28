@@ -77,6 +77,13 @@
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <div class="flex items-center justify-end gap-2">
+                                    <form action="{{ route('admin.destinations.duplicate', $dest->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        <button type="submit" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-green-50 text-green-600 hover:bg-green-600 hover:text-white transition duration-200" title="Duplicar">
+                                            <i class="fas fa-copy text-xs"></i>
+                                        </button>
+                                    </form>
+
                                     <a href="{{ route('admin.destinations.edit', $dest->id) }}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition duration-200" title="Editar">
                                         <i class="fas fa-edit text-xs"></i>
                                     </a>

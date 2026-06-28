@@ -88,4 +88,43 @@ class ServiceService
             Storage::disk('public')->delete($path);
         }
     }
+
+    /**
+     * Duplica um serviço existente e copia suas imagens físicas.
+     */
+    public function duplicate(Service $original): Service
+    {
+        $data = $original->toArray();
+        unset($data['id'], $data['created_at'], $data['updated_at'], $data['deleted_at']);
+
+        // Ajustar título e slug
+        $data['title'] = $original->title . ' (Cópia)';
+        $data['slug'] = Service::generateSlug($data['title']);
+
+        // Duplicar banner
+        if ($original->banner_path && Storage::disk('public')->exists($original->banner_path)) {
+            $ext = pathinfo($original->banner_path, PATHINFO_EXTENSION);
+            $newPath = 'services/banners/' . uniqid() . '.' . $ext;
+            Storage::disk('public')->copy($original->banner_path, $newPath);
+            $data['banner_path'] = $newPath;
+        }
+
+        // Duplicar imagem
+        if ($original->image_path && Storage::disk('public')->exists($original->image_path)) {
+            $ext = pathinfo($original->image_path, PATHINFO_EXTENSION);
+            $newPath = 'services/images/' . uniqid() . '.' . $ext;
+            Storage::disk('public')->copy($original->image_path, $newPath);
+            $data['image_path'] = $newPath;
+        }
+
+        // Duplicar og_image
+        if ($original->og_image && Storage::disk('public')->exists($original->og_image)) {
+            $ext = pathinfo($original->og_image, PATHINFO_EXTENSION);
+            $newPath = 'services/og/' . uniqid() . '.' . $ext;
+            Storage::disk('public')->copy($original->og_image, $newPath);
+            $data['og_image'] = $newPath;
+        }
+
+        return $this->repository->create($data);
+    }
 }

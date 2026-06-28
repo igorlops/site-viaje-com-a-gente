@@ -88,25 +88,33 @@
                                     @if($service->status === 'published')
                                         <a href="{{ route('service.show', $service->slug) }}" target="_blank"
                                            class="p-2 text-gray-400 hover:text-[#002752] hover:bg-gray-100 rounded-lg transition duration-200" title="Ver no site">
-                                            <i class="fas fa-external-link-alt text-xs"></i>
-                                        </a>
+                                             <i class="fas fa-external-link-alt text-xs"></i>
+                                         </a>
                                     @endif
-                                    <a href="{{ route('admin.services.edit', $service) }}"
-                                       class="inline-flex items-center gap-1.5 bg-[#002752] hover:bg-[#003a66] text-white px-3 py-2 rounded-lg font-bold text-xs transition duration-200">
-                                        <i class="fas fa-pen text-xs"></i>
-                                        <span class="hidden sm:inline">Editar</span>
-                                    </a>
-                                    <form action="{{ route('admin.services.destroy', $service) }}" method="POST"
-                                          onsubmit="return confirm('Tem certeza que deseja excluir o serviço \'{{ $service->title }}\'?')">
+                                    
+                                    <form action="{{ route('admin.services.duplicate', $service) }}" method="POST" class="inline">
                                         @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="inline-flex items-center gap-1.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 px-3 py-2 rounded-lg font-bold text-xs transition duration-200">
-                                            <i class="fas fa-trash text-xs"></i>
-                                            <span class="hidden sm:inline">Excluir</span>
+                                        <button type="submit" class="inline-flex items-center justify-center p-2 rounded-lg bg-green-50 text-green-600 hover:bg-green-600 hover:text-white transition duration-200" title="Duplicar">
+                                            <i class="fas fa-copy text-xs"></i>
                                         </button>
                                     </form>
-                                </div>
+
+                                    <a href="{{ route('admin.services.edit', $service) }}"
+                                       class="inline-flex items-center gap-1.5 bg-[#002752] hover:bg-[#003a66] text-white px-3 py-2 rounded-lg font-bold text-xs transition duration-200">
+                                         <i class="fas fa-pen text-xs"></i>
+                                         <span class="hidden sm:inline">Editar</span>
+                                     </a>
+                                     <form action="{{ route('admin.services.destroy', $service) }}" method="POST"
+                                           onsubmit="return confirm('Tem certeza que deseja excluir o serviço \'{{ $service->title }}\'?')">
+                                         @csrf
+                                         @method('DELETE')
+                                         <button type="submit"
+                                                 class="inline-flex items-center gap-1.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 px-3 py-2 rounded-lg font-bold text-xs transition duration-200">
+                                             <i class="fas fa-trash text-xs"></i>
+                                             <span class="hidden sm:inline">Excluir</span>
+                                         </button>
+                                     </form>
+                                 </div>
                             </td>
                         </tr>
                     @endforeach

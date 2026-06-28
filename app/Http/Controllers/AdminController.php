@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\DTOs\Admin\ServiceDTO;
 use App\Http\Requests\Admin\ServiceRequest;
+use App\Http\Requests\Admin\SiteSettingRequest;
 use App\Models\Banner;
 use App\Models\ButtonBanner;
 use App\Models\Destination;
 use App\Models\FeatureBanner;
 use App\Models\Page;
+use App\Models\PageView;
 use App\Models\Service;
+use App\Models\SiteSetting;
 use App\Models\SocialLink;
 use App\Repositories\ServiceRepository;
+use App\Repositories\SiteSettingRepository;
 use App\Services\Admin\ServiceService;
+use App\Services\Admin\SiteSettingService;
 use App\Services\BannerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -21,7 +26,9 @@ class AdminController extends Controller
 {
     public function __construct(
         protected BannerService $bannerService,
-        protected \App\Services\Admin\DestinationService $destinationService
+        protected \App\Services\Admin\DestinationService $destinationService,
+        protected SiteSettingRepository $siteSettingRepository,
+        protected SiteSettingService $siteSettingService
     ) {}
     /**
      * Display the admin dashboard.
@@ -33,7 +40,39 @@ class AdminController extends Controller
         $socialLinksCount  = SocialLink::count();
         $servicesCount     = Service::count();
 
-        return view('admin.dashboard', compact('bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount'));
+        // Métricas de visitas
+        $totalVisits30d = PageView::where('visited_at', '>=', now()->subDays(30))->count();
+
+        // Top 10 páginas mais visitadas (últimos 30 dias)
+        $topPages = PageView::selectRaw('page_name, COUNT(*) as total')
+            ->where('visited_at', '>=', now()->subDays(30))
+            ->whereNotNull('page_name')
+            ->groupBy('page_name')
+            ->orderByDesc('total')
+            ->limit(10)
+            ->get();
+
+        // Visitas por dia nos últimos 14 dias (para gráfico)
+        $dailyVisits = PageView::selectRaw("strftime('%Y-%m-%d', visited_at) as day, COUNT(*) as total")
+            ->where('visited_at', '>=', now()->subDays(14))
+            ->groupByRaw("strftime('%Y-%m-%d', visited_at)")
+            ->orderBy('day')
+            ->get()
+            ->keyBy('day');
+
+        // Preenche todos os dias (sem gaps)
+        $chartLabels = [];
+        $chartData   = [];
+        for ($i = 13; $i >= 0; $i--) {
+            $day = now()->subDays($i)->format('Y-m-d');
+            $chartLabels[] = now()->subDays($i)->format('d/m');
+            $chartData[]   = $dailyVisits->get($day)?->total ?? 0;
+        }
+
+        return view('admin.dashboard', compact(
+            'bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount',
+            'totalVisits30d', 'topPages', 'chartLabels', 'chartData'
+        ));
     }
 
     /* BANNERS CRUD */
@@ -57,66 +96,83 @@ class AdminController extends Controller
     }
 
     public function bannerStore(Request $request)
-{
-    $data = $request->validate([
-        'title' => 'nullable|string|max:255',
-        'titulo_destaque' => 'nullable|string|max:255',
-        'subtitle' => 'nullable|string',
-        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-        'page_id' => 'nullable',
-        'active' => 'boolean',
-        
-        // Incluindo a validação das Features (idêntico ao update)
-        'features' => 'nullable|array',
-        'features.*.name' => 'nullable|string|max:255',
-        'features.*.icon' => 'nullable|string|max:255',
-        'features.*.order' => 'nullable|integer',
-        
-        // Incluindo a validação dos Botões (idêntico ao update)
-        'buttons' => 'nullable|array',
-        'buttons.*.text' => 'nullable|string|max:255',
-        'buttons.*.color' => 'nullable|string|max:255',
-        'buttons.*.url' => 'nullable|string|max:255',
-        'buttons.*.target' => 'nullable|string|max:255',
-        'buttons.*.order' => 'nullable|integer',
-    ]);
+    {
+        $data = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'titulo_destaque' => 'nullable|string|max:255',
+            'subtitle' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'page_id' => 'nullable',
+            'active' => 'boolean',
+            
+            // Incluindo a validação das Features (idêntico ao update)
+            'features' => 'nullable|array',
+            'features.*.name' => 'nullable|string|max:255',
+            'features.*.icon' => 'nullable|string|max:255',
+            'features.*.order' => 'nullable|integer',
+            
+            // Incluindo a validação dos Botões (idêntico ao update)
+            'buttons' => 'nullable|array',
+            'buttons.*.text' => 'nullable|string|max:255',
+            'buttons.*.color' => 'nullable|string|max:255',
+            'buttons.*.url' => 'nullable|string|max:255',
+            'buttons.*.target' => 'nullable|string|max:255',
+            'buttons.*.order' => 'nullable|integer',
+        ]);
 
-    // Upload da imagem
-    if ($request->hasFile('image')) {
-        $data['image_path'] = $request->file('image')->store('banners', 'public');
-    }
-
-    // Tratamento dos botões (limpa vazios e aplica fallbacks)
-    if (isset($data['buttons'])) {
-        foreach ($data['buttons'] as $index => $button) {
-            if (!empty($button['text'])) {
-                $data['buttons'][$index]['url'] = $button['url'] ?? '#';
-                $data['buttons'][$index]['target'] = $button['target'] ?? '_self';
-            } else {
-                unset($data['buttons'][$index]);
-            }
+        // Upload da imagem
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('banners', 'public');
         }
-        $data['buttons'] = array_values($data['buttons']);
-    }
 
-    // Tratamento das features (limpa vazios e aplica fallbacks)
-    if (isset($data['features'])) {
-        foreach ($data['features'] as $index => $feature) {
-            if (!empty($feature['name'])) {
-                $data['features'][$index]['icon'] = $feature['icon'] ?? 'fa fa-star';
-                $data['features'][$index]['order'] = $feature['order'] ?? $index + 1;
-            } else {
-                unset($data['features'][$index]);
+        // Tratamento dos botões (limpa vazios e aplica fallbacks)
+        if (isset($data['buttons'])) {
+            foreach ($data['buttons'] as $index => $button) {
+                if (!empty($button['text'])) {
+                    $data['buttons'][$index]['url'] = $button['url'] ?? '#';
+                    $data['buttons'][$index]['target'] = $button['target'] ?? '_self';
+                } else {
+                    unset($data['buttons'][$index]);
+                }
             }
+            $data['buttons'] = array_values($data['buttons']);
         }
-        $data['features'] = array_values($data['features']);
+
+        // Tratamento das features (limpa vazios e aplica fallbacks)
+        if (isset($data['features'])) {
+            foreach ($data['features'] as $index => $feature) {
+                if (!empty($feature['name'])) {
+                    $data['features'][$index]['icon'] = $feature['icon'] ?? 'fa fa-star';
+                    $data['features'][$index]['order'] = $feature['order'] ?? $index + 1;
+                } else {
+                    unset($data['features'][$index]);
+                }
+            }
+            $data['features'] = array_values($data['features']);
+        }
+
+        // Envia tudo tratado para o Service criar no banco de dados
+        $this->bannerService->create($data);
+
+        return redirect()->route('admin.banners.index')->with('success', 'Banner criado com sucesso!');
     }
 
-    // Envia tudo tratado para o Service criar no banco de dados
-    $this->bannerService->create($data);
+    public function settings()
+    {
+        $settingsGrouped = $this->siteSettingRepository->allGrouped();
+        return view('admin.settings.index', compact('settingsGrouped'));
+    }
 
-    return redirect()->route('admin.banners.index')->with('success', 'Banner criado com sucesso!');
-}
+    public function settingEdit(SiteSetting $setting)
+    {
+        return view('admin.settings.edit', compact('setting'));
+    }
+
+    public function settingUpdate(SiteSettingRequest $request, SiteSetting $setting)
+    {
+        $this->siteSettingService->update($setting, $request);
+        return redirect()->route('admin.settings.index')->with('success', 'Configuração "' . $setting->label . '" atualizada com sucesso!');
+    }
     public function featureBannerDelete(FeatureBanner $featureBanner) {
         $featureBanner->delete();
         return redirect()->back()->with('success', 'Característica deletada com sucesso!');
@@ -228,6 +284,13 @@ class AdminController extends Controller
         return redirect()->route('admin.destinations.index')->with('success', 'Destino excluído com sucesso!');
     }
 
+    public function destinationDuplicate(Destination $destination)
+    {
+        $this->destinationService->duplicate($destination->id);
+
+        return redirect()->route('admin.destinations.index')->with('success', 'Destino duplicado com sucesso!');
+    }
+
     /* SOCIAL LINKS CRUD */
 
     public function socialLinks()
@@ -318,6 +381,12 @@ class AdminController extends Controller
     {
         $serviceService->destroy($service);
         return redirect()->route('admin.services.index')->with('success', 'Serviço excluído com sucesso!');
+    }
+
+    public function serviceDuplicate(Service $service, ServiceService $serviceService)
+    {
+        $serviceService->duplicate($service);
+        return redirect()->route('admin.services.index')->with('success', 'Serviço duplicado com sucesso!');
     }
 
     public function pages()

@@ -49,12 +49,9 @@
                                 
                                 <!-- Info Badge -->
                                 <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4">
-                                    <i class="far fa-calendar-alt text-[#109e4a]"></i>
-                                    <span>{{ $pkg->duration }}</span>
-                                    <span class="text-gray-300">|</span>
-                                    <i class="fas fa-bus text-[#109e4a] text-[10px]"></i>
-                                    <span class="truncate">{{ $pkg->category }}</span>
-                                </div>
+                                     <i class="far fa-clock text-[#109e4a]"></i>
+                                     <span>{{ $pkg->duration }} @if($pkg->nights) e {{ $pkg->nights }} Noites @endif</span>
+                                 </div>
                             </div>
                             
                             <div>

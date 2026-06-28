@@ -32,7 +32,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     // CRUD Configurações Gerais
-    Route::get('/settings', [AdminController::class, 'banners'])->name('admin.settings.index');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings.index');
     Route::get('/settings/{setting}/edit', [AdminController::class, 'settingEdit'])->name('admin.settings.edit');
     Route::put('/settings/{setting}', [AdminController::class, 'settingUpdate'])->name('admin.settings.update');
 
@@ -52,6 +52,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/destinations/{destination}/edit', [AdminController::class, 'destinationEdit'])->name('admin.destinations.edit');
     Route::put('/destinations/{destination}', [AdminController::class, 'destinationUpdate'])->name('admin.destinations.update');
     Route::delete('/destinations/{destination}', [AdminController::class, 'destinationDestroy'])->name('admin.destinations.destroy');
+    Route::post('/destinations/{destination}/duplicate', [AdminController::class, 'destinationDuplicate'])->name('admin.destinations.duplicate');
 
     // CRUD Redes Sociais
     Route::get('/social', [AdminController::class, 'socialLinks'])->name('admin.social.index');
@@ -66,6 +67,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/services/{service}/edit', [AdminController::class, 'serviceEdit'])->name('admin.services.edit');
     Route::put('/services/{service}', [AdminController::class, 'serviceUpdate'])->name('admin.services.update');
     Route::delete('/services/{service}', [AdminController::class, 'serviceDestroy'])->name('admin.services.destroy');
+    Route::post('/services/{service}/duplicate', [AdminController::class, 'serviceDuplicate'])->name('admin.services.duplicate');
 
     // Pages
     Route::get('/pages', [AdminController::class, 'pages'])->name('admin.pages.index');

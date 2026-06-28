@@ -52,11 +52,8 @@
                                 
                                 <!-- Info Badge -->
                                 <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4">
-                                    <i class="far fa-calendar-alt text-[#109e4a]"></i>
-                                    <span>{{ $destination->duration }}</span>
-                                    <span class="text-gray-300">|</span>
-                                    <i class="fas fa-plane-departure text-[#109e4a] text-[10px]"></i>
-                                    <span class="truncate">{{ $destination->category }}</span>
+                                    <i class="far fa-clock text-[#109e4a]"></i>
+                                    <span>{{ $destination->duration }} @if($destination->nights) e {{ $destination->nights }} Noites @endif</span>
                                 </div>
                             </div>
                             
@@ -79,7 +76,7 @@
                                     $destWhatsapp = $destination->whatsapp_link ?: $whatsappUrl . '?text=' . urlencode('Olá, gostaria de mais informações sobre o pacote ' . $destination->title);
                                 @endphp
                                 <div class="flex gap-2">
-                                    <a href="{{ $destWhatsapp }}" target="_blank" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
+                                    <a href="{{ route('destination.show', $destination->slug) }}" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
                                         <span>Ver Pacote</span>
                                         <i class="fas fa-chevron-right text-[9px]"></i>
                                     </a>
@@ -99,7 +96,7 @@
             
             <!-- More Packages Button -->
             <div class="text-center">
-                <a href="{{ $whatsappUrl }}" target="_blank" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
+                <a href="{{ route('destination') }}" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
                     <span>Ver Todos os Pacotes</span>
                     <i class="fas fa-chevron-right text-xs"></i>
                 </a>

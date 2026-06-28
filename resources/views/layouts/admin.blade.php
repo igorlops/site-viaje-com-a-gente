@@ -30,9 +30,9 @@
                 <span>Dashboard</span>
             </a>
             
-            <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
-                <i class="fas fa-cog text-lg w-6 text-center"></i>
-                <span>Configurações Gerais</span>
+            <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-images text-lg w-6 text-center"></i>
+                <span>Banners</span>
             </a>
             
             <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
@@ -52,6 +52,15 @@
             <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-file-lines text-lg w-6 text-center"></i>
                 <span>Páginas</span>
+            </a>
+
+            <div class="pt-2 pb-1">
+                <span class="px-4 text-[10px] font-bold uppercase tracking-widest text-white/30">Sistema</span>
+            </div>
+
+            <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-sliders text-lg w-6 text-center"></i>
+                <span>Configurações Gerais</span>
             </a>
         </nav>
         
@@ -115,7 +124,7 @@
                     
                     <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-images text-lg w-6 text-center"></i>
-                        <span>Banner Principal</span>
+                        <span>Banners</span>
                     </a>
                     
                     <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
@@ -131,6 +140,20 @@
                     <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-concierge-bell text-lg w-6 text-center"></i>
                         <span>Serviços</span>
+                    </a>
+
+                    <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-file-lines text-lg w-6 text-center"></i>
+                        <span>Páginas</span>
+                    </a>
+
+                    <div class="pt-2 pb-1">
+                        <span class="px-4 text-[10px] font-bold uppercase tracking-widest text-white/30">Sistema</span>
+                    </div>
+
+                    <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-sliders text-lg w-6 text-center"></i>
+                        <span>Configurações Gerais</span>
                     </a>
                 </nav>
                 

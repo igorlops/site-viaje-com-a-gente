@@ -51,11 +51,8 @@
                                 
                                 <!-- Info Badge -->
                                 <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4">
-                                    <i class="far fa-calendar-alt text-[#109e4a]"></i>
-                                    <span>{{ $destination->duration }}</span>
-                                    <span class="text-gray-300">|</span>
-                                    <i class="fas fa-plane-departure text-[#109e4a] text-[10px]"></i>
-                                    <span class="truncate">{{ $destination->category }}</span>
+                                    <i class="far fa-clock text-[#109e4a]"></i>
+                                    <span>{{ $destination->duration }} {{ $destination->nights == 1 ? 'Noite' : 'Noites' }}</span>
                                 </div>
                             </div>
                             

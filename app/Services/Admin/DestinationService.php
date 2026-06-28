@@ -190,4 +190,88 @@ class DestinationService
             Storage::disk('public')->delete($path);
         }
     }
+
+    public function duplicate(int $id): Destination
+    {
+        $original = $this->repository->find($id);
+        $original->load(['includes', 'highlights', 'itineraryDays.activities']);
+
+        $data = $original->toArray();
+        unset($data['id'], $data['created_at'], $data['updated_at']);
+
+        // Ajustar título e slug
+        $data['title'] = $original->title . ' (Cópia)';
+        
+        $slug = \Illuminate\Support\Str::slug($data['title']);
+        $originalSlug = $slug;
+        $count = 1;
+        while (Destination::where('slug', $slug)->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+        }
+        $data['slug'] = $slug;
+
+        // Duplicar imagem principal
+        if ($original->image_path && Storage::disk('public')->exists($original->image_path)) {
+            $ext = pathinfo($original->image_path, PATHINFO_EXTENSION);
+            $newPath = 'destinations/' . uniqid() . '.' . $ext;
+            Storage::disk('public')->copy($original->image_path, $newPath);
+            $data['image_path'] = $newPath;
+        }
+
+        // Duplicar banner_image
+        if ($original->banner_image_path && Storage::disk('public')->exists($original->banner_image_path)) {
+            $ext = pathinfo($original->banner_image_path, PATHINFO_EXTENSION);
+            $newPath = 'destinations/' . uniqid() . '.' . $ext;
+            Storage::disk('public')->copy($original->banner_image_path, $newPath);
+            $data['banner_image_path'] = $newPath;
+        }
+
+        $duplicate = $this->repository->create($data);
+
+        // Relação 1: Includes
+        foreach ($original->includes as $include) {
+            $duplicate->includes()->create([
+                'text' => $include->text,
+                'type' => $include->type,
+                'order' => $include->order,
+            ]);
+        }
+
+        // Relação 2: Highlights
+        foreach ($original->highlights as $highlight) {
+            $highlightData = [
+                'title' => $highlight->title,
+                'subtitle' => $highlight->subtitle,
+                'order' => $highlight->order,
+            ];
+
+            if ($highlight->image_path && Storage::disk('public')->exists($highlight->image_path)) {
+                $ext = pathinfo($highlight->image_path, PATHINFO_EXTENSION);
+                $newPath = 'highlights/' . uniqid() . '.' . $ext;
+                Storage::disk('public')->copy($highlight->image_path, $newPath);
+                $highlightData['image_path'] = $newPath;
+            }
+
+            $duplicate->highlights()->create($highlightData);
+        }
+
+        // Relação 3: ItineraryDays & Activities
+        foreach ($original->itineraryDays as $day) {
+            $newDay = $duplicate->itineraryDays()->create([
+                'day_number' => $day->day_number,
+                'date' => $day->date,
+                'label' => $day->label,
+                'order' => $day->order,
+            ]);
+
+            foreach ($day->activities as $activity) {
+                $newDay->activities()->create([
+                    'activity' => $activity->activity,
+                    'order' => $activity->order,
+                ]);
+            }
+        }
+
+        return $duplicate;
+    }
 }

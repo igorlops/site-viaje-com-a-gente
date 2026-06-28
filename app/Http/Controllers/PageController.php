@@ -33,7 +33,6 @@ class PageController extends Controller
     {
         $banner = $this->bannerService->bannerByPageSlug('home');
         $destinations = Destination::where('is_featured', true)->get();
-        
         $socialLinks = SocialLink::where('active', true)->get()->keyBy(function ($item) {
             return strtolower($item->name);
         });
@@ -154,17 +153,8 @@ class PageController extends Controller
 
         $menuServices = Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
 
-        // Converte o conteúdo Markdown para HTML
-        $htmlContent = null;
-        if ($service->content) {
-            $converter = new CommonMarkConverter([
-                'html_input'         => 'strip',
-                'allow_unsafe_links' => false,
-            ]);
-            $htmlContent = $converter->convert($service->content)->getContent();
-        }
 
-        return view('services.show', compact('service', 'socialLinks', 'menuServices', 'htmlContent', 'banner', 'breadcrumbs'));
+        return view('services.show', compact('service', 'socialLinks', 'menuServices', 'banner', 'breadcrumbs'));
     }
     public function destinationShow($slug)
     {

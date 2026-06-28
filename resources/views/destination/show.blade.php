@@ -14,8 +14,8 @@
         <div class="absolute inset-0 bg-gradient-to-t from-[#001c3d] via-[#001c3d]/70 to-transparent"></div>
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 z-10">
-            <div class="max-w-3xl text-white">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4">
+            <div class="text-white">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">
                     {{ $destination->title }}
                 </h1>
                 
@@ -41,7 +41,7 @@
 
                 <a href="{{ $whatsappUrl }}" target="_blank" class="inline-flex items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-sm uppercase py-4 px-8 rounded-lg transition duration-200 gap-2 shadow-lg">
                     <i class="fab fa-whatsapp text-xl"></i>
-                    <span>Solicitar Orçamento</span>
+                    <span>Falar com consultor</span>
                 </a>
             </div>
         </div>
@@ -51,6 +51,19 @@
     <section class="bg-[#002752] text-white py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+                @if($destination->trip_type)
+                    <div class="border-r border-[#003a66] pr-4">
+                        <span class="block text-xs text-gray-400 uppercase mb-1">Tipo</span>
+                        <span class="font-bold text-sm">{{ $destination->trip_type }}</span>
+                    </div>
+                @endif
+                
+                @if($destination->departure_city)
+                    <div class="border-r border-[#003a66] pr-4">
+                        <span class="block text-xs text-gray-400 uppercase mb-1">Origem</span>
+                        <span class="font-bold text-sm">{{ $destination->departure_city }}</span>
+                    </div>
+                @endif
                 @if($destination->departure_date)
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Saída</span>
@@ -62,20 +75,6 @@
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Retorno</span>
                         <span class="font-bold text-sm">{{ $destination->return_date }}</span>
-                    </div>
-                @endif
-                
-                @if($destination->departure_city)
-                    <div class="border-r border-[#003a66] pr-4">
-                        <span class="block text-xs text-gray-400 uppercase mb-1">Origem</span>
-                        <span class="font-bold text-sm">{{ $destination->departure_city }}</span>
-                    </div>
-                @endif
-                
-                @if($destination->trip_type)
-                    <div class="border-r border-[#003a66] pr-4">
-                        <span class="block text-xs text-gray-400 uppercase mb-1">Tipo</span>
-                        <span class="font-bold text-sm">{{ $destination->trip_type }}</span>
                     </div>
                 @endif
                 
@@ -222,11 +221,11 @@
                     </div>
                     
                     <div class="text-center">
-                        <div class="text-4xl font-black mb-2">{{ $fullPrice }}</div>
-                        <span class="text-sm uppercase font-medium text-green-100">por pessoa</span>
+                        <div class="text-4xl font-black mb-2">{{ $fullPrice }} <span class="text-sm uppercase font-medium text-green-100">por pessoa</span></div>
+                        
                         <a href="{{ $whatsappUrl }}" target="_blank" class="mt-4 inline-flex items-center justify-center bg-white text-[#002752] font-bold text-sm uppercase py-3 px-6 rounded-lg hover:bg-gray-100 transition duration-200 gap-2">
                             <i class="fab fa-whatsapp text-lg"></i>
-                            <span>Garantir Vaga</span>
+                            <span>Falar com consultor</span>
                         </a>
                     </div>
                 </div>
