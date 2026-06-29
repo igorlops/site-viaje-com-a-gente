@@ -9,6 +9,7 @@ use App\Models\Banner;
 use App\Models\ButtonBanner;
 use App\Models\Destination;
 use App\Models\FeatureBanner;
+use App\Models\Contact;
 use App\Models\Page;
 use App\Models\PageView;
 use App\Models\Service;
@@ -39,6 +40,10 @@ class AdminController extends Controller
         $destinationsCount = Destination::count();
         $socialLinksCount  = SocialLink::count();
         $servicesCount     = Service::count();
+        $contactsCount     = Contact::count();
+
+        // Últimos 10 contatos
+        $latestContacts    = Contact::orderBy('created_at', 'desc')->limit(10)->get();
 
         // Métricas de visitas
         $totalVisits30d = PageView::where('visited_at', '>=', now()->subDays(30))->count();
@@ -71,6 +76,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact(
             'bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount',
+            'contactsCount', 'latestContacts',
             'totalVisits30d', 'topPages', 'chartLabels', 'chartData'
         ));
     }
@@ -438,5 +444,43 @@ class AdminController extends Controller
     {
         $page->delete();
         return redirect()->route('admin.pages.index')->with('success', 'Página excluída com sucesso!');
+    }
+
+    /* LEADS / CONTATOS */
+
+    public function contacts(Request $request)
+    {
+        $query = Contact::query();
+
+        // Filtro por termo de busca (nome, email ou mensagem)
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%")
+                  ->orWhere('phone', 'like', "%{$search}%")
+                  ->orWhere('message', 'like', "%{$search}%");
+            });
+        }
+
+        // Filtro por tipo (Geral vs Serviços)
+        if ($request->filled('type')) {
+            $type = $request->input('type');
+            if ($type === 'service') {
+                $query->where('type', 'like', 'Serviço:%');
+            } elseif ($type === 'general') {
+                $query->where('type', 'default');
+            }
+        }
+
+        $contacts = $query->orderBy('created_at', 'desc')->paginate(15)->withQueryString();
+
+        return view('admin.contacts.index', compact('contacts'));
+    }
+
+    public function contactsDestroy(Contact $contact)
+    {
+        $contact->delete();
+        return redirect()->route('admin.contacts.index')->with('success', 'Mensagem de contato excluída com sucesso!');
     }
 }

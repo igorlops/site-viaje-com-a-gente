@@ -19,70 +19,15 @@
     @elseif($service->banner_path)
         <meta property="og:image" content="{{ asset('storage/' . $service->banner_path) }}">
     @endif
-    <style>
-        /* Customização para renderizar o Markdown corretamente */
-        .conteudo-markdown h1 {
-            font-size: 2.25rem !important;
-            font-weight: 700 !important;
-            margin-top: 1.5rem !important;
-            margin-bottom: 1rem !important;
-            display: block !important;
-        }
-
-        .conteudo-markdown h2 {
-            font-size: 1.75rem !important;
-            font-weight: 600 !important;
-            margin-top: 1.5rem !important;
-            margin-bottom: 0.75rem !important;
-            display: block !important;
-        }
-
-        .conteudo-markdown h3 {
-            font-size: 1.35rem !important;
-            font-weight: 600 !important;
-            margin-top: 1.25rem !important;
-            margin-bottom: 0.5rem !important;
-            display: block !important;
-        }
-
-        .conteudo-markdown p {
-            margin-bottom: 1rem !important;
-            line-height: 1.6 !important;
-            color: #333333 !important;
-        }
-
-        .conteudo-markdown ul {
-            list-style-type: disc !important;
-            padding-left: 1.5rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .conteudo-markdown ol {
-            list-style-type: decimal !important;
-            padding-left: 1.5rem !important;
-            margin-bottom: 1rem !important;
-        }
-
-        .conteudo-markdown li {
-            margin-bottom: 0.25rem !important;
-        }
-
-        .conteudo-markdown hr {
-            margin: 2rem 0 !important;
-            border: 0 !important;
-            border-top: 1px solid #e2e8f0 !important;
-        }
-    </style>
 @endsection
 
 @section('content')
     @php
         $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
-        $whatsappQuoteUrl = $whatsappUrl . '?text=Olá!%20Tenho%20interesse%20no%20serviço%20de%20' . urlencode($service->title) . '.%20Pode%20me%20dar%20mais%20informações?';
     @endphp
 
     {{-- ═══════════════════════════════════════════════════════
-         HERO BANNER
+         HERO BANNER (PREMIUM GLASSMORPHISM)
     ═══════════════════════════════════════════════════════ --}}
     <section class="relative overflow-hidden"
         style="min-height: 600px; display: flex; align-items: flex-end;">
@@ -111,297 +56,232 @@
                     <span style="color: rgba(255,255,255,0.85);">{{ $service->title }}</span>
                 </nav>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-end">
-                    <div>
-                        {{-- Badge de serviço --}}
-                        <span class="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest"
-                              style="background: rgba(242,189,17,0.18); color: #f2bd11; border: 1px solid rgba(242,189,17,0.35);">
-                            <i class="fas fa-concierge-bell"></i>
-                            Nossos Serviços
-                        </span>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-3 text-white tracking-tight drop-shadow-md">
+                    {{ $service->title }}
+                </h1>
 
-                        <h1 class="font-black text-white leading-tight mb-4"
-                            style="font-size: clamp(2.2rem, 5vw, 3.5rem); text-shadow: 0 2px 20px rgba(0,0,0,0.4);">
-                            {{ $service->title }}
-                        </h1>
+                @if($service->subtitle)
+                    <p class="text-lg sm:text-xl text-gray-300 mb-0 font-light leading-relaxed max-w-2xl">
+                        {{ $service->subtitle }}
+                    </p>
+                @endif
+            </div>
+        </div>
+    </section>
 
-                        @if($service->subtitle)
-                            <p class="mb-5 leading-relaxed" style="font-size: 1.2rem; color: rgba(255,255,255,0.8);">
-                                {{ $service->subtitle }}
-                            </p>
-                        @endif
+    {{-- ═══════════════════════════════════════════════════════
+         CONTEÚDO PRINCIPAL EM COLUNAS
+    ═══════════════════════════════════════════════════════ --}}
+    <section class="bg-gray-50 py-12 lg:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+                
+                {{-- Coluna do Conteúdo (Esquerda) --}}
+                <div class="lg:col-span-2 space-y-8">
+                    @if(session('success'))
+                        <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl shadow-sm flex gap-3 animate-fade-in">
+                            <i class="fas fa-check-circle text-emerald-500 text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="font-bold text-emerald-900 text-sm">Mensagem Enviada!</h4>
+                                <p class="text-xs text-emerald-700 mt-0.5">{{ session('success') }}</p>
+                            </div>
+                        </div>
+                    @endif
 
-                        @if($service->summary)
-                            <div class="mb-8 leading-relaxed" style="font-size: 0.97rem; color: rgba(255,255,255,0.7); max-width: 560px;
-                                [&_p]:m-0 [&_a]:text-[#f2bd11] [&_strong]:text-white">
+                    {{-- Resumo curto --}}
+                    @if($service->summary)
+                        <div class="bg-white rounded-2xl p-6 lg:p-8 border border-gray-50 shadow-sm relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-2 h-full bg-[#f2bd11]"></div>
+                            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Visão Geral</h3>
+                            <div class="text-base text-gray-700 leading-relaxed italic">
                                 {!! \Illuminate\Support\Str::markdown($service->summary, [
                                     'html_input' => 'strip',
                                     'allow_unsafe_links' => false,
                                 ]) !!}
                             </div>
-                        @endif
-
-                        {{-- CTAs hero --}}
-                        <div class="flex flex-wrap gap-3">
-                            <a href="{{ $whatsappUrl }}" target="_blank"
-                               class="inline-flex items-center gap-2.5 font-bold uppercase transition-all duration-200 hover:scale-105"
-                               style="background: #109e4a; color: #fff; padding: 0.85rem 1.75rem; border-radius: 10px; font-size: 0.82rem; letter-spacing: 0.05em;">
-                                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i>
-                                Fale pelo WhatsApp
-                            </a>
-                            <a href="{{ route('contact') }}"
-                               class="inline-flex items-center gap-2.5 font-bold uppercase transition-all duration-200 hover:bg-white/20"
-                               style="background: rgba(255,255,255,0.1); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.85rem 1.75rem; border-radius: 10px; font-size: 0.82rem; letter-spacing: 0.05em;">
-                                <i class="fas fa-envelope" style="font-size: 0.9rem;"></i>
-                                Fale Conosco
-                            </a>
                         </div>
-                    </div>
+                    @endif
 
-                    {{-- Card de destaque / chamada rápida --}}
-                    <div class="hidden lg:block">
-                        <div class="rounded-2xl p-7" style="background: rgba(255,255,255,0.07); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15);">
-                            <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: #f2bd11;">
-                                Solicite um orçamento
-                            </p>
-                            <p class="text-white text-lg font-semibold leading-snug mb-2">
-                                {{ $service->title }}
-                            </p>
-                            <p class="mb-5 text-sm" style="color: rgba(255,255,255,0.6);">
-                                Nossa equipe entra em contato em até 24 horas.
-                            </p>
-                            <a href="{{ $whatsappQuoteUrl }}" target="_blank"
-                               class="flex items-center justify-center gap-2.5 w-full font-bold uppercase transition-all duration-200 hover:brightness-105"
-                               style="background: #f2bd11; color: #001c3d; padding: 0.9rem 1.5rem; border-radius: 10px; font-size: 0.82rem; letter-spacing: 0.05em;">
-                                <i class="fas fa-calculator"></i>
-                                Solicitar Orçamento
-                            </a>
-                            <div class="flex items-center justify-center gap-2 mt-4" style="color: rgba(255,255,255,0.45); font-size: 0.78rem;">
-                                <i class="fas fa-shield-alt"></i>
-                                Sem compromisso · Resposta rápida
-                            </div>
+                    {{-- Texto Principal (Markdown Renderizado e Estilizado de Forma Premium) --}}
+                    @if($htmlContent || $service->image_path)
+                        <div class="bg-white rounded-2xl p-6 lg:p-8 border border-gray-50 shadow-sm space-y-8">
+                            
+                            @if($service->image_path)
+                                <div class="relative rounded-xl overflow-hidden shadow-md group">
+                                    <img src="{{ asset('storage/' . $service->image_path) }}"
+                                         alt="{{ $service->title }}"
+                                         class="w-full h-[250px] sm:h-[350px] object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                                </div>
+                            @endif
+
+                            @if($htmlContent)
+                                <div class="max-w-none text-gray-700 leading-relaxed text-sm sm:text-base
+                                    [&_h1]:text-[#002752] [&_h1]:font-black [&_h1]:text-3xl [&_h1]:mb-6 [&_h1]:mt-8
+                                    [&_h2]:text-[#002752] [&_h2]:font-extrabold [&_h2]:text-2xl [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:pb-2 [&_h2]:border-b [&_h2]:border-gray-100
+                                    [&_h3]:text-[#002752] [&_h3]:font-bold [&_h3]:text-xl [&_h3]:mt-8 [&_h3]:mb-3
+                                    [&_p]:text-gray-600 [&_p]:leading-relaxed [&_p]:mb-6
+                                    [&_a]:text-[#109e4a] [&_a]:font-bold [&_a]:underline hover:[&_a]:text-[#0d9648]
+                                    [&_strong]:text-[#002752] [&_strong]:font-bold
+                                    [&_em]:italic [&_em]:text-gray-500
+                                    [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-6 [&_ul]:text-gray-650
+                                    [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6 [&_ol]:text-gray-650
+                                    [&_li]:text-gray-600
+                                    [&_blockquote]:border-l-4 [&_blockquote]:border-[#f2bd11] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-gray-500
+                                    [&_hr]:border-gray-150 [&_hr]:my-8">
+                                    {!! $htmlContent !!}
+                                </div>
+                            @endif
                         </div>
-                    </div>
+                    @endif
                 </div>
-            </div>
-        </div>
-    </section>
 
-    {{-- ═══════════════════════════════════════════════════════
-         BARRA DE DESTAQUES / BENEFÍCIOS
-    ═══════════════════════════════════════════════════════ --}}
-    <section style="background: #f2bd11;">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-yellow-400">
-                @foreach([
-                    ['fas fa-headset', 'Atendimento', 'Personalizado'],
-                    ['fas fa-map-marked-alt', 'Destinos', 'Nacionais e Internacionais'],
-                    ['fas fa-shield-alt', 'Viagem', 'com Segurança'],
-                    ['fas fa-star', 'Experiência', '+10 anos no mercado'],
-                ] as $benefit)
-                    <div class="flex items-center gap-3 py-4 px-5">
-                        <i class="{{ $benefit[0] }} text-xl" style="color: #001c3d; opacity: 0.8;"></i>
-                        <div>
-                            <p class="font-black text-sm leading-tight" style="color: #001c3d;">{{ $benefit[1] }}</p>
-                            <p class="text-xs leading-tight" style="color: rgba(0,28,61,0.65);">{{ $benefit[2] }}</p>
+                {{-- Coluna Lateral com Formulário de Contato e Info (Direita) --}}
+                <div class="space-y-6 lg:sticky lg:top-24">
+                    
+                    {{-- Card do Formulário de Contato --}}
+                    <div class="bg-white rounded-2xl border border-gray-50 shadow-md overflow-hidden">
+                        <div class="bg-gradient-to-r from-[#002752] to-[#001c3d] p-6 text-white">
+                            <span class="inline-block bg-[#f2bd11] text-[#001c3d] text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md mb-2">
+                                Atendimento Personalizado
+                            </span>
+                            <h3 class="text-lg font-bold">Solicitar Orçamento</h3>
+                            <p class="text-xs text-gray-300 mt-1">Preencha o formulário e um consultor entrará em contato em breve.</p>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+                        
+                        <form action="{{ route('contact.submit') }}" method="POST" class="p-6 space-y-4">
+                            @csrf
+                            
+                            {{-- Input oculto identificando o Serviço --}}
+                            <input type="hidden" name="type" value="Serviço: {{ $service->title }}">
 
-    {{-- ═══════════════════════════════════════════════════════
-         CONTEÚDO PRINCIPAL
-    ═══════════════════════════════════════════════════════ --}}
-    @if($service->content || $service->image_path)
-        <section style="background: #fff; padding: 5rem 0;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-                @if($service->image_path && $service->content)
-                    {{-- Layout 2 colunas: conteúdo + sidebar --}}
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-14 items-start">
-
-                        {{-- Conteúdo principal --}}
-                        <div class="lg:col-span-2 conteudo-markdown">
-                            <x-markdown>
-                                {!! $service->content !!}
-                            </x-markdown>
-                        </div>
-
-                        {{-- Sidebar --}}
-                        <div class="space-y-6" style="position: sticky; top: 7rem;">
-
-                            {{-- Imagem destaque --}}
-                            <div class="rounded-2xl overflow-hidden" style="box-shadow: 0 8px 40px rgba(0,28,61,0.12);">
-                                <img src="{{ asset('storage/' . $service->image_path) }}"
-                                     alt="{{ $service->title }}"
-                                     class="w-full object-cover">
+                            {{-- Nome --}}
+                            <div>
+                                <label for="name" class="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-1.5">
+                                    Nome Completo
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-xs">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                    <input type="text" name="name" id="name" required value="{{ old('name') }}"
+                                        class="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 focus:border-[#002752] focus:bg-white focus:outline-none text-xs rounded-lg transition duration-200"
+                                        placeholder="Ex: João Silva">
+                                </div>
+                                @error('name')
+                                    <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p>
+                                @enderror
                             </div>
 
-                            {{-- Card de contato --}}
-                            <div class="rounded-2xl p-6 border" style="border-color: #e5e7eb; background: #f9fafb;">
-                                <p class="font-black mb-1" style="color: #002752; font-size: 1.05rem;">Pronto para contratar?</p>
-                                <p class="text-sm mb-5" style="color: #6b7280;">Fale com um consultor agora mesmo.</p>
-                                <div class="flex flex-col gap-3">
-                                    <a href="{{ $whatsappUrl }}" target="_blank"
-                                       class="flex items-center justify-center gap-2 w-full font-bold text-sm uppercase py-3 rounded-xl transition-all duration-200 hover:brightness-105"
-                                       style="background: #109e4a; color: #fff;">
-                                        <i class="fab fa-whatsapp text-lg"></i>
-                                        Falar no WhatsApp
-                                    </a>
-                                    <a href="{{ $whatsappQuoteUrl }}" target="_blank"
-                                       class="flex items-center justify-center gap-2 w-full font-bold text-sm uppercase py-3 rounded-xl transition-all duration-200 hover:brightness-105"
-                                       style="background: #f2bd11; color: #001c3d;">
-                                        <i class="fas fa-calculator"></i>
-                                        Solicitar Orçamento
-                                    </a>
-                                    <a href="{{ route('contact') }}"
-                                       class="flex items-center justify-center gap-2 w-full font-bold text-sm uppercase py-3 rounded-xl transition-all duration-200"
-                                       style="background: transparent; color: #002752; border: 1.5px solid #002752;">
-                                        <i class="fas fa-envelope text-sm"></i>
-                                        Enviar Mensagem
-                                    </a>
+                            {{-- E-mail --}}
+                            <div>
+                                <label for="email" class="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-1.5">
+                                    Seu E-mail
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-xs">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <input type="email" name="email" id="email" required value="{{ old('email') }}"
+                                        class="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 focus:border-[#002752] focus:bg-white focus:outline-none text-xs rounded-lg transition duration-200"
+                                        placeholder="Ex: joao@email.com">
+                                </div>
+                                @error('email')
+                                    <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- WhatsApp / Telefone --}}
+                            <div>
+                                <label for="phone" class="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-1.5">
+                                    WhatsApp / Telefone
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 text-xs">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </span>
+                                    <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
+                                        class="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 focus:border-[#002752] focus:bg-white focus:outline-none text-xs rounded-lg transition duration-200"
+                                        placeholder="Ex: (85) 99999-9999">
+                                </div>
+                                @error('phone')
+                                    <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Mensagem --}}
+                            <div>
+                                <label for="message" class="block text-xs font-bold text-gray-600 uppercase tracking-wide mb-1.5">
+                                    O que você precisa?
+                                </label>
+                                <textarea name="message" id="message" rows="4" required
+                                    class="w-full p-3 bg-gray-50 border border-gray-200 focus:border-[#002752] focus:bg-white focus:outline-none text-xs rounded-lg transition duration-200 resize-none"
+                                    placeholder="Descreva detalhes como quantidade de pessoas, datas ou dúvidas sobre o serviço de {{ $service->title }}...">{{ old('message', 'Olá! Tenho interesse no serviço de ' . $service->title . '. Gostaria de solicitar um orçamento personalizado.') }}</textarea>
+                                @error('message')
+                                    <p class="text-red-500 text-[10px] mt-1">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            {{-- Botão Enviar --}}
+                            <button type="submit"
+                                    class="w-full bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase tracking-wider py-3 rounded-lg transition duration-200 shadow-md flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                Enviar Solicitação
+                            </button>
+                        </form>
+                    </div>
+
+                    {{-- Card Atalhos de Contato Rápido --}}
+                    <div class="bg-gradient-to-br from-[#002752]/5 to-[#001c3d]/10 rounded-2xl p-6 border border-gray-50 shadow-md space-y-4">
+                        <h4 class="text-sm font-bold text-[#002752] flex items-center gap-2">
+                            <i class="fas fa-headset text-[#f2bd11]"></i>
+                            Contato Imediato
+                        </h4>
+                        
+                        <div class="space-y-3">
+                            <a href="{{ $whatsappUrl }}?text=Olá!%20Tenho%20interesse%20no%20serviço%20de%20{{ urlencode($service->title) }}" target="_blank"
+                               class="flex items-center gap-3 bg-[#109e4a] hover:bg-[#0d9648] text-white p-3 rounded-xl transition duration-200 shadow-sm">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                                <div class="text-left">
+                                    <span class="block text-[10px] text-green-100 font-medium">Chamar no WhatsApp</span>
+                                    <span class="block text-xs font-bold">(85) 9 9916-6421</span>
+                                </div>
+                            </a>
+
+                            <div class="flex items-center gap-3 bg-white p-3 rounded-xl border border-gray-50">
+                                <div class="w-8 h-8 bg-gray-100 text-[#002752] rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="text-left">
+                                    <span class="block text-[10px] text-gray-400 font-medium">Telefone Fixo</span>
+                                    <span class="block text-xs font-bold text-gray-700">(85) 3224-4400</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-
-
-                @elseif($service->image_path)
-                    {{-- Apenas imagem --}}
-                    <div class="max-w-3xl mx-auto rounded-2xl overflow-hidden" style="box-shadow: 0 8px 40px rgba(0,28,61,0.12);">
-                        <img src="{{ asset('storage/' . $service->image_path) }}"
-                             alt="{{ $service->title }}"
-                             class="w-full object-cover">
-                    </div>
-                @endif
-            </div>
-        </section>
-    @endif
-
-    {{-- ═══════════════════════════════════════════════════════
-         OUTROS SERVIÇOS
-    ═══════════════════════════════════════════════════════ --}}
-    @if(isset($menuServices) && $menuServices->where('slug', '!=', $service->slug)->count() > 0)
-        <section style="background: #f3f4f6; padding: 4.5rem 0; border-top: 1px solid #e5e7eb;">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: #f2bd11;">
-                        Explore mais
-                    </p>
-                    <h2 class="font-extrabold" style="color: #002752; font-size: 1.7rem;">
-                        Outros Serviços
-                    </h2>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            </div>
+        </div>
+    </section>
+
+    {{-- ═══════════════════════════════════════════════════════
+         OUTROS SERVIÇOS RELACIONADOS
+    ═══════════════════════════════════════════════════════ --}}
+    @if(isset($menuServices) && $menuServices->where('slug', '!=', $service->slug)->count() > 0)
+        <section class="bg-white py-12 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h3 class="text-xl font-extrabold text-[#002752] mb-6 text-center">Conheça Nossos Outros Serviços</h3>
+                <div class="flex flex-wrap justify-center gap-3">
                     @foreach($menuServices->where('slug', '!=', $service->slug) as $otherService)
                         <a href="{{ route('service.show', $otherService->slug) }}"
-                           class="group flex items-center gap-4 p-5 rounded-xl transition-all duration-200 hover:-translate-y-0.5"
-                           style="background: #fff; border: 1px solid #e5e7eb; box-shadow: 0 1px 4px rgba(0,0,0,0.04);">
-                            <div class="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center transition-colors duration-200 group-hover:bg-[#002752]"
-                                 style="background: #f0f4fa;">
-                                <i class="fas fa-concierge-bell text-sm transition-colors duration-200 group-hover:text-white"
-                                   style="color: #002752;"></i>
-                            </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="font-semibold text-sm truncate transition-colors duration-200 group-hover:text-[#002752]"
-                                   style="color: #374151;">
-                                    {{ $otherService->title }}
-                                </p>
-                            </div>
-                            <i class="fas fa-arrow-right text-xs transition-all duration-200 group-hover:translate-x-1"
-                               style="color: #9ca3af;"></i>
+                           class="inline-flex items-center gap-2 bg-gray-50 border border-gray-250 hover:border-[#002752] hover:bg-white text-gray-750 hover:text-[#002752] px-4 py-2.5 rounded-lg font-semibold text-xs transition duration-200 shadow-xs">
+                            <i class="fas fa-concierge-bell text-[#f2bd11]"></i>
+                            {{ $otherService->title }}
                         </a>
                     @endforeach
                 </div>
             </div>
         </section>
     @endif
-
-    {{-- ═══════════════════════════════════════════════════════
-         CALL TO ACTION FINAL
-    ═══════════════════════════════════════════════════════ --}}
-    <section style="background: linear-gradient(135deg, #002752 0%, #001c3d 100%); padding: 6rem 0; position: relative; overflow: hidden;">
-
-        {{-- Elementos decorativos de fundo --}}
-        <div style="position: absolute; top: -80px; right: -80px; width: 320px; height: 320px; border-radius: 50%; background: rgba(242,189,17,0.06);"></div>
-        <div style="position: absolute; bottom: -60px; left: -60px; width: 240px; height: 240px; border-radius: 50%; background: rgba(255,255,255,0.03);"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl mx-auto text-center text-white">
-
-                <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-6"
-                     style="background: rgba(242,189,17,0.15); border: 1px solid rgba(242,189,17,0.25);">
-                    <i class="fas fa-paper-plane" style="color: #f2bd11; font-size: 1.5rem;"></i>
-                </div>
-
-                <h2 class="font-black mb-4" style="font-size: clamp(1.8rem, 4vw, 2.5rem);">
-                    Pronto para começar?
-                </h2>
-                <p class="mb-10 leading-relaxed" style="color: rgba(255,255,255,0.65); font-size: 1.05rem;">
-                    Nossa equipe está preparada para te ajudar a planejar cada detalhe.
-                    Entre em contato agora mesmo!
-                </p>
-
-                {{-- 3 botões de CTA --}}
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-
-                    <a href="{{ $whatsappUrl }}" target="_blank"
-                       class="inline-flex items-center gap-3 font-bold text-sm uppercase transition-all duration-200 hover:brightness-110 hover:scale-105 w-full sm:w-auto justify-center"
-                       style="background: #109e4a; color: #fff; padding: 1rem 2rem; border-radius: 12px; letter-spacing: 0.05em;">
-                        <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i>
-                        <div class="text-left">
-                            <span class="block" style="font-size: 0.7rem; font-weight: 500; color: rgba(255,255,255,0.75); letter-spacing: 0;">
-                                (85) 9 9916-6421
-                            </span>
-                            <span class="block">Fale no WhatsApp</span>
-                        </div>
-                    </a>
-
-                    <a href="{{ $whatsappQuoteUrl }}" target="_blank"
-                       class="inline-flex items-center gap-3 font-bold text-sm uppercase transition-all duration-200 hover:brightness-110 hover:scale-105 w-full sm:w-auto justify-center"
-                       style="background: #f2bd11; color: #001c3d; padding: 1rem 2rem; border-radius: 12px; letter-spacing: 0.05em;">
-                        <i class="fas fa-calculator" style="font-size: 1.1rem;"></i>
-                        Solicitar Orçamento
-                    </a>
-
-                    <a href="{{ route('contact') }}"
-                       class="inline-flex items-center gap-3 font-bold text-sm uppercase transition-all duration-200 hover:bg-white/20 w-full sm:w-auto justify-center"
-                       style="background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.18); color: #fff; padding: 1rem 2rem; border-radius: 12px; letter-spacing: 0.05em;">
-                        <i class="fas fa-envelope" style="font-size: 1.1rem;"></i>
-                        Enviar Mensagem
-                    </a>
-
-                </div>
-
-                {{-- Selos de confiança --}}
-                <div class="flex flex-wrap items-center justify-center gap-6 mt-10"
-                     style="color: rgba(255,255,255,0.35); font-size: 0.78rem;">
-                    <span class="flex items-center gap-1.5">
-                        <i class="fas fa-lock"></i> Dados protegidos
-                    </span>
-                    <span class="flex items-center gap-1.5">
-                        <i class="fas fa-clock"></i> Resposta em até 24h
-                    </span>
-                    <span class="flex items-center gap-1.5">
-                        <i class="fas fa-star"></i> Atendimento especializado
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
 @endsection
-
-{{-- ═══════════════════════════════════════════════════════
-     COMPONENTE INLINE: conteúdo HTML do serviço
-     (pode ser extraído para resources/views/components/service-content.blade.php)
-═══════════════════════════════════════════════════════ --}}
-@once
-    @push('components')
-        {{-- Classe utilitária de prosa para o conteúdo --}}
-    @endpush
-@endonce

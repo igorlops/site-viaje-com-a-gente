@@ -152,9 +152,10 @@ class PageController extends Controller
         $socialLinks = $this->getSocialLinks();
 
         $menuServices = Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
+        
+        $htmlContent = $service->content ? \Illuminate\Support\Str::markdown($service->content) : '';
 
-
-        return view('services.show', compact('service', 'socialLinks', 'menuServices', 'banner', 'breadcrumbs'));
+        return view('services.show', compact('service', 'socialLinks', 'menuServices', 'banner', 'breadcrumbs', 'htmlContent'));
     }
     public function destinationShow($slug)
     {

@@ -10,7 +10,8 @@ class ContactDTO
         public readonly string $name,
         public readonly string $email,
         public readonly ?string $phone,
-        public readonly string $message
+        public readonly string $message,
+        public readonly string $type = 'default'
     ) {}
 
     /**
@@ -22,7 +23,8 @@ class ContactDTO
             name: $request->validated('name'),
             email: $request->validated('email'),
             phone: $request->validated('phone'),
-            message: $request->validated('message')
+            message: $request->validated('message'),
+            type: $request->input('type') ?? 'default'
         );
     }
 
@@ -36,7 +38,7 @@ class ContactDTO
             'email' => $this->email,
             'phone' => $this->phone,
             'message' => $this->message,
-            'type' => 'default',
+            'type' => $this->type,
         ];
     }
 }

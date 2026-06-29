@@ -31,6 +31,10 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     // Dashboard
     Route::get('/', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
+    // Leads / Contatos
+    Route::get('/contacts', [AdminController::class, 'contacts'])->name('admin.contacts.index');
+    Route::delete('/contacts/{contact}', [AdminController::class, 'contactsDestroy'])->name('admin.contacts.destroy');
+
     // CRUD Configurações Gerais
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings.index');
     Route::get('/settings/{setting}/edit', [AdminController::class, 'settingEdit'])->name('admin.settings.edit');

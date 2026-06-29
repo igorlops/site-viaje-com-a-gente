@@ -164,25 +164,40 @@
             </div>
         </div>
 
-        {{-- CONTEÚDO MARKDOWN --}}
+        {{-- CONTEÚDO MARKDOWN COM EASYMDE --}}
+        <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+        <style>
+            .editor-preview-active, .editor-preview-active-side {
+                background: white !important;
+                color: #333 !important;
+            }
+            .EasyMDEContainer {
+                border-radius: 0.5rem;
+                overflow: hidden;
+            }
+            .editor-toolbar {
+                border-color: #d1d5db !important;
+                background-color: #f9fafb !important;
+                border-top-left-radius: 0.5rem !important;
+                border-top-right-radius: 0.5rem !important;
+            }
+            .CodeMirror {
+                border-color: #d1d5db !important;
+                border-bottom-left-radius: 0.5rem !important;
+                border-bottom-right-radius: 0.5rem !important;
+                font-family: monospace;
+            }
+        </style>
+        
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
             <div class="p-6 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
                 <h2 class="font-bold text-gray-800 text-sm flex items-center gap-2">
                     <i class="fas fa-align-left text-[#002752]"></i>
-                    Conteúdo da Página
+                    Conteúdo da Página (Editor Visual)
                 </h2>
-                <span class="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full font-medium">Markdown</span>
+                <span class="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full font-medium">Formatador Rich Text</span>
             </div>
             <div class="p-6">
-                <div class="mb-3 flex flex-wrap gap-2">
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border"># Título</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">## Subtítulo</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">**negrito**</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">*itálico*</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">- item lista</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">[link](url)</span>
-                    <span class="text-[10px] text-gray-400 font-mono bg-gray-50 px-2 py-1 rounded border">---</span>
-                </div>
                 <textarea name="content" id="content" rows="16"
                     class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 font-mono resize-y">{{ old('content', $service->content) }}</textarea>
                 @error('content')
@@ -190,6 +205,29 @@
                 @enderror
             </div>
         </div>
+
+        <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const easyMDE = new EasyMDE({
+                    element: document.getElementById('content'),
+                    spellChecker: false,
+                    nativeSpellcheck: false,
+                    forceSync: true,
+                    status: false,
+                    renderingConfig: {
+                        singleLineBreaks: false
+                    },
+                    toolbar: [
+                        "bold", "italic", "heading", "|",
+                        "quote", "unordered-list", "ordered-list", "|",
+                        "link", "image", "table", "horizontal-rule", "|",
+                        "preview", "side-by-side", "fullscreen", "|",
+                        "guide"
+                    ]
+                });
+            });
+        </script>
 
         {{-- SEO --}}
         <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">

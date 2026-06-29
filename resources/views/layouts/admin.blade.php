@@ -29,6 +29,11 @@
                 <i class="fas fa-chart-line text-lg w-6 text-center"></i>
                 <span>Dashboard</span>
             </a>
+
+            <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-envelope-open-text text-lg w-6 text-center"></i>
+                <span>Mensagens</span>
+            </a>
             
             <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-images text-lg w-6 text-center"></i>
@@ -120,6 +125,11 @@
                     <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.dashboard') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-chart-line text-lg w-6 text-center"></i>
                         <span>Dashboard</span>
+                    </a>
+
+                    <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-envelope-open-text text-lg w-6 text-center"></i>
+                        <span>Mensagens</span>
                     </a>
                     
                     <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
