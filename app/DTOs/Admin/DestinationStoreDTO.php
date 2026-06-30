@@ -17,7 +17,9 @@ class DestinationStoreDTO
         public readonly ?string $whatsapp_link,
         public readonly string $type,
         public readonly ?string $slug,
-        
+        public readonly ?string $title_card,
+        public readonly ?string $subtitle_card,
+        public readonly ?string $text_label_banner,
         // Novos campos
         public readonly ?string $full_price,
         public readonly ?string $date_range,
@@ -55,8 +57,9 @@ class DestinationStoreDTO
             departure_city: $request->input('departure_city'),
             trip_type: $request->input('trip_type'),
             highlights_icons: $request->input('highlights_icons'),
-            
-            // Relações
+            title_card: $request->input('title_card'),
+            subtitle_card: $request->input('subtitle_card'),
+            text_label_banner: $request->input('text_label_banner'),
             includes: $request->input('includes'),
             highlights: $request->input('highlights'),
             itinerary: $request->input('itinerary')
@@ -78,6 +81,9 @@ class DestinationStoreDTO
             'slug' => $this->slug,
             
             // Novos campos
+            'title_card' => $this->title_card,
+            'subtitle_card' => $this->subtitle_card,
+            'text_label_banner' => $this->text_label_banner,
             'full_price' => $this->full_price,
             'date_range' => $this->date_range,
             'nights' => $this->nights,

@@ -98,15 +98,7 @@
                 @php
                     $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
                 @endphp
-                <div class="hidden md:block">
-                    <a href="{{ $whatsappUrl }}" target="_blank" class="flex items-center bg-[#109e4a] hover:bg-[#0d9648] text-white px-4 py-2.5 rounded-lg font-bold text-sm transition duration-300 shadow-sm gap-3">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        <div class="text-left leading-tight">
-                            <span class="block text-xs font-medium text-green-100">(85) 9 9916-6421</span>
-                            <span class="block text-sm">Fale no WhatsApp</span>
-                        </div>
-                    </a>
-                </div>
+
 
                 <!-- Mobile Menu Button -->
                 <div class="xl:hidden flex items-center">
@@ -139,13 +131,7 @@
                 <a href="{{ route('home') }}#orcamento" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Monte sua Viagem</a>
                 <a href="{{ route('faq') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Dúvidas</a>
                 <a href="{{ route('contact') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f2bd11]">Contato</a>
-                
-                <div class="mt-4 px-3 py-2">
-                    <a href="{{ $whatsappUrl }}" target="_blank" class="flex items-center justify-center bg-[#109e4a] hover:bg-[#0d9648] text-white py-3 rounded-lg font-bold transition duration-300 w-full gap-2">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        <span>Fale no WhatsApp</span>
-                    </a>
-                </div>
+
             </div>
         </div>
     </header>
@@ -156,9 +142,12 @@
         @include('layouts.breadcrumb')
         @yield('content')
     </main>
-
+    
     <!-- FOOTER -->
     @include('layouts.footer')
+    <x-btn-whatsapp 
+        :whatsappUrl="$whatsappUrl"
+    />
     <!-- Mobile Menu Toggle Script -->
     <script>
         document.getElementById('mobile-menu-button').addEventListener('click', function() {

@@ -33,60 +33,57 @@
                         </div>
                     @endif
                     
-                    <div class="text-3xl font-black text-[#f2bd11]">
-                        {{ $fullPrice }}
-                        <span class="text-sm font-medium text-gray-300">/por pessoa</span>
-                    </div>
                 </div>
 
-                <a href="{{ $whatsappUrl }}" target="_blank" class="inline-flex items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-sm uppercase py-4 px-8 rounded-lg transition duration-200 gap-2 shadow-lg">
-                    <i class="fab fa-whatsapp text-xl"></i>
-                    <span>Falar com consultor</span>
-                </a>
+                @if($destination->text_label_banner)
+                    <p class="text-xl sm:text-2xl text-gray-200 mb-6">
+                        {{ $destination->text_label_banner }}
+                    </p>
+                @endif
             </div>
         </div>
     </section>
 
     <!-- QUICK INFO BAR -->
-    <section class="bg-[#002752] text-white py-6">
+    <!-- <section class="bg-[#002752] text-white py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-                @if($destination->trip_type)
+                {{-- @if($destination->trip_type) --}}
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Tipo</span>
-                        <span class="font-bold text-sm">{{ $destination->trip_type }}</span>
+                        <span class="font-bold text-sm">{{-- $destination->trip_type --}} </span>
                     </div>
-                @endif
+                {{-- @endif --}}
                 
-                @if($destination->departure_city)
+                {{-- @if($destination->departure_city) --}}
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Origem</span>
-                        <span class="font-bold text-sm">{{ $destination->departure_city }}</span>
+                        <span class="font-bold text-sm">{{-- $destination->departure_city --}}</span>
                     </div>
-                @endif
-                @if($destination->departure_date)
+                {{-- @endif --}}
+                {{-- @if($destination->departure_date) --}}
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Saída</span>
-                        <span class="font-bold text-sm">{{ $destination->departure_date }}</span>
+                        <span class="font-bold text-sm">{{-- $destination->departure_date --}}</span>
                     </div>
-                @endif
+                {{-- @endif --}}
                 
-                @if($destination->return_date)
+                {{-- @if($destination->return_date) --}}
                     <div class="border-r border-[#003a66] pr-4">
                         <span class="block text-xs text-gray-400 uppercase mb-1">Retorno</span>
-                        <span class="font-bold text-sm">{{ $destination->return_date }}</span>
+                        <span class="font-bold text-sm">{{-- $destination->return_date --}}</span>
                     </div>
-                @endif
+                {{-- @endif --}}
                 
-                @if($destination->nights)
+                {{-- @if($destination->nights) --}}
                     <div>
                         <span class="block text-xs text-gray-400 uppercase mb-1">Duração</span>
                         <span class="font-bold text-sm">{{ $destination->nights }}</span>
                     </div>
-                @endif
+                {{-- @endif --}}
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- MAIN CONTENT -->
     <div class="bg-white py-20">
@@ -168,9 +165,9 @@
                     <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Cronograma da Viagem</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
                     
-                    <div class="space-y-8">
+                    <div class="space-y-8 flex flex-row gap-4 items-center">
                         @foreach($destination->itineraryDays as $day)
-                            <div class="border border-gray-200 rounded-xl p-6">
+                            <div class="border border-gray-200 rounded-xl p-6 basis-1 shrink-0 sm:basis-1/2 md:basis-1/3">
                                 <div class="flex items-center gap-4 mb-4">
                                     <span class="w-12 h-12 rounded-full bg-[#002752] text-white flex items-center justify-center font-bold text-lg">
                                         {{ $day->day_number }}

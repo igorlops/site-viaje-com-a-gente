@@ -72,6 +72,34 @@
                             <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div>
+                        <label for="title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Título do Card</label>
+                        <input type="text" name="title_card" id="title_card" value="{{ old('title_card', $destination->title_card) }}" required
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: Gramado">
+                        @error('title_card')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="subtitle_card" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subtítulo do Card</label>
+                        <input type="text" name="subtitle_card" id="subtitle_card" value="{{ old('subtitle_card', $destination->subtitle_card) }}"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: Canela + Bento Gonçalves">
+                        @error('subtitle_card')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div>
+                        <label for="text_label_banner" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Descrição do Destino</label>
+                        <textarea name="text_label_banner" id="text_label_banner" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: Canela + Bento Gonçalves">{{ old('text_label_banner', $destination->text_label_banner) }}</textarea>
+                        @error('text_label_banner')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+
 
                     <div>
                         <label for="slug" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Slug (URL amigável - opcional)</label>
@@ -89,16 +117,6 @@
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
                             placeholder="Ex: AÉREO + HOTEL + PASSEIOS">
                         @error('category')
-                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div>
-                        <label for="duration" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Duração da Viagem</label>
-                        <input type="text" name="duration" id="duration" value="{{ old('duration', $destination->duration) }}" required
-                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
-                            placeholder="Ex: 7 DIAS">
-                        @error('duration')
                             <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                         @enderror
                     </div>
@@ -211,9 +229,18 @@
 
                     <div>
                         <label for="nights" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Número de Noites</label>
-                        <input type="text" name="nights" id="nights" value="{{ old('nights', $destination->nights) }}"
+                        <input type="number" name="nights" id="nights" value="{{ old('nights', $destination->nights) }}"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
-                            placeholder="Ex: 6 noites">
+                            placeholder="Ex: 6">
+                    </div>
+                    <div>
+                        <label for="duration" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Número de dias</label>
+                        <input type="number" name="duration" id="duration" value="{{ old('duration', $destination->duration) }}" required
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: 7">
+                        @error('duration')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div>

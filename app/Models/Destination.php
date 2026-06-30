@@ -30,6 +30,9 @@ class Destination extends Model
         'trip_type',
         'highlights_icons',
         'type',
+        'title_card',
+        'subtitle_card',
+        'text_label_banner'
     ];
 
     protected $casts = [
