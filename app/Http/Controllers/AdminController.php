@@ -34,52 +34,52 @@ class AdminController extends Controller
     /**
      * Display the admin dashboard.
      */
-    public function dashboard()
-    {
-        $bannersCount      = Banner::count();
-        $destinationsCount = Destination::count();
-        $socialLinksCount  = SocialLink::count();
-        $servicesCount     = Service::count();
-        $contactsCount     = Contact::count();
+public function dashboard()
+{
+    $bannersCount      = Banner::count();
+    $destinationsCount = Destination::count();
+    $socialLinksCount  = SocialLink::count();
+    $servicesCount     = Service::count();
+    $contactsCount     = Contact::count();
 
-        // Últimos 10 contatos
-        $latestContacts    = Contact::orderBy('created_at', 'desc')->limit(10)->get();
+    // Últimos 10 contatos
+    $latestContacts    = Contact::orderBy('created_at', 'desc')->limit(10)->get();
 
-        // Métricas de visitas
-        $totalVisits30d = PageView::where('visited_at', '>=', now()->subDays(30))->count();
+    // Métricas de visitas
+    $totalVisits30d = PageView::where('visited_at', '>=', now()->subDays(30))->count();
 
-        // Top 10 páginas mais visitadas (últimos 30 dias)
-        $topPages = PageView::selectRaw('page_name, COUNT(*) as total')
-            ->where('visited_at', '>=', now()->subDays(30))
-            ->whereNotNull('page_name')
-            ->groupBy('page_name')
-            ->orderByDesc('total')
-            ->limit(10)
-            ->get();
+    // Top 10 páginas mais visitadas (últimos 30 dias)
+    $topPages = PageView::selectRaw('page_name, COUNT(*) as total')
+        ->where('visited_at', '>=', now()->subDays(30))
+        ->whereNotNull('page_name')
+        ->groupBy('page_name')
+        ->orderByDesc('total')
+        ->limit(10)
+        ->get();
 
-        // Visitas por dia nos últimos 14 dias (para gráfico)
-        $dailyVisits = PageView::selectRaw("strftime('%Y-%m-%d', visited_at) as day, COUNT(*) as total")
-            ->where('visited_at', '>=', now()->subDays(14))
-            ->groupByRaw("strftime('%Y-%m-%d', visited_at)")
-            ->orderBy('day')
-            ->get()
-            ->keyBy('day');
+    // CORRIGIDO: Visitas por dia nos últimos 14 dias usando DATE_FORMAT (compatível com MySQL)
+    $dailyVisits = PageView::selectRaw("DATE_FORMAT(visited_at, '%Y-%m-%d') as day, COUNT(*) as total")
+        ->where('visited_at', '>=', now()->subDays(14))
+        ->groupByRaw("DATE_FORMAT(visited_at, '%Y-%m-%d')")
+        ->orderBy('day')
+        ->get()
+        ->keyBy('day');
 
-        // Preenche todos os dias (sem gaps)
-        $chartLabels = [];
-        $chartData   = [];
-        for ($i = 13; $i >= 0; $i--) {
-            $day = now()->subDays($i)->format('Y-m-d');
-            $chartLabels[] = now()->subDays($i)->format('d/m');
-            $chartData[]   = $dailyVisits->get($day)?->total ?? 0;
-        }
-
-        return view('admin.dashboard', compact(
-            'bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount',
-            'contactsCount', 'latestContacts',
-            'totalVisits30d', 'topPages', 'chartLabels', 'chartData'
-        ));
+    // Preenche todos os dias (sem gaps)
+    $chartLabels = [];
+    $chartData   = [];
+    for ($i = 13; $i >= 0; $i--) {
+        $day = now()->subDays($i)->format('Y-m-d');
+        $chartLabels[] = now()->subDays($i)->format('d/m');
+        $chartData[]   = $dailyVisits->get($day)?->total ?? 0;
     }
+
+    return view('admin.dashboard', compact(
+        'bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount',
+        'contactsCount', 'latestContacts',
+        'totalVisits30d', 'topPages', 'chartLabels', 'chartData'
+    ));
+}
 
     /* BANNERS CRUD */
 
