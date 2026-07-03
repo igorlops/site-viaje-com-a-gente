@@ -88,46 +88,97 @@
     <!-- MAIN CONTENT -->
     <div class="bg-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- WHAT IS INCLUDED / NOT INCLUDED -->
+            <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
                 <div class="mb-20">
-                    <h2 class="text-3xl font-extrabold text-[#002752] mb-2">O que está incluso</h2>
-                    <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
-                    
-                    <div class="grid md:grid-cols-2 gap-12">
-                        <!-- Included -->
-                        <div>
-                            <h3 class="text-lg font-bold text-[#109e4a] mb-4 flex items-center gap-2">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Incluso no Pacote</span>
-                            </h3>
-                            <ul class="space-y-3">
+                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                        <!-- Left Column: Includes -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <span class="inline-block bg-[#109e4a] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+                                O Pacote Inclui
+                            </span>
+                            <ul class="space-y-4">
                                 @foreach($destination->includes->where('type', 'included') as $include)
                                     <li class="flex items-start gap-3">
-                                        <i class="fas fa-check text-[#109e4a] mt-1"></i>
-                                        <span class="text-gray-700">{{ $include->text }}</span>
+                                        <i class="fa-solid fa-circle-check text-[#109e4a] text-lg mt-0.5"></i>
+                                        <span class="text-gray-700 text-sm font-medium leading-relaxed">{{ $include->text }}</span>
                                     </li>
                                 @endforeach
                             </ul>
                         </div>
 
-                        <!-- Not Included -->
-                        @if($destination->includes->where('type', 'not_included')->count() > 0)
-                            <div>
-                                <h3 class="text-lg font-bold text-red-500 mb-4 flex items-center gap-2">
-                                    <i class="fas fa-times-circle"></i>
-                                    <span>Não Incluso</span>
-                                </h3>
-                                <ul class="space-y-3">
-                                    @foreach($destination->includes->where('type', 'not_included') as $include)
-                                        <li class="flex items-start gap-3">
-                                            <i class="fas fa-times text-red-500 mt-1"></i>
-                                            <span class="text-gray-700">{{ $include->text }}</span>
-                                        </li>
-                                    @endforeach
+                        <!-- Right Column: Not Included & Payment -->
+                        <div class="space-y-8">
+                            <!-- Card: Not Included -->
+                            @if($destination->includes->where('type', 'not_included')->count() > 0)
+                                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                                    <span class="inline-block bg-[#c22e2e] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+                                        Não Inclui do Pacote
+                                    </span>
+                                    <ul class="space-y-4">
+                                        @foreach($destination->includes->where('type', 'not_included') as $include)
+                                            <li class="flex items-start gap-3">
+                                                <i class="fa-solid fa-circle-xmark text-[#c22e2e] text-lg mt-0.5"></i>
+                                                <span class="text-gray-700 text-sm font-medium leading-relaxed">{{ $include->text }}</span>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <!-- Card: Formas de Pagamento -->
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                                <span class="inline-block bg-[#002752] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+                                    Formas de Pagamento
+                                </span>
+                                <ul class="space-y-6">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+                                            <i class="fab fa-whatsapp text-emerald-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                Entrada de <strong>R$ 289,00</strong> + saldo devedor dividido em parcelas mensais até <strong>Março 2027</strong>.
+                                            </p>
+                                            <p class="text-gray-500 text-[10px] mt-0.5">
+                                                Pacote de Viagem tem que estar devidamente quitado até <strong>5 de Março 2027</strong>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
+                                            <i class="fas fa-dollar-sign text-emerald-600 text-lg"></i>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                À vista/parcelado (Depósito, Transferência, Promissória ou Pix)
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                                            <i class="fas fa-credit-card text-blue-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                Cartão de crédito parcelado em até 10x
+                                            </p>
+                                            <p class="text-gray-500 text-[10px] mt-0.5">(Valor ajustado)</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                                            <i class="fas fa-barcode text-blue-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                Boleto em até 9x com início de pagamento de Julho 2027
+                                            </p>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             @endif
@@ -161,39 +212,129 @@
 
             <!-- ITINERARY -->
             @if($destination->itineraryDays->count() > 0)
+                <!-- Swiper CSS & JS -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+                <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+                <style>
+                    /* Styling to make a connecting line behind the day badges */
+                    .timeline-wrapper {
+                        position: relative;
+                    }
+                    .timeline-line {
+                        position: absolute;
+                        top: 28px;
+                        left: 20px;
+                        right: 20px;
+                        height: 2px;
+                        background: #e2e8f0;
+                        z-index: 0;
+                    }
+                </style>
+
                 <div class="mb-20">
-                    <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Cronograma da Viagem</h2>
-                    <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
+                    <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Cronograma da Viagem</h2>
+                    <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
                     
-                    <div class="space-y-8 flex flex-row gap-4 items-center">
-                        @foreach($destination->itineraryDays as $day)
-                            <div class="border border-gray-200 rounded-xl p-6 basis-1 shrink-0 sm:basis-1/2 md:basis-1/3">
-                                <div class="flex items-center gap-4 mb-4">
-                                    <span class="w-12 h-12 rounded-full bg-[#002752] text-white flex items-center justify-center font-bold text-lg">
-                                        {{ $day->day_number }}
-                                    </span>
-                                    <div>
-                                        <h3 class="text-xl font-bold text-[#002752]">{{ $day->label ?? 'Dia ' . $day->day_number }}</h3>
-                                        @if($day->date)
-                                            <p class="text-gray-500">{{ $day->date }}</p>
-                                        @endif
-                                    </div>
+                    <!-- Single Card Container for Itinerary -->
+                    <div class="bg-white border border-gray-100 rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
+                        <div class="relative timeline-wrapper">
+                            <!-- Horizontal Connecting Line (Desktop) -->
+                            <div class="timeline-line hidden lg:block"></div>
+                            
+                            <!-- Swiper -->
+                            <div class="swiper itinerarySwiper overflow-visible">
+                                <div class="swiper-wrapper">
+                                    @foreach($destination->itineraryDays as $day)
+                                        <div class="swiper-slide h-auto">
+                                            <div class="flex flex-col justify-between h-full bg-slate-50/50 hover:bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all duration-300 relative z-10 group">
+                                                <div>
+                                                    <!-- Day Badge & Connector Node -->
+                                                    <div class="flex items-center justify-between mb-4">
+                                                        <span class="inline-block bg-[#109e4a] text-white px-3 py-1 rounded-md text-[10px] font-extrabold uppercase tracking-wider relative z-10">
+                                                            Dia {{ $day->day_number }}
+                                                        </span>
+                                                        <!-- Small decorative node on the line -->
+                                                        <div class="w-3.5 h-3.5 rounded-full border-2 border-[#109e4a] bg-white group-hover:bg-[#109e4a] transition-colors duration-300 hidden lg:block"></div>
+                                                    </div>
+
+                                                    <!-- Date -->
+                                                    @if($day->date)
+                                                        <p class="text-[#109e4a] font-bold text-xs mb-3">{{ $day->date }}</p>
+                                                    @endif
+
+                                                    <!-- Label / Title -->
+                                                    <h3 class="text-sm font-extrabold text-[#002752] mb-3 leading-snug">{{ $day->label }}</h3>
+
+                                                    <!-- Activities -->
+                                                    @if($day->activities->count() > 0)
+                                                        <ul class="space-y-2 mb-4">
+                                                            @foreach($day->activities as $activity)
+                                                                <li class="flex items-start gap-2 text-xs text-gray-600 font-medium">
+                                                                    <span class="text-gray-400 font-bold">•</span>
+                                                                    <span class="leading-relaxed">{{ $activity->activity }}</span>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    @endif
+                                                </div>
+
+                                                <!-- Day Image -->
+                                                @if($day->image_path)
+                                                    <div class="mt-4 overflow-hidden rounded-xl h-40 w-full shadow-inner border border-slate-100 shrink-0">
+                                                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                                             src="{{ asset('storage/' . $day->image_path) }}" 
+                                                             alt="Dia {{ $day->day_number }}">
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 
-                                @if($day->activities->count() > 0)
-                                    <ul class="space-y-2 ml-16">
-                                        @foreach($day->activities as $activity)
-                                            <li class="flex items-start gap-2">
-                                                <i class="fas fa-circle text-[#109e4a] text-xs mt-1.5"></i>
-                                                <span class="text-gray-700">{{ $activity->activity }}</span>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
+                                <!-- Swiper Navigation Buttons -->
+                                <div class="swiper-button-next !text-white !w-11 !h-11 !bg-[#002752] hover:!bg-[#f3a908] hover:!text-[#002752] rounded-full shadow-md border border-[#002752]/20 after:!text-xs -right-4 md:-right-6 hover:scale-105 active:scale-95 transition-all duration-300"></div>
+                                <div class="swiper-button-prev !text-white !w-11 !h-11 !bg-[#002752] hover:!bg-[#f3a908] hover:!text-[#002752] rounded-full shadow-md border border-[#002752]/20 after:!text-xs -left-4 md:-left-6 hover:scale-105 active:scale-95 transition-all duration-300"></div>
+                                
+                                <!-- Swiper Pagination -->
+                                <div class="swiper-pagination !-bottom-8"></div>
                             </div>
-                        @endforeach
+                        </div>
                     </div>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const swiper = new Swiper('.itinerarySwiper', {
+                            slidesPerView: 1,
+                            spaceBetween: 24,
+                            grabCursor: true,
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+                            pagination: {
+                                el: '.swiper-pagination',
+                                clickable: true,
+                                dynamicBullets: true,
+                            },
+                            breakpoints: {
+                                640: {
+                                    slidesPerView: 2,
+                                },
+                                1024: {
+                                    slidesPerView: 3,
+                                },
+                                1280: {
+                                    slidesPerView: 4,
+                                },
+                                1536: {
+                                    slidesPerView: 5,
+                                }
+                            }
+                        });
+                    });
+                </script>
             @endif
 
             <!-- PAYMENT INFO -->

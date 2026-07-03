@@ -67,6 +67,11 @@ class DestinationService
             $this->deleteOldImage($highlight->image_path);
         }
 
+        // Deletar imagens dos itinerários associados
+        foreach ($destination->itineraryDays as $day) {
+            $this->deleteOldImage($day->image_path);
+        }
+
         $this->repository->delete($id);
     }
 
@@ -151,6 +156,15 @@ class DestinationService
                     'label' => $dayData['label'],
                     'order' => $dayData['order'] ?? ($index + 1),
                 ];
+
+                // Upload de imagem do Itinerário
+                $fileKey = "itinerary.{$index}.image";
+                if ($request->hasFile($fileKey)) {
+                    if ($itineraryDay && $itineraryDay->image_path) {
+                        $this->deleteOldImage($itineraryDay->image_path);
+                    }
+                    $itineraryDataToSave['image_path'] = $this->uploadImage($request->file($fileKey), 'itinerary');
+                }
 
                 if ($itineraryDay) {
                     $itineraryDay->update($itineraryDataToSave);
@@ -257,12 +271,21 @@ class DestinationService
 
         // Relação 3: ItineraryDays & Activities
         foreach ($original->itineraryDays as $day) {
-            $newDay = $duplicate->itineraryDays()->create([
+            $dayData = [
                 'day_number' => $day->day_number,
                 'date' => $day->date,
                 'label' => $day->label,
                 'order' => $day->order,
-            ]);
+            ];
+
+            if ($day->image_path && Storage::disk('public')->exists($day->image_path)) {
+                $ext = pathinfo($day->image_path, PATHINFO_EXTENSION);
+                $newPath = 'itinerary/' . uniqid() . '.' . $ext;
+                Storage::disk('public')->copy($day->image_path, $newPath);
+                $dayData['image_path'] = $newPath;
+            }
+
+            $newDay = $duplicate->itineraryDays()->create($dayData);
 
             foreach ($day->activities as $activity) {
                 $newDay->activities()->create([

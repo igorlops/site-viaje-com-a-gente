@@ -60,6 +60,7 @@ class DestinationStoreRequest extends FormRequest
             'itinerary.*.date' => 'nullable|string|max:255',
             'itinerary.*.label' => 'required|string|max:255',
             'itinerary.*.order' => 'nullable|integer',
+            'itinerary.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'itinerary.*.activities' => 'nullable|array',
             'itinerary.*.activities.*' => 'required|string|max:255',
         ];

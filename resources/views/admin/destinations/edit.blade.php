@@ -475,6 +475,13 @@
                                                 class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white" required>
                                         </div>
                                     </div>
+                                    <div class="bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center transition-colors hover:bg-slate-50">
+                                        <div class="flex-grow">
+                                            <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Foto do Dia</label>
+                                            <input type="file" name="itinerary[{{ $dayIndex }}][image]" accept="image/*"
+                                                class="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:bg-[#001c3d]/10 file:text-[#001c3d] hover:file:bg-[#001c3d]/20 file:transition-colors file:cursor-pointer bg-white rounded-lg border border-gray-200 p-1">
+                                        </div>
+                                    </div>
 
                                     {{-- Atividades --}}
                                     <div class="bg-slate-50 p-5 rounded-xl border border-gray-200/60 shadow-inner">
@@ -655,6 +662,13 @@
                                 <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Título Descritivo do Dia</label>
                                 <input type="text" name="itinerary[${index}][label]" placeholder="Ex: Chegada a Gramado e Jantar de Boas-Vindas"
                                     class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white" required>
+                            </div>
+                        </div>
+                        <div class="bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center transition-colors hover:bg-slate-50">
+                            <div class="flex-grow">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Foto do Dia</label>
+                                <input type="file" name="itinerary[${index}][image]" accept="image/*"
+                                    class="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:bg-[#001c3d]/10 file:text-[#001c3d] hover:file:bg-[#001c3d]/20 file:transition-colors file:cursor-pointer bg-white rounded-lg border border-gray-200 p-1">
                             </div>
                         </div>
                         <div class="bg-slate-50 p-5 rounded-xl border border-gray-200/60 shadow-inner">

@@ -9,7 +9,7 @@ class DestinationItineraryDay extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['destination_id', 'day_number', 'date', 'label', 'order'];
+    protected $fillable = ['destination_id', 'day_number', 'date', 'label', 'order', 'image_path'];
 
     public function destination()
     {

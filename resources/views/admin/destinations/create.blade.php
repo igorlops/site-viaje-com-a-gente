@@ -418,6 +418,14 @@
                                 </div>
                             </div>
 
+                            <div class="mt-4 bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center">
+                                <div class="flex-grow">
+                                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Dia</label>
+                                    <input type="file" name="itinerary[0][image]" accept="image/*"
+                                        class="w-full text-xs text-gray-500 border border-slate-200 rounded-lg p-1.5 focus:outline-none">
+                                </div>
+                            </div>
+
                             {{-- Atividades --}}
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <label class="block text-[10px] font-bold text-slate-500 uppercase mb-3"><i class="fas fa-tasks mr-1"></i> Atividades Programadas</label>
@@ -563,6 +571,13 @@
                             <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Título do Dia</label>
                             <input type="text" name="itinerary[${index}][label]" placeholder="Ex: Chegada e Check-in"
                                 class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors" required>
+                        </div>
+                    </div>
+                    <div class="mt-4 bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center">
+                        <div class="flex-grow">
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Dia</label>
+                            <input type="file" name="itinerary[${index}][image]" accept="image/*"
+                                class="w-full text-xs text-gray-500 border border-slate-200 rounded-lg p-1.5 focus:outline-none">
                         </div>
                     </div>
                     <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
