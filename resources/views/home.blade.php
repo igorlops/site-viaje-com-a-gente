@@ -50,14 +50,14 @@
                 <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
                     Por que viajar com a gente?
                 </h2>
-                <div class="w-16 h-1 bg-[#f2bd11] mx-auto mt-4 rounded"></div>
+                <div class="w-16 h-1 bg-[#f3a908] mx-auto mt-4 rounded"></div>
             </div>
             
             <!-- Grid Benefits -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
                 <!-- Benefit 1 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fas fa-barcode text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Parcelamento no Boleto</h3>
@@ -67,7 +67,7 @@
                 </div>
                 <!-- Benefit 2 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fas fa-headset text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Atendimento Humano</h3>
@@ -77,7 +77,7 @@
                 </div>
                 <!-- Benefit 3 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fas fa-route text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Roteiros Completos</h3>
@@ -87,7 +87,7 @@
                 </div>
                 <!-- Benefit 4 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fas fa-shield-alt text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Segurança e Confiança</h3>
@@ -97,7 +97,7 @@
                 </div>
                 <!-- Benefit 5 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fas fa-users-cog text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Grupo ou em Família</h3>
@@ -107,7 +107,7 @@
                 </div>
                 <!-- Benefit 6 -->
                 <div class="text-center flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                    <div class="w-16 h-16 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center mb-4 shadow-md">
                         <i class="fab fa-whatsapp text-2xl"></i>
                     </div>
                     <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">Suporte via WhatsApp</h3>
@@ -149,7 +149,7 @@
                     </div>
                     <!-- Step 2 -->
                     <div class="text-center flex flex-col items-center">
-                        <span class="w-8 h-8 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center font-bold text-sm mb-4">2</span>
+                        <span class="w-8 h-8 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center font-bold text-sm mb-4">2</span>
                         <div class="w-20 h-20 rounded-full bg-white border border-gray-100 shadow-md flex items-center justify-center mb-4 hover:scale-105 transition duration-300">
                             <i class="far fa-file-alt text-[#002752] text-2xl"></i>
                         </div>
@@ -171,7 +171,7 @@
                     </div>
                     <!-- Step 4 -->
                     <div class="text-center flex flex-col items-center">
-                        <span class="w-8 h-8 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center font-bold text-sm mb-4">4</span>
+                        <span class="w-8 h-8 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center font-bold text-sm mb-4">4</span>
                         <div class="w-20 h-20 rounded-full bg-white border border-gray-100 shadow-md flex items-center justify-center mb-4 hover:scale-105 transition duration-300">
                             <i class="fas fa-suitcase text-[#002752] text-2xl"></i>
                         </div>
@@ -206,20 +206,20 @@
                 <!-- Promo Text & Checklist -->
                 <div class="max-w-xl relative z-10 text-center lg:text-left">
                     <h2 class="text-2xl sm:text-3xl font-black mb-6 leading-tight">
-                        Parcele sua viagem no <span class="underline decoration-[#f2bd11] decoration-4">boleto</span> e realize seu sonho!
+                        Parcele sua viagem no <span class="underline decoration-[#f3a908] decoration-4">boleto</span> e realize seu sonho!
                     </h2>
                     
                     <ul class="space-y-3.5 inline-block text-left">
                         <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
                             <span class="font-semibold text-sm">Sem consulta ao SPC/Serasa</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
                             <span class="font-semibold text-sm">Você escolhe a melhor data para pagar</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
                             <span class="font-semibold text-sm">Mais liberdade para planejar sua viagem</span>
                         </li>
                     </ul>
@@ -227,10 +227,10 @@
                 
                 <!-- Promo Stamp -->
                 <div class="relative z-10 flex flex-col items-center justify-center border-4 border-dashed border-white/40 p-6 rounded-xl bg-white/5 backdrop-blur-sm shrink-0 w-full sm:w-80">
-                    <i class="fas fa-barcode text-5xl mb-3 text-[#f2bd11]"></i>
+                    <i class="fas fa-barcode text-5xl mb-3 text-[#f3a908]"></i>
                     <span class="text-xs uppercase tracking-widest font-medium text-green-100">Parcelamento</span>
                     <span class="text-xl uppercase font-black tracking-wider text-white">Facilitado</span>
-                    <span class="text-sm uppercase font-bold text-[#f2bd11]">No Boleto</span>
+                    <span class="text-sm uppercase font-bold text-[#f3a908]">No Boleto</span>
                 </div>
             </div>
         </div>
@@ -253,7 +253,7 @@
                 <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col justify-between hover:shadow-lg transition duration-300">
                     <div>
                         <!-- Stars -->
-                        <div class="flex text-[#f2bd11] gap-1 mb-4">
+                        <div class="flex text-[#f3a908] gap-1 mb-4">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -279,7 +279,7 @@
                 <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col justify-between hover:shadow-lg transition duration-300">
                     <div>
                         <!-- Stars -->
-                        <div class="flex text-[#f2bd11] gap-1 mb-4">
+                        <div class="flex text-[#f3a908] gap-1 mb-4">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -305,7 +305,7 @@
                 <div class="bg-white p-8 rounded-xl shadow-md border border-gray-100 flex flex-col justify-between hover:shadow-lg transition duration-300">
                     <div>
                         <!-- Stars -->
-                        <div class="flex text-[#f2bd11] gap-1 mb-4">
+                        <div class="flex text-[#f3a908] gap-1 mb-4">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -317,7 +317,7 @@
                         </p>
                     </div>
                     <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 rounded-full bg-yellow-100 text-[#f2bd11] flex items-center justify-center font-bold">
+                        <div class="w-12 h-12 rounded-full bg-yellow-100 text-[#f3a908] flex items-center justify-center font-bold">
                             MF
                         </div>
                         <div>
@@ -331,7 +331,7 @@
     </section>
 
     <!-- PRONTO PARA VIAJAR -->
-    <section class="bg-[#f2bd11] py-8 text-[#002752]">
+    <section class="bg-[#f3a908] py-8 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <!-- Text block -->

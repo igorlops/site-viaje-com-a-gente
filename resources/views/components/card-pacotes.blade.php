@@ -9,7 +9,7 @@
         <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="{{ asset('storage/' . $pkg->image_path) }}" alt="{{ $pkg->title }}">
         @if($pkg->tag)
             <div class="absolute top-0 right-0 w-full h-full flex justify-center items-center">
-                <span class="absolute top-2 left-1/2 -translate-x-1/2 bg-[#109e4a] text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded">
+                <span class="absolute text-center top-2 left-1/2 -translate-x-1/2 bg-[#f3a908] text-white text-[10px] font-black uppercase tracking-wider px-5 py-1 rounded" style="width: 80%">
                     {{ $pkg->tag }}
                 </span>
             </div>
@@ -20,10 +20,10 @@
     <div class="p-5 flex-grow flex flex-col justify-between">
         <div>
             <h3 class="text-[#002752] text-xl font-bold leading-snug mb-1">
-                {{ $pkg->title_card }}
+                {{ $pkg->title_card ?? $pkg->title }}
             </h3>
             <p class="text-gray-500 text-sm font-medium mb-3">
-                {{ $pkg->subtitle_card }}
+                {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
             
             <!-- Info Badge -->

@@ -49,9 +49,9 @@
 
                 {{-- Breadcrumb --}}
                 <nav class="flex items-center gap-2 mb-6" style="font-size: 12px; color: rgba(255,255,255,0.55);">
-                    <a href="{{ route('home') }}" class="hover:text-[#f2bd11] transition-colors duration-200">Início</a>
+                    <a href="{{ route('home') }}" class="hover:text-[#f3a908] transition-colors duration-200">Início</a>
                     <i class="fas fa-chevron-right" style="font-size: 9px;"></i>
-                    <a href="{{ route('services') }}" class="hover:text-[#f2bd11] transition-colors duration-200">Nossos Serviços</a>
+                    <a href="{{ route('services') }}" class="hover:text-[#f3a908] transition-colors duration-200">Nossos Serviços</a>
                     <i class="fas fa-chevron-right" style="font-size: 9px;"></i>
                     <span style="color: rgba(255,255,255,0.85);">{{ $service->title }}</span>
                 </nav>
@@ -91,7 +91,7 @@
                     {{-- Resumo curto --}}
                     @if($service->summary)
                         <div class="bg-white rounded-2xl p-6 lg:p-8 border border-gray-50 shadow-sm relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-2 h-full bg-[#f2bd11]"></div>
+                            <div class="absolute top-0 left-0 w-2 h-full bg-[#f3a908]"></div>
                             <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Visão Geral</h3>
                             <div class="text-base text-gray-700 leading-relaxed italic">
                                 {!! \Illuminate\Support\Str::markdown($service->summary, [
@@ -127,7 +127,7 @@
                                     [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ul]:mb-6 [&_ul]:text-gray-650
                                     [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_ol]:mb-6 [&_ol]:text-gray-650
                                     [&_li]:text-gray-600
-                                    [&_blockquote]:border-l-4 [&_blockquote]:border-[#f2bd11] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-gray-500
+                                    [&_blockquote]:border-l-4 [&_blockquote]:border-[#f3a908] [&_blockquote]:pl-4 [&_blockquote]:italic [&_blockquote]:my-6 [&_blockquote]:text-gray-500
                                     [&_hr]:border-gray-150 [&_hr]:my-8">
                                     {!! $htmlContent !!}
                                 </div>
@@ -142,7 +142,7 @@
                     {{-- Card do Formulário de Contato --}}
                     <div class="bg-white rounded-2xl border border-gray-50 shadow-md overflow-hidden">
                         <div class="bg-gradient-to-r from-[#002752] to-[#001c3d] p-6 text-white">
-                            <span class="inline-block bg-[#f2bd11] text-[#001c3d] text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md mb-2">
+                            <span class="inline-block bg-[#f3a908] text-[#001c3d] text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md mb-2">
                                 Atendimento Personalizado
                             </span>
                             <h3 class="text-lg font-bold">Solicitar Orçamento</h3>
@@ -234,7 +234,7 @@
                     {{-- Card Atalhos de Contato Rápido --}}
                     <div class="bg-gradient-to-br from-[#002752]/5 to-[#001c3d]/10 rounded-2xl p-6 border border-gray-50 shadow-md space-y-4">
                         <h4 class="text-sm font-bold text-[#002752] flex items-center gap-2">
-                            <i class="fas fa-headset text-[#f2bd11]"></i>
+                            <i class="fas fa-headset text-[#f3a908]"></i>
                             Contato Imediato
                         </h4>
                         
@@ -276,7 +276,7 @@
                     @foreach($menuServices->where('slug', '!=', $service->slug) as $otherService)
                         <a href="{{ route('service.show', $otherService->slug) }}"
                            class="inline-flex items-center gap-2 bg-gray-50 border border-gray-250 hover:border-[#002752] hover:bg-white text-gray-750 hover:text-[#002752] px-4 py-2.5 rounded-lg font-semibold text-xs transition duration-200 shadow-xs">
-                            <i class="fas fa-concierge-bell text-[#f2bd11]"></i>
+                            <i class="fas fa-concierge-bell text-[#f3a908]"></i>
                             {{ $otherService->title }}
                         </a>
                     @endforeach

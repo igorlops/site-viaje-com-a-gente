@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+// Require global helper functions
+require_once app_path('helpers.php');
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

@@ -9,7 +9,7 @@
                 <h2 class="font-extrabold text-gray-900 text-lg tracking-tight">Editar Banner Principal</h2>
                 <p class="text-xs text-gray-500 mt-1">Atualize os textos, imagens de fundo, características e botões de ação do banner.</p>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#f2bd11]/10 text-[#a37f00] border border-[#f2bd11]/20">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#f3a908]/10 text-[#a37f00] border border-[#f3a908]/20">
                 <i class="fas fa-edit"></i> Editando Registro
             </span>
         </div>
@@ -142,7 +142,7 @@
             <div class="feature-item rounded-xl border border-slate-100 bg-white shadow-sm overflow-hidden transition-all">
                 <div class="flex items-center justify-between gap-2 px-4 py-2.5 bg-slate-50 border-b border-slate-100">
                     <span class="inline-flex items-center gap-2 text-[10px] font-bold text-[#001c3d] uppercase tracking-wider">
-                        <i class="fas fa-star text-[#f2bd11]"></i> Nova Feature
+                        <i class="fas fa-star text-[#f3a908]"></i> Nova Feature
                     </span>
                     <button type="button" class="remove-feature p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover Feature">
                         <i class="fas fa-trash-alt text-sm pointer-events-none"></i>

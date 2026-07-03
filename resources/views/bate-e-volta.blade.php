@@ -91,7 +91,7 @@
     </section>
 
     <!-- CTA FOOTER -->
-    <section class="bg-[#f2bd11] py-8 text-[#002752]">
+    <section class="bg-[#f3a908] py-8 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <!-- Text -->

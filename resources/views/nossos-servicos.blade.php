@@ -188,13 +188,13 @@
                 <div class="bg-gradient-to-br from-[#002752] to-[#001c3d] rounded-2xl p-8 text-white relative shadow-xl overflow-hidden">
                     <div class="absolute -right-8 -bottom-8 w-64 h-64 rounded-full bg-blue-900/40 blur-2xl"></div>
                     <div class="relative z-10">
-                        <span class="block text-[#f2bd11] text-xs font-black uppercase tracking-widest mb-2">Compromisso</span>
+                        <span class="block text-[#f3a908] text-xs font-black uppercase tracking-widest mb-2">Compromisso</span>
                         <h4 class="text-2xl font-extrabold mb-6">Nosso Padrão de Atendimento</h4>
                         
                         <!-- Timeline structure -->
                         <div class="space-y-6">
                             <div class="relative pl-8 border-l border-white/20">
-                                <span class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#f2bd11]"></span>
+                                <span class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#f3a908]"></span>
                                 <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">1. Antes da Viagem</span>
                                 <span class="block text-sm text-gray-200 mt-0.5">Planejamento, roteiros detalhados, emissão ágil e dicas exclusivas sobre o destino.</span>
                             </div>
@@ -206,7 +206,7 @@
                             </div>
                             
                             <div class="relative pl-8">
-                                <span class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#f2bd11]"></span>
+                                <span class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#f3a908]"></span>
                                 <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">3. No Destino</span>
                                 <span class="block text-sm text-gray-200 mt-0.5">Suporte emergencial e acompanhamento opcional de guias locais nos passeios programados.</span>
                             </div>
@@ -218,7 +218,7 @@
     </section>
 
     <!-- CALL TO ACTION (CTA) -->
-    <section class="bg-[#f2bd11] py-12 text-[#002752]">
+    <section class="bg-[#f3a908] py-12 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
                 <!-- Text block -->

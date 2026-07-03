@@ -286,7 +286,7 @@
 
                 <!-- Highlights Icons -->
                 <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
-                    <label class="block text-xs font-bold text-[#001c3d] uppercase tracking-wider mb-4"><i class="fas fa-star text-[#f2bd11] mr-1"></i> Facilidades Inclusas (Marcação Rápida)</label>
+                    <label class="block text-xs font-bold text-[#001c3d] uppercase tracking-wider mb-4"><i class="fas fa-star text-[#f3a908] mr-1"></i> Facilidades Inclusas (Marcação Rápida)</label>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         @php
                             $iconsOptions = [

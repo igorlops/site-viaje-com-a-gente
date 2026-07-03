@@ -70,7 +70,7 @@
                     <i class="fas fa-arrow-right text-[10px]"></i>
                 </a>
             </div>
-            <div class="w-12 h-12 rounded-full bg-yellow-50 text-[#f2bd11] flex items-center justify-center text-xl shrink-0 shadow-inner">
+            <div class="w-12 h-12 rounded-full bg-yellow-50 text-[#f3a908] flex items-center justify-center text-xl shrink-0 shadow-inner">
                 <i class="fas fa-share-nodes"></i>
             </div>
         </div>
@@ -98,7 +98,7 @@
         <div class="lg:col-span-3 bg-white rounded-xl shadow-sm border border-gray-200 p-6">
             <div class="flex items-center justify-between mb-5">
                 <h2 class="text-base font-bold text-[#002752] flex items-center gap-2">
-                    <i class="fas fa-chart-area text-[#f2bd11]"></i>
+                    <i class="fas fa-chart-area text-[#f3a908]"></i>
                     Visitas por Dia
                 </h2>
                 <span class="text-xs text-gray-400 bg-gray-100 px-3 py-1 rounded-full font-medium">Últimos 14 dias</span>
@@ -285,7 +285,7 @@
     {{-- Quick Actions --}}
     <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
         <h2 class="text-lg font-bold text-[#002752] mb-6 flex items-center gap-2">
-            <i class="fas fa-bolt text-[#f2bd11]"></i>
+            <i class="fas fa-bolt text-[#f3a908]"></i>
             <span>Ações Rápidas de Gerenciamento</span>
         </h2>
         
@@ -301,7 +301,7 @@
             </a>
             
             <a href="{{ route('admin.social.index') }}" class="flex flex-col items-center justify-center p-5 border border-gray-200 hover:border-[#002752] rounded-xl hover:bg-gray-50 transition duration-200 text-center gap-3">
-                <i class="fas fa-link text-2xl text-[#f2bd11]"></i>
+                <i class="fas fa-link text-2xl text-[#f3a908]"></i>
                 <span class="font-bold text-xs text-gray-700">Redes Sociais</span>
             </a>
 
@@ -359,7 +359,7 @@
                 legend: { display: false },
                 tooltip: {
                     backgroundColor: '#002752',
-                    titleColor: '#f2bd11',
+                    titleColor: '#f3a908',
                     bodyColor: '#fff',
                     padding: 10,
                     cornerRadius: 8,

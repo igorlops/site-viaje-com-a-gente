@@ -39,7 +39,7 @@
                             <td class="px-6 py-4">
                                 <div class="font-bold text-[#002752]">{{ $dest->title }}</div>
                                 @if($dest->tag)
-                                    <span class="inline-block bg-[#f2bd11] text-[#002752] text-[9px] font-black uppercase px-1.5 py-0.5 rounded mt-1">
+                                    <span class="inline-block bg-[#f3a908] text-[#002752] text-[9px] font-black uppercase px-1.5 py-0.5 rounded mt-1">
                                         {{ $dest->tag }}
                                     </span>
                                 @endif

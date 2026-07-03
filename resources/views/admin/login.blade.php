@@ -66,7 +66,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="w-full bg-[#002752] hover:bg-[#f2bd11] hover:text-[#00152b] text-white py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-md">
+            <button type="submit" class="w-full bg-[#002752] hover:bg-[#f3a908] hover:text-[#00152b] text-white py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-md">
                 Entrar no Painel
             </button>
             

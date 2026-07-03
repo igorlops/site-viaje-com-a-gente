@@ -28,7 +28,7 @@
                 <div class="flex flex-wrap items-center gap-6 mb-6">
                     @if($destination->date_range)
                         <div class="flex items-center gap-2">
-                            <i class="far fa-calendar-alt text-[#f2bd11] text-xl"></i>
+                            <i class="far fa-calendar-alt text-[#f3a908] text-xl"></i>
                             <span class="text-lg font-semibold">{{ $destination->date_range }}</span>
                         </div>
                     @endif
@@ -135,7 +135,7 @@
             <!-- HIGHLIGHTS -->
             @if($destination->highlights->count() > 0)
                 <div class="mb-20">
-                    <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Destaques da Viagem</h2>
+                    <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Galeria de fotos</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -203,15 +203,15 @@
                         <h2 class="text-2xl sm:text-3xl font-black mb-4">Parcelamento Facilitado no Boleto</h2>
                         <ul class="space-y-3 text-sm">
                             <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-[#f2bd11]"></i>
+                                <i class="fas fa-check-circle text-[#f3a908]"></i>
                                 <span>Sem consulta ao SPC/Serasa</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-[#f2bd11]"></i>
+                                <i class="fas fa-check-circle text-[#f3a908]"></i>
                                 <span>Você escolhe a melhor data para pagar</span>
                             </li>
                             <li class="flex items-center gap-3">
-                                <i class="fas fa-check-circle text-[#f2bd11]"></i>
+                                <i class="fas fa-check-circle text-[#f3a908]"></i>
                                 <span>Mais liberdade para planejar sua viagem</span>
                             </li>
                         </ul>

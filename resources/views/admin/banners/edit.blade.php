@@ -113,7 +113,7 @@
 
                             <div class="flex items-center justify-between gap-2 px-4 py-2.5 bg-slate-50 border-b border-slate-100">
                                 <span class="inline-flex items-center gap-2 text-[10px] font-bold text-[#001c3d] uppercase tracking-wider">
-                                    <i class="fas fa-star text-[#f2bd11]"></i> Feature
+                                    <i class="fas fa-star text-[#f3a908]"></i> Feature
                                 </span>
                                 <button
                                     type="button"
@@ -245,7 +245,7 @@
             <div class="feature-item rounded-xl border border-slate-100 bg-white shadow-sm overflow-hidden transition-all">
                 <div class="flex items-center justify-between gap-2 px-4 py-2.5 bg-slate-50 border-b border-slate-100">
                     <span class="inline-flex items-center gap-2 text-[10px] font-bold text-[#001c3d] uppercase tracking-wider">
-                        <i class="fas fa-star text-[#f2bd11]"></i> Nova Feature
+                        <i class="fas fa-star text-[#f3a908]"></i> Nova Feature
                     </span>
                     <button type="button" class="remove-feature p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover Feature">
                         <i class="fas fa-trash-alt text-sm pointer-events-none"></i>

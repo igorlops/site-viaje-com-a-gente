@@ -14,7 +14,7 @@
         <div class="max-w-xl lg:max-w-2xl text-white">
             <!-- Main Title -->
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-4 text-white">
-                {{ $bannerTitle }} <span class="text-[#f2bd11]">{{ $bannerTitleDestaque }}</span>
+                {{ $bannerTitle }} <span class="text-[#f3a908]">{{ $bannerTitleDestaque }}</span>
             </h1>
             
             <!-- Subtitle -->

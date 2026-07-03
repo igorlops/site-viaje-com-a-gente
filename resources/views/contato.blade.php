@@ -85,7 +85,7 @@
                         <div class="flex space-x-3">
                             @foreach($socialLinks as $link)
                                 @if($link->active && strtolower($link->name) !== 'whatsapp')
-                                    <a href="{{ $link->url }}" target="_blank" class="w-10 h-10 rounded-full bg-[#002752] hover:bg-[#f2bd11] hover:text-[#00152b] text-white flex items-center justify-center transition duration-300 shadow-sm" title="{{ $link->name }}">
+                                    <a href="{{ $link->url }}" target="_blank" class="w-10 h-10 rounded-full bg-[#002752] hover:bg-[#f3a908] hover:text-[#00152b] text-white flex items-center justify-center transition duration-300 shadow-sm" title="{{ $link->name }}">
                                         <i class="{{ $link->icon }} text-base"></i>
                                     </a>
                                 @endif
@@ -186,7 +186,7 @@
                         <div>
                             <button 
                                 type="submit" 
-                                class="w-full bg-[#002752] hover:bg-[#f2bd11] hover:text-[#002752] text-white py-4 px-6 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-md cursor-pointer hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#002752]/25"
+                                class="w-full bg-[#002752] hover:bg-[#f3a908] hover:text-[#002752] text-white py-4 px-6 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-md cursor-pointer hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#002752]/25"
                             >
                                 Enviar Mensagem
                             </button>

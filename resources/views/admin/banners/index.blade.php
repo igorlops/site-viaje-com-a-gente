@@ -51,7 +51,7 @@
                                 @endif
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a href="{{ route('admin.banners.edit', $banner->id) }}" class="inline-flex items-center gap-1 bg-[#002752] hover:bg-[#f2bd11] hover:text-[#00152b] text-white px-3.5 py-2 rounded-lg font-bold text-xs transition duration-200">
+                                <a href="{{ route('admin.banners.edit', $banner->id) }}" class="inline-flex items-center gap-1 bg-[#002752] hover:bg-[#f3a908] hover:text-[#00152b] text-white px-3.5 py-2 rounded-lg font-bold text-xs transition duration-200">
                                     <i class="fas fa-edit"></i>
                                     <span>Editar</span>
                                 </a>

@@ -27,7 +27,7 @@
             </span>
 
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-white mb-4">
-                Nossos <span class="text-[#f2bd11] bg-gradient-to-r from-[#f2bd11] to-[#ffda66] bg-clip-text text-transparent">Pacotes de Viagem</span>
+                Nossos <span class="text-[#f3a908] bg-gradient-to-r from-[#f3a908] to-[#ffda66] bg-clip-text text-transparent">Pacotes de Viagem</span>
             </h1>
 
             <p class="text-base sm:text-lg text-slate-400 max-w-xl leading-relaxed">
@@ -97,91 +97,7 @@
                             ?: $whatsappUrl . '?text=' . urlencode('Olá! Gostaria de saber mais detalhes sobre o pacote: ' . $destination->title);
                     @endphp
 
-                    {{-- CARD PREMIUM --}}
-                    <div class="group bg-white rounded-2xl overflow-hidden flex flex-col border border-slate-100 shadow-[0_4px_20px_rgba(0,28,61,0.03)] hover:shadow-[0_20px_40px_rgba(0,28,61,0.1)] hover:-translate-y-1.5 transition-all duration-300">
-                        
-                        {{-- Imagem de Capa do Destino --}}
-                        <div class="relative h-56 overflow-hidden shrink-0 bg-slate-100">
-                            <img src="{{ asset('storage/' . $destination->image_path) }}"
-                                 alt="{{ $destination->title }}"
-                                 loading="lazy"
-                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-
-                            {{-- Gradiente Suave sobre a Foto --}}
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-
-                            {{-- Badge de Categoria/Tag customizada --}}
-                            @if($destination->tag)
-                                <span class="absolute top-3 left-3 bg-[#f2bd11] text-[#001c3d] text-[9px] font-black tracking-widest uppercase px-2.5 py-1 rounded-md shadow-sm">
-                                    {{ $destination->tag }}
-                                </span>
-                            @endif
-
-                            {{-- Título fixado na base da Imagem --}}
-                            <div class="absolute bottom-4 left-4 right-4 text-white">
-                                <h3 class="text-xl font-black leading-tight tracking-tight drop-shadow-md">
-                                    {{ $destination->title }}
-                                </h3>
-                                @if($destination->subtitle)
-                                    <p class="text-xs text-slate-200/90 font-medium tracking-wide mt-1 truncate">
-                                        {{ $destination->subtitle }}
-                                    </p>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- Corpo Técnico (Informações de Roteiro) --}}
-                        <div class="flex flex-col flex-grow p-5">
-                            
-                            {{-- Informações de Duração e Segmento --}}
-                            <div class="grid grid-cols-2 gap-2 py-2.5 px-3 bg-slate-50 rounded-xl mb-4 text-slate-600">
-                                <div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide min-w-0">
-                                    <i class="far fa-clock text-[#109e4a] text-xs shrink-0"></i>
-                                    <span class="truncate">{{ $destination->duration }}</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-[11px] font-bold uppercase tracking-wide min-w-0 justify-end border-l border-slate-200 pl-2">
-                                    <i class="fas fa-map-marker-alt text-[#109e4a] text-xs shrink-0"></i>
-                                    <span class="truncate">{{ $destination->category }}</span>
-                                </div>
-                            </div>
-
-                            {{-- Divisor Estilo Ticket de Embarque (Boarding Pass) --}}
-                            <div class="flex items-center -mx-5 mb-4 relative">
-                                <div class="w-4 h-4 rounded-full bg-slate-50 -ml-2 shrink-0 border border-slate-100 shadow-[inner_2px_0_4px_rgba(0,0,0,0.05)]"></div>
-                                <div class="flex-1 border-t-2 border-dashed border-slate-200 mx-1"></div>
-                                <div class="w-4 h-4 rounded-full bg-slate-50 -mr-2 shrink-0 border border-slate-100 shadow-[inner_-2px_0_4px_rgba(0,0,0,0.05)]"></div>
-                            </div>
-
-                            {{-- Preço e Condições comerciais --}}
-                            <div class="mt-auto mb-5">
-                                <span class="block text-[9px] font-extrabold tracking-widest uppercase text-slate-400 mb-0.5">Investimento</span>
-                                <div class="flex items-baseline gap-1 leading-none">
-                                    <span class="text-slate-400 text-xs font-bold">R$</span>
-                                    <span class="text-[#109e4a] text-3xl font-black tracking-tight">
-                                        {{ number_format($destination->price, 2, ',', '.') }}
-                                    </span>
-                                    <span class="text-slate-400 text-xs font-semibold">/parc</span>
-                                </div>
-                                <span class="inline-flex items-center gap-1 text-[9px] font-bold text-slate-400 uppercase tracking-wide mt-1 bg-slate-100 px-2 py-0.5 rounded">
-                                    <i class="fas fa-barcode text-[10px]"></i> Facilidade no boleto
-                                </span>
-                            </div>
-
-                            {{-- Ações do Card --}}
-                            <div class="flex gap-2">
-                                <a href="{{ route('destination.show', $destination->slug) }}" target="_blank"
-                                   class="flex-1 inline-flex items-center justify-center gap-2 bg-[#001c3d] hover:bg-[#001126] text-white text-xs font-bold tracking-wider uppercase py-3.5 rounded-xl transition-colors duration-200">
-                                    Ver Detalhes
-                                    <i class="fas fa-arrow-right text-[10px]"></i>
-                                </a>
-                                <a href="{{ $destWhatsapp }}" target="_blank" aria-label="Fale Conosco pelo WhatsApp"
-                                   class="w-12 h-12 flex items-center justify-center shrink-0 border border-emerald-500 text-emerald-500 hover:bg-emerald-500 hover:text-white rounded-xl transition-all text-xl shadow-sm">
-                                    <i class="fab fa-whatsapp"></i>
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
+                    <x-card-pacotes :pkg="$destination" :whatsappUrl="$destWhatsapp" />
                 @empty
                     {{-- Estado Vazio --}}
                     <div class="col-span-full text-center py-16 bg-white rounded-2xl border border-slate-100 p-8">

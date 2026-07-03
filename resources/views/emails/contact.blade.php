@@ -16,7 +16,7 @@
                             <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">
                                 Novo Lead Recebido
                             </h1>
-                            <p style="color: #f2bd11; margin: 5px 0 0 0; font-size: 13px; font-weight: 600;">
+                            <p style="color: #f3a908; margin: 5px 0 0 0; font-size: 13px; font-weight: 600;">
                                 Viaje com a Gente - Canal de Vendas
                             </p>
                         </td>

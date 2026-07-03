@@ -19,42 +19,42 @@
         <div class="h-20 flex items-center justify-center border-b border-white/10 px-6">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
                 <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
-                <span class="font-extrabold uppercase text-sm tracking-wider text-[#f2bd11]">Painel Admin</span>
+                <span class="font-extrabold uppercase text-sm tracking-wider text-[#f3a908]">Painel Admin</span>
             </a>
         </div>
         
         <!-- Navigation Menu -->
         <nav class="flex-grow p-4 space-y-1.5">
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.dashboard') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.dashboard') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-chart-line text-lg w-6 text-center"></i>
                 <span>Dashboard</span>
             </a>
 
-            <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-envelope-open-text text-lg w-6 text-center"></i>
                 <span>Mensagens</span>
             </a>
             
-            <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-images text-lg w-6 text-center"></i>
                 <span>Banners</span>
             </a>
             
-            <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
                 <span>Destinos</span>
             </a>
             
-            <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-share-nodes text-lg w-6 text-center"></i>
                 <span>Redes Sociais</span>
             </a>
 
-            <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-concierge-bell text-lg w-6 text-center"></i>
                 <span>Serviços</span>
             </a>
-            <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-file-lines text-lg w-6 text-center"></i>
                 <span>Páginas</span>
             </a>
@@ -63,7 +63,7 @@
                 <span class="px-4 text-[10px] font-bold uppercase tracking-widest text-white/30">Sistema</span>
             </div>
 
-            <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+            <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-sliders text-lg w-6 text-center"></i>
                 <span>Configurações Gerais</span>
             </a>
@@ -114,7 +114,7 @@
                 <div class="h-20 flex items-center justify-between border-b border-white/10 px-6">
                     <div class="flex items-center gap-3">
                         <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
-                        <span class="font-extrabold uppercase text-sm tracking-wider text-[#f2bd11]">Painel Admin</span>
+                        <span class="font-extrabold uppercase text-sm tracking-wider text-[#f3a908]">Painel Admin</span>
                     </div>
                     <button id="mobile-sidebar-close" class="text-white text-xl">
                         <i class="fas fa-xmark"></i>
@@ -122,37 +122,37 @@
                 </div>
                 
                 <nav class="flex-grow p-4 space-y-1.5">
-                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.dashboard') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.dashboard') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-chart-line text-lg w-6 text-center"></i>
                         <span>Dashboard</span>
                     </a>
 
-                    <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.contacts.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.contacts.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-envelope-open-text text-lg w-6 text-center"></i>
                         <span>Mensagens</span>
                     </a>
                     
-                    <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.banners.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.banners.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-images text-lg w-6 text-center"></i>
                         <span>Banners</span>
                     </a>
                     
-                    <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
                         <span>Destinos</span>
                     </a>
                     
-                    <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-share-nodes text-lg w-6 text-center"></i>
                         <span>Redes Sociais</span>
                     </a>
 
-                    <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-concierge-bell text-lg w-6 text-center"></i>
                         <span>Serviços</span>
                     </a>
 
-                    <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.pages.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pages.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-file-lines text-lg w-6 text-center"></i>
                         <span>Páginas</span>
                     </a>
@@ -161,7 +161,7 @@
                         <span class="px-4 text-[10px] font-bold uppercase tracking-widest text-white/30">Sistema</span>
                     </div>
 
-                    <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f2bd11] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                    <a href="{{ route('admin.settings.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.settings.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-sliders text-lg w-6 text-center"></i>
                         <span>Configurações Gerais</span>
                     </a>

@@ -9,7 +9,7 @@
                 <h2 class="font-extrabold text-gray-900 text-lg tracking-tight">Editar Destino: {{ $destination->title }}</h2>
                 <p class="text-xs text-gray-500 mt-1">Atualize as informações do pacote, fotos, itens inclusos e o cronograma.</p>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#f2bd11]/10 text-[#a37f00] border border-[#f2bd11]/20">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-[#f3a908]/10 text-[#a37f00] border border-[#f3a908]/20">
                 <i class="fas fa-edit"></i> Editando Registro
             </span>
         </div>
@@ -300,7 +300,7 @@
                 </div>
 
                 <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
-                    <label class="block text-xs font-bold text-[#001c3d] uppercase tracking-wider mb-4"><i class="fas fa-star text-[#f2bd11] mr-1"></i> Facilidades Inclusas (Marcação Rápida)</label>
+                    <label class="block text-xs font-bold text-[#001c3d] uppercase tracking-wider mb-4"><i class="fas fa-star text-[#f3a908] mr-1"></i> Facilidades Inclusas (Marcação Rápida)</label>
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                         @php
                             $currentIcons = $destination->highlights_icons ?? [];
@@ -387,7 +387,7 @@
 
                                 <div class="flex items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
                                     <span class="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-[#001c3d] uppercase tracking-widest">
-                                        <i class="fas fa-star text-[#f2bd11]"></i> Bloco de Destaque
+                                        <i class="fas fa-star text-[#f3a908]"></i> Bloco de Destaque
                                     </span>
                                     <button type="button" onclick="removeRow(this)" class="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover destaque">
                                         <i class="fas fa-trash-alt text-xs"></i>
@@ -593,7 +593,7 @@
                     <input type="hidden" name="highlights[${index}][order]" value="${index + 1}">
                     <div class="flex items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
                         <span class="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-[#001c3d] uppercase tracking-widest">
-                            <i class="fas fa-star text-[#f2bd11]"></i> Bloco de Destaque
+                            <i class="fas fa-star text-[#f3a908]"></i> Bloco de Destaque
                         </span>
                         <button type="button" onclick="removeRow(this)" class="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover destaque">
                             <i class="fas fa-trash-alt text-xs"></i>

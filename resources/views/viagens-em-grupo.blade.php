@@ -46,7 +46,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Benefit 1 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm">
-                    <div class="w-14 h-14 rounded-full bg-[#f2bd11]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
+                    <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-user-tie text-xl text-[#002752]"></i>
                     </div>
                     <h4 class="font-bold text-[#002752] mb-2 text-sm uppercase">Guia desde o Embarque</h4>
@@ -57,7 +57,7 @@
 
                 <!-- Benefit 2 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm">
-                    <div class="w-14 h-14 rounded-full bg-[#f2bd11]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
+                    <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-hand-holding-usd text-xl text-[#002752]"></i>
                     </div>
                     <h4 class="font-bold text-[#002752] mb-2 text-sm uppercase">Melhores Tarifas</h4>
@@ -68,7 +68,7 @@
 
                 <!-- Benefit 3 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm">
-                    <div class="w-14 h-14 rounded-full bg-[#f2bd11]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
+                    <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-cocktail text-xl text-[#002752]"></i>
                     </div>
                     <h4 class="font-bold text-[#002752] mb-2 text-sm uppercase">Confraternizações</h4>
@@ -79,7 +79,7 @@
 
                 <!-- Benefit 4 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm">
-                    <div class="w-14 h-14 rounded-full bg-[#f2bd11]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
+                    <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-heart text-xl text-[#002752]"></i>
                     </div>
                     <h4 class="font-bold text-[#002752] mb-2 text-sm uppercase">Viaje Sem Preocupações</h4>
@@ -92,7 +92,7 @@
     </section>
 
     <!-- CTA FOOTER -->
-    <section class="bg-[#f2bd11] py-8 text-[#002752]">
+    <section class="bg-[#f3a908] py-8 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
                 <!-- Text -->

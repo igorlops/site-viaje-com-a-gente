@@ -21,6 +21,7 @@ use App\Services\Admin\ServiceService;
 use App\Services\Admin\SiteSettingService;
 use App\Services\BannerService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -57,13 +58,18 @@ public function dashboard()
         ->limit(10)
         ->get();
 
-    // CORRIGIDO: Visitas por dia nos últimos 14 dias usando DATE_FORMAT (compatível com MySQL)
-    $dailyVisits = PageView::selectRaw("DATE_FORMAT(visited_at, '%Y-%m-%d') as day, COUNT(*) as total")
-        ->where('visited_at', '>=', now()->subDays(14))
-        ->groupByRaw("DATE_FORMAT(visited_at, '%Y-%m-%d')")
-        ->orderBy('day')
-        ->get()
-        ->keyBy('day');
+    $isSqlite = DB::connection()->getDriverName() === 'sqlite';
+
+    $dateField = $isSqlite 
+        ? "strftime('%Y-%m-%d', visited_at)" 
+        : "DATE_FORMAT(visited_at, '%Y-%m-%d')";
+
+    $dailyVisits = DB::table('page_views')
+        ->selectRaw("$dateField as day, COUNT(*) as total")
+        ->where('visited_at', '>=', '2026-06-19 01:23:35')
+        ->groupBy('day')
+        ->orderBy('day', 'asc')
+        ->get();
 
     // Preenche todos os dias (sem gaps)
     $chartLabels = [];
