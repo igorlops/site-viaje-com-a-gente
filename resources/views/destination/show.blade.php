@@ -301,7 +301,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="text-gray-500 text-xs text-center font-semibold leading-relaxed">
+                    <p class="text-gray-500 text-xs text-left font-semibold leading-relaxed">
                         (Cronograma sujeito a alteração)
                     </p>
                     
