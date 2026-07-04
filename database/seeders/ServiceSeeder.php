@@ -16,32 +16,56 @@ class ServiceSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         DB::table('services')->truncate();
 
-        $data = [
-  0 => 
-  [
-    'id' => 1,
-    'title' => 'Intercambio Estudantil',
-    'slug' => 'intercambio-estudantil',
-    'subtitle' => 'Aprenda novos idiomas e costumes através do nosso intercambio',
-    'summary' => 'Intercambio alskdançsldkDFÇKLAJSHDFLAKSDJFNASDKLFJNASDKLFJNASDKFJASNDFKLASJDNFAKLSDJF NAKLSDJ NFASDKJFNASKDLFJNASDKFJAN KSD NK JNSADKFJNASDKFJ NAS',
-    'content' => 'Viaje com **total tranquilidade** e aproveite cada momento da sua jornada. Nossa equipe garante *atendimento personalizado* do início ao fim, com parcelamento facilitado e suporte 24h. Saiba mais em nosso [site oficial](https://viajecomagente.com.br] ou fale direto pelo WhatsApp.',
-    'banner_path' => 'services/banners/IgSwkfIfhizmQTNvcXBFz0gxGyIqAQAyHYQomuDt.jpg',
-    'image_path' => 'services/images/xHutPaJ9mGUyAwzd3w8XrRShjYtTXXK3gi6Nkgrk.jpg',
-    'status' => 'published',
-    'show_in_menu' => 1,
-    'meta_title' => 'Viaje com a gente',
-    'meta_description' => 'asdas\\dsdfasdfasdfasdfasdfasdfasdfasdf',
-    'meta_keywords' => 'arquiteto fortaleza, arquitetura alto padrão, projetos residenciais fortaleza, escritório de arquitetura ceará',
-    'og_title' => 'afasdfsdfasdfasdf',
-    'og_description' => 'sdfasdfasdfasdfasdfasdfasdfasdfasddsghsghfghdfgh',
-    'og_image' => NULL,
-    'deleted_at' => NULL,
-    'created_at' => '2026-06-20 00:10:05',
-    'updated_at' => '2026-06-21 04:52:13',
-  ],
-];
+        $services = [
+            [
+                'title' => 'Passagens Aéreas',
+                'subtitle'  => 'Viaje com conforto e segurança. Escolha entre diversas companhias aéreas e voe com total segurança e qualidade.',
+                'image_path' => 'services/images/passagens-aereas.png',
+            ],
+            [
+                'title' => 'Hospedagens',
+                'subtitle'  => 'Para todos os estilos. De resorts luxuosos a pousadas aconchegantes — encontre a opção ideal para sua viagem.',
+                'image_path' => 'services/images/hospedagens.png',
+            ],
+            [
+                'title' => 'Seguro Viagem',
+                'subtitle'  => 'Proteção completa para sua viagem. Tenha cobertura para emergências médicas, atrasos de voo e extravio.',
+                'image_path' => 'services/images/seguro-viagem.jpg',
+            ],
+            [
+                'title' => 'Transfer Privativo',
+                'subtitle'  => 'Escolha entre opções privativas ou compartilhadas e encontre o serviço ideal para sua viagem.',
+                'image_path' => 'services/images/transfer-privativo.jpg',
+            ],
+            [
+                'title' => 'Receptivos',
+                'subtitle'  => 'Recepção personalizada no aeroporto. Seja recebido por nossa equipe e tenha um início de viagem tranquilo.',
+                'image_path' => 'services/images/receptivos.jpg',
+            ],
+            [
+                'title' => 'Locação de Veículos',
+                'subtitle'  => 'Alugue seu carro com facilidade. Escolha entre uma ampla variedade de veículos e viaje com praticidade.',
+                'image_path' => 'services/images/locacao-veiculos.jpg',
+            ],
+            [
+                'title' => 'Pacotes Turísticos',
+                'subtitle'  => 'Passagem, hospedagem, transfer e passeios em um só pacote! Viaje sem preocupações e aproveite ao máximo.',
+                'image_path' => 'services/images/pacotes-turisticos.jpg',
+            ],
+            [
+                'title' => 'Viagens em Grupos',
+                'subtitle'  => 'Seja uma viagem com amigos, família ou empresa, criamos roteiros sob medida para sua necessidade.',
+                'image_path' => 'services/images/viagens-grupos.jpg',
+            ],
+            [
+                'title' => 'Passeios Diversos',
+                'subtitle'  => 'Escolha entre experiências exclusivas ou compartilhe momentos inesquecíveis com outros viajantes.',
+                'image_path' => 'services/images/passeios-diversos.jpg',
+            ],
+        ];
 
-        DB::table('services')->insert($data);
+        DB::table('services')->insert($services);
+
         Schema::enableForeignKeyConstraints();
     }
 }

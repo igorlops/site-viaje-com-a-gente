@@ -40,33 +40,7 @@
                     <a href="{{ route('short-trips') }}" class=" {{ request()->routeIs('short-trips') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Bate e Volta</a>
                     <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Viagens em Grupo</a>
                     <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destination') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Destinos</a>
-
-                    {{-- Dropdown: Nossos Serviços --}}
-                    <div class="relative group">
-                        <button class="flex items-center gap-1 {{ request()->routeIs('services') || request()->routeIs('service.show') ? 'text-[#f3a908]' : 'text-gray-300 hover:text-white' }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs">
-                            Nossos Serviços
-                            <i class="fas fa-chevron-down text-[9px] transition-transform duration-200 group-hover:rotate-180"></i>
-                        </button>
-                        <div class="absolute left-0 top-full mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50
-                                    opacity-0 invisible group-hover:opacity-100 group-hover:visible
-                                    translate-y-1 group-hover:translate-y-0
-                                    transition-all duration-200">
-                            <a href="{{ route('services') }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100">
-                                <i class="fas fa-th-list text-[#f3a908] w-4"></i>
-                                Ver Todos os Serviços
-                            </a>
-                            @forelse($menuServices as $svc)
-                                <a href="{{ route('service.show', $svc->slug) }}" class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150">
-                                    <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
-                                    {{ $svc->title }}
-                                </a>
-                            @empty
-                                <span class="block px-4 py-2.5 text-xs text-gray-400 italic">Em breve...</span>
-                            @endforelse
-                        </div>
-                    </div>
-
-                    {{-- <a href="{{ route('home') }}#orcamento" class="hover:text-[#f3a908] transition duration-200">Monte sua Viagem</a> --}}
+                    <a href="{{ route('services') }}" class=" {{ request()->routeIs('services') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Nossos Serviços</a>
                     <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Dúvidas</a>
                     <a href="{{ route('contact') }}" class=" {{ request()->routeIs('contact') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Contato</a>
                 </nav>

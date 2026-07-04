@@ -44,20 +44,12 @@ class ServiceService
     {
         $data = $dto->toArray();
 
-        if ($request->hasFile('banner')) {
-            $this->deleteOldImage($service->banner_path);
-            $data['banner_path'] = $this->uploadImage($request->file('banner'), 'services/banners');
-        }
-
         if ($request->hasFile('image')) {
             $this->deleteOldImage($service->image_path);
             $data['image_path'] = $this->uploadImage($request->file('image'), 'services/images');
         }
 
-        if ($request->hasFile('og_image')) {
-            $this->deleteOldImage($service->og_image);
-            $data['og_image'] = $this->uploadImage($request->file('og_image'), 'services/og');
-        }
+
 
         return $this->repository->update($service->id, $data);
     }
@@ -68,7 +60,7 @@ class ServiceService
     public function destroy(Service $service): bool
     {
         // Não removemos imagens no soft delete — apenas na exclusão permanente
-        return $this->repository->softDelete($service);
+        return $this->repository->softDelete($service->id);
     }
 
     /**
@@ -97,17 +89,8 @@ class ServiceService
         $data = $original->toArray();
         unset($data['id'], $data['created_at'], $data['updated_at'], $data['deleted_at']);
 
-        // Ajustar título e slug
+        // Ajustar título
         $data['title'] = $original->title . ' (Cópia)';
-        $data['slug'] = Service::generateSlug($data['title']);
-
-        // Duplicar banner
-        if ($original->banner_path && Storage::disk('public')->exists($original->banner_path)) {
-            $ext = pathinfo($original->banner_path, PATHINFO_EXTENSION);
-            $newPath = 'services/banners/' . uniqid() . '.' . $ext;
-            Storage::disk('public')->copy($original->banner_path, $newPath);
-            $data['banner_path'] = $newPath;
-        }
 
         // Duplicar imagem
         if ($original->image_path && Storage::disk('public')->exists($original->image_path)) {
@@ -117,14 +100,11 @@ class ServiceService
             $data['image_path'] = $newPath;
         }
 
-        // Duplicar og_image
-        if ($original->og_image && Storage::disk('public')->exists($original->og_image)) {
-            $ext = pathinfo($original->og_image, PATHINFO_EXTENSION);
-            $newPath = 'services/og/' . uniqid() . '.' . $ext;
-            Storage::disk('public')->copy($original->og_image, $newPath);
-            $data['og_image'] = $newPath;
-        }
-
         return $this->repository->create($data);
+    }
+
+    public function all()
+    {
+        return $this->repository->all();
     }
 }

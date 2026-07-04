@@ -30,66 +30,13 @@
                     </a>
                 </div>
                 
-                <!-- Desktop Navigation Links -->
-                @php
-                    $menuServices = $menuServices ?? \App\Models\Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
-                @endphp
                 <nav class="hidden xl:flex space-x-4 2xl:space-x-6 text-[11px] 2xl:text-xs font-semibold uppercase tracking-wider">
                     <a href="{{ route('home') }}" class=" {{ request()->routeIs('home') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Início</a>
                     <a href="{{ route('packages20262027') }}" class=" {{ request()->routeIs('packages20262027') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Pacotes 2026/2027</a>
                     <a href="{{ route('short-trips') }}" class=" {{ request()->routeIs('short-trips') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Bate e Volta</a>
                     <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Viagens em Grupo</a>
                     <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destinations') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Destinos</a>
-
-                    <div
-                        class="relative"
-                        id="services-dropdown"
-                    >
-                        <button
-                            type="button"
-                            id="services-button"
-                            class="flex items-center gap-1 {{
-                                request()->routeIs('services') || request()->routeIs('service.show')
-                                    ? 'text-[#f3a908]'
-                                    : 'text-gray-300 hover:text-white'
-                            }} transition duration-200 uppercase tracking-wider font-semibold text-[11px] 2xl:text-xs"
-                        >
-                            Nossos Serviços
-                            <i
-                                id="services-arrow"
-                                class="fas fa-chevron-down text-[9px] transition-transform duration-200"
-                            ></i>
-                        </button>
-
-                        <div
-                            id="services-menu"
-                            class="absolute left-0 top-full w-64 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-[999] hidden"
-                        >
-                            <a
-                                href="{{ route('services') }}"
-                                class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-bold text-[#002752] hover:bg-gray-50 transition duration-150 border-b border-gray-100"
-                            >
-                                <i class="fas fa-th-list text-[#f3a908] w-4"></i>
-                                Ver Todos os Serviços
-                            </a>
-
-                            @forelse($menuServices as $svc)
-                                <a
-                                    href="{{ route('service.show', $svc->slug) }}"
-                                    class="flex items-center gap-2.5 px-4 py-2.5 text-xs font-semibold text-gray-600 hover:text-[#002752] hover:bg-gray-50 transition duration-150"
-                                >
-                                    <i class="fas fa-concierge-bell text-[#109e4a] w-4"></i>
-                                    {{ $svc->title }}
-                                </a>
-                            @empty
-                                <span class="block px-4 py-2.5 text-xs text-gray-400 italic">
-                                    Em breve...
-                                </span>
-                            @endforelse
-                        </div>
-                    </div>
-
-                    {{-- <a href="{{ route('home') }}#orcamento" class="hover:text-[#f3a908] transition duration-200">Monte sua Viagem</a> --}}
+                    <a href="{{ route('services') }}" class=" {{ request()->routeIs('services') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Nossos Serviços</a>
                     <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Dúvidas</a>
                     <a href="{{ route('contact') }}" class=" {{ request()->routeIs('contact') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Contato</a>
                 </nav>
@@ -118,15 +65,7 @@
                 <a href="{{ route('short-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Bate e Volta</a>
                 <a href="{{ route('group-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Viagens em Grupo</a>
                 <a href="{{ route('destination') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Destinos</a>
-
-                {{-- Serviços mobile --}}
                 <a href="{{ route('services') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Nossos Serviços</a>
-                @foreach($menuServices as $svc)
-                    <a href="{{ route('service.show', $svc->slug) }}" class="block px-3 py-2 ml-4 rounded-md text-sm font-medium text-gray-300 hover:bg-[#002752] hover:text-[#f3a908]">
-                        <i class="fas fa-concierge-bell mr-1 text-[#109e4a] text-xs"></i>
-                        {{ $svc->title }}
-                    </a>
-                @endforeach
 
                 <a href="{{ route('home') }}#orcamento" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Monte sua Viagem</a>
                 <a href="{{ route('faq') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Dúvidas</a>

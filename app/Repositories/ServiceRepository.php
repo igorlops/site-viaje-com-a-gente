@@ -22,21 +22,6 @@ class ServiceRepository extends BaseRepository
         return $this->model->withTrashed()->latest()->get();
     }
 
-    public function published(): Collection
-    {
-        return $this->model->published()->orderBy('title')->get();
-    }
-
-    public function inMenu(): Collection
-    {
-        return $this->model->inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
-    }
-
-    public function findBySlug(string $slug): ?Service
-    {
-        return $this->model->published()->where('slug', $slug)->first();
-    }
-
     public function findById(int $id): ?Service
     {
         return $this->model->find($id);
@@ -58,10 +43,5 @@ class ServiceRepository extends BaseRepository
     public function count(): int
     {
         return $this->model->count();
-    }
-
-    public function countPublished(): int
-    {
-        return $this->model->published()->count();
     }
 }

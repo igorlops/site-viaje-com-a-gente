@@ -112,18 +112,6 @@
                 </h2>
             </div>
             <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                {{-- Banner --}}
-                <div>
-                    <label for="banner" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                        Banner Principal (Hero)
-                    </label>
-                    <input type="file" name="banner" id="banner" accept="image/*"
-                        class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-black file:uppercase file:bg-gray-100 file:text-[#002752] hover:file:bg-gray-200 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-1">
-                    <p class="text-[10px] text-gray-400 mt-1.5">Recomendado: 1920x600px. Máximo: 5MB.</p>
-                    @error('banner')
-                        <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 {{-- Imagem de Destaque --}}
                 <div>
@@ -165,23 +153,7 @@
             }
         </style>
         
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="p-6 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
-                <h2 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                    <i class="fas fa-align-left text-[#002752]"></i>
-                    Conteúdo da Página (Editor Visual)
-                </h2>
-                <span class="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full font-medium">Formatador Rich Text</span>
-            </div>
-            <div class="p-6">
-                <textarea name="content" id="content" rows="16"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 font-mono resize-y"
-                    placeholder="## Sobre este serviço&#10;&#10;Descreva aqui o serviço em detalhes...&#10;&#10;## Por que escolher?&#10;&#10;- Razão 1&#10;- Razão 2&#10;- Razão 3">{{ old('content') }}</textarea>
-                @error('content')
-                    <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                @enderror
-            </div>
-        </div>
+
 
         <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
         <script>

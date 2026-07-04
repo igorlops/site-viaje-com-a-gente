@@ -37,22 +37,6 @@
                         @enderror
                     </div>
 
-                    {{-- Slug --}}
-                    <div>
-                        <label for="slug" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                            Slug (URL) <span class="text-red-500">*</span>
-                        </label>
-                        <div class="flex items-center gap-1">
-                            <span class="text-xs text-gray-400 whitespace-nowrap">/servicos/</span>
-                            <input type="text" name="slug" id="slug" value="{{ old('slug', $service->slug) }}" required
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 font-mono"
-                                placeholder="intercambio-estudantil">
-                        </div>
-                        @error('slug')
-                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
                     {{-- Subtítulo --}}
                     <div>
                         <label for="subtitle" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subtítulo</label>
@@ -63,52 +47,6 @@
                             <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                         @enderror
                     </div>
-
-                    {{-- Resumo --}}
-                    <div>
-                        <label for="summary" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Resumo Curto</label>
-                        <input type="text" name="summary" id="summary" value="{{ old('summary', $service->summary) }}" maxlength="500"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                            placeholder="Breve descrição do serviço (até 500 caracteres)">
-                        @error('summary')
-                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-                {{-- Status e Menu --}}
-                <div class="flex flex-col sm:flex-row gap-6 pt-2">
-                    <div>
-                        <label for="status" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                            Status <span class="text-red-500">*</span>
-                        </label>
-                        <select name="status" id="status" required
-                            class="px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 bg-white">
-                            <option value="draft" {{ old('status', $service->status) === 'draft' ? 'selected' : '' }}>📝 Rascunho</option>
-                            <option value="published" {{ old('status', $service->status) === 'published' ? 'selected' : '' }}>✅ Publicado</option>
-                        </select>
-                        @error('status')
-                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                        @enderror
-                    </div>
-
-                    <div class="flex items-end pb-1">
-                        <label class="flex items-center gap-2.5 cursor-pointer select-none">
-                            <input type="checkbox" name="show_in_menu" value="1" {{ old('show_in_menu', $service->show_in_menu) ? 'checked' : '' }}
-                                class="w-4 h-4 rounded text-[#002752] focus:ring-[#002752] border-gray-300">
-                            <span class="text-sm font-bold text-gray-700 uppercase tracking-wide">Exibir no Menu Principal</span>
-                        </label>
-                    </div>
-
-                    @if($service->status === 'published')
-                        <div class="flex items-end pb-1">
-                            <a href="{{ route('service.show', $service->slug) }}" target="_blank"
-                               class="inline-flex items-center gap-2 text-xs font-bold text-[#109e4a] hover:text-[#0d9648] transition duration-200">
-                                <i class="fas fa-external-link-alt"></i>
-                                Ver página no site
-                            </a>
-                        </div>
-                    @endif
                 </div>
             </div>
         </div>
@@ -122,26 +60,6 @@
                 </h2>
             </div>
             <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {{-- Banner --}}
-                <div>
-                    <label for="banner" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                        Banner Principal (Hero)
-                    </label>
-                    @if($service->banner_path)
-                        <div class="mb-3">
-                            <img src="{{ asset('storage/' . $service->banner_path) }}" alt="Banner atual"
-                                 class="w-full h-28 object-cover rounded-lg border border-gray-200">
-                            <p class="text-[10px] text-gray-400 mt-1">Banner atual. Envie novo arquivo para substituir.</p>
-                        </div>
-                    @endif
-                    <input type="file" name="banner" id="banner" accept="image/*"
-                        class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-black file:uppercase file:bg-gray-100 file:text-[#002752] hover:file:bg-gray-200 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-1">
-                    <p class="text-[10px] text-gray-400 mt-1.5">Recomendado: 1920x600px. Máximo: 5MB.</p>
-                    @error('banner')
-                        <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
-
                 {{-- Imagem de Destaque --}}
                 <div>
                     <label for="image" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
@@ -150,7 +68,7 @@
                     @if($service->image_path)
                         <div class="mb-3">
                             <img src="{{ asset('storage/' . $service->image_path) }}" alt="Imagem atual"
-                                 class="w-full h-28 object-cover rounded-lg border border-gray-200">
+                                 class="h-32 w-32 object-cover rounded-lg border border-gray-200">
                             <p class="text-[10px] text-gray-400 mt-1">Imagem atual. Envie novo arquivo para substituir.</p>
                         </div>
                     @endif
@@ -161,48 +79,6 @@
                         <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                     @enderror
                 </div>
-            </div>
-        </div>
-
-        {{-- CONTEÚDO MARKDOWN COM EASYMDE --}}
-        <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
-        <style>
-            .editor-preview-active, .editor-preview-active-side {
-                background: white !important;
-                color: #333 !important;
-            }
-            .EasyMDEContainer {
-                border-radius: 0.5rem;
-                overflow: hidden;
-            }
-            .editor-toolbar {
-                border-color: #d1d5db !important;
-                background-color: #f9fafb !important;
-                border-top-left-radius: 0.5rem !important;
-                border-top-right-radius: 0.5rem !important;
-            }
-            .CodeMirror {
-                border-color: #d1d5db !important;
-                border-bottom-left-radius: 0.5rem !important;
-                border-bottom-right-radius: 0.5rem !important;
-                font-family: monospace;
-            }
-        </style>
-        
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="p-6 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
-                <h2 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                    <i class="fas fa-align-left text-[#002752]"></i>
-                    Conteúdo da Página (Editor Visual)
-                </h2>
-                <span class="text-xs text-gray-400 bg-gray-100 px-2.5 py-1 rounded-full font-medium">Formatador Rich Text</span>
-            </div>
-            <div class="p-6">
-                <textarea name="content" id="content" rows="16"
-                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 font-mono resize-y">{{ old('content', $service->content) }}</textarea>
-                @error('content')
-                    <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
-                @enderror
             </div>
         </div>
 
@@ -228,68 +104,6 @@
                 });
             });
         </script>
-
-        {{-- SEO --}}
-        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-            <div class="p-6 border-b border-gray-100 bg-gray-50">
-                <h2 class="font-bold text-gray-800 text-sm flex items-center gap-2">
-                    <i class="fas fa-search text-[#002752]"></i>
-                    SEO e Meta Dados
-                </h2>
-                <p class="text-xs text-gray-400 mt-1">Otimize como este serviço aparece nos mecanismos de busca</p>
-            </div>
-            <div class="p-6 space-y-5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label for="meta_title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Meta Title</label>
-                        <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title', $service->meta_title) }}" maxlength="255"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                            placeholder="Título para SEO">
-                    </div>
-                    <div>
-                        <label for="meta_keywords" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Meta Keywords</label>
-                        <input type="text" name="meta_keywords" id="meta_keywords" value="{{ old('meta_keywords', $service->meta_keywords) }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                            placeholder="intercâmbio, estudar no exterior, viagem">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="meta_description" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Meta Description</label>
-                        <textarea name="meta_description" id="meta_description" rows="2" maxlength="500"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 resize-none"
-                            placeholder="Descrição para mecanismos de busca">{{ old('meta_description', $service->meta_description) }}</textarea>
-                    </div>
-                </div>
-
-                <hr class="border-gray-100">
-
-                <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Open Graph (Redes Sociais)</p>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                        <label for="og_title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">OG Title</label>
-                        <input type="text" name="og_title" id="og_title" value="{{ old('og_title', $service->og_title) }}"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                            placeholder="Título para compartilhamento">
-                    </div>
-                    <div>
-                        <label for="og_image" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">
-                            OG Image
-                            @if($service->og_image)
-                                <span class="ml-2 font-normal text-gray-400 normal-case tracking-normal">(atual: imagem cadastrada)</span>
-                            @endif
-                        </label>
-                        <input type="file" name="og_image" id="og_image" accept="image/*"
-                            class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-black file:uppercase file:bg-gray-100 file:text-[#002752] hover:file:bg-gray-200 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-1">
-                        <p class="text-[10px] text-gray-400 mt-1">Recomendado: 1200x630px</p>
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label for="og_description" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">OG Description</label>
-                        <textarea name="og_description" id="og_description" rows="2" maxlength="500"
-                            class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 resize-none"
-                            placeholder="Descrição para compartilhamento nas redes sociais">{{ old('og_description', $service->og_description) }}</textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         {{-- BOTÕES --}}
         <div class="flex items-center gap-3">

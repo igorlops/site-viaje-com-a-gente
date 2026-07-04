@@ -7,6 +7,7 @@ use App\Models\Banner;
 use App\Models\Destination;
 use App\Models\SocialLink;
 use App\Repositories\TestimonialRepository;
+use App\Services\Admin\ServiceService;
 use App\Services\BannerService;
 use App\Services\PageService;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class PageController extends Controller
     public function __construct(
         protected BannerService $bannerService,
         protected PageService $pageService,
+        protected ServiceService $serviceService ,
         protected \App\Services\DestinationService $destinationService,
         protected TestimonialRepository $testimonialRepository
     ) {}
@@ -65,8 +67,9 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('nossos-servicos');
+        $services = $this->serviceService->all();
         $socialLinks = $this->getSocialLinks();
-        return view("nossos-servicos", compact("socialLinks", "banner", "breadcrumbs"));
+        return view("nossos-servicos", compact("socialLinks", "banner", "breadcrumbs",'services'));
     }
 
     public function shortTrips()
@@ -134,31 +137,6 @@ class PageController extends Controller
         return redirect()->back()->with('success', 'Sua mensagem foi enviada com sucesso! Entraremos em contato o mais rápido possível.');
     }
 
-    /**
-     * Exibe a página pública de um serviço dinâmico pelo slug.
-     */
-    public function serviceShow(string $slug)
-    {
-        $breadcrumbs = [
-            [
-                'label' => 'Nossos Serviços',
-                'link' => route('services')
-            ],
-            [
-                'label' => $slug,
-                'link' => route('service.show', $slug)
-            ]
-        ];
-        $banner = $this->bannerService->bannerByPageSlug('nossos-servicos'); 
-        $service = Service::published()->where('slug', $slug)->firstOrFail();
-        $socialLinks = $this->getSocialLinks();
-
-        $menuServices = Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
-        
-        $htmlContent = $service->content ? \Illuminate\Support\Str::markdown($service->content) : '';
-
-        return view('services.show', compact('service', 'socialLinks', 'menuServices', 'banner', 'breadcrumbs', 'htmlContent'));
-    }
     public function destinationShow($slug)
     {
         $breadcrumbs = [
