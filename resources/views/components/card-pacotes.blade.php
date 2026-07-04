@@ -7,13 +7,7 @@
     <!-- Card Image -->
     <div class="relative h-48 bg-gray-200 overflow-hidden shrink-0 w-full">
         <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="{{ asset('storage/' . $pkg->image_path) }}" alt="{{ $pkg->title }}">
-        @if($pkg->tag)
-            <div class="absolute top-0 right-0 w-full h-full flex justify-center items-center">
-                <span class="absolute text-center top-2 left-1/2 -translate-x-1/2 bg-[#f3a908] text-white text-[10px] font-black uppercase tracking-wider px-5 py-1 rounded" style="width: 80%">
-                    {{ $pkg->tag }}
-                </span>
-            </div>
-        @endif
+
     </div>
     
     <!-- Card Body -->
@@ -25,9 +19,13 @@
             <p class="text-gray-500 text-sm font-medium mb-3">
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
-            
+            @if($pkg->tag)
+                <span class="relative text-[1rem] text-[#109e4a] font-black tracking-wider py-1 rounded" style="width: 80%">
+                    {{ $pkg->tag }}
+                </span>
+            @endif
             <!-- Info Badge -->
-            <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4">
+            <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
                     <i class="far fa-clock text-[#109e4a]"></i>
                     <span>{{ $pkg->duration }} Dias @if($pkg->nights) e {{ $pkg->nights }} Noites @endif</span>
                 </div>
