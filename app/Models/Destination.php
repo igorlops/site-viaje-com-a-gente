@@ -54,4 +54,9 @@ class Destination extends Model
     {
         return $this->hasMany(DestinationItineraryDay::class)->orderBy('order');
     }
+
+    public function observations()
+    {
+        return $this->hasMany(DestinationObservation::class)->orderBy('order');
+    }
 }

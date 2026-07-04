@@ -191,6 +191,37 @@ class DestinationService
 
         // Deletar dias não enviados
         $destination->itineraryDays()->whereNotIn('id', $keepItineraryIds)->delete();
+
+        // 4. Salvar Observações (lista simples de textos)
+        $keepObservationIds = [];
+        if (!empty($dto->observations)) {
+            foreach ($dto->observations as $index => $obsData) {
+                if (empty($obsData['text'])) {
+                    continue;
+                }
+
+                $observation = null;
+                if (!empty($obsData['id'])) {
+                    $observation = $destination->observations()->find($obsData['id']);
+                }
+
+                $obsToSave = [
+                    'text'  => $obsData['text'],
+                    'order' => $obsData['order'] ?? ($index + 1),
+                ];
+
+                if ($observation) {
+                    $observation->update($obsToSave);
+                } else {
+                    $observation = $destination->observations()->create($obsToSave);
+                }
+
+                $keepObservationIds[] = $observation->id;
+            }
+        }
+
+        // Deletar as observações que não vieram no request
+        $destination->observations()->whereNotIn('id', $keepObservationIds)->delete();
     }
 
     protected function uploadImage(UploadedFile $file, string $directory): string

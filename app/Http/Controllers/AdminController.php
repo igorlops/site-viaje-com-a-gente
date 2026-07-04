@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DTOs\Admin\ServiceDTO;
+use App\DTOs\Admin\TestimonialDTO;
 use App\Http\Requests\Admin\ServiceRequest;
 use App\Http\Requests\Admin\SiteSettingRequest;
+use App\Http\Requests\Admin\TestimonialRequest;
 use App\Models\Banner;
 use App\Models\ButtonBanner;
 use App\Models\Destination;
@@ -15,10 +17,13 @@ use App\Models\PageView;
 use App\Models\Service;
 use App\Models\SiteSetting;
 use App\Models\SocialLink;
+use App\Models\Testimonial;
 use App\Repositories\ServiceRepository;
 use App\Repositories\SiteSettingRepository;
+use App\Repositories\TestimonialRepository;
 use App\Services\Admin\ServiceService;
 use App\Services\Admin\SiteSettingService;
+use App\Services\Admin\TestimonialService;
 use App\Services\BannerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +35,9 @@ class AdminController extends Controller
         protected BannerService $bannerService,
         protected \App\Services\Admin\DestinationService $destinationService,
         protected SiteSettingRepository $siteSettingRepository,
-        protected SiteSettingService $siteSettingService
+        protected SiteSettingService $siteSettingService,
+        protected TestimonialService $testimonialService,
+        protected TestimonialRepository $testimonialRepository
     ) {}
     /**
      * Display the admin dashboard.
@@ -277,7 +284,7 @@ public function dashboard()
 
     public function destinationEdit(Destination $destination)
     {
-        $destination->load(['includes','highlights','itineraryDays']);
+        $destination->load(['includes', 'highlights', 'itineraryDays', 'observations']);
         return view('admin.destinations.edit', compact('destination'));
     }
 
@@ -301,6 +308,46 @@ public function dashboard()
         $this->destinationService->duplicate($destination->id);
 
         return redirect()->route('admin.destinations.index')->with('success', 'Destino duplicado com sucesso!');
+    }
+
+    /* TESTIMONIALS CRUD */
+
+    public function testimonials()
+    {
+        $testimonials = $this->testimonialRepository->all();
+        return view('admin.testimonials.index', compact('testimonials'));
+    }
+
+    public function testimonialCreate()
+    {
+        return view('admin.testimonials.create');
+    }
+
+    public function testimonialStore(TestimonialRequest $request)
+    {
+        $dto = TestimonialDTO::fromRequest($request);
+        $this->testimonialService->create($dto, $request);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Depoimento criado com sucesso!');
+    }
+
+    public function testimonialEdit(Testimonial $testimonial)
+    {
+        return view('admin.testimonials.edit', compact('testimonial'));
+    }
+
+    public function testimonialUpdate(TestimonialRequest $request, Testimonial $testimonial)
+    {
+        $dto = TestimonialDTO::fromRequest($request);
+        $this->testimonialService->update($testimonial->id, $dto, $request);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Depoimento atualizado com sucesso!');
+    }
+
+    public function testimonialDestroy(Testimonial $testimonial)
+    {
+        $this->testimonialService->destroy($testimonial->id);
+        return redirect()->route('admin.testimonials.index')->with('success', 'Depoimento excluído com sucesso!');
     }
 
     /* SOCIAL LINKS CRUD */

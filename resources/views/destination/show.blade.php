@@ -210,6 +210,51 @@
                 </div>
             @endif
 
+            <!-- DEPOIMENTOS -->
+            @if(isset($testimonials) && $testimonials->count() > 0)
+                <div class="mb-20">
+                    <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">O que dizem nossos viajantes</h2>
+                    <div class="w-24 h-1 bg-[#f3a908] mx-auto rounded mb-12"></div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        @foreach($testimonials as $testimonial)
+                            <div class="bg-white border border-gray-100 rounded-2xl p-6 shadow-[0_4px_20px_rgb(0,0,0,0.04)] flex flex-col gap-4 hover:shadow-[0_8px_30px_rgb(0,0,0,0.07)] transition-shadow duration-300">
+                                {{-- Estrelas --}}
+                                <div class="flex items-center gap-1">
+                                    @for($i = 1; $i <= 5; $i++)
+                                        <i class="fas fa-star text-sm {{ $i <= $testimonial->rating ? 'text-[#f3a908]' : 'text-gray-200' }}"></i>
+                                    @endfor
+                                </div>
+
+                                {{-- Texto --}}
+                                <p class="text-gray-600 text-sm leading-relaxed flex-1 italic">
+                                    "{{ $testimonial->content }}"
+                                </p>
+
+                                {{-- Autor --}}
+                                <div class="flex items-center gap-3 pt-3 border-t border-gray-100">
+                                    @if($testimonial->author_photo)
+                                        <img src="{{ asset('storage/' . $testimonial->author_photo) }}"
+                                             alt="{{ $testimonial->author_name }}"
+                                             class="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-[#f3a908]/30">
+                                    @else
+                                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#002752] to-[#004a9a] flex items-center justify-center shrink-0">
+                                            <span class="text-white font-bold text-sm">{{ strtoupper(substr($testimonial->author_name, 0, 1)) }}</span>
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <p class="font-bold text-gray-800 text-sm">{{ $testimonial->author_name }}</p>
+                                        @if($testimonial->author_role)
+                                            <p class="text-xs text-gray-400">{{ $testimonial->author_role }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+
             <!-- ITINERARY -->
             @if($destination->itineraryDays->count() > 0)
                 <!-- Swiper CSS & JS -->
@@ -339,6 +384,31 @@
                         });
                     });
                 </script>
+            @endif
+
+            <!-- OBSERVAÇÕES -->
+            @if($destination->observations->count() > 0)
+                <div class="mb-20">
+                    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-8">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
+                                <i class="fas fa-triangle-exclamation text-amber-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-black text-amber-800 uppercase tracking-wider">Observações Importantes</h2>
+                                <p class="text-xs text-amber-600/70 mt-0.5">Leia com atenção antes de reservar.</p>
+                            </div>
+                        </div>
+                        <ul class="space-y-3">
+                            @foreach($destination->observations as $observation)
+                                <li class="flex items-start gap-3">
+                                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
+                                    <span class="text-sm text-amber-900 font-medium leading-relaxed">{{ $observation->text }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             @endif
 
             <!-- PAYMENT INFO -->

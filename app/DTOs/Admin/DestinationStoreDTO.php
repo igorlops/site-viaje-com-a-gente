@@ -31,7 +31,8 @@ class DestinationStoreDTO
         public readonly ?array $highlights_icons,
         public readonly ?array $includes,
         public readonly ?array $highlights,
-        public readonly ?array $itinerary
+        public readonly ?array $itinerary,
+        public readonly ?array $observations
     ) {}
 
     public static function fromRequest(DestinationStoreRequest $request): self
@@ -62,7 +63,8 @@ class DestinationStoreDTO
             text_label_banner: $request->input('text_label_banner'),
             includes: $request->input('includes'),
             highlights: $request->input('highlights'),
-            itinerary: $request->input('itinerary')
+            itinerary: $request->input('itinerary'),
+            observations: $request->input('observations')
         );
     }
 

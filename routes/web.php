@@ -80,4 +80,12 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/pages/{page}/edit', [AdminController::class, 'pageEdit'])->name('admin.pages.edit');
     Route::put('/pages/{page}', [AdminController::class, 'pageUpdate'])->name('admin.pages.update');
     Route::delete('/pages/{page}', [AdminController::class, 'pageDestroy'])->name('admin.pages.destroy');
+
+    // CRUD Depoimentos
+    Route::get('/testimonials', [AdminController::class, 'testimonials'])->name('admin.testimonials.index');
+    Route::get('/testimonials/create', [AdminController::class, 'testimonialCreate'])->name('admin.testimonials.create');
+    Route::post('/testimonials', [AdminController::class, 'testimonialStore'])->name('admin.testimonials.store');
+    Route::get('/testimonials/{testimonial}/edit', [AdminController::class, 'testimonialEdit'])->name('admin.testimonials.edit');
+    Route::put('/testimonials/{testimonial}', [AdminController::class, 'testimonialUpdate'])->name('admin.testimonials.update');
+    Route::delete('/testimonials/{testimonial}', [AdminController::class, 'testimonialDestroy'])->name('admin.testimonials.destroy');
 });

@@ -43,6 +43,11 @@
                     <i class="fas fa-route text-sm"></i>
                     <span>Roteiro</span>
                 </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="tab-observations-tab" onclick="switchTab(event, 'observations-tab')"
+                    class="tab-btn inline-flex shrink-0 items-center gap-2 rounded-t-xl border border-transparent px-4 sm:px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#001c3d]/30 text-gray-400 hover:text-[#001c3d] hover:bg-white/60">
+                    <i class="fas fa-triangle-exclamation text-sm"></i>
+                    <span>Observações</span>
+                </button>
             </nav>
         </div>
 
@@ -515,6 +520,48 @@
                 </div>
             </div>
 
+            {{-- TAB OBSERVATIONS --}}
+            <div id="tab-observations-tab" class="tab-content space-y-6 hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-sm font-extrabold text-gray-800">Observações do Destino</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Adicione avisos ou informações importantes que serão exibidas após o cronograma.</p>
+                    </div>
+                    <button type="button" onclick="addObservationRow()"
+                            class="inline-flex items-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold text-[10px] uppercase tracking-wider px-4 py-2 rounded-lg border border-amber-200 transition-all duration-200">
+                        <i class="fas fa-plus text-[9px]"></i> Adicionar Observação
+                    </button>
+                </div>
+
+                <div id="observations-container" class="space-y-3">
+                    @forelse($destination->observations as $obsIndex => $observation)
+                        <div class="observation-row flex gap-3 items-start bg-amber-50/40 border border-amber-100 rounded-xl p-3">
+                            <input type="hidden" name="observations[{{ $obsIndex }}][id]" value="{{ $observation->id }}">
+                            <input type="hidden" name="observations[{{ $obsIndex }}][order]" value="{{ $observation->order }}">
+                            <div class="flex items-center justify-center shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-600 mt-1">
+                                <i class="fas fa-triangle-exclamation text-xs"></i>
+                            </div>
+                            <textarea name="observations[{{ $obsIndex }}][text]"
+                                      placeholder="Ex: O passeio pode ser cancelado em caso de mau tempo."
+                                      rows="2" required
+                                      class="flex-1 border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 resize-none transition duration-200 bg-white">{{ $observation->text }}</textarea>
+                            <button type="button" onclick="removeRow(this)"
+                                    class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-1">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </div>
+                    @empty
+                        <div id="observations-empty" class="flex flex-col items-center justify-center py-10 text-center bg-amber-50/30 rounded-2xl border border-dashed border-amber-200">
+                            <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
+                                <i class="fas fa-triangle-exclamation text-amber-500 text-sm"></i>
+                            </div>
+                            <p class="text-xs text-gray-500 font-semibold">Nenhuma observação adicionada.</p>
+                            <p class="text-[10px] text-gray-400 mt-0.5">Clique em "Adicionar Observação" para incluir avisos importantes.</p>
+                        </div>
+                    @endforelse
+                </div>
+            </div>
+
             <div class="flex items-center justify-end gap-3 pt-6 mt-6 border-t border-gray-100">
                 <a href="{{ route('admin.destinations.index') }}" class="border border-gray-200 hover:bg-gray-50 text-gray-500 px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200">
                     Cancelar
@@ -707,6 +754,31 @@
                     <input type="text" name="itinerary[${dayIndex}][activities][]" placeholder="Descreva a atividade do dia..."
                         class="flex-1 border-0 focus:ring-0 px-2 py-1.5 text-xs font-medium focus:outline-none text-gray-700 placeholder-gray-400" required>
                     <button type="button" onclick="removeRow(this)" class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                        <i class="fas fa-times text-xs"></i>
+                    </button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function addObservationRow() {
+            const container = document.getElementById('observations-container');
+            const emptyState = document.getElementById('observations-empty');
+            if (emptyState) emptyState.remove();
+
+            const index = container.querySelectorAll('.observation-row').length;
+            const html = `
+                <div class="observation-row flex gap-3 items-start bg-amber-50/40 border border-amber-100 rounded-xl p-3">
+                    <input type="hidden" name="observations[${index}][order]" value="${index + 1}">
+                    <div class="flex items-center justify-center shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-600 mt-1">
+                        <i class="fas fa-triangle-exclamation text-xs"></i>
+                    </div>
+                    <textarea name="observations[${index}][text]"
+                              placeholder="Ex: O passeio pode ser cancelado em caso de mau tempo."
+                              rows="2" required
+                              class="flex-1 border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 resize-none transition duration-200 bg-white"></textarea>
+                    <button type="button" onclick="removeRow(this)"
+                            class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-1">
                         <i class="fas fa-times text-xs"></i>
                     </button>
                 </div>

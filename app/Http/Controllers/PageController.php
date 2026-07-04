@@ -6,6 +6,7 @@ use App\Models\Service;
 use App\Models\Banner;
 use App\Models\Destination;
 use App\Models\SocialLink;
+use App\Repositories\TestimonialRepository;
 use App\Services\BannerService;
 use App\Services\PageService;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class PageController extends Controller
     public function __construct(
         protected BannerService $bannerService,
         protected PageService $pageService,
-        protected \App\Services\DestinationService $destinationService
+        protected \App\Services\DestinationService $destinationService,
+        protected TestimonialRepository $testimonialRepository
     ) {}
     
     protected function getSocialLinks()
@@ -171,14 +173,16 @@ class PageController extends Controller
         ];
         $banner = $this->bannerService->bannerByPageSlug('destinos');
         $destination = Destination::where('slug', $slug)
-            ->with(['includes', 'highlights', 'itineraryDays.activities'])
+            ->with(['includes', 'highlights', 'itineraryDays.activities', 'observations'])
             ->firstOrFail();
 
         $socialLinks = SocialLink::where('active', true)->get()->keyBy(function ($item) {
             return strtolower($item->name);
         });
 
-        return view('destination.show', compact('destination', 'socialLinks', 'banner', 'breadcrumbs'));
+        $testimonials = $this->testimonialRepository->allActive();
+
+        return view('destination.show', compact('destination', 'socialLinks', 'banner', 'breadcrumbs', 'testimonials'));
     }
 
     public function destinations(\App\Http\Requests\DestinationsFilterRequest $request)

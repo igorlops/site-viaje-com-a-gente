@@ -63,6 +63,12 @@ class DestinationStoreRequest extends FormRequest
             'itinerary.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'itinerary.*.activities' => 'nullable|array',
             'itinerary.*.activities.*' => 'required|string|max:255',
+
+            // Relações - Observações
+            'observations' => 'nullable|array',
+            'observations.*.id' => 'nullable|integer',
+            'observations.*.text' => 'required|string|max:1000',
+            'observations.*.order' => 'nullable|integer',
         ];
     }
 
