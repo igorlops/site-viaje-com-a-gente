@@ -51,7 +51,7 @@
             @endphp
             <div class="flex gap-2">
                 <a href="{{ route('destination.show', $pkg->slug) }}" target="_blank" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
-                    <span>Reservar Vaga</span>
+                    <span>Saiba mais</span>
                     <i class="fas fa-chevron-right text-[9px]"></i>
                 </a>
                 <a href="{{ $pkgWhatsapp }}" target="_blank" class="w-10 h-10 inline-flex items-center justify-center border border-[#109e4a] hover:bg-[#109e4a] text-[#109e4a] hover:text-white rounded-lg transition duration-200">
