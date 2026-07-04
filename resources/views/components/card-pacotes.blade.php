@@ -42,7 +42,7 @@
                     </span>
                     <span class="text-[#109e4a] text-xs font-bold">/por pessoa</span>
                 </div>
-                <span class="block text-gray-400 text-[10px] font-bold">Pagamento via PIX/Boleto</span>
+                <span class="block text-gray-400 text-[10px] font-bold">Pagamento via PIX/BOLETO</span>
             </div>
             
             <!-- Actions -->
