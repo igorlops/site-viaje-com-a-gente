@@ -20,13 +20,13 @@
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
             @if($pkg->tag)
-                <span class="relative text-[1rem] text-[#109e4a] font-black tracking-wider py-1 rounded" style="width: 80%">
+                <span class="relative text-[1rem] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
                     {{ $pkg->tag }}
                 </span>
             @endif
             <!-- Info Badge -->
-            <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold uppercase tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
-                    <i class="far fa-clock text-[#109e4a]"></i>
+            <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
+                    <i class="far fa-calendar text-[#109e4a]"></i>
                     <span>{{ $pkg->duration }} Dias @if($pkg->nights) e {{ $pkg->nights }} Noites @endif</span>
                 </div>
         </div>
@@ -42,7 +42,7 @@
                     </span>
                     <span class="text-[#109e4a] text-xs font-bold">/por pessoa</span>
                 </div>
-                <span class="block text-gray-400 text-[10px] font-bold uppercase">Pagamento via PIX/Boleto</span>
+                <span class="block text-gray-400 text-[10px] font-bold">Pagamento via PIX/Boleto</span>
             </div>
             
             <!-- Actions -->
