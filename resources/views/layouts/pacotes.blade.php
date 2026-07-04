@@ -29,11 +29,7 @@
                         <img class="h-14 w-auto object-contain rounded" src="{{ site_setting_image('logo_navbar', 'assets/images/logo.jpeg') }}" alt="Viaje com a Gente Logo">
                     </a>
                 </div>
-                
-                <!-- Desktop Navigation Links -->
-                @php
-                    $menuServices = $menuServices ?? \App\Models\Service::inMenu()->orderBy('title')->get(['id', 'title', 'slug']);
-                @endphp
+            
                 <nav class="hidden xl:flex space-x-4 2xl:space-x-6 text-[11px] 2xl:text-xs font-semibold uppercase tracking-wider">
                     <a href="{{ route('home') }}" class=" {{ request()->routeIs('home') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Início</a>
                     <a href="{{ route('packages20262027') }}" class=" {{ request()->routeIs('packages20262027') ? 'text-[#f3a908] hover:text-[#fff]' : 'hover:text-[#fff] hover:text-[#f3a908]' }} transition duration-200">Pacotes 2026/2027</a>
@@ -69,15 +65,7 @@
                 <a href="{{ route('short-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Bate e Volta</a>
                 <a href="{{ route('group-trips') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Viagens em Grupo</a>
                 <a href="{{ route('destination') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Destinos</a>
-
-                {{-- Serviços mobile --}}
                 <a href="{{ route('services') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Nossos Serviços</a>
-                @foreach($menuServices as $svc)
-                    <a href="{{ route('service.show', $svc->slug) }}" class="block px-3 py-2 ml-4 rounded-md text-sm font-medium text-gray-300 hover:bg-[#002752] hover:text-[#f3a908]">
-                        <i class="fas fa-concierge-bell mr-1 text-[#109e4a] text-xs"></i>
-                        {{ $svc->title }}
-                    </a>
-                @endforeach
 
                 <a href="{{ route('home') }}#orcamento" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Monte sua Viagem</a>
                 <a href="{{ route('faq') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-[#002752] hover:text-[#f3a908]">Dúvidas</a>
