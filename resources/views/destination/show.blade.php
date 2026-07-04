@@ -15,7 +15,7 @@
         
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 z-10">
             <div class="text-white">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 text-[#f3a908]">
                     {{ $destination->title }}
                 </h1>
                 
@@ -91,7 +91,7 @@
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
                 <div class="mb-20">
-                    <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="flex flex-row justify-center itens-center gap-4">
                         <!-- Left Column: Includes -->
                         <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                             <span class="inline-block bg-[#109e4a] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
@@ -111,19 +111,19 @@
                         <div class="space-y-8">
                             <!-- Card: Not Included -->
                             @if($destination->includes->where('type', 'not_included')->count() > 0)
-                                <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-                                    <span class="inline-block bg-[#c22e2e] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
-                                        Não Inclui do Pacote
-                                    </span>
-                                    <ul class="space-y-4">
-                                        @foreach($destination->includes->where('type', 'not_included') as $include)
-                                            <li class="flex items-start gap-3">
-                                                <i class="fa-solid fa-circle-xmark text-[#c22e2e] text-lg mt-0.5"></i>
-                                                <span class="text-gray-700 text-sm font-medium leading-relaxed">{{ $include->text }}</span>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                                <span class="inline-block bg-[#c22e2e] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+                                    Não Inclui no Pacote
+                                </span>
+                                <ul class="space-y-4">
+                                    @foreach($destination->includes->where('type', 'not_included') as $include)
+                                        <li class="flex items-start gap-3">
+                                            <i class="fa-solid fa-circle-xmark text-[#c22e2e] text-lg mt-0.5"></i>
+                                            <span class="text-gray-700 text-sm font-medium leading-relaxed">{{ $include->text }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             @endif
 
                             <!-- Card: Formas de Pagamento -->
