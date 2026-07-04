@@ -20,7 +20,7 @@
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
             @if($pkg->tag)
-                <span class="relative text-[1rem] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
+                <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
                     {{ $pkg->tag }}
                 </span>
             @endif
