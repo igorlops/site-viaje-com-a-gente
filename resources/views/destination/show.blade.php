@@ -235,7 +235,7 @@
                 <div class="mb-20">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Cronograma da Viagem</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
-                    
+
                     <!-- Single Card Container for Itinerary -->
                     <div class="bg-white border border-gray-100 rounded-3xl p-6 md:p-8 shadow-[0_8px_30px_rgb(0,0,0,0.02)]">
                         <div class="relative timeline-wrapper">
@@ -301,6 +301,10 @@
                             </div>
                         </div>
                     </div>
+                    <p class="text-gray-500 text-xs text-center font-semibold leading-relaxed">
+                        (Cronograma sujeito a alteração)
+                    </p>
+                    
                 </div>
 
                 <script>
