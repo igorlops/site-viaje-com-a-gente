@@ -13,7 +13,7 @@
     <section class="relative bg-cover bg-center h-[500px] lg:h-[600px] flex items-end" style="background-image: url('{{ $bannerUrl }}');">
         <div class="absolute inset-0 bg-gradient-to-t from-[#001c3d] via-[#001c3d]/70 to-transparent"></div>
         
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-12 z-10">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-2 z-10">
             <div class="text-white">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black mb-4 text-[#f3a908]">
                     {{ $destination->title }}
@@ -91,9 +91,9 @@
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
                 <div class="mb-20">
-                    <div class="flex flex-row justify-center itens-center gap-4">
+                    <div class="flex flex-row itens-center gap-4 justify-between">
                         <!-- Left Column: Includes -->
-                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm w-full">
                             <span class="inline-block bg-[#109e4a] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
                                 O Pacote Inclui
                             </span>
@@ -108,7 +108,7 @@
                         </div>
 
                         <!-- Right Column: Not Included & Payment -->
-                        <div class="space-y-8">
+                        <div class="space-y-8 w-full">
                             <!-- Card: Not Included -->
                             @if($destination->includes->where('type', 'not_included')->count() > 0)
                             <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
