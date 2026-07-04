@@ -185,13 +185,21 @@
 
             <!-- HIGHLIGHTS -->
             @if($destination->highlights->count() > 0)
+                <!-- GLightbox CSS & JS -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+                <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
                 <div class="mb-20">
                     <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Galeria de fotos</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($destination->highlights as $highlight)
-                            <div class="group cursor-pointer">
+                            <a href="{{ asset('storage/' . $highlight->image_path) }}"
+                               class="glightbox group cursor-pointer block"
+                               data-gallery="galeria-fotos"
+                               data-title="{{ $highlight->title }}"
+                               @if($highlight->subtitle) data-description="{{ $highlight->subtitle }}" @endif>
                                 <div class="relative h-48 rounded-xl overflow-hidden mb-4">
                                     <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
                                          src="{{ asset('storage/' . $highlight->image_path) }}" 
@@ -204,10 +212,22 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const lightbox = GLightbox({
+                            selector: '.glightbox',
+                            touchNavigation: true,
+                            loop: true,
+                            zoomable: true,
+                            draggable: true,
+                        });
+                    });
+                </script>
             @endif
 
             <!-- DEPOIMENTOS -->
