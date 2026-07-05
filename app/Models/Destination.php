@@ -59,4 +59,9 @@ class Destination extends Model
     {
         return $this->hasMany(DestinationObservation::class)->orderBy('order');
     }
+
+    public function paymentMethods()
+    {
+        return $this->hasMany(DestinationPaymentMethod::class)->orderBy('order');
+    }
 }

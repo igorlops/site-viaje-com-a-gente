@@ -110,7 +110,8 @@ class PageController extends Controller
         ];
         $banner = $this->bannerService->bannerByPageSlug('perguntas-frequentes');
         $socialLinks = $this->getSocialLinks();
-        return view("perguntas-frequentes", compact("socialLinks", "banner", "breadcrumbs"));
+        $faqs = \App\Models\Faq::orderBy('order')->get();
+        return view("perguntas-frequentes", compact("socialLinks", "banner", "breadcrumbs", "faqs"));
     }
 
     public function contact()
@@ -151,7 +152,7 @@ class PageController extends Controller
         ];
         $banner = $this->bannerService->bannerByPageSlug('destinos');
         $destination = Destination::where('slug', $slug)
-            ->with(['includes', 'highlights', 'itineraryDays.activities', 'observations'])
+            ->with(['includes', 'highlights', 'itineraryDays.activities', 'observations', 'paymentMethods.method'])
             ->firstOrFail();
 
         $socialLinks = SocialLink::where('active', true)->get()->keyBy(function ($item) {

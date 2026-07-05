@@ -222,6 +222,21 @@ class DestinationService
 
         // Deletar as observações que não vieram no request
         $destination->observations()->whereNotIn('id', $keepObservationIds)->delete();
+
+        // 5. Salvar Formas de Pagamento
+        $destination->paymentMethods()->delete();
+        if (!empty($dto->payment_methods)) {
+            foreach ($dto->payment_methods as $index => $pmData) {
+                if (isset($pmData['active']) && ($pmData['active'] == '1' || $pmData['active'] == 'true' || $pmData['active'] === true)) {
+                    $destination->paymentMethods()->create([
+                        'payment_method_id' => $pmData['payment_method_id'],
+                        'text' => $pmData['text'] ?? '',
+                        'subtext' => $pmData['subtext'] ?? null,
+                        'order' => $pmData['order'] ?? ($index + 1),
+                    ]);
+                }
+            }
+        }
     }
 
     protected function uploadImage(UploadedFile $file, string $directory): string
@@ -239,7 +254,7 @@ class DestinationService
     public function duplicate(int $id): Destination
     {
         $original = $this->repository->find($id);
-        $original->load(['includes', 'highlights', 'itineraryDays.activities']);
+        $original->load(['includes', 'highlights', 'itineraryDays.activities', 'observations', 'paymentMethods']);
 
         $data = $original->toArray();
         unset($data['id'], $data['created_at'], $data['updated_at']);
@@ -324,6 +339,24 @@ class DestinationService
                     'order' => $activity->order,
                 ]);
             }
+        }
+
+        // Relação 4: Observations
+        foreach ($original->observations as $obs) {
+            $duplicate->observations()->create([
+                'text' => $obs->text,
+                'order' => $obs->order,
+            ]);
+        }
+
+        // Relação 5: Payment Methods
+        foreach ($original->paymentMethods as $pm) {
+            $duplicate->paymentMethods()->create([
+                'payment_method_id' => $pm->payment_method_id,
+                'text' => $pm->text,
+                'subtext' => $pm->subtext,
+                'order' => $pm->order,
+            ]);
         }
 
         return $duplicate;

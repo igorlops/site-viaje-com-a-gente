@@ -88,4 +88,14 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/testimonials/{testimonial}/edit', [AdminController::class, 'testimonialEdit'])->name('admin.testimonials.edit');
     Route::put('/testimonials/{testimonial}', [AdminController::class, 'testimonialUpdate'])->name('admin.testimonials.update');
     Route::delete('/testimonials/{testimonial}', [AdminController::class, 'testimonialDestroy'])->name('admin.testimonials.destroy');
+
+    // CRUD Dúvidas Frequentes
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->names([
+        'index' => 'admin.faqs.index',
+        'create' => 'admin.faqs.create',
+        'store' => 'admin.faqs.store',
+        'edit' => 'admin.faqs.edit',
+        'update' => 'admin.faqs.update',
+        'destroy' => 'admin.faqs.destroy',
+    ]);
 });

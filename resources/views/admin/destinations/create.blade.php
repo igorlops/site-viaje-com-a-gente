@@ -31,6 +31,9 @@
             <button type="button" onclick="switchTab(event, 'itinerary-tab')" class="tab-btn px-5 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none text-gray-600 hover:bg-gray-100 hover:text-gray-900">
                 <i class="fas fa-route mr-1.5 text-sm"></i> Roteiro
             </button>
+            <button type="button" onclick="switchTab(event, 'payment-methods-tab')" class="tab-btn px-5 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+                <i class="fas fa-credit-card mr-1.5 text-sm"></i> Formas de Pagamento
+            </button>
         </div>
 
         <form action="{{ route('admin.destinations.store') }}" method="POST" enctype="multipart/form-data" class="p-6">
@@ -448,6 +451,71 @@
                             </button>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            {{-- TAB PAYMENT METHODS --}}
+            <div id="tab-payment-methods-tab" class="tab-content space-y-6 hidden">
+                <div>
+                    <h3 class="text-sm font-extrabold text-gray-800">Formas de Pagamento do Destino</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Ative e configure as formas de pagamento disponíveis para este pacote de viagem.</p>
+                </div>
+
+                <div class="space-y-4">
+                    @foreach($paymentMethods as $index => $method)
+                        <div class="p-5 rounded-2xl border border-gray-150 bg-white hover:border-gray-300 transition duration-150 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                                        <i class="{{ $method->icon }} text-slate-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-gray-800">{{ $method->name }}</h4>
+                                        <span class="text-[10px] text-gray-400 font-semibold">{{ $method->icon }} | {{ $method->icon_color }}</span>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="hidden" name="payment_methods[{{ $index }}][payment_method_id]" value="{{ $method->id }}">
+                                    <input type="checkbox" name="payment_methods[{{ $index }}][active]" value="1" checked class="sr-only peer">
+                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    <span class="ml-2 text-xs font-bold text-gray-600">Ativo</span>
+                                </label>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                                <div class="sm:col-span-8">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Descrição Principal (HTML permitido)</label>
+                                    @php
+                                        $defaultText = '';
+                                        $defaultSubtext = '';
+                                        if ($method->name == 'Entrada + Parcelas') {
+                                            $defaultText = 'Entrada de <strong>R$ 289,00</strong> + saldo devedor dividido em parcelas mensais até <strong>Março 2027</strong>.';
+                                            $defaultSubtext = 'Pacote de Viagem tem que estar devidamente quitado até <strong>5 de Março 2027</strong>';
+                                        } elseif ($method->name == 'À vista/parcelado') {
+                                            $defaultText = 'À vista/parcelado (Depósito, Transferência, Promissória ou Pix)';
+                                        } elseif ($method->name == 'Boleto') {
+                                            $defaultText = 'Boleto em até 9x com início de pagamento de Julho 2027';
+                                        } elseif ($method->name == 'Cartão de Crédito') {
+                                            $defaultText = 'Cartão de crédito parcelado em até 10x';
+                                            $defaultSubtext = '(Valor ajustado)';
+                                        }
+                                    @endphp
+                                    <input type="text" name="payment_methods[{{ $index }}][text]" value="{{ $defaultText }}" placeholder="Ex: Boleto em até 9x..."
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Subtexto / Observação adicional</label>
+                                    <input type="text" name="payment_methods[{{ $index }}][subtext]" value="{{ $defaultSubtext }}" placeholder="Ex: (Valor com desconto)"
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Ordem</label>
+                                    <input type="number" name="payment_methods[{{ $index }}][order]" value="{{ $index + 1 }}"
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-bold text-center focus:outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 

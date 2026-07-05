@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             ContactSeeder::class,
             SocialLinkSeeder::class,
+            PaymentMethodSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }

@@ -48,6 +48,11 @@
                     <i class="fas fa-triangle-exclamation text-sm"></i>
                     <span>Observações</span>
                 </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="tab-payment-methods-tab" onclick="switchTab(event, 'payment-methods-tab')"
+                    class="tab-btn inline-flex shrink-0 items-center gap-2 rounded-t-xl border border-transparent px-4 sm:px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#001c3d]/30 text-gray-400 hover:text-[#001c3d] hover:bg-white/60">
+                    <i class="fas fa-credit-card text-sm"></i>
+                    <span>Formas de Pagamento</span>
+                </button>
             </nav>
         </div>
 
@@ -559,6 +564,60 @@
                             <p class="text-[10px] text-gray-400 mt-0.5">Clique em "Adicionar Observação" para incluir avisos importantes.</p>
                         </div>
                     @endforelse
+                </div>
+            </div>
+
+            {{-- TAB PAYMENT METHODS --}}
+            <div id="tab-payment-methods-tab" class="tab-content space-y-6 hidden">
+                <div>
+                    <h3 class="text-sm font-extrabold text-gray-800">Formas de Pagamento do Destino</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Ative e configure as formas de pagamento disponíveis para este pacote de viagem.</p>
+                </div>
+
+                <div class="space-y-4">
+                    @foreach($paymentMethods as $index => $method)
+                        @php
+                            $assigned = $destination->paymentMethods->where('payment_method_id', $method->id)->first();
+                            $isActive = !empty($assigned);
+                        @endphp
+                        <div class="p-5 rounded-2xl border border-gray-150 bg-white hover:border-gray-300 transition duration-150 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
+                                        <i class="{{ $method->icon }} text-slate-600"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-gray-800">{{ $method->name }}</h4>
+                                        <span class="text-[10px] text-gray-400 font-semibold">{{ $method->icon }} | {{ $method->icon_color }}</span>
+                                    </div>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="hidden" name="payment_methods[{{ $index }}][payment_method_id]" value="{{ $method->id }}">
+                                    <input type="checkbox" name="payment_methods[{{ $index }}][active]" value="1" {{ $isActive ? 'checked' : '' }} class="sr-only peer">
+                                    <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-emerald-600"></div>
+                                    <span class="ml-2 text-xs font-bold text-gray-600">Ativo</span>
+                                </label>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+                                <div class="sm:col-span-8">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Descrição Principal (HTML permitido)</label>
+                                    <input type="text" name="payment_methods[{{ $index }}][text]" value="{{ $isActive ? $assigned->text : '' }}" placeholder="Ex: Boleto em até 9x..."
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Subtexto / Observação adicional</label>
+                                    <input type="text" name="payment_methods[{{ $index }}][subtext]" value="{{ $isActive ? $assigned->subtext : '' }}" placeholder="Ex: (Valor com desconto)"
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Ordem</label>
+                                    <input type="number" name="payment_methods[{{ $index }}][order]" value="{{ $isActive ? $assigned->order : $index + 1 }}"
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-bold text-center focus:outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
 

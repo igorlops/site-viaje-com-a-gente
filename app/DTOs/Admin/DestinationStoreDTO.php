@@ -32,7 +32,8 @@ class DestinationStoreDTO
         public readonly ?array $includes,
         public readonly ?array $highlights,
         public readonly ?array $itinerary,
-        public readonly ?array $observations
+        public readonly ?array $observations,
+        public readonly ?array $payment_methods
     ) {}
 
     public static function fromRequest(DestinationStoreRequest $request): self
@@ -64,7 +65,8 @@ class DestinationStoreDTO
             includes: $request->input('includes'),
             highlights: $request->input('highlights'),
             itinerary: $request->input('itinerary'),
-            observations: $request->input('observations')
+            observations: $request->input('observations'),
+            payment_methods: $request->input('payment_methods')
         );
     }
 

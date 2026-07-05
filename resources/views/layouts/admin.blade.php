@@ -64,6 +64,11 @@
                 <span>Depoimentos</span>
             </a>
 
+            <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.faqs.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-question-circle text-lg w-6 text-center"></i>
+                <span>Dúvidas Frequentes</span>
+            </a>
+
             <div class="pt-2 pb-1">
                 <span class="px-4 text-[10px] font-bold uppercase tracking-widest text-white/30">Sistema</span>
             </div>
@@ -165,6 +170,11 @@
                     <a href="{{ route('admin.testimonials.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.testimonials.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-quote-left text-lg w-6 text-center"></i>
                         <span>Depoimentos</span>
+                    </a>
+
+                    <a href="{{ route('admin.faqs.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.faqs.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-question-circle text-lg w-6 text-center"></i>
+                        <span>Dúvidas Frequentes</span>
                     </a>
 
                     <div class="pt-2 pb-1">

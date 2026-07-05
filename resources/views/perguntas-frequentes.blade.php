@@ -22,45 +22,12 @@
 
         <!-- Accordion Container -->
         <div class="space-y-4">
-            @php
-                $faqs = [
-                    [
-                        'question' => 'Como funciona o parcelamento no boleto bancário?',
-                        'answer' => 'Nosso parcelamento no boleto não exige consulta ao SPC ou Serasa e não consome o limite do seu cartão de crédito. Você pode parcelar o valor total da viagem em boletos mensais fixos, sendo que a última parcela deve ser obrigatoriamente quitada em até 15 dias antes da data do embarque. É a forma ideal de planejar suas férias com antecedência e saúde financeira.'
-                    ],
-                    [
-                        'question' => 'Quais documentos são obrigatórios para o embarque?',
-                        'answer' => 'Para voos nacionais, é obrigatório apresentar um documento oficial de identidade com foto (RG, CNH, Passaporte ou Carteira de Trabalho física) em bom estado e dentro da validade. Para destinos internacionais no Mercosul, você pode embarcar portando apenas o RG original (emitido há menos de 10 anos) ou Passaporte válido. Para demais destinos no exterior, o Passaporte com validade mínima de 6 meses é obrigatório, além de eventuais vistos consulares exigidos pelo país de destino.'
-                    ],
-                    [
-                        'question' => 'O que está incluso nos pacotes de viagem da agência?',
-                        'answer' => 'A cobertura exata varia por pacote. Normalmente, nossos pacotes completos incluem passagens aéreas de ida e volta (com franquia de bagagem de mão inclusa), hospedagem em hotéis ou resorts selecionados com café da manhã, taxas de embarque inclusas e passeios locais guiados indicados no itinerário. Detalhes específicos de inclusões e exclusões de cada destino estão descritos na página do pacote ou no contrato de viagem.'
-                    ],
-                    [
-                        'question' => 'Posso realizar alterações ou cancelar minha viagem?',
-                        'answer' => 'Sim. Cancelamentos ou alterações de datas são possíveis e seguem as regras de multas contratuais e políticas das companhias aéreas e hotéis parceiros. Como trabalhamos com tarifas promocionais e de grupo, recomendamos planejar suas datas com atenção e ler as cláusulas de cancelamento no contrato de prestação de serviços.'
-                    ],
-                    [
-                        'question' => 'As viagens em grupo contam com guia de turismo acompanhante?',
-                        'answer' => 'Sim! Todas as nossas saídas classificadas como "Viagens em Grupo" contam com o acompanhamento de um guia de turismo credenciado da agência desde o embarque no aeroporto de Fortaleza até o encerramento do roteiro e retorno. O guia coordena os passeios, check-ins e dá todo o suporte necessário ao grupo.'
-                    ],
-                    [
-                        'question' => 'Quais são as formas de pagamento disponíveis?',
-                        'answer' => 'Aceitamos pagamentos de forma facilitada: PIX (com desconto à vista), cartão de crédito em até 12x (consulte taxas aplicáveis) ou o nosso boleto bancário parcelado sem burocracia.'
-                    ],
-                    [
-                        'question' => 'Qual a antecedência ideal para reservar um pacote?',
-                        'answer' => 'Recomendamos realizar a reserva de pacotes aéreos com antecedência mínima de 4 a 6 meses. Isso garante tarifas aéreas muito mais econômicas, maior disponibilidade de hotéis de alto padrão e permite um prazo de parcelamento no boleto muito mais suave e estendido.'
-                    ]
-                ];
-            @endphp
-
             @foreach($faqs as $index => $faq)
                 <!-- Accordion Item -->
                 <div class="border border-gray-150 rounded-xl bg-white overflow-hidden shadow-sm transition duration-200 faq-item">
                     <!-- Header Button -->
                     <button type="button" class="w-full text-left py-5 px-6 font-bold text-[#002752] flex justify-between items-center bg-white hover:bg-gray-50 focus:outline-none transition duration-200 cursor-pointer select-none faq-trigger">
-                        <span>{{ $faq['question'] }}</span>
+                        <span>{{ $faq->question }}</span>
                         <!-- SVG Chevron Icon -->
                         <svg class="w-5 h-5 text-[#109e4a] transition-transform duration-300 transform faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
@@ -69,7 +36,7 @@
                     <!-- Content Panel -->
                     <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out opacity-0 faq-panel">
                         <div class="px-6 pb-5 text-gray-500 text-sm leading-relaxed border-t border-gray-50 pt-4 bg-gray-50/50">
-                            {{ $faq['answer'] }}
+                            {{ $faq->answer }}
                         </div>
                     </div>
                 </div>

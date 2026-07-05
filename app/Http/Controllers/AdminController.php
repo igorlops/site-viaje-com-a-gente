@@ -271,7 +271,8 @@ public function dashboard()
 
     public function destinationCreate()
     {
-        return view('admin.destinations.create');
+        $paymentMethods = \App\Models\PaymentMethod::all();
+        return view('admin.destinations.create', compact('paymentMethods'));
     }
 
     public function destinationStore(\App\Http\Requests\Admin\DestinationStoreRequest $request)
@@ -284,8 +285,9 @@ public function dashboard()
 
     public function destinationEdit(Destination $destination)
     {
-        $destination->load(['includes', 'highlights', 'itineraryDays', 'observations']);
-        return view('admin.destinations.edit', compact('destination'));
+        $destination->load(['includes', 'highlights', 'itineraryDays', 'observations', 'paymentMethods.method']);
+        $paymentMethods = \App\Models\PaymentMethod::all();
+        return view('admin.destinations.edit', compact('destination', 'paymentMethods'));
     }
 
     public function destinationUpdate(\App\Http\Requests\Admin\DestinationStoreRequest $request, Destination $destination)

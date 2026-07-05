@@ -69,6 +69,14 @@ class DestinationStoreRequest extends FormRequest
             'observations.*.id' => 'nullable|integer',
             'observations.*.text' => 'required|string|max:1000',
             'observations.*.order' => 'nullable|integer',
+
+            // Relações - Formas de Pagamento
+            'payment_methods' => 'nullable|array',
+            'payment_methods.*.payment_method_id' => 'required|integer',
+            'payment_methods.*.text' => 'nullable|string|max:1000',
+            'payment_methods.*.subtext' => 'nullable|string|max:1000',
+            'payment_methods.*.order' => 'nullable|integer',
+            'payment_methods.*.active' => 'nullable',
         ];
     }
 

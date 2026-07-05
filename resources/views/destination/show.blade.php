@@ -24,8 +24,12 @@
                         {{ $destination->subtitle }}
                     </p>
                 @endif
-
-                <div class="flex flex-wrap items-start gap-5 mb-6">
+                @if($destination->text_label_banner)
+                    <p class="text-sm sm:text-lg text-gray-200 mb-6">
+                        {{ $destination->text_label_banner }}
+                    </p>
+                @endif
+                <div class="flex flex-wrap items-center gap-5 mb-6">
                     @if($destination->date_range)
                         <div class="flex items-center gap-2">
                             <i class="far fa-calendar-alt text-[#f3a908] text-xl"></i>
@@ -43,26 +47,20 @@
                     @if($destination->price)
                         <div class="">
                             <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-sack-dollar text-[#f3a908] text-xl"></i>
+                                <i class="fa-solid fa-sack-dollar text-[#f3a908] text-xl "></i>
                                 <span class="text-lg font-semibold">A partir de</span>
                                 <span class="text-[#f3a908] text-2xl font-black">
                                     {{ $fullPrice }}
                                 </span>
-                                <div class="flex items-start gap-1">
+                                <div class="relative flex items-center gap-1 self-end mb-1">
                                     <span class="text-[#f3a908] text-xs font-bold">mensais</span>
-                                    <span class="block text-[#f3a908] text-[10px] font-bold">no PIX/BOLETO</span>
+                                    <span class="text-[#f3a908] text-xs font-bold">no PIX/BOLETO</span>
                                 </div>
                             </div>
                         </div>
                     @endif
                     
                 </div>
-
-                @if($destination->text_label_banner)
-                    <p class="text-xl sm:text-2xl text-gray-200 mb-6">
-                        {{ $destination->text_label_banner }}
-                    </p>
-                @endif
             </div>
         </div>
     </section>
@@ -114,7 +112,7 @@
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
                 <div class="mb-20">
-                    <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">O que está incluso</h2>
+                    <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Informações do pacote</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
                     <div class="flex flex-row itens-center gap-4 justify-between">
                         <!-- Left Column: Includes -->
@@ -157,50 +155,21 @@
                                     Valor do pacote e formas de Pagamento
                                 </span>
                                 <ul class="space-y-6">
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                                            <i class="fa-solid fa-sack-dollar text-emerald-600 text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
-                                                Entrada de <strong>R$ 289,00</strong> + saldo devedor dividido em parcelas mensais até <strong>Março 2027</strong>.
-                                            </p>
-                                            <p class="text-gray-500 text-[10px] mt-0.5">
-                                                Pacote de Viagem tem que estar devidamente quitado até <strong>5 de Março 2027</strong>
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                                            <i class="fas fa-dollar-sign text-emerald-600 text-lg"></i>
-                                        </div>
-                                        <div class="flex items-center">
-                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
-                                                À vista/parcelado (Depósito, Transferência, Promissória ou Pix)
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                                            <i class="fas fa-barcode text-blue-600 text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
-                                                Boleto em até 9x com início de pagamento de Julho 2027
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                                            <i class="fas fa-credit-card text-blue-600 text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
-                                                Cartão de crédito parcelado em até 10x
-                                            </p>
-                                            <p class="text-gray-500 text-[10px] mt-0.5">(Valor ajustado)</p>
-                                        </div>
-                                    </li>
+                                    @foreach($destination->paymentMethods as $payMethod)
+                                        <li class="flex items-center gap-4">
+                                            <div class="w-10 h-10 rounded-full bg-{{ $payMethod->method->icon_color == 'emerald' ? 'emerald' : 'blue' }}-50 flex items-center justify-center shrink-0">
+                                                <i class="{{ $payMethod->method->icon }} text-{{ $payMethod->method->icon_color == 'emerald' ? 'emerald' : 'blue' }}-600 text-lg"></i>
+                                            </div>
+                                            <div>
+                                                <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                    {!! $payMethod->text !!}
+                                                </p>
+                                                @if($payMethod->subtext)
+                                                    <p class="text-gray-500 text-[10px] mt-0.5">{!! $payMethod->subtext !!}</p>
+                                                @endif
+                                            </div>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
