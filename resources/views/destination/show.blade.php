@@ -91,6 +91,8 @@
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
                 <div class="mb-20">
+                    <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">O que está incluso</h2>
+                    <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
                     <div class="flex flex-row itens-center gap-4 justify-between">
                         <!-- Left Column: Includes -->
                         <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm w-full">
