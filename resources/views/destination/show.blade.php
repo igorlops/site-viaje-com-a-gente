@@ -25,11 +25,34 @@
                     </p>
                 @endif
 
-                <div class="flex flex-wrap items-center gap-6 mb-6">
+                <div class="flex flex-wrap items-start gap-5 mb-6">
                     @if($destination->date_range)
                         <div class="flex items-center gap-2">
                             <i class="far fa-calendar-alt text-[#f3a908] text-xl"></i>
                             <span class="text-lg font-semibold">{{ $destination->date_range }}</span>
+                        </div>
+                    @endif
+
+                    
+                    <div class="flex items-center gap-2">
+                        <i class="fa-sharp fa-solid fa-people-group text-[#f3a908] text-xl"></i>
+                        <span class="text-lg font-semibold">Viagem em grupo</span>
+                    </div>
+                    
+
+                    @if($destination->price)
+                        <div class="">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-sack-dollar text-[#f3a908] text-xl"></i>
+                                <span class="text-lg font-semibold">A partir de</span>
+                                <span class="text-[#f3a908] text-2xl font-black">
+                                    {{ $fullPrice }}
+                                </span>
+                                <div class="flex items-start gap-1">
+                                    <span class="text-[#f3a908] text-xs font-bold">mensais</span>
+                                    <span class="block text-[#f3a908] text-[10px] font-bold">no PIX/BOLETO</span>
+                                </div>
+                            </div>
                         </div>
                     @endif
                     
@@ -131,12 +154,12 @@
                             <!-- Card: Formas de Pagamento -->
                             <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                                 <span class="inline-block bg-[#002752] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
-                                    Formas de Pagamento
+                                    Valor do pacote e formas de Pagamento
                                 </span>
                                 <ul class="space-y-6">
                                     <li class="flex items-start gap-4">
                                         <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                                            <i class="fab fa-whatsapp text-emerald-600 text-lg"></i>
+                                            <i class="fa-solid fa-sack-dollar text-emerald-600 text-lg"></i>
                                         </div>
                                         <div>
                                             <p class="text-gray-700 text-xs font-semibold leading-relaxed">
@@ -159,6 +182,16 @@
                                     </li>
                                     <li class="flex items-start gap-4">
                                         <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
+                                            <i class="fas fa-barcode text-blue-600 text-lg"></i>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                                Boleto em até 9x com início de pagamento de Julho 2027
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
                                             <i class="fas fa-credit-card text-blue-600 text-lg"></i>
                                         </div>
                                         <div>
@@ -166,16 +199,6 @@
                                                 Cartão de crédito parcelado em até 10x
                                             </p>
                                             <p class="text-gray-500 text-[10px] mt-0.5">(Valor ajustado)</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start gap-4">
-                                        <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center shrink-0">
-                                            <i class="fas fa-barcode text-blue-600 text-lg"></i>
-                                        </div>
-                                        <div>
-                                            <p class="text-gray-700 text-xs font-semibold leading-relaxed">
-                                                Boleto em até 9x com início de pagamento de Julho 2027
-                                            </p>
                                         </div>
                                     </li>
                                 </ul>
@@ -192,7 +215,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
                 <div class="mb-20">
-                    <h2 class="text-3xl font-extrabold text-[#002752] mb-2">Galeria de fotos</h2>
+                    <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2">Conheça o destino</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

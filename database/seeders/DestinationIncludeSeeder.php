@@ -17,115 +17,165 @@ class DestinationIncludeSeeder extends Seeder
         DB::table('destination_includes')->truncate();
 
         $data = [
-  0 => 
+  0 =>
   [
-    'id' => 45,
-    'destination_id' => 4,
-    'text' => 'Passagem aérea de ida e volta saindo de Fortaleza',
+    'id' => 1,
+    'destination_id' => 1,
+    'text' => 'Aéreo de Fortaleza x Rio de Janeiro x Fortaleza',
     'type' => 'included',
     'order' => 1,
-    'created_at' => '2026-06-14 23:17:01',
-    'updated_at' => '2026-06-14 23:17:01',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
-  1 => 
+  1 =>
   [
-    'id' => 46,
-    'destination_id' => 4,
-    'text' => 'Almoço e bebidas não inclusos nos passeios',
-    'type' => 'not_included',
-    'order' => 2,
-    'created_at' => '2026-06-14 23:17:01',
-    'updated_at' => '2026-06-14 23:17:01',
-  ],
-  2 => 
-  [
-    'id' => 47,
-    'destination_id' => 3,
-    'text' => 'Aéreo ida e volta Fortaleza / Rio / Fortaleza',
-    'type' => 'included',
-    'order' => 1,
-    'created_at' => '2026-06-14 23:17:26',
-    'updated_at' => '2026-06-14 23:17:26',
-  ],
-  3 => 
-  [
-    'id' => 48,
-    'destination_id' => 3,
-    'text' => 'Despesas pessoais e passeios extras',
-    'type' => 'not_included',
-    'order' => 1,
-    'created_at' => '2026-06-14 23:17:26',
-    'updated_at' => '2026-06-14 23:17:26',
-  ],
-  4 => 
-  [
-    'id' => 49,
-    'destination_id' => 3,
-    'text' => 'Hospedagem em Copacabana com café',
+    'id' => 2,
+    'destination_id' => 1,
+    'text' => 'Bagagem até 10kg',
     'type' => 'included',
     'order' => 2,
-    'created_at' => '2026-06-14 23:17:26',
-    'updated_at' => '2026-06-14 23:17:26',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
-  5 => 
+  2 =>
   [
-    'id' => 50,
-    'destination_id' => 3,
-    'text' => 'Passeio de barco em Arraial do Cabo',
+    'id' => 3,
+    'destination_id' => 1,
+    'text' => 'Translado privativo do aeroporto x hotel x aeroporto',
     'type' => 'included',
     'order' => 3,
-    'created_at' => '2026-06-14 23:17:26',
-    'updated_at' => '2026-06-14 23:17:26',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
-  6 => 
+  3 =>
   [
-    'id' => 51,
-    'destination_id' => 2,
-    'text' => 'Passagem aérea de ida e volta saindo de Fortaleza',
-    'type' => 'included',
-    'order' => 1,
-    'created_at' => '2026-06-14 23:17:34',
-    'updated_at' => '2026-06-14 23:17:34',
-  ],
-  7 => 
-  [
-    'id' => 52,
-    'destination_id' => 2,
-    'text' => 'Almoços, jantares e consumo extra',
-    'type' => 'not_included',
-    'order' => 1,
-    'created_at' => '2026-06-14 23:17:34',
-    'updated_at' => '2026-06-14 23:17:34',
-  ],
-  8 => 
-  [
-    'id' => 53,
-    'destination_id' => 2,
-    'text' => 'Hospedagem em hotel selecionado com café da manhã',
-    'type' => 'included',
-    'order' => 2,
-    'created_at' => '2026-06-14 23:17:34',
-    'updated_at' => '2026-06-14 23:17:34',
-  ],
-  9 => 
-  [
-    'id' => 54,
-    'destination_id' => 2,
-    'text' => 'City tour guiado em Gramado e Canela',
-    'type' => 'included',
-    'order' => 3,
-    'created_at' => '2026-06-14 23:17:35',
-    'updated_at' => '2026-06-14 23:17:35',
-  ],
-  10 => 
-  [
-    'id' => 55,
-    'destination_id' => 2,
-    'text' => 'Ingresso para espetáculo especial do Natal Luz',
+    'id' => 4,
+    'destination_id' => 1,
+    'text' => '4 diárias no Hotel Rede Andrade Canadá ou similar em Copacabana',
     'type' => 'included',
     'order' => 4,
-    'created_at' => '2026-06-14 23:17:35',
-    'updated_at' => '2026-06-14 23:17:35',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  4 =>
+  [
+    'id' => 5,
+    'destination_id' => 1,
+    'text' => '4 cafés da manhã',
+    'type' => 'included',
+    'order' => 5,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  5 =>
+  [
+    'id' => 6,
+    'destination_id' => 1,
+    'text' => 'Acomodações em quartos duplos ou triplos',
+    'type' => 'included',
+    'order' => 6,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  6 =>
+  [
+    'id' => 7,
+    'destination_id' => 1,
+    'text' => '2 city tours completos no Rio de Janeiro',
+    'type' => 'included',
+    'order' => 7,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  7 =>
+  [
+    'id' => 8,
+    'destination_id' => 1,
+    'text' => 'Day use em Arraial do Cabo',
+    'type' => 'included',
+    'order' => 8,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  8 =>
+  [
+    'id' => 9,
+    'destination_id' => 1,
+    'text' => 'Passeio de barco com almoço incluso em Arraial do Cabo',
+    'type' => 'included',
+    'order' => 9,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  9 =>
+  [
+    'id' => 10,
+    'destination_id' => 1,
+    'text' => 'Guia local',
+    'type' => 'included',
+    'order' => 10,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  10 =>
+  [
+    'id' => 11,
+    'destination_id' => 1,
+    'text' => 'Suporte antes e durante toda a viagem',
+    'type' => 'included',
+    'order' => 11,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  11 =>
+  [
+    'id' => 12,
+    'destination_id' => 1,
+    'text' => 'Brinde',
+    'type' => 'included',
+    'order' => 12,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  12 =>
+  [
+    'id' => 13,
+    'destination_id' => 1,
+    'text' => 'Bagagem despachada',
+    'type' => 'not_included',
+    'order' => 1,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  13 =>
+  [
+    'id' => 14,
+    'destination_id' => 1,
+    'text' => 'Ingressos',
+    'type' => 'not_included',
+    'order' => 2,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  14 =>
+  [
+    'id' => 15,
+    'destination_id' => 1,
+    'text' => 'Taxas',
+    'type' => 'not_included',
+    'order' => 3,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  15 =>
+  [
+    'id' => 16,
+    'destination_id' => 1,
+    'text' => 'Alimentação',
+    'type' => 'not_included',
+    'order' => 4,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
 ];
 

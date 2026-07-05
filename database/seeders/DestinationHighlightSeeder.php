@@ -16,94 +16,32 @@ class DestinationHighlightSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
         DB::table('destination_highlights')->truncate();
 
+        // ATENÇÃO: as imagens enviadas não mostram uma seção de "highlights" para este destino.
+        // Os 2 itens abaixo foram INFERIDOS a partir dos pontos mais fortes do roteiro
+        // (Cristo Redentor e Arraial do Cabo), seguindo o padrão de 2 highlights por destino
+        // usado nos outros seeders. Ajuste título/subtítulo/imagem conforme necessário.
         $data = [
-  0 => 
+  0 =>
   [
-    'id' => 9,
+    'id' => 1,
     'destination_id' => 1,
-    'title' => 'Piscinas Naturais',
-    'subtitle' => 'Passeio de jangada incrível',
-    'image_path' => 'destinations/porto.png',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:32',
-    'updated_at' => '2026-06-12 18:48:32',
-  ],
-  1 => 
-  [
-    'id' => 10,
-    'destination_id' => 1,
-    'title' => 'Praia dos Carneiros',
-    'subtitle' => 'Igrejinha de São Benedito famosa',
-    'image_path' => 'destinations/porto.png',
-    'order' => 2,
-    'created_at' => '2026-06-12 18:48:32',
-    'updated_at' => '2026-06-12 18:48:32',
-  ],
-  2 => 
-  [
-    'id' => 11,
-    'destination_id' => 2,
-    'title' => 'Lago Negro',
-    'subtitle' => 'Caminhada romântica e pedalinho',
-    'image_path' => 'destinations/gramado.png',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:33',
-    'updated_at' => '2026-06-12 18:48:33',
-  ],
-  3 => 
-  [
-    'id' => 12,
-    'destination_id' => 2,
-    'title' => 'Cascata do Caracol',
-    'subtitle' => 'Vista espetacular em Canela',
-    'image_path' => 'destinations/gramado.png',
-    'order' => 2,
-    'created_at' => '2026-06-12 18:48:33',
-    'updated_at' => '2026-06-12 18:48:33',
-  ],
-  4 => 
-  [
-    'id' => 13,
-    'destination_id' => 3,
     'title' => 'Cristo Redentor',
-    'subtitle' => 'Uma das maravilhas do mundo',
+    'subtitle' => 'Uma das 7 Maravilhas do Mundo',
     'image_path' => 'destinations/rio.png',
     'order' => 1,
-    'created_at' => '2026-06-12 18:48:34',
-    'updated_at' => '2026-06-12 18:48:34',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
-  5 => 
+  1 =>
   [
-    'id' => 14,
-    'destination_id' => 3,
-    'title' => 'Praias de Arraial',
-    'subtitle' => 'O caribe brasileiro',
+    'id' => 2,
+    'destination_id' => 1,
+    'title' => 'Arraial do Cabo',
+    'subtitle' => 'Day use com passeio de barco e almoço incluso',
     'image_path' => 'destinations/rio.png',
     'order' => 2,
-    'created_at' => '2026-06-12 18:48:34',
-    'updated_at' => '2026-06-12 18:48:34',
-  ],
-  6 => 
-  [
-    'id' => 15,
-    'destination_id' => 4,
-    'title' => 'Garganta do Diabo',
-    'subtitle' => 'A maior queda das Cataratas',
-    'image_path' => 'destinations/foz.png',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:35',
-    'updated_at' => '2026-06-12 18:48:35',
-  ],
-  7 => 
-  [
-    'id' => 16,
-    'destination_id' => 4,
-    'title' => 'Parque das Aves',
-    'subtitle' => 'Contato direto com a natureza',
-    'image_path' => 'destinations/foz.png',
-    'order' => 2,
-    'created_at' => '2026-06-12 18:48:36',
-    'updated_at' => '2026-06-12 18:48:36',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
 ];
 

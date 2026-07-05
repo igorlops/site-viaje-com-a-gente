@@ -17,71 +17,62 @@ class DestinationItineraryDaySeeder extends Seeder
         DB::table('destination_itinerary_days')->truncate();
 
         $data = [
-  0 => 
+  0 =>
   [
-    'id' => 6,
+    'id' => 1,
     'destination_id' => 1,
-    'day_number' => 1,
-    'date' => '12 de Outubro 2026',
-    'label' => 'Dia 1: Chegada e Check-in',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:32',
-    'updated_at' => '2026-06-12 18:48:32',
-  ],
-  1 => 
-  [
-    'id' => 7,
-    'destination_id' => 1,
-    'day_number' => 2,
-    'date' => '13 de Outubro 2026',
-    'label' => 'Dia 2: Piscinas Naturais',
-    'order' => 2,
-    'created_at' => '2026-06-12 18:48:32',
-    'updated_at' => '2026-06-12 18:48:32',
-  ],
-  2 => 
-  [
-    'id' => 8,
-    'destination_id' => 2,
-    'day_number' => 1,
-    'date' => '10 de Novembro 2026',
-    'label' => 'Dia 1: Chegada à Serra Gaúcha',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:33',
-    'updated_at' => '2026-06-12 18:48:33',
-  ],
-  3 => 
-  [
-    'id' => 9,
-    'destination_id' => 3,
-    'day_number' => 1,
-    'date' => '15 de Março 2027',
-    'label' => 'Dia 1: Chegada à Cidade Maravilhosa',
-    'order' => 1,
-    'created_at' => '2026-06-12 18:48:35',
-    'updated_at' => '2026-06-12 18:48:35',
-  ],
-  4 => 
-  [
-    'id' => 10,
-    'destination_id' => 4,
     'day_number' => 1,
     'date' => '05 de Junho 2027',
-    'label' => 'Dia 1: Chegada em Foz',
+    'label' => 'Dia 1: Chegada ao Rio de Janeiro',
     'order' => 1,
-    'created_at' => '2026-06-12 18:48:36',
-    'updated_at' => '2026-06-12 18:48:36',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
-  5 => 
+  1 =>
   [
-    'id' => 11,
-    'destination_id' => 4,
+    'id' => 2,
+    'destination_id' => 1,
     'day_number' => 2,
     'date' => '06 de Junho 2027',
-    'label' => 'Dia 2: Teste',
+    'label' => 'Dia 2: Conheça o Pão de Açúcar',
     'order' => 2,
-    'created_at' => '2026-06-14 20:55:19',
-    'updated_at' => '2026-06-14 20:55:19',
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  2 =>
+  [
+    'id' => 3,
+    'destination_id' => 1,
+    'day_number' => 3,
+    'date' => '07 de Junho 2027',
+    'label' => 'Dia 3: Um dia inesquecível em Arraial do Cabo',
+    'order' => 3,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  3 =>
+  [
+    'id' => 4,
+    'destination_id' => 1,
+    'day_number' => 4,
+    'date' => '08 de Junho 2027',
+    'label' => 'Dia 4: Cristo Redentor, uma das 7 Maravilhas do Mundo',
+    'order' => 4,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
+  ],
+  4 =>
+  [
+    'id' => 5,
+    'destination_id' => 1,
+    'day_number' => 5,
+    // ASSUMIDO: a imagem mostra "Dia 5" cobrindo o retorno, mas o pacote vai até dia 10 (6 dias/5 noites).
+    // Ajustei a data para cobrir os dias 09 e 10 de Junho.
+    'date' => '09 a 10 de Junho 2027',
+    'label' => 'Dia 5: Retorno para Fortaleza',
+    'order' => 5,
+    'created_at' => '2026-07-04 12:00:00',
+    'updated_at' => '2026-07-04 12:00:00',
   ],
 ];
 
