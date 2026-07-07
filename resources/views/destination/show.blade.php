@@ -151,7 +151,7 @@
 
                             <!-- Card: Formas de Pagamento -->
                             <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm basis-1/2">
-                                <span class="inline-block bg-[#002752] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
+                                <span class="inline-block bg-[#f3a908] text-black font-bold px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
                                     Valor do pacote e formas de Pagamento
                                 </span>
                                 <ul class="space-y-6">
