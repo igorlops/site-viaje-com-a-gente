@@ -289,6 +289,13 @@
                         background: #e2e8f0;
                         z-index: 0;
                     }
+                    .itinerarySwiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+.itinerarySwiper .swiper-slide {
+    height: auto !important;
+}
                 </style>
 
                 <div class="mb-10">
@@ -305,7 +312,7 @@
                             <div class="swiper itinerarySwiper overflow-visible">
                                 <div class="swiper-wrapper">
                                     @foreach($destination->itineraryDays as $day)
-                                        <div class="swiper-slide h-auto h-full">
+                                        <div class="swiper-slide h-full">
                                             <div class="flex flex-col justify-between h-full bg-slate-50/50 hover:bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all duration-300 relative z-10 group">
                                                 <div>
                                                     <!-- Day Badge & Connector Node -->
