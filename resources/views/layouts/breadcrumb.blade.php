@@ -1,3 +1,4 @@
+    @if(isset($breadcrumbs) && count($breadcrumbs) > 0)
     <section class="relative bg-[#001c3d] py-4 overflow-hidden">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
             <!-- Breadcrumbs -->
@@ -21,3 +22,4 @@
             </nav>
         </div>
     </section>
+    @endif
