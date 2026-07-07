@@ -111,7 +111,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
-                <div class="mb-10">
+                <div class="mb-5">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Informações do pacote</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
                     <div class="flex flex-row itens-center gap-4 justify-between">
@@ -183,7 +183,7 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
                 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-                <div class="mb-10">
+                <div class="mb-5">
                     <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2 uppercase">Conheça um pouco do destino</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8 mx-auto"></div>
                     
@@ -226,7 +226,7 @@
 
             <!-- DEPOIMENTOS -->
             @if(isset($testimonials) && $testimonials->count() > 0)
-                <div class="mb-10">
+                <div class="mb-5">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">O que dizem nossos viajantes</h2>
                     <div class="w-24 h-1 bg-[#f3a908] mx-auto rounded mb-12"></div>
 
@@ -298,7 +298,7 @@
 }
                 </style>
 
-                <div class="mb-10">
+                <div class="mb-5">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Cronograma da Viagem</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
 
@@ -409,7 +409,7 @@
 
             <!-- OBSERVAÇÕES -->
             @if($destination->observations->count() > 0)
-                <div class="mb-10">
+                <div class="mb-5">
                     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-8">
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
