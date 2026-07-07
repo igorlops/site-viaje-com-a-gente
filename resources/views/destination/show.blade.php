@@ -184,7 +184,7 @@
                 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
                 <div class="mb-10">
-                    <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2">Conheça o destino</h2>
+                    <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2 uppercase">Conheça um pouco do destino</h2>
                     <div class="w-16 h-1 bg-[#109e4a] rounded mb-8 mx-auto"></div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
