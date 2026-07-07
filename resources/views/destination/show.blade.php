@@ -107,11 +107,11 @@
     </section> -->
 
     <!-- MAIN CONTENT -->
-    <div class="bg-white py-20">
+    <div class="bg-white py-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- WHAT IS INCLUDED / NOT INCLUDED / PAYMENT -->
             @if($destination->includes->count() > 0)
-                <div class="mb-20">
+                <div class="mb-10">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Informações do pacote</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
                     <div class="flex flex-row itens-center gap-4 justify-between">
@@ -131,10 +131,10 @@
                         </div>
 
                         <!-- Right Column: Not Included & Payment -->
-                        <div class="space-y-8 w-full">
+                        <div class="space-y-8 w-full flex flex-col justify-between gap-2">
                             <!-- Card: Not Included -->
                             @if($destination->includes->where('type', 'not_included')->count() > 0)
-                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm basis-1/2">
                                 <span class="inline-block bg-[#c22e2e] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
                                     Não Inclui no Pacote
                                 </span>
@@ -150,7 +150,7 @@
                             @endif
 
                             <!-- Card: Formas de Pagamento -->
-                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm basis-1/2">
                                 <span class="inline-block bg-[#002752] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
                                     Valor do pacote e formas de Pagamento
                                 </span>
@@ -183,9 +183,9 @@
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
                 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
 
-                <div class="mb-20">
+                <div class="mb-10">
                     <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2">Conheça o destino</h2>
-                    <div class="w-16 h-1 bg-[#109e4a] rounded mb-8"></div>
+                    <div class="w-16 h-1 bg-[#109e4a] rounded mb-8 mx-auto"></div>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($destination->highlights as $highlight)
@@ -226,7 +226,7 @@
 
             <!-- DEPOIMENTOS -->
             @if(isset($testimonials) && $testimonials->count() > 0)
-                <div class="mb-20">
+                <div class="mb-10">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">O que dizem nossos viajantes</h2>
                     <div class="w-24 h-1 bg-[#f3a908] mx-auto rounded mb-12"></div>
 
@@ -291,7 +291,7 @@
                     }
                 </style>
 
-                <div class="mb-20">
+                <div class="mb-10">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Cronograma da Viagem</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
 
@@ -305,7 +305,7 @@
                             <div class="swiper itinerarySwiper overflow-visible">
                                 <div class="swiper-wrapper">
                                     @foreach($destination->itineraryDays as $day)
-                                        <div class="swiper-slide h-auto">
+                                        <div class="swiper-slide h-auto h-full">
                                             <div class="flex flex-col justify-between h-full bg-slate-50/50 hover:bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all duration-300 relative z-10 group">
                                                 <div>
                                                     <!-- Day Badge & Connector Node -->
@@ -402,7 +402,7 @@
 
             <!-- OBSERVAÇÕES -->
             @if($destination->observations->count() > 0)
-                <div class="mb-20">
+                <div class="mb-10">
                     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-8">
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center shrink-0">
