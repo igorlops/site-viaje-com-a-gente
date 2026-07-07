@@ -226,6 +226,7 @@ class DestinationService
         // 5. Salvar Formas de Pagamento
         $destination->paymentMethods()->delete();
         if (!empty($dto->payment_methods)) {
+            dd($dto->payment_methods);
             foreach ($dto->payment_methods as $index => $pmData) {
                 if (isset($pmData['active']) && ($pmData['active'] == '1' || $pmData['active'] == 'true' || $pmData['active'] === true)) {
                     $destination->paymentMethods()->create([
