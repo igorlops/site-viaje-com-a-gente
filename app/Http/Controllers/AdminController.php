@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\SiteSettingRequest;
 use App\Http\Requests\Admin\TestimonialRequest;
 use App\Models\Banner;
 use App\Models\ButtonBanner;
+use App\Models\CTA_Session;
 use App\Models\Destination;
 use App\Models\FeatureBanner;
 use App\Models\Contact;
@@ -537,5 +538,170 @@ public function dashboard()
     {
         $contact->delete();
         return redirect()->route('admin.contacts.index')->with('success', 'Mensagem de contato excluída com sucesso!');
+    }
+
+    /* CTA SESSION CRUD */
+
+    public function cta_session()
+    {
+        $cta_sessions = CTA_Session::with('page', 'cta_session_list')->orderBy('order_position')->get();
+        return view('admin.cta_session.index', compact('cta_sessions'));
+    }
+
+    public function cta_sessionCreate()
+    {
+        $pages = Page::all();
+        return view('admin.cta_session.create', compact('pages'));
+    }
+
+    public function cta_sessionStore(Request $request)
+    {
+        $request->validate([
+            'title'                    => 'nullable|string|max:255',
+            'subtitle'                 => 'nullable|string',
+            'page_id'                  => 'nullable|integer|exists:pages,id',
+            'button_label'             => 'nullable|string|max:255',
+            'button_url'               => 'nullable|string|max:255',
+            'button_target'            => 'nullable|in:_self,_blank',
+            'button_variant'           => 'nullable|string|max:255',
+            'button_icon'              => 'nullable|string|max:255',
+            'secondary_button_label'   => 'nullable|string|max:255',
+            'secondary_button_url'     => 'nullable|string|max:255',
+            'secondary_button_target'  => 'nullable|in:_self,_blank',
+            'secondary_button_variant' => 'nullable|string|max:255',
+            'bg_color'                 => 'nullable|string|max:50',
+            'text_color'               => 'nullable|string|max:50',
+            'bg_image'                 => 'nullable|string|max:255',
+            'alignment'                => 'nullable|in:left,center,right',
+            'padding_vertical'         => 'nullable|string|max:50',
+            'analytics_event_name'     => 'nullable|string|max:255',
+            'order_position'           => 'nullable|integer',
+            'active'                   => 'nullable|boolean',
+            
+            // Validação das listas
+            'list_items'               => 'nullable|array',
+            'list_items.*.title'       => 'required|string|max:255',
+            'list_items.*.icon'        => 'nullable|string|max:255',
+            'list_items.*.order'       => 'nullable|integer',
+            'list_items.*.active'      => 'nullable|boolean',
+        ]);
+
+        $cta_session = CTA_Session::create($request->except(['_token', 'list_items']));
+
+        if ($request->has('list_items')) {
+            foreach ($request->input('list_items') as $item) {
+                $cta_session->cta_session_list()->create([
+                    'title'  => $item['title'],
+                    'icon'   => $item['icon'] ?? 'fa-solid fa-circle-check',
+                    'order'  => $item['order'] ?? 0,
+                    'active' => isset($item['active']) ? (bool)$item['active'] : true,
+                ]);
+            }
+        }
+
+        return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session criada com sucesso!');
+    }
+
+    public function cta_sessionEdit(CTA_Session $cta_session)
+    {
+        $pages = Page::all();
+        return view('admin.cta_session.edit', compact('cta_session','pages'));
+    }
+
+    public function cta_sessionUpdate(Request $request, CTA_Session $cta_session)
+    {
+        $request->validate([
+            'title'                    => 'nullable|string|max:255',
+            'subtitle'                 => 'nullable|string',
+            'page_id'                  => 'nullable|integer|exists:pages,id',
+            'button_label'             => 'nullable|string|max:255',
+            'button_url'               => 'nullable|string|max:255',
+            'button_target'            => 'nullable|in:_self,_blank',
+            'button_variant'           => 'nullable|string|max:255',
+            'button_icon'              => 'nullable|string|max:255',
+            'secondary_button_label'   => 'nullable|string|max:255',
+            'secondary_button_url'     => 'nullable|string|max:255',
+            'secondary_button_target'  => 'nullable|in:_self,_blank',
+            'secondary_button_variant' => 'nullable|string|max:255',
+            'bg_color'                 => 'nullable|string|max:50',
+            'text_color'               => 'nullable|string|max:50',
+            'bg_image'                 => 'nullable|string|max:255',
+            'alignment'                => 'nullable|in:left,center,right',
+            'padding_vertical'         => 'nullable|string|max:50',
+            'analytics_event_name'     => 'nullable|string|max:255',
+            'order_position'           => 'nullable|integer',
+            'active'                   => 'nullable|boolean',
+
+            // Validação das listas
+            'list_items'               => 'nullable|array',
+            'list_items.*.id'          => 'nullable|integer',
+            'list_items.*.title'       => 'required|string|max:255',
+            'list_items.*.icon'        => 'nullable|string|max:255',
+            'list_items.*.order'       => 'nullable|integer',
+            'list_items.*.active'      => 'nullable|boolean',
+        ]);
+
+        $cta_session->update($request->except(['_token', '_method', 'list_items']));
+        dd($request->all());
+
+        // Atualizar lista relacionada
+        $keptIds = [];
+        if ($request->has('list_items')) {
+            foreach ($request->input('list_items') as $item) {
+                if (isset($item['id']) && !empty($item['id'])) {
+                    // Update existente
+                    $listItem = $cta_session->cta_session_list()->find($item['id']);
+                    if ($listItem) {
+                        $listItem->update([
+                            'title'  => $item['title'],
+                            'icon'   => $item['icon'] ?? 'fa-solid fa-circle-check',
+                            'order'  => $item['order'] ?? 0,
+                            'active' => isset($item['active']) ? (bool)$item['active'] : true,
+                        ]);
+                        $keptIds[] = $listItem->id;
+                    }
+                } else {
+                    // Criação de novo item
+                    $newListItem = $cta_session->cta_session_list()->create([
+                        'title'  => $item['title'],
+                        'icon'   => $item['icon'] ?? 'fa-solid fa-circle-check',
+                        'order'  => $item['order'] ?? 0,
+                        'active' => isset($item['active']) ? (bool)$item['active'] : true,
+                    ]);
+                    $keptIds[] = $newListItem->id;
+                }
+            }
+        }
+
+        // Deletar os itens que não estão mais no formulário
+        $cta_session->cta_session_list()->whereNotIn('id', $keptIds)->delete();
+
+        return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session atualizada com sucesso!');
+    }
+
+    public function cta_sessionDestroy(CTA_Session $cta_session)
+    {
+        $cta_session->delete();
+        return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session excluída com sucesso!');
+    }
+
+    public function cta_sessionDuplicate(CTA_Session $cta_session)
+    {
+        // Duplicar a sessão principal
+        $newSession = $cta_session->replicate();
+        // Alterar o título para indicar cópia
+        if ($newSession->title) {
+            $newSession->title = $newSession->title . ' (Cópia)';
+        }
+        $newSession->save();
+
+        // Duplicar itens de lista relacionados
+        foreach ($cta_session->cta_session_list as $item) {
+            $newItem = $item->replicate();
+            $newItem->cta_session_id = $newSession->id;
+            $newItem->save();
+        }
+
+        return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session duplicada com sucesso!');
     }
 }

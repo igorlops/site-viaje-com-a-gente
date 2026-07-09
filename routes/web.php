@@ -13,7 +13,7 @@ Route::get('/pacotes', [PageController::class, 'destinations'])->name('destinati
 
 // Páginas institucionais
 Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
-Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
+// Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
 Route::get('/pacotes-2026-2027', [PageController::class, 'packages20262027'])->name('packages20262027');
 Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
 Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
@@ -46,6 +46,15 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/banners/create', [AdminController::class, 'bannerCreate'])->name('admin.banners.create');
     Route::post('/banners', [AdminController::class, 'bannerStore'])->name('admin.banners.store');
     Route::put('/banners/{banner}', [AdminController::class, 'bannerUpdate'])->name('admin.banners.update');
+
+    // CRUD CTA Session
+    Route::get('/cta_session', [AdminController::class, 'cta_session'])->name('admin.cta_session.index');
+    Route::get('/cta_session/create', [AdminController::class, 'cta_sessionCreate'])->name('admin.cta_session.create');
+    Route::post('/cta_session', [AdminController::class, 'cta_sessionStore'])->name('admin.cta_session.store');
+    Route::get('/cta_session/{cta_session}/edit', [AdminController::class, 'cta_sessionEdit'])->name('admin.cta_session.edit');
+    Route::put('/cta_session/{cta_session}', [AdminController::class, 'cta_sessionUpdate'])->name('admin.cta_session.update');
+    Route::delete('/cta_session/{cta_session}', [AdminController::class, 'cta_sessionDestroy'])->name('admin.cta_session.destroy');
+    Route::post('/cta_session/{cta_session}/duplicate', [AdminController::class, 'cta_sessionDuplicate'])->name('admin.cta_session.duplicate');
 
     Route::delete('/feature-banner/{featureBanner}', [AdminController::class, 'featureBannerDelete'])->name('admin.feature-banner.delete');
     Route::delete('/button-banner/{buttonBanner}', [AdminController::class, 'buttonBannerDelete'])->name('admin.button-banner.delete');

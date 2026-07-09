@@ -4,23 +4,26 @@
 
 @section('content')
 
-    <!-- LISTING SECTION -->
-    <section class="py-20 bg-white copyright-watermark">
+    <!-- SEÇÃO INTRODUTÓRIA + LISTAGEM DE PACOTES IMEDIATA -->
+    <section class="py-16 bg-white copyright-watermark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center justify-center gap-2 mb-2 text-[#002752] uppercase font-black tracking-widest text-sm">
-                    <span>Aproveite o Final de Semana</span>
-                    <i class="fas fa-calendar-day text-[#109e4a]"></i>
-                </div>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-[#002752] tracking-tight">
-                    Destinos Incríveis de 1 Dia Saindo de Fortaleza
-                </h2>
-                <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
+            
+            <!-- Descrição Conceitual do Bate e Volta (Copy Inteligente) -->
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="text-[#109e4a] text-xs font-black uppercase tracking-widest bg-[#109e4a]/10 px-4 py-1.5 rounded-full inline-block mb-4">
+                    Conceito Bate e Volta
+                </span>
+                <h1 class="text-3xl sm:text-4xl font-black text-[#002752] tracking-tight mb-4">
+                    Menos rotina. Mais destinos. Tudo em 24 horas.
+                </h1>
+                <p class="text-base text-gray-600 leading-relaxed">
+                    O **Bate e Volta** é a pílula de escape para quem tem a rotina corrida, mas se recusa a passar o final de semana olhando para a parede. Uma viagem rápida, inteligente e revigorante: você embarca pela manhã em Fortaleza, vive um dia espetacular no litoral ou serra com tudo planejado, e volta a tempo de dormir no conforto da sua própria cama. **Sem precisar gastar com diárias de hotel ou pedir férias.**
+                </p>
+                <div class="w-24 h-1 bg-[#f3a908] mx-auto mt-6 rounded"></div>
             </div>
 
-            <!-- Packages Grid (Ready for Dynamic Loop - Styled exactly as home.blade.php) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Grid de Pacotes (Abaixo do texto, direto e dinâmico) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
                 @php
                     $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
                 @endphp
@@ -29,16 +32,18 @@
                     <x-card-pacotes :pkg="$pkg" :whatsappUrl="$whatsappUrl" />
                 @endforeach
             </div>
+            
         </div>
     </section>
 
-    <!-- HOW IT WORKS & INFO -->
+    <!-- INFRAESTRUTURA & SEGURANÇA -->
     <section class="py-20 bg-gray-50 border-t border-gray-100 copyright-watermark">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-[#002752] uppercase tracking-tight">
-                    Como Funcionam Nossos Passeios Bate e Volta
+                    Infraestrutura de Quem Sabe Fazer
                 </h2>
+                <p class="text-sm text-gray-500 mt-2">Segurança e conforto do início ao fim da sua jornada</p>
                 <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
             </div>
 
@@ -83,8 +88,49 @@
                     </div>
                     <h4 class="font-bold text-[#002752] mb-2 text-sm uppercase">Embarque Facilitado</h4>
                     <p class="text-xs text-gray-500 leading-relaxed">
-                        Pontos de embarque estratégicos em Fortaleza (Avenida Beira Mar, aeroporto e hotéis) facilitando o seu acesso ao transporte.
+                        Pontos de acesso inteligentes em Fortaleza (Avenida Beira Mar, aeroporto e hotéis) facilitando o seu acesso ao transporte.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SESSÃO: O CHECKLIST DO VIAJANTE INTELIGENTE (Quebra de Objeção) -->
+    <section class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-[#002752] uppercase tracking-tight">
+                    Seu único trabalho é arrumar a mochila
+                </h2>
+                <p class="text-sm text-gray-500 mt-2">Veja como dividimos as tarefas para o seu dia ser perfeito</p>
+                <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Lado do Cliente -->
+                <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h4 class="font-black text-sm text-gray-700 uppercase tracking-wide mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-[#f3a908]"></span> O que você traz:
+                    </h4>
+                    <ul class="space-y-3 text-xs text-gray-600 font-medium">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-[#109e4a]"></i> Protetor solar e óculos de sol</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-[#109e4a]"></i> Roupa de banho e uma troca leve</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-[#109e4a]"></i> Celular carregado para as fotos</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-[#109e4a]"></i> Sorriso no rosto e mente aberta</li>
+                    </ul>
+                </div>
+
+                <!-- Lado da Agência -->
+                <div class="bg-[#109e4a]/5 rounded-2xl p-6 border border-[#109e4a]/20">
+                    <h4 class="font-black text-sm text-[#002752] uppercase tracking-wide mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-[#109e4a]"></span> O que nós garantimos:
+                    </h4>
+                    <ul class="space-y-3 text-xs text-[#002752] font-semibold">
+                        <li class="flex items-center gap-2"><i class="fas fa-shield-alt text-[#109e4a]"></i> Transporte com seguro viagem incluso</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-map-signs text-[#109e4a]"></i> Roteiro cronometrado para evitar filas</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-chair text-[#109e4a]"></i> Mesas reservadas na melhor barraca de apoio</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-user-check text-[#109e4a]"></i> Guia credenciado resolvendo toda a logística</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -100,15 +146,15 @@
                         <i class="fab fa-whatsapp text-3xl"></i>
                     </div>
                     <div>
-                        <span class="block text-lg font-black uppercase tracking-wide">Ficou com alguma dúvida sobre os passeios?</span>
-                        <span class="block text-sm font-medium">Chame no WhatsApp e tire todas as suas dúvidas com nossa equipe!</span>
+                        <span class="block text-lg font-black uppercase tracking-wide">Quer fugir da rotina no próximo fim de semana?</span>
+                        <span class="block text-sm font-medium">Escolha seu destino e chame nossa equipe agora mesmo!</span>
                     </div>
                 </div>
                 
                 <!-- Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
-                    <span>Tirar Dúvidas</span>
+                    <span>Escolher Destino</span>
                 </a>
             </div>
         </div>
