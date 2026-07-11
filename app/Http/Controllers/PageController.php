@@ -56,7 +56,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('pacotes-2026-2027');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('pacotes-2026-2027');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('pacotes-2026-2027');
         $destinations = Destination::where('type', 'pacotes-2026-2027')->get();
         $socialLinks = $this->getSocialLinks();
         return view("pacotes-2026-2027", compact("socialLinks", "banner", "destinations", "breadcrumbs", "cta_session"));
@@ -71,7 +71,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('nossos-servicos');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('nossos-servicos');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('nossos-servicos');
         $services = $this->serviceService->all();
         $socialLinks = $this->getSocialLinks();
         return view("nossos-servicos", compact("socialLinks", "banner", "breadcrumbs",'services', 'cta_session'));
@@ -86,7 +86,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('bate-e-volta');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('bate-e-volta');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('bate-e-volta');
         $destinations = Destination::where('type', 'bate-e-volta')->get();
         $socialLinks = $this->getSocialLinks();
         return view("bate-e-volta", compact("socialLinks", "banner", "destinations", "breadcrumbs", "cta_session"));
@@ -101,7 +101,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('viagens-em-grupo');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('viagens-em-grupo');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('viagens-em-grupo');
         $destinations = Destination::where('type', 'viagem-em-grupo')->get();
         $socialLinks = $this->getSocialLinks();
         return view("viagens-em-grupo", compact("socialLinks", "banner", "destinations", "breadcrumbs", "cta_session"));
@@ -116,7 +116,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('perguntas-frequentes');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('perguntas-frequentes');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('perguntas-frequentes');
         $socialLinks = $this->getSocialLinks();
         $faqs = \App\Models\Faq::orderBy('order')->get();
         return view("perguntas-frequentes", compact("socialLinks", "banner", "breadcrumbs", "faqs", "cta_session"));
@@ -132,7 +132,7 @@ class PageController extends Controller
         ];
         $banner = $this->bannerService->bannerByPageSlug('contato');
         $socialLinks = $this->getSocialLinks();
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('contato');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('contato');
         return view("contato", compact("socialLinks", "banner", "breadcrumbs", "cta_session"));
     }
 
@@ -160,7 +160,7 @@ class PageController extends Controller
             ]
         ];
         $banner = $this->bannerService->bannerByPageSlug('destinos');
-        $cta_session = $this->cta_sessionService->cta_sessionByPageSlug('destinos');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('destinos');
         $destination = Destination::where('slug', $slug)
             ->with(['includes', 'highlights', 'itineraryDays.activities', 'observations', 'paymentMethods.method'])
             ->firstOrFail();
