@@ -179,7 +179,6 @@ public function dashboard()
     public function settings()
     {
         $settingsGrouped = $this->siteSettingRepository->allGrouped();
-        dd($settingsGrouped);
         return view('admin.settings.index', compact('settingsGrouped'));
     }
 
