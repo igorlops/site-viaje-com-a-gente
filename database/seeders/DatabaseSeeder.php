@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             ContactSeeder::class,
             SocialLinkSeeder::class,
+            SiteSettingsSeeder::class,
             PaymentMethodSeeder::class,
             FaqSeeder::class,
         ]);
