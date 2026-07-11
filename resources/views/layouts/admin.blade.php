@@ -39,11 +39,6 @@
                 <i class="fas fa-images text-lg w-6 text-center"></i>
                 <span>Banners</span>
             </a>
-
-            <a href="{{ route('admin.cta_session.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.cta_session.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
-                <i class="fas fa-bullhorn text-lg w-6 text-center"></i>
-                <span>CTA Sessions</span>
-            </a>
             
             <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>

@@ -60,20 +60,6 @@
             </div>
         </div>
 
-        <!-- Social Links -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
-            <div>
-                <span class="block text-xs text-gray-400 font-bold uppercase tracking-wider mb-1">Redes</span>
-                <span class="block text-3xl font-black text-[#002752]">{{ $socialLinksCount }}</span>
-                <a href="{{ route('admin.social.index') }}" class="inline-flex items-center text-xs font-bold text-[#109e4a] hover:text-[#0b803a] mt-3 gap-1">
-                    <span>Gerenciar</span>
-                    <i class="fas fa-arrow-right text-[10px]"></i>
-                </a>
-            </div>
-            <div class="w-12 h-12 rounded-full bg-yellow-50 text-[#f3a908] flex items-center justify-center text-xl shrink-0 shadow-inner">
-                <i class="fas fa-share-nodes"></i>
-            </div>
-        </div>
 
         <!-- Services -->
         <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200 flex items-center justify-between">
