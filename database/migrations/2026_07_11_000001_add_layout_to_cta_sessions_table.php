@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('cta_sessions', function (Blueprint $table) {
-            $table->string('layout')->default('simple-band')->after('bg_image');
+            $table->string('layout')->default('simple-band')->after('active');
         });
     }
 
