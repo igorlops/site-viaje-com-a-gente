@@ -84,6 +84,10 @@
         </div>
     </div>
 
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
     {{-- ══════════════════════════════════════════
          CONTEÚDO PRINCIPAL (Grid de Pacotes)
          ══════════════════════════════════════════ --}}
@@ -117,6 +121,10 @@
                 </div>
             @endif
 
+            @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+                <x-cta-session :cta="$ctaSession" />
+            @endif
+
             {{-- ══════════════════════════════════════════
                  CTA FINAL (Suporte Geral)
                  ══════════════════════════════════════════ --}}
@@ -137,4 +145,9 @@
 
         </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
 @endsection

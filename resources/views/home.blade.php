@@ -64,6 +64,10 @@
         </div>
     </section>
 
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
     <!-- DESTINOS EM DESTAQUE -->
     <section class="py-20 bg-white border-t border-gray-50" id="destinos">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -249,43 +253,9 @@
             </div>
         </div>
     </section>
-
-    <!-- PROMOTIONAL BANNER -->
-    <section class="py-10 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-gradient-to-br from-[#109e4a] to-[#0b803a] rounded-2xl overflow-hidden shadow-xl text-white p-8 sm:p-12 relative flex flex-col lg:flex-row items-center justify-between gap-8">
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.1),transparent)] pointer-events-none"></div>
-                
-                <div class="max-w-xl relative z-10 text-center lg:text-left">
-                    <h2 class="text-2xl sm:text-3xl font-black mb-6 leading-tight">
-                        Parcele sua viagem no <span class="underline decoration-[#f3a908] decoration-4">boleto</span> e realize seu sonho!
-                    </h2>
-                    
-                    <ul class="space-y-3.5 inline-block text-left">
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
-                            <span class="font-semibold text-sm">Sem consulta ao SPC/Serasa</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
-                            <span class="font-semibold text-sm">Você escolhe a melhor data para pagar</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-[#f3a908] text-lg"></i>
-                            <span class="font-semibold text-sm">Mais liberdade para planejar sua viagem</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="relative z-10 flex flex-col items-center justify-center border-4 border-dashed border-white/40 p-6 rounded-xl bg-white/5 backdrop-blur-sm shrink-0 w-full sm:w-80">
-                    <i class="fas fa-barcode text-5xl mb-3 text-[#f3a908]"></i>
-                    <span class="text-xs uppercase tracking-widest font-medium text-green-100">Parcelamento</span>
-                    <span class="text-xl uppercase font-black tracking-wider text-white">Facilitado</span>
-                    <span class="text-sm uppercase font-bold text-[#f3a908]">No Boleto</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- DEPOIMENTOS DE CLIENTES -->
     <section class="py-16 bg-white border-t border-gray-50">
@@ -332,16 +302,7 @@
             @endif
         </div>
     </section>
-
-    {{-- Onde quer que fique a CTA de ordem 1 --}}
-    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
-        <x-cta-session :cta="$ctaSession" />
-    @endif
-
-    <!-- ... Outros blocos de código, banners ou conteúdos do seu HTML aqui ... -->
-
-    {{-- Onde quer que fique a CTA de ordem 2 --}}
-    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
         <x-cta-session :cta="$ctaSession" />
     @endif
 

@@ -4,6 +4,10 @@
 
 @section('content')
 
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
     <!-- CONTACT CONTAINER SECTION -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -79,19 +83,6 @@
                         </div>
                     </div>
 
-                    <!-- Social Media Links -->
-                    <div class="pt-8 border-t border-gray-150 mt-8">
-                        <span class="block text-xs font-bold uppercase tracking-widest text-gray-400 mb-3">Siga nossas redes</span>
-                        <div class="flex space-x-3">
-                            @foreach($socialLinks as $link)
-                                @if($link->active && strtolower($link->name) !== 'whatsapp')
-                                    <a href="{{ $link->url }}" target="_blank" class="w-10 h-10 rounded-full bg-[#002752] hover:bg-[#f3a908] hover:text-[#00152b] text-white flex items-center justify-center transition duration-300 shadow-sm" title="{{ $link->name }}">
-                                        <i class="{{ $link->icon }} text-base"></i>
-                                    </a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
                 </div>
 
                 <!-- RIGHT COLUMN: CONTACT FORM -->
@@ -196,5 +187,13 @@
             </div>
         </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
 @endsection

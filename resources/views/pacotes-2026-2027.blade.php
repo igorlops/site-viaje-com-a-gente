@@ -44,8 +44,11 @@
                     <i class="fas fa-chevron-right text-xs"></i>
                 </a>
             </div>
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- INFRAESTRUTURA & SEGURANÇA LOGÍSTICA -->
    <section class="py-20 bg-gray-50 border-t border-gray-100">
@@ -143,9 +146,12 @@
                         <li class="flex items-center gap-2"><i class="fas fa-check text-[#109e4a]"></i> Tempo de sobra para planejar seus roteiros opcionais</li>
                     </ul>
                 </div>
-            </div>
         </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- CTA FOOTER (Otimizado para Conversão e Esclarecimento de Prazos) -->
     <section class="bg-[#f3a908] py-8 text-[#002752]">
@@ -168,7 +174,10 @@
                     <span>Garantir Tarifa de Hoje</span>
                 </a>
             </div>
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
 @endsection

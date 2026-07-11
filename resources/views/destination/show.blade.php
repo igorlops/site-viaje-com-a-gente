@@ -65,6 +65,10 @@
         </div>
     </section>
 
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
     <!-- QUICK INFO BAR -->
     <!-- <section class="bg-[#002752] text-white py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -175,6 +179,10 @@
                         </div>
                     </div>
                 </div>
+            @endif
+
+            @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+                <x-cta-session :cta="$ctaSession" />
             @endif
 
             <!-- HIGHLIGHTS -->
@@ -461,8 +469,12 @@
                             <span>Falar com consultor</span>
                         </a>
                     </div>
-                </div>
             </div>
         </div>
     </div>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
 @endsection

@@ -5,6 +5,10 @@
 @section('content')
 
 
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
+
 <!-- FAQ SECTION -->
 <section class="py-20 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,6 +48,10 @@
         </div>
     </div>
 </section>
+
+@if($ctaSession = $cta_session->firstWhere('order_position', 2))
+    <x-cta-session :cta="$ctaSession" />
+@endif
 
 <!-- ACCORDION JAVASCRIPT -->
 <script>
@@ -105,5 +113,9 @@
         </div>
     </div>
 </section>
+
+@if($ctaSession = $cta_session->firstWhere('order_position', 3))
+    <x-cta-session :cta="$ctaSession" />
+@endif
 
 @endsection

@@ -33,8 +33,11 @@
                 @endforeach
             </div>
             
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- INFRAESTRUTURA & SEGURANÇA -->
     <section class="py-20 bg-gray-50 border-t border-gray-100 copyright-watermark">
@@ -132,9 +135,12 @@
                         <li class="flex items-center gap-2"><i class="fas fa-user-check text-[#109e4a]"></i> Guia credenciado resolvendo toda a logística</li>
                     </ul>
                 </div>
-            </div>
         </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- CTA FOOTER -->
     <section class="bg-[#f3a908] py-8 text-[#002752]">
@@ -157,7 +163,10 @@
                     <span>Escolher Destino</span>
                 </a>
             </div>
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
 @endsection

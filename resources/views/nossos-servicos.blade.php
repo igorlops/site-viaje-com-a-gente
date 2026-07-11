@@ -56,8 +56,11 @@
                     </div>
                 @endforeach
             </div>
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- WHY CHOOSE US / EXTRAORDINARY COPY -->
     <section class="relative py-24 bg-[#001c3d] overflow-hidden">
@@ -186,8 +189,11 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
     <!-- CALL TO ACTION (CTA) -->
     <section class="bg-[#f3a908] py-12 text-[#002752]">
@@ -388,8 +394,11 @@
             const hiddenType = document.getElementById('contact-type');
             if (hiddenType) {
                 hiddenType.value = value ? ('Serviço: ' + value) : 'Contato: Nossos Serviços';
-            }
         }
     </script>
+
+    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
+        <x-cta-session :cta="$ctaSession" />
+    @endif
 
 @endsection

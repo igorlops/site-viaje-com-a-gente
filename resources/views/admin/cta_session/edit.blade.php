@@ -19,9 +19,74 @@
                 </a>
             </div>
 
-            <form action="{{ route('admin.cta_session.update', $cta_session->id) }}" method="POST" class="p-6 space-y-8">
+            <form action="{{ route('admin.cta_session.update', $cta_session->id) }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-8">
                 @csrf
                 @method('PUT')
+
+                {{-- ===== SEÇÃO: LAYOUT ===== --}}
+                <div>
+                    <h3 class="text-xs font-bold text-[#002752] uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <i class="fas fa-layer-group text-[#f3a908]"></i> Layout da Seção
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        {{-- Option 1: Simple Band --}}
+                        <label class="layout-card relative flex flex-col bg-white border-2 rounded-xl p-4 cursor-pointer hover:bg-slate-50 transition-all {{ old('layout', $cta_session->layout ?? 'simple-band') == 'simple-band' ? 'border-[#001c3d] ring-1 ring-[#001c3d]' : 'border-gray-200' }}"
+                               onclick="document.querySelectorAll('.layout-card').forEach(el => { el.classList.remove('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]'); el.classList.add('border-gray-200'); }); this.classList.remove('border-gray-200'); this.classList.add('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]');">
+                            <input type="radio" name="layout" value="simple-band" class="sr-only" {{ old('layout', $cta_session->layout ?? 'simple-band') == 'simple-band' ? 'checked' : '' }}>
+                            <div class="h-20 bg-gray-100 rounded-lg mb-3 flex flex-col items-center justify-center p-2 border border-gray-200 gap-2">
+                                <div class="w-3/4 h-2 bg-gray-300 rounded-full"></div>
+                                <div class="w-full flex justify-center gap-2 mt-1">
+                                    <div class="w-6 h-3 bg-blue-900 rounded"></div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-sm text-gray-900 text-center">Faixa Simples</span>
+                            <span class="text-[10px] text-gray-500 text-center mt-1">Texto e botão centralizados.</span>
+                        </label>
+                        {{-- Option 2: Split --}}
+                        <label class="layout-card relative flex flex-col bg-white border-2 rounded-xl p-4 cursor-pointer hover:bg-slate-50 transition-all {{ old('layout', $cta_session->layout ?? '') == 'split' ? 'border-[#001c3d] ring-1 ring-[#001c3d]' : 'border-gray-200' }}"
+                               onclick="document.querySelectorAll('.layout-card').forEach(el => { el.classList.remove('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]'); el.classList.add('border-gray-200'); }); this.classList.remove('border-gray-200'); this.classList.add('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]');">
+                            <input type="radio" name="layout" value="split" class="sr-only" {{ old('layout', $cta_session->layout ?? '') == 'split' ? 'checked' : '' }}>
+                            <div class="h-20 bg-gray-100 rounded-lg mb-3 flex items-center justify-between p-2 border border-gray-200 gap-2">
+                                <div class="flex-1 flex flex-col gap-1">
+                                    <div class="w-full h-2 bg-gray-300 rounded-full"></div>
+                                    <div class="w-2/3 h-1.5 bg-gray-200 rounded-full"></div>
+                                </div>
+                                <div class="w-8 h-12 bg-white rounded border border-gray-200 flex flex-col items-center justify-center gap-1">
+                                    <div class="w-4 h-2 bg-blue-900 rounded-sm"></div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-sm text-gray-900 text-center">Dividido</span>
+                            <span class="text-[10px] text-gray-500 text-center mt-1">Texto esq., botões dir.</span>
+                        </label>
+                        {{-- Option 3: Image Highlight --}}
+                        <label class="layout-card relative flex flex-col bg-white border-2 rounded-xl p-4 cursor-pointer hover:bg-slate-50 transition-all {{ old('layout', $cta_session->layout ?? '') == 'image-highlight' ? 'border-[#001c3d] ring-1 ring-[#001c3d]' : 'border-gray-200' }}"
+                               onclick="document.querySelectorAll('.layout-card').forEach(el => { el.classList.remove('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]'); el.classList.add('border-gray-200'); }); this.classList.remove('border-gray-200'); this.classList.add('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]');">
+                            <input type="radio" name="layout" value="image-highlight" class="sr-only" {{ old('layout', $cta_session->layout ?? '') == 'image-highlight' ? 'checked' : '' }}>
+                            <div class="h-20 bg-slate-800 rounded-lg mb-3 flex flex-col items-center justify-center p-2 border border-gray-200 gap-2 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-black/20"></div>
+                                <div class="relative w-3/4 h-2 bg-white/80 rounded-full mx-auto"></div>
+                                <div class="relative w-full flex justify-center gap-2 mt-1">
+                                    <div class="w-6 h-3 bg-yellow-500 rounded"></div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-sm text-gray-900 text-center">C/ Imagem</span>
+                            <span class="text-[10px] text-gray-500 text-center mt-1">Fundo de imagem escurecida.</span>
+                        </label>
+                        {{-- Option 4: Floating Card --}}
+                        <label class="layout-card relative flex flex-col bg-white border-2 rounded-xl p-4 cursor-pointer hover:bg-slate-50 transition-all {{ old('layout', $cta_session->layout ?? '') == 'floating-card' ? 'border-[#001c3d] ring-1 ring-[#001c3d]' : 'border-gray-200' }}"
+                               onclick="document.querySelectorAll('.layout-card').forEach(el => { el.classList.remove('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]'); el.classList.add('border-gray-200'); }); this.classList.remove('border-gray-200'); this.classList.add('border-[#001c3d]', 'ring-1', 'ring-[#001c3d]');">
+                            <input type="radio" name="layout" value="floating-card" class="sr-only" {{ old('layout', $cta_session->layout ?? '') == 'floating-card' ? 'checked' : '' }}>
+                            <div class="h-20 bg-blue-900/5 rounded-lg mb-3 flex items-center justify-center p-2 border border-gray-200">
+                                <div class="w-3/4 h-14 bg-white rounded shadow-sm border border-gray-100 flex flex-col items-center justify-center gap-1.5 p-1">
+                                    <div class="w-4 h-4 rounded-full bg-yellow-400/20 flex-shrink-0"></div>
+                                    <div class="w-1/2 h-1 bg-gray-300 rounded-full"></div>
+                                </div>
+                            </div>
+                            <span class="font-bold text-sm text-gray-900 text-center">Card Flutuante</span>
+                            <span class="text-[10px] text-gray-500 text-center mt-1">Card central elevado.</span>
+                        </label>
+                    </div>
+                </div>
 
                 {{-- ===== SEÇÃO: CONTEÚDO PRINCIPAL ===== --}}
                 <div>
@@ -317,11 +382,30 @@
 
                         {{-- Imagem de Fundo --}}
                         <div class="sm:col-span-2">
-                            <label for="bg_image" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Imagem de Fundo (URL ou Path)</label>
-                            <input type="text" name="bg_image" id="bg_image" value="{{ old('bg_image', $cta_session->bg_image ?? 'none') }}"
-                                class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition bg-white"
-                                placeholder="Ex: none, /storage/images/bg.jpg ou https://...">
-                            <p class="text-[10px] text-gray-400 mt-1">Use <code class="bg-gray-100 px-1 rounded">none</code> para desativar ou informe a URL/path da imagem.</p>
+                            <label for="bg_image" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Imagem de Fundo (Upload ou URL)</label>
+                            
+                            @if($cta_session->bg_image && $cta_session->bg_image !== 'none')
+                                <div class="mb-3 flex items-center gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                                    <img src="{{ $cta_session->bg_image }}" alt="Preview" class="h-14 w-20 object-cover rounded-lg border border-gray-200">
+                                    <div>
+                                        <p class="text-xs font-bold text-[#001c3d]">Imagem Atual</p>
+                                        <p class="text-[10px] text-gray-400 truncate max-w-xs">{{ $cta_session->bg_image }}</p>
+                                    </div>
+                                </div>
+                            @endif
+
+                            <div class="flex flex-col sm:flex-row gap-4 items-center">
+                                <div class="w-full sm:w-1/2">
+                                    <input type="file" name="bg_image" id="bg_image"
+                                        class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition bg-white">
+                                </div>
+                                <div class="w-full sm:w-1/2">
+                                    <input type="text" name="bg_image_url" id="bg_image_url" value="{{ old('bg_image_url', $cta_session->bg_image) }}"
+                                        class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition bg-white"
+                                        placeholder="Ou digite a URL (ex: /storage/...)">
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-400 mt-1">Escolha um novo arquivo de imagem para fazer o upload OU digite uma URL existente (ou 'none').</p>
                             @error('bg_image') <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p> @enderror
                         </div>
                     </div>

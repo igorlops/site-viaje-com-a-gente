@@ -8,15 +8,6 @@
                         Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.
                     </p>
                     <!-- Social Media Links from DB -->
-                    <div class="flex space-x-3 pt-2">
-                        @foreach($socialLinks as $link)
-                            @if($link->active && strtolower($link->name) !== 'whatsapp')
-                                <a href="{{ $link->url }}" target="_blank" class="w-10 h-10 rounded-full bg-[#002752] hover:bg-[#f3a908] hover:text-[#00152b] text-white flex items-center justify-center transition duration-300 shadow-sm" title="{{ $link->name }}">
-                                    <i class="{{ $link->icon }} text-lg"></i>
-                                </a>
-                            @endif
-                        @endforeach
-                    </div>
                 </div>
 
                 <!-- Column 2: Navigation Links -->

@@ -47,7 +47,6 @@ public function dashboard()
 {
     $bannersCount      = Banner::count();
     $destinationsCount = Destination::count();
-    $socialLinksCount  = SocialLink::count();
     $servicesCount     = Service::count();
     $contactsCount     = Contact::count();
 
@@ -89,7 +88,7 @@ public function dashboard()
     }
 
     return view('admin.dashboard', compact(
-        'bannersCount', 'destinationsCount', 'socialLinksCount', 'servicesCount',
+        'bannersCount', 'destinationsCount', 'servicesCount',
         'contactsCount', 'latestContacts',
         'totalVisits30d', 'topPages', 'chartLabels', 'chartData'
     ));
@@ -355,11 +354,6 @@ public function dashboard()
 
     /* SOCIAL LINKS CRUD */
 
-    public function socialLinks()
-    {
-        $socialLinks = SocialLink::all();
-        return view('admin.social.index', compact('socialLinks'));
-    }
 
     public function socialStore(Request $request)
     {
@@ -571,10 +565,11 @@ public function dashboard()
             'secondary_button_variant' => 'nullable|string|max:255',
             'bg_color'                 => 'nullable|string|max:50',
             'text_color'               => 'nullable|string|max:50',
-            'bg_image'                 => 'nullable|string|max:255',
+            'bg_image'                 => 'nullable',
             'alignment'                => 'nullable|in:left,center,right',
             'padding_vertical'         => 'nullable|string|max:50',
             'analytics_event_name'     => 'nullable|string|max:255',
+            'layout'                   => 'nullable|string|max:50',
             'order_position'           => 'nullable|integer',
             'active'                   => 'nullable|boolean',
             
@@ -586,7 +581,14 @@ public function dashboard()
             'list_items.*.active'      => 'nullable|boolean',
         ]);
 
-        $cta_session = CTA_Session::create($request->except(['_token', 'list_items']));
+        $data = $request->except(['_token', 'list_items', 'bg_image_url']);
+        if ($request->hasFile('bg_image')) {
+            $data['bg_image'] = '/storage/' . $request->file('bg_image')->store('cta', 'public');
+        } elseif ($request->filled('bg_image_url')) {
+            $data['bg_image'] = $request->input('bg_image_url');
+        }
+
+        $cta_session = CTA_Session::create($data);
 
         if ($request->has('list_items')) {
             foreach ($request->input('list_items') as $item) {
@@ -625,10 +627,11 @@ public function dashboard()
             'secondary_button_variant' => 'nullable|string|max:255',
             'bg_color'                 => 'nullable|string|max:50',
             'text_color'               => 'nullable|string|max:50',
-            'bg_image'                 => 'nullable|string|max:255',
+            'bg_image'                 => 'nullable',
             'alignment'                => 'nullable|in:left,center,right',
             'padding_vertical'         => 'nullable|string|max:50',
             'analytics_event_name'     => 'nullable|string|max:255',
+            'layout'                   => 'nullable|string|max:50',
             'order_position'           => 'nullable|integer',
             'active'                   => 'nullable|boolean',
 
@@ -641,8 +644,18 @@ public function dashboard()
             'list_items.*.active'      => 'nullable|boolean',
         ]);
 
-        $cta_session->update($request->except(['_token', '_method', 'list_items']));
-        dd($request->all());
+        $data = $request->except(['_token', '_method', 'list_items', 'bg_image_url']);
+        if ($request->hasFile('bg_image')) {
+            if ($cta_session->bg_image && \Illuminate\Support\Str::contains($cta_session->bg_image, '/storage/cta/')) {
+                $oldPath = str_replace('/storage/', '', $cta_session->bg_image);
+                Storage::disk('public')->delete($oldPath);
+            }
+            $data['bg_image'] = '/storage/' . $request->file('bg_image')->store('cta', 'public');
+        } elseif ($request->filled('bg_image_url')) {
+            $data['bg_image'] = $request->input('bg_image_url');
+        }
+
+        $cta_session->update($data);
 
         // Atualizar lista relacionada
         $keptIds = [];
@@ -663,6 +676,7 @@ public function dashboard()
                 } else {
                     // Criação de novo item
                     $newListItem = $cta_session->cta_session_list()->create([
+                        'cta_session_id' => $cta_session->id,
                         'title'  => $item['title'],
                         'icon'   => $item['icon'] ?? 'fa-solid fa-circle-check',
                         'order'  => $item['order'] ?? 0,
@@ -672,10 +686,7 @@ public function dashboard()
                 }
             }
         }
-
-        // Deletar os itens que não estão mais no formulário
         $cta_session->cta_session_list()->whereNotIn('id', $keptIds)->delete();
-
         return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session atualizada com sucesso!');
     }
 

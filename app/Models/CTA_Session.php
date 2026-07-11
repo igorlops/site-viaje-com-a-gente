@@ -22,8 +22,10 @@ class CTA_Session extends Model
         'secondary_button_variant',
         'bg_color',
         'text_color',
+        'bg_image',
         'alignment',
         'padding_vertical',
+        'layout',
         'analytics_event_name',
         'order_position',
         'active'
@@ -36,6 +38,6 @@ class CTA_Session extends Model
 
     public function cta_session_list()
     {
-        return $this->hasMany(CTA_SessionList::class,'id','cta_session_id');
+        return $this->hasMany(CTA_SessionList::class, 'cta_session_id', 'id');
     }
 }
