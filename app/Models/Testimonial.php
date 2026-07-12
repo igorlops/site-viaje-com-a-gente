@@ -17,13 +17,20 @@ class Testimonial extends Model
         'rating',
         'is_active',
         'order',
+        'destination_id',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
         'rating'    => 'integer',
         'order'     => 'integer',
+        'destination_id' => 'integer',
     ];
+
+    public function destination()
+    {
+        return $this->belongsTo(Destination::class);
+    }
 
     /**
      * Scope: apenas depoimentos ativos, ordenados.

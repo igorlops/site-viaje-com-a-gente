@@ -235,6 +235,53 @@ class DestinationService
                 ]);        
             }
         }
+
+        // 6. Salvar Depoimentos (Testimonials)
+        $keepTestimonialIds = [];
+        if (!empty($dto->testimonials)) {
+            foreach ($dto->testimonials as $index => $testimonialData) {
+                if (empty($testimonialData['author_name'])) {
+                    continue;
+                }
+
+                $testimonial = null;
+                if (!empty($testimonialData['id'])) {
+                    $testimonial = $destination->testimonials()->find($testimonialData['id']);
+                }
+
+                $testimonialDataToSave = [
+                    'author_name' => $testimonialData['author_name'],
+                    'author_role' => $testimonialData['author_role'] ?? null,
+                    'content' => $testimonialData['content'],
+                    'rating' => (int)($testimonialData['rating'] ?? 5),
+                    'is_active' => isset($testimonialData['is_active']) ? (bool)$testimonialData['is_active'] : true,
+                    'order' => $testimonialData['order'] ?? ($index + 1),
+                ];
+
+                // Upload de foto do autor do Depoimento
+                $fileKey = "testimonials.{$index}.author_photo";
+                if ($request->hasFile($fileKey)) {
+                    if ($testimonial && $testimonial->author_photo) {
+                        $this->deleteOldImage($testimonial->author_photo);
+                    }
+                    $testimonialDataToSave['author_photo'] = $this->uploadImage($request->file($fileKey), 'testimonials');
+                }
+
+                if ($testimonial) {
+                    $testimonial->update($testimonialDataToSave);
+                } else {
+                    $testimonial = $destination->testimonials()->create($testimonialDataToSave);
+                }
+
+                $keepTestimonialIds[] = $testimonial->id;
+            }
+        }
+
+        $testimonialsToDelete = $destination->testimonials()->whereNotIn('id', $keepTestimonialIds)->get();
+        foreach ($testimonialsToDelete as $tToDelete) {
+            $this->deleteOldImage($tToDelete->author_photo);
+            $tToDelete->delete();
+        }
     }
 
     protected function uploadImage(UploadedFile $file, string $directory): string

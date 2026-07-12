@@ -77,6 +77,16 @@ class DestinationStoreRequest extends FormRequest
             'payment_methods.*.subtext' => 'nullable|string|max:1000',
             'payment_methods.*.order' => 'nullable|integer',
             'payment_methods.*.active' => 'nullable',
+
+            'testimonials' => 'nullable|array',
+            'testimonials.*.id' => 'nullable|integer',
+            'testimonials.*.author_name' => 'required|string|max:255',
+            'testimonials.*.author_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+            'testimonials.*.content' => 'required|string',
+            'testimonials.*.rating' => 'required|integer|min:1|max:5',
+            'testimonials.*.destination_id' => 'nullable|exists:destinations,id',
+            'testimonials.*.is_active' => 'boolean',
+            'testimonials.*.order' => 'nullable|integer|min:0',
         ];
     }
 
@@ -90,6 +100,12 @@ class DestinationStoreRequest extends FormRequest
             'price.required' => 'O preço é obrigatório.',
             'type.required' => 'Selecione o tipo do destino.',
             'type.in' => 'O tipo do destino selecionado é inválido.',
+
+            'testimonials.*.author_name.required' => 'O nome do autor é obrigatório.',
+            'testimonials.*.content.required' => 'O conteúdo do depoimento é obrigatório.',
+            'testimonials.*.rating.required' => 'A avaliação é obrigatória.',
+            'testimonials.*.rating.min' => 'A avaliação mínima é 1 estrela.',
+            'testimonials.*.rating.max' => 'A avaliação máxima é 5 estrelas.',
         ];
     }
 

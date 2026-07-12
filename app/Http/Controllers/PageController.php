@@ -43,7 +43,7 @@ class PageController extends Controller
         $socialLinks = SocialLink::where('active', true)->get()->keyBy(function ($item) {
             return strtolower($item->name);
         });
-        $testimonials = $this->testimonialRepository->allActive();
+        $testimonials = $this->testimonialRepository->allActiveGlobal();
         return view('home', compact('banner', 'destinations', 'socialLinks', 'testimonials', 'cta_session','countCtaSessions'));
     }
 
@@ -169,7 +169,7 @@ class PageController extends Controller
             return strtolower($item->name);
         });
 
-        $testimonials = $this->testimonialRepository->allActive();
+        $testimonials = $this->testimonialRepository->allActiveForDestination($destination->id);
 
         return view('destination.show', compact('destination', 'socialLinks', 'banner', 'breadcrumbs', 'testimonials', 'cta_session'));
     }

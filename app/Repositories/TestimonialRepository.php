@@ -21,4 +21,14 @@ class TestimonialRepository extends BaseRepository
     {
         return $this->model->active()->get();
     }
+
+    public function allActiveGlobal(): Collection
+    {
+        return $this->model->active()->whereNull('destination_id')->get();
+    }
+
+    public function allActiveForDestination(int $destinationId): Collection
+    {
+        return $this->model->active()->where('destination_id', $destinationId)->get();
+    }
 }

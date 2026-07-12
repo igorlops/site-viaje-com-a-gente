@@ -53,6 +53,11 @@
                     <i class="fas fa-credit-card text-sm"></i>
                     <span>Formas de Pagamento</span>
                 </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="tab-testimonials-tab" onclick="switchTab(event, 'testimonials-tab')"
+                    class="tab-btn inline-flex shrink-0 items-center gap-2 rounded-t-xl border border-transparent px-4 sm:px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#001c3d]/30 text-gray-400 hover:text-[#001c3d] hover:bg-white/60">
+                    <i class="fas fa-comments text-sm"></i>
+                    <span>Depoimentos</span>
+                </button>
             </nav>
         </div>
 
@@ -217,6 +222,81 @@
                             class="w-4 h-4 rounded text-[#001c3d] focus:ring-[#001c3d] border-gray-300">
                         <span class="text-xs font-bold text-[#001c3d] uppercase tracking-wide">Exibir na Home</span>
                     </label>
+                </div>
+            </div>
+
+            {{-- TAB TESTIMONIALS --}}
+            <div id="tab-testimonials-tab" class="tab-content hidden space-y-6">
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-800">Depoimentos dos Clientes</h3>
+                            <p class="text-xs text-gray-400 mt-0.5 font-medium font-semibold">Edite ou adicione novos depoimentos para este destino.</p>
+                        </div>
+                        <button type="button" onclick="addTestimonialRow()" class="bg-[#001c3d] text-white hover:bg-[#001126] px-4 py-2.5 rounded-lg text-xs font-bold transition-colors shadow-sm inline-flex items-center gap-1.5">
+                            <i class="fas fa-plus"></i> Adicionar Depoimento
+                        </button>
+                    </div>
+
+                    <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        @foreach($destination->testimonials as $index => $testimonial)
+                            <div class="p-5 border border-slate-100 rounded-xl bg-white testimonial-row space-y-4 shadow-sm relative animate-fade-in">
+                                <input type="hidden" name="testimonials[{{ $index }}][id]" value="{{ $testimonial->id }}">
+                                <input type="hidden" name="testimonials[{{ $index }}][order]" value="{{ $testimonial->order }}">
+                                <div class="space-y-3">
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5">Nome do Autor</label>
+                                            <input type="text" name="testimonials[{{ $index }}][author_name]" value="{{ old("testimonials.{$index}.author_name", $testimonial->author_name) }}" placeholder="Ex: Maria Silva"
+                                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs font-semibold focus:outline-none transition-colors bg-slate-50/30 focus:bg-white" required>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5">Função/Cargo (Opcional)</label>
+                                            <input type="text" name="testimonials[{{ $index }}][author_role]" value="{{ old("testimonials.{$index}.author_role", $testimonial->author_role) }}" placeholder="Ex: Cliente"
+                                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs font-semibold focus:outline-none transition-colors bg-slate-50/30 focus:bg-white">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5">Avaliação</label>
+                                            <select name="testimonials[{{ $index }}][rating]" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 focus:border-[#001c3d] text-xs font-bold focus:outline-none bg-slate-50/30 focus:bg-white cursor-pointer" required>
+                                                <option value="5" {{ $testimonial->rating == 5 ? 'selected' : '' }}>5 Estrelas</option>
+                                                <option value="4" {{ $testimonial->rating == 4 ? 'selected' : '' }}>4 Estrelas</option>
+                                                <option value="3" {{ $testimonial->rating == 3 ? 'selected' : '' }}>3 Estrelas</option>
+                                                <option value="2" {{ $testimonial->rating == 2 ? 'selected' : '' }}>2 Estrelas</option>
+                                                <option value="1" {{ $testimonial->rating == 1 ? 'selected' : '' }}>1 Estrela</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5">Status</label>
+                                            <select name="testimonials[{{ $index }}][is_active]" class="w-full px-3.5 py-2.5 rounded-lg border border-gray-200 focus:border-[#001c3d] text-xs font-bold focus:outline-none bg-slate-50/30 focus:bg-white cursor-pointer" required>
+                                                <option value="1" {{ $testimonial->is_active ? 'selected' : '' }}>Ativo</option>
+                                                <option value="0" {{ !$testimonial->is_active ? 'selected' : '' }}>Inativo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center">
+                                        @if($testimonial->author_photo)
+                                            <img src="{{ asset('storage/' . $testimonial->author_photo) }}" alt="Foto do Autor" class="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-200 shrink-0">
+                                        @endif
+                                        <div class="flex-grow">
+                                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Autor (Deixe em branco para manter atual)</label>
+                                            <input type="file" name="testimonials[{{ $index }}][author_photo]" accept="image/*"
+                                                class="w-full text-xs text-gray-500 border border-slate-200 rounded-lg p-1.5 focus:outline-none bg-white">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1.5">Depoimento</label>
+                                        <textarea name="testimonials[{{ $index }}][content]" rows="3" placeholder="Escreva o depoimento..."
+                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs font-semibold focus:outline-none transition-colors bg-slate-50/30 focus:bg-white" required>{{ old("testimonials.{$index}.content", $testimonial->content) }}</textarea>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="removeRow(this)" class="absolute top-2 right-2 p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                    <i class="fas fa-trash-alt text-sm"></i>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -653,7 +733,7 @@
         }
 
         function removeRow(btn) {
-            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row');
+            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row, .testimonial-row');
             if (row) row.remove();
         }
 
@@ -838,6 +918,63 @@
                     <button type="button" onclick="removeRow(this)"
                             class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-1">
                         <i class="fas fa-times text-xs"></i>
+                    </button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function addTestimonialRow() {
+            const container = document.getElementById('testimonials-container');
+            const index = container.querySelectorAll('.testimonial-row').length;
+            const html = `
+                <div class="p-5 border border-slate-100 rounded-xl bg-white testimonial-row space-y-4 shadow-sm relative animate-fade-in">
+                    <input type="hidden" name="testimonials[${index}][order]" value="${index + 1}">
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Nome do Autor</label>
+                                <input type="text" name="testimonials[${index}][author_name]" placeholder="Ex: Maria Silva"
+                                    class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Função/Cargo (Opcional)</label>
+                                <input type="text" name="testimonials[${index}][author_role]" placeholder="Ex: Cliente"
+                                    class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Avaliação</label>
+                                <select name="testimonials[${index}][rating]" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none bg-slate-50/30" required>
+                                    <option value="5">5 Estrelas</option>
+                                    <option value="4">4 Estrelas</option>
+                                    <option value="3">3 Estrelas</option>
+                                    <option value="2">2 Estrelas</option>
+                                    <option value="1">1 Estrela</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Status</label>
+                                <select name="testimonials[${index}][is_active]" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none bg-slate-50/30" required>
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Autor</label>
+                            <input type="file" name="testimonials[${index}][author_photo]" accept="image/*"
+                                class="w-full text-xs text-gray-500 border border-slate-200 rounded-lg p-1.5 focus:outline-none bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Depoimento</label>
+                            <textarea name="testimonials[${index}][content]" rows="3" placeholder="Escreva o depoimento..."
+                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30" required></textarea>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeRow(this)" class="absolute top-2 right-2 p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                        <i class="fas fa-trash-alt text-sm"></i>
                     </button>
                 </div>
             `;

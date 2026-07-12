@@ -34,6 +34,9 @@
             <button type="button" onclick="switchTab(event, 'payment-methods-tab')" class="tab-btn px-5 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none text-gray-600 hover:bg-gray-100 hover:text-gray-900">
                 <i class="fas fa-credit-card mr-1.5 text-sm"></i> Formas de Pagamento
             </button>
+            <button type="button" onclick="switchTab(event, 'testimonials-tab')" class="tab-btn px-5 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none text-gray-600 hover:bg-gray-100 hover:text-gray-900">
+                <i class="fas fa-comments mr-1.5 text-sm"></i> Depoimentos
+            </button>
         </div>
 
         <form action="{{ route('admin.destinations.store') }}" method="POST" enctype="multipart/form-data" class="p-6">
@@ -519,6 +522,25 @@
                 </div>
             </div>
 
+            {{-- TAB TESTIMONIALS --}}
+            <div id="tab-testimonials-tab" class="tab-content hidden space-y-6">
+                <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-sm font-bold text-gray-800">Depoimentos dos Clientes</h3>
+                            <p class="text-xs text-gray-400 mt-0.5 font-medium">Cadastre depoimentos específicos para este destino.</p>
+                        </div>
+                        <button type="button" onclick="addTestimonialRow()" class="bg-[#001c3d] text-white hover:bg-[#001126] px-4 py-2.5 rounded-lg text-xs font-bold transition-colors shadow-sm inline-flex items-center gap-1.5">
+                            <i class="fas fa-plus"></i> Adicionar Depoimento
+                        </button>
+                    </div>
+
+                    <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {{-- Depoimentos serão inseridos via JS --}}
+                    </div>
+                </div>
+            </div>
+
             <!-- Buttons Form Actions -->
             <div class="flex items-center justify-end gap-3 pt-6 mt-6 border-t border-gray-100">
                 <a href="{{ route('admin.destinations.index') }}" class="border border-gray-200 hover:bg-gray-50 text-gray-500 px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200">
@@ -547,7 +569,7 @@
         }
 
         function removeRow(btn) {
-            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row');
+            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row, .testimonial-row');
             if (row) row.remove();
         }
 
@@ -681,6 +703,63 @@
                         class="flex-1 border-0 focus:ring-0 px-2 py-1.5 text-xs focus:outline-none" required>
                     <button type="button" onclick="removeRow(this)" class="p-1.5 text-red-500 hover:bg-red-50 rounded transition-colors">
                         <i class="fas fa-times text-xs"></i>
+                    </button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function addTestimonialRow() {
+            const container = document.getElementById('testimonials-container');
+            const index = container.querySelectorAll('.testimonial-row').length;
+            const html = `
+                <div class="p-5 border border-slate-100 rounded-xl bg-white testimonial-row space-y-4 shadow-sm relative animate-fade-in">
+                    <input type="hidden" name="testimonials[${index}][order]" value="${index + 1}">
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Nome do Autor</label>
+                                <input type="text" name="testimonials[${index}][author_name]" placeholder="Ex: Maria Silva"
+                                    class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Função/Cargo (Opcional)</label>
+                                <input type="text" name="testimonials[${index}][author_role]" placeholder="Ex: Cliente"
+                                    class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Avaliação</label>
+                                <select name="testimonials[${index}][rating]" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none bg-slate-50/30" required>
+                                    <option value="5">5 Estrelas</option>
+                                    <option value="4">4 Estrelas</option>
+                                    <option value="3">3 Estrelas</option>
+                                    <option value="2">2 Estrelas</option>
+                                    <option value="1">1 Estrela</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Status</label>
+                                <select name="testimonials[${index}][is_active]" class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none bg-slate-50/30" required>
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Autor</label>
+                            <input type="file" name="testimonials[${index}][author_photo]" accept="image/*"
+                                class="w-full text-xs text-gray-500 border border-slate-200 rounded-lg p-1.5 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Depoimento</label>
+                            <textarea name="testimonials[${index}][content]" rows="3" placeholder="Escreva o depoimento..."
+                                class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30" required></textarea>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeRow(this)" class="absolute top-2 right-2 p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                        <i class="fas fa-trash-alt text-sm"></i>
                     </button>
                 </div>
             `;
