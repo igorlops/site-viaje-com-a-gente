@@ -88,7 +88,7 @@
                     @endif
                     @if($cta->secondary_button_label && $cta->secondary_button_url)
                         <a href="{{ $cta->secondary_button_url }}" target="{{ $cta->secondary_button_target }}"
-                           class="text-sm font-semibold transition duration-200 {{ $secondaryBtnStyles }}">
+                           class="text-sm font-semibold transition duration-200 {{ $secondaryBtnStyles }} w-full px-6 py-3.5 rounded-xl font-bold text-sm tracking-wide uppercase transition duration-200 flex items-center justify-center gap-2 transform">
                             {{ $cta->secondary_button_label }}
                         </a>
                     @endif

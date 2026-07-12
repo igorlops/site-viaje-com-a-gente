@@ -53,7 +53,7 @@
                                     {{ $fullPrice }}
                                 </span>
                                 <div class="relative flex items-center gap-1 self-end mb-1">
-                                    <span class="text-[#fff] text-xs font-bold">mensais</span>
+                                    {{-- <span class="text-[#fff] text-xs font-bold">mensais</span> --}}
                                     <span class="text-[#fff] text-xs font-bold">no PIX/BOLETO</span>
                                 </div>
                             </div>
