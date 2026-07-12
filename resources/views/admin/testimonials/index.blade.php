@@ -85,6 +85,13 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex items-center justify-end gap-2">
+                                        <form action="{{ route('admin.testimonials.duplicate', $testimonial) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#002752]/5 hover:bg-[#002752] text-[#002752] hover:text-white text-xs font-bold transition duration-200">
+                                                <i class="fas fa-copy text-[10px]"></i> Copiar
+                                            </button>
+                                        </form>
                                         <a href="{{ route('admin.testimonials.edit', $testimonial) }}"
                                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#002752]/5 hover:bg-[#002752] text-[#002752] hover:text-white text-xs font-bold transition duration-200">
                                             <i class="fas fa-edit text-[10px]"></i> Editar

@@ -96,6 +96,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/testimonials', [AdminController::class, 'testimonialStore'])->name('admin.testimonials.store');
     Route::get('/testimonials/{testimonial}/edit', [AdminController::class, 'testimonialEdit'])->name('admin.testimonials.edit');
     Route::put('/testimonials/{testimonial}', [AdminController::class, 'testimonialUpdate'])->name('admin.testimonials.update');
+    Route::post('/testimonials/{testimonial}/duplicate', [AdminController::class, 'testimonialDuplicate'])->name('admin.testimonials.duplicate');
     Route::delete('/testimonials/{testimonial}', [AdminController::class, 'testimonialDestroy'])->name('admin.testimonials.destroy');
 
     // CRUD Dúvidas Frequentes

@@ -322,7 +322,8 @@ public function dashboard()
 
     public function testimonialCreate()
     {
-        return view('admin.testimonials.create');
+        $destinations = Destination::all();
+        return view('admin.testimonials.create', compact('destinations'));
     }
 
     public function testimonialStore(TestimonialRequest $request)
@@ -334,8 +335,9 @@ public function dashboard()
     }
 
     public function testimonialEdit(Testimonial $testimonial)
-    {
-        return view('admin.testimonials.edit', compact('testimonial'));
+    { 
+        $destinations = Destination::all(); 
+        return view('admin.testimonials.edit', compact('testimonial', 'destinations'));
     }
 
     public function testimonialUpdate(TestimonialRequest $request, Testimonial $testimonial)
@@ -344,6 +346,13 @@ public function dashboard()
         $this->testimonialService->update($testimonial->id, $dto, $request);
 
         return redirect()->route('admin.testimonials.index')->with('success', 'Depoimento atualizado com sucesso!');
+    }
+
+    public function testimonialDuplicate(Testimonial $testimonial)
+    {
+        $this->testimonialService->duplicate($testimonial->id);
+
+        return redirect()->route('admin.testimonials.index')->with('success', 'Depoimento duplicado com sucesso!');
     }
 
     public function testimonialDestroy(Testimonial $testimonial)
