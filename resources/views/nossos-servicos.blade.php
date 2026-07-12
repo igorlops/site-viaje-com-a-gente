@@ -28,32 +28,44 @@
             <!-- Services Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($services as $service)
-                    <div class="bg-white rounded-2xl border border-gray-100 shadow-md hover:shadow-2xl hover:-translate-y-1 transition duration-300 overflow-hidden flex flex-col">
-                        <!-- Image + Title Overlay -->
-                        <div class="relative h-44 overflow-hidden">
-                            <img src="{{ Storage::url($service->image_path) }}" alt="{{ $service->title }}"
-                                 class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                            <div class="absolute inset-0 flex items-end justify-center pb-4 px-4">
-                                <h3 class="text-[#f3a908] font-black text-lg uppercase tracking-wide leading-tight text-center">
-                                    {{ $service->title }}
-                                </h3>
-                            </div>
-                        </div>
+                    <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
+    
+    <!-- Container da Imagem com efeito Zoom -->
+    <div class="relative h-64 overflow-hidden bg-gray-100">
+        <img src="{{ Storage::url($service->image_path) }}" 
+             alt="{{ $service->title }}"
+             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out">
+        
+        <!-- Gradiente sutil na base da imagem para dar acabamento -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+    </div>
 
-                        <!-- Body -->
-                        <div class="p-6 flex flex-col flex-1">
-                            <p class="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
-                                {{ $service->subtitle }}
-                            </p>
-                            <button type="button"
-                                    data-service="{{ $service->title }}"
-                                    onclick="selecionarServico(this)"
-                                    class="cursor-pointer service-cta bg-[#109e4a] hover:bg-[#0d9648] text-center justify-center text-white px-8 py-4 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
-                                Saiba Mais
-                            </button>
-                        </div>
-                    </div>
+    <!-- Corpo do Card -->
+    <div class="p-6 flex flex-col flex-1">
+        
+        <!-- Título Elegante e Centralizado/Alinhado -->
+        <h3 class="text-[#002752] font-black text-xl uppercase tracking-wide leading-tight text-center mb-3 group-hover:text-[#109e4a] transition-colors duration-300">
+            {{ $service->title }}
+        </h3>
+        
+        <!-- Divisor sutil para organizar a leitura -->
+        <div class="w-10 h-0.5 bg-[#f3a908] mx-auto mb-4 rounded"></div>
+
+        <!-- Descrição com tipografia leve -->
+        <p class="text-gray-500 text-sm text-center leading-relaxed mb-6 flex-1 px-1">
+            {{ $service->subtitle }}
+        </p>
+
+        <!-- Botão Call to Action Otimizado -->
+        <button type="button"
+                data-service="{{ $service->title }}"
+                onclick="selecionarServico(this)"
+                class="w-full cursor-pointer bg-[#109e4a] hover:bg-[#0d9648] text-white py-3.5 rounded-xl font-black text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-lg shadow-macro flex items-center justify-center gap-2 shrink-0 group-hover:translate-y-[-2px]">
+            <span>Saiba Mais</span>
+            <i class="fas fa-chevron-right text-[10px] transform group-hover:translate-x-1 transition-transform"></i>
+        </button>
+    </div>
+</div>
                 @endforeach
             </div>
     </section>
@@ -395,6 +407,7 @@
             if (hiddenType) {
                 hiddenType.value = value ? ('Serviço: ' + value) : 'Contato: Nossos Serviços';
         }
+    }
     </script>
 
     @if($ctaSession = $cta_session->firstWhere('order_position', 3))
