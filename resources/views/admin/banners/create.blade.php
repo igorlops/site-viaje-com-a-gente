@@ -80,6 +80,21 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Imagem Mobile de Fundo</label>
+                <div class="flex flex-col sm:flex-row gap-6 items-start">
+                    
+                    <div class="flex-grow">
+                        <span class="block text-xs font-semibold text-gray-400 mb-1">Enviar nova imagem:</span>
+                        <input type="file" name="image_path_mobile" id="image_path_mobile" accept="image/*"
+                            class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-black file:uppercase file:bg-gray-100 file:text-[#002752] hover:file:bg-gray-200 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-1">
+                        <p class="text-[10px] text-gray-400 mt-1.5">Formatos suportados: JPG, JPEG, PNG, GIF. Tamanho máximo: 5MB.</p>
+                        @error('image_path_mobile')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+            </div>
 
             <div class="flex items-center gap-3 bg-slate-50 p-4 rounded-xl border border-slate-100 cursor-pointer select-none hover:bg-slate-100 transition-colors w-fit">
                 <label class="flex items-center gap-3 cursor-pointer">

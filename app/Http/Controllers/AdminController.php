@@ -121,6 +121,7 @@ public function dashboard()
             'titulo_destaque' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image_path_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'page_id' => 'nullable',
             'active' => 'boolean',
             
@@ -142,6 +143,10 @@ public function dashboard()
         // Upload da imagem
         if ($request->hasFile('image')) {
             $data['image_path'] = $request->file('image')->store('banners', 'public');
+        }
+
+        if ($request->hasFile('image_path_mobile')) {
+            $data['image_path_mobile'] = $request->file('image_path_mobile')->store('banners', 'public');
         }
 
         // Tratamento dos botões (limpa vazios e aplica fallbacks)
@@ -208,6 +213,7 @@ public function dashboard()
             'titulo_destaque' => 'nullable|string|max:255',
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image_path_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'page_id' => 'nullable|integer',
             'active' => 'boolean',
             'features' => 'nullable|array',
@@ -230,6 +236,13 @@ public function dashboard()
                 Storage::disk('public')->delete($banner->image_path);
             }
             $data['image_path'] = $request->file('image')->store('banners', 'public');
+        }
+
+        if ($request->hasFile('image_path_mobile')) {
+            if ($banner->image_path_mobile) {
+                Storage::disk('public')->delete($banner->image_path_mobile);
+            }
+            $data['image_path_mobile'] = $request->file('image_path_mobile')->store('banners', 'public');
         }
 
         if (isset($data['buttons'])) {
@@ -265,7 +278,7 @@ public function dashboard()
 
     public function destinations()
     {
-        $destinations = Destination::latest()->get();
+        $destinations = Destination::where('type','viagem-em-grupo')->latest()->get();
         return view('admin.destinations.index', compact('destinations'));
     }
 
@@ -723,5 +736,55 @@ public function dashboard()
         }
 
         return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session duplicada com sucesso!');
+    }
+
+    /* BATE E VOLTA CRUD */
+
+    public function bateVoltaIndex()
+    {
+        $destinations = Destination::where('type', 'bate-e-volta')->latest()->get();
+        return view('admin.bate-volta.index', compact('destinations'));
+    }
+
+    public function bateVoltaCreate()
+    {
+        return view('admin.bate-volta.create');
+    }
+
+    public function bateVoltaStore(\App\Http\Requests\Admin\DestinationStoreRequest $request)
+    {
+        dd($request->all());
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->create($dto, $request);
+
+        return redirect()->route('admin.bate-volta.index')->with('success', 'Passeio Bate e Volta criado com sucesso!');
+    }
+
+    public function bateVoltaEdit(Destination $destination)
+    {
+        $destination->load(['includes', 'observations']);
+        return view('admin.bate-volta.edit', compact('destination'));
+    }
+
+    public function bateVoltaUpdate(\App\Http\Requests\Admin\DestinationStoreRequest $request, Destination $destination)
+    {
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->update($destination->id, $dto, $request);
+
+        return redirect()->route('admin.bate-volta.index')->with('success', 'Passeio Bate e Volta atualizado com sucesso!');
+    }
+
+    public function bateVoltaDestroy(Destination $destination)
+    {
+        $this->destinationService->destroy($destination->id);
+
+        return redirect()->route('admin.bate-volta.index')->with('success', 'Passeio excluído com sucesso!');
+    }
+
+    public function bateVoltaDuplicate(Destination $destination)
+    {
+        $this->destinationService->duplicate($destination->id);
+
+        return redirect()->route('admin.bate-volta.index')->with('success', 'Passeio duplicado com sucesso!');
     }
 }

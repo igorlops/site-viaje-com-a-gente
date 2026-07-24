@@ -14,7 +14,7 @@
                 <div>
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f3a908] mb-6">Navegação</h3>
                     <ul class="space-y-3.5 text-sm">
-                        <li><a href="{{ route('packages20262027') }}" class="text-gray-400 hover:text-white transition duration-200">Pacotes 2026/2027</a></li>
+                        {{-- <li><a href="{{ route('packages20262027') }}" class="text-gray-400 hover:text-white transition duration-200">Pacotes 2026/2027</a></li> --}}
                         <li><a href="{{ route('short-trips') }}" class="text-gray-400 hover:text-white transition duration-200">Bate e Volta</a></li>
                         <li><a href="{{ route('group-trips') }}" class="text-gray-400 hover:text-white transition duration-200">Viagens em Grupo</a></li>
                         <li><a href="{{ route('destination') }}" class="text-gray-400 hover:text-white transition duration-200">Destinos</a></li>

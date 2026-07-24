@@ -23,7 +23,7 @@ class DestinationSeeder extends Seeder
     'title' => 'Rio de Janeiro + Arraial do Cabo',
     'subtitle' => 'Pacote completo com roteiro exclusivo, hospedagem e os principais passeios para você aproveitar o melhor de cada destino.',
     'image_path' => 'destinations/rio.png',
-    'duration' => '6 DIAS',
+    'duration' => '6',
     'category' => 'AÉREO + HOTEL + PASSEIOS',
     'price' => 289.00, // ASSUMIDO: valor da entrada informado na imagem (R$ 289,00). Ajuste se "price" representar outra coisa no seu front.
     'tag' => NULL, // ASSUMIDO: nenhuma tag foi mostrada na imagem (ex: "MAIS VENDIDO")
@@ -35,7 +35,7 @@ class DestinationSeeder extends Seeder
     'banner_image_path' => 'destinations/rio.png',
     'full_price' => 'R$ 4.950',
     'date_range' => '05 a 10 de Junho 2027',
-    'nights' => '6 dias / 5 noites',
+    'nights' => '6',
     'departure_date' => '05 de Junho 2027',
     'return_date' => '10 de Junho 2027',
     'departure_city' => 'Fortaleza - CE',

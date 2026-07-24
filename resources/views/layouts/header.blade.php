@@ -2,11 +2,23 @@
 @php
     $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
     $bannerUrl = $banner && $banner->image_path ? asset('storage/' . $banner->image_path) : asset('assets/images/page-home.jpeg');
+    $bannerUrlMobile = $banner && $banner->image_path_mobile ? asset('storage/' . $banner->image_path_mobile) : $bannerUrl;
     $bannerTitle = $banner && $banner->title ? $banner->title : 'Sua próxima viagem está';
     $bannerTitleDestaque = $banner && $banner->titulo_destaque ? $banner->titulo_destaque : 'mais perto do que você imagina!';
     $bannerSubtitle = $banner && $banner->subtitle ? $banner->subtitle : 'Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.';
 @endphp
 <section class="relative bg-cover bg-center h-[550px] lg:h-[650px] flex items-center" style="background-image: url('{{ $bannerUrl }}');">
+    {{-- quero fazer --}}
+    <script>
+    // Se for mobile (tela pequena), carrega a imagem mobile, senão carrega a normal
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 768) {
+            document.querySelector('section').style.backgroundImage = 'url("{{ $bannerUrlMobile }}")';
+        } else {
+            document.querySelector('section').style.backgroundImage = 'url("{{ $bannerUrl }}")';
+        }
+    });
+</script>
     <!-- Overlay -->
     <div class="absolute inset-0 bg-gradient-to-r from-[#001c3d]/90 via-[#001c3d]/60 to-transparent"></div>
     

@@ -5,76 +5,104 @@
 @section('content')
 @php
      $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
+
+     $steps = [
+        [
+            'order' => 1,
+            'title' => 'Escolha seu destino',
+            'description' => 'Veja as opções de pacotes ou fale com um consultor.',
+            'icon' => 'fas fa-search',
+            'colorText' => '#fff',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'order' => 2,
+            'title' => 'Receba sua proposta',
+            'description' => 'Enviamos as melhores opções de acordo com seu perfil.',
+            'icon' => 'far fa-file-alt',
+            'colorText' => '#002752',
+            'stepColor' => '#f2bd11',
+        ],
+        [
+            'order' => 3,
+            'title' => 'Forma de pagamento',
+            'description' => 'Boleto, PIX ou cartão em até 12x.',
+            'icon' => 'far fa-credit-card',
+            'colorText' => '#fff',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'order' => 4,
+            'title' => 'Prepare as malas',
+            'description' => 'A gente cuida de tudo para você viajar tranquilo.',
+            'icon' => 'fas fa-suitcase',
+            'colorText' => '#002752',
+            'stepColor' => '#f2bd11',
+        ],
+        [
+            'order' => 5,
+            'title' => 'Viaje tranquilo',
+            'description' => 'Com suporte completo antes, durante e após sua viagem.',
+            'icon' => 'fas fa-plane-departure',
+            'colorText' => '#fff',
+            'stepColor' => '#109e4a',
+        ],
+];
+
+     $benefits = [
+        [
+            'title' => 'Parcelamento no Boleto',
+            'description' => 'Mais facilidade para você realizar seu sonho.',
+            'icon' => 'fas fa-barcode',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'title' => 'Atendimento Humano',
+            'description' => 'Fale com pessoas reais antes, durante e depois da viagem.',
+            'icon' => 'fas fa-headset',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'title' => 'Roteiros Completos',
+            'description' => 'Tudo organizado para você não se preocupar com nada.',
+            'icon' => 'fas fa-route',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'title' => 'Segurança e Confiança',
+            'description' => 'Trabalhamos com os melhores fornecedores e parceiros.',
+            'icon' => 'fas fa-shield-alt',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'title' => 'Grupo ou em Família',
+            'description' => 'Opções para todos os perfis: casal, família, amigos e grupos.',
+            'icon' => 'fas fa-users-cog',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+        [
+            'title' => 'Suporte via WhatsApp',
+            'description' => 'Tire dúvidas e receba suporte rápido e eficiente.',
+            'icon' => 'fab fa-whatsapp',
+            'colorText' => '#109e4a',
+            'stepColor' => '#109e4a',
+        ],
+     ];
 @endphp
 
-    <!-- NOVO HERO DE BOAS-VINDAS / INTRODUÇÃO PREMIUM -->
-    <section class="relative bg-gradient-to-b from-[#002752]/10 via-white to-white py-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Copy Principal -->
-                <div class="lg:col-span-7 text-center lg:text-left">
-                    <span class="text-[#109e4a] text-xs font-black uppercase tracking-widest bg-[#109e4a]/10 px-4 py-1.5 rounded-full inline-block mb-4">
-                        Sua Próxima História Começa Aqui
-                    </span>
-                    <h1 class="text-4xl sm:text-5xl font-black text-[#002752] tracking-tight leading-none mb-6">
-                        O mundo é grande demais para você ficar no mesmo lugar.
-                    </h1>
-                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
-                        Planejamos, organizamos e executamos cada detalhe da sua viagem. Seja para um bate e volta revigorante no final de semana ou para desbravar novos horizons em grupos nacionais e internacionais, nós cuidamos de toda a logística para você focar apenas em viver o momento.
-                    </p>
-                    
-                    <!-- Botões de Ação Rápida (Segmentação de Público) -->
-                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-                        <a href="#destinos" class="w-full sm:w-auto bg-[#002752] hover:bg-[#001c3b] text-white text-center px-8 py-4 rounded-xl font-black text-sm tracking-wide uppercase transition duration-300 shadow-lg shadow-[#002752]/20">
-                            Explorar Destinos
-                        </a>
-                        <a href="{{ $whatsappUrl }}" target="_blank" class="w-full sm:w-auto bg-[#109e4a] hover:bg-[#0d9648] text-white text-center px-8 py-4 rounded-xl font-black text-sm tracking-wide uppercase transition duration-300 shadow-lg shadow-[#109e4a]/20 flex items-center justify-center gap-2">
-                            <i class="fab fa-whatsapp text-lg"></i>
-                            Falar com Consultor
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Box de Destaque Comercial Lateral -->
-                <div class="lg:col-span-5 bg-white border border-gray-100 rounded-3xl p-8 shadow-[0_20px_50px_rgba(0,39,82,0.05)] relative">
-                    <div class="absolute -top-4 -right-4 bg-[#f3a908] text-[#002752] font-black text-xs uppercase px-4 py-1.5 rounded-lg shadow-md rotate-6">
-                        Facilitado!
-                    </div>
-                    <h3 class="text-xl font-black text-[#002752] mb-4">Por que viajar conosco?</h3>
-                    <div class="space-y-4">
-                        <div class="flex gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[#f3a908]/10 text-[#f3a908] flex items-center justify-center shrink-0"><i class="fas fa-barcode text-sm"></i></div>
-                            <div>
-                                <h4 class="font-bold text-sm text-gray-800">Boleto Sem Consulta</h4>
-                                <p class="text-xs text-gray-500">Parcele sua viagem sem burocracia ou consultas ao SPC/Serasa.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-3">
-                            <div class="w-8 h-8 rounded-lg bg-[#109e4a]/10 text-[#109e4a] flex items-center justify-center shrink-0"><i class="fas fa-headset text-sm"></i></div>
-                            <div>
-                                <h4 class="font-bold text-sm text-gray-800">Suporte 24h e Humanizado</h4>
-                                <p class="text-xs text-gray-500">Consultores reais acompanhando seus embarques do início ao fim.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    @if($ctaSession = $cta_session->firstWhere('order_position', 1))
-        <x-cta-session :cta="$ctaSession" />
-    @endif
 
     <!-- DESTINOS EM DESTAQUE -->
-    <section class="py-20 bg-white border-t border-gray-50" id="destinos">
+    <section class="py-20 bg-white" id="destinos">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-16 relative">
                 <div class="inline-flex items-center justify-center gap-2 mb-2 text-[#002752] uppercase font-black tracking-widest text-sm">
-                    <span>Nossos Catálogos</span>
+                    <span>Destinos em Destaque</span>
                     <i class="fas fa-paper-plane text-[#109e4a] transform rotate-12"></i>
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#002752] tracking-tight">
@@ -110,154 +138,113 @@
             <!-- Header -->
             <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold uppercase tracking-tight">
-                    A Experiência de Viajar Conosco
+                    Por que viajar com a gente?
                 </h2>
-                <div class="w-16 h-1 bg-[#f3a908] mx-auto mt-4 rounded"></div>
+                <div class="w-16 h-1 bg-[#f2bd11] mx-auto mt-4 rounded"></div>
             </div>
             
-            <!-- Grid Benefits Premium -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Grid Benefits -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8">
                 <!-- Benefit 1 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fas fa-barcode text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Parcelamento no Boleto Imbatível</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Planeje suas viagens de forma inteligente sem comprometer o limite do seu cartão de crédito.
-                    </p>
-                </div>
-                <!-- Benefit 2 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fas fa-headset text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Atendimento 100% Humanizado</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Nada de robôs chatos. Aqui você conversa com consultores especialistas antes, durante e depois do seu passeio.
-                    </p>
-                </div>
-                <!-- Benefit 3 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fas fa-route text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Logística e Roteiros Completos</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Nossos roteiros são validados e integrados para que você aproveite cada minuto, sem imprevistos.
-                    </p>
-                </div>
-                <!-- Benefit 4 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fas fa-shield-alt text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Segurança Operacional</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Trabalhamos exclusivamente com frotas seguras, motoristas experientes e operadoras credenciadas.
-                    </p>
-                </div>
-                <!-- Benefit 5 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fas fa-users text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Viagens Adaptadas e Grupos</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Formatos perfeitos para quem viaja sozinho fazer amizades, casais ou famílias completas.
-                    </p>
-                </div>
-                <!-- Benefit 6 -->
-                <div class="bg-white/5 border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition duration-300">
-                    <div class="w-12 h-12 rounded-xl bg-[#f3a908] text-[#002752] flex items-center justify-center mb-6 shadow-md">
-                        <i class="fab fa-whatsapp text-xl"></i>
-                    </div>
-                    <h3 class="text-base font-bold uppercase mb-2 tracking-wide text-white">Plantão Exclusivo</h3>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        Um canal direto no WhatsApp sempre ativo para sanar dúvidas urgentes durante os dias de viagem.
-                    </p>
-                </div>
+                    @foreach ($benefits as $benefit)
+                        <div class="text-center flex flex-col items-center">
+                            <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                                <i class="{{ $benefit['icon'] }} text-2xl"></i>
+                            </div>
+                            <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">{{ $benefit['title'] }}</h3>
+                            <p class="text-xs text-gray-300 leading-relaxed">
+                                {{ $benefit['description'] }}
+                            </p>
+                        </div>
+                    @endforeach
+
             </div>
         </div>
     </section>
 
-    <!-- COMO FUNCIONA (Linha de Processo Otimizada) -->
+    <!-- COMO FUNCIONA -->
     <section class="py-20 bg-gray-50" id="como-funciona">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Header -->
-            <div class="text-center mb-20">
+            <div class="text-center mb-16">
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-[#002752] tracking-tight uppercase">
-                    Do Clique ao Embarque
+                    Como Funciona
                 </h2>
-                <p class="text-sm text-gray-500 mt-2">Passo a passo simples para planejar suas próximas férias</p>
                 <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
             </div>
             
-            <!-- Steps Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                <!-- Step 1 -->
-                <div class="text-center flex flex-col items-center group">
-                    <div class="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#109e4a]/30 transition duration-300 relative">
-                        <span class="absolute -top-2 -right-2 w-6 m-0 h-6 rounded-full bg-[#109e4a] text-white flex items-center justify-center font-bold text-xs">1</span>
-                        <i class="fas fa-search text-[#002752] text-2xl"></i>
-                    </div>
-                    <h3 class="text-sm font-bold text-[#002752] mb-1">Escolha seu destino</h3>
-                    <p class="text-[11px] text-gray-500 max-w-[180px] leading-relaxed">
-                        Navegue por nossas opções ou solicite apoio.
-                    </p>
-                </div>
-                <!-- Step 2 -->
-                <div class="text-center flex flex-col items-center group">
-                    <div class="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#f3a908]/30 transition duration-300 relative">
-                        <span class="absolute -top-2 -right-2 w-6 m-0 h-6 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center font-bold text-xs">2</span>
-                        <i class="far fa-file-alt text-[#002752] text-2xl"></i>
-                    </div>
-                    <h3 class="text-sm font-bold text-[#002752] mb-1">Receba a Proposta</h3>
-                    <p class="text-[11px] text-gray-500 max-w-[180px] leading-relaxed">
-                        Ajustamos tudo de acordo com as suas preferências.
-                    </p>
-                </div>
-                <!-- Step 3 -->
-                <div class="text-center flex flex-col items-center group">
-                    <div class="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#109e4a]/30 transition duration-300 relative">
-                        <span class="absolute -top-2 -right-2 w-6 m-0 h-6 rounded-full bg-[#109e4a] text-white flex items-center justify-center font-bold text-xs">3</span>
-                        <i class="far fa-credit-card text-[#002752] text-2xl"></i>
-                    </div>
-                    <h3 class="text-sm font-bold text-[#002752] mb-1">Forma de Pagamento</h3>
-                    <p class="text-[11px] text-gray-500 max-w-[180px] leading-relaxed">
-                        Defina entre Boleto, PIX ou Cartão em até 10x.
-                    </p>
-                </div>
-                <!-- Step 4 -->
-                <div class="text-center flex flex-col items-center group">
-                    <div class="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#f3a908]/30 transition duration-300 relative">
-                        <span class="absolute -top-2 -right-2 w-6 m-0 h-6 rounded-full bg-[#f3a908] text-[#002752] flex items-center justify-center font-bold text-xs">4</span>
-                        <i class="fas fa-suitcase text-[#002752] text-2xl"></i>
-                    </div>
-                    <h3 class="text-sm font-bold text-[#002752] mb-1">Organize as Malas</h3>
-                    <p class="text-[11px] text-gray-500 max-w-[180px] leading-relaxed">
-                        Enviamos seus vouchers e dicas cruciais sobre a região.
-                    </p>
-                </div>
-                <!-- Step 5 -->
-                <div class="text-center flex flex-col items-center group">
-                    <div class="w-20 h-20 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center mb-4 group-hover:scale-105 group-hover:border-[#109e4a]/30 transition duration-300 relative">
-                        <span class="absolute -top-2 -right-2 w-6 m-0 h-6 rounded-full bg-[#109e4a] text-white flex items-center justify-center font-bold text-xs">5</span>
-                        <i class="fas fa-plane-departure text-[#002752] text-2xl"></i>
-                    </div>
-                    <h3 class="text-sm font-bold text-[#002752] mb-1">Embarque Garantido</h3>
-                    <p class="text-[11px] text-gray-500 max-w-[180px] leading-relaxed">
-                        Curta seu roteiro sabendo que damos retaguarda total.
-                    </p>
+            <!-- Steps -->
+            <div class="relative">
+                <!-- Line background on desktop -->
+                <div class="hidden lg:block absolute top-10 left-16 right-16 h-0.5 bg-gray-200 -z-0"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 relative z-10">
+                    @foreach ($steps as $step)
+                        <div class="text-center flex flex-col items-center">
+                            <span class="w-8 h-8 rounded-full bg-[{{ $step['stepColor'] }}] text-[{{ $step['colorText'] }}] flex items-center justify-center font-bold text-sm mb-4">{{ $step['order'] }}</span>
+                            <div class="w-20 h-20 rounded-full bg-white border border-gray-100 shadow-md flex items-center justify-center mb-4 hover:scale-105 transition duration-300">
+                                <i class="{{ $step['icon'] }} text-[#002752] text-2xl"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-[#002752] mb-2">{{ $step['title'] }}</h3>
+                            <p class="text-xs text-gray-500 max-w-[200px] leading-relaxed">
+                                {{ $step['description'] }}
+                            </p>
+                        </div>
+                    @endforeach
+                    
                 </div>
             </div>
         </div>
     </section>
-    @if($ctaSession = $cta_session->firstWhere('order_position', 2))
-        <x-cta-session :cta="$ctaSession" />
-    @endif
 
-    <!-- DEPOIMENTOS DE CLIENTES -->
+    <!-- PROMOTIONAL BANNER -->
+    <section class="bg-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Adicionado um mt-16 no card para garantir espaço para a imagem vazar para cima -->
+        <div class="bg-gradient-to-br from-[#109e4a] to-[#0b803a] rounded-2xl shadow-xl text-white relative flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 pt-28 lg:pt-0 pb-0 gap-8 lg:gap-4 mt-16">
+            
+            <!-- Container da Imagem (self-end faz ela grudar em baixo no desktop) -->
+            <div class="w-full hidden lg:block lg:w-auto flex justify-center lg:justify-start lg:self-end order-1 lg:order-none shrink-0">
+                <img src="{{ asset('assets/images/mulher_com_mala_e_tickets_viagem_fortaleza.png') }}" 
+                     alt="Mulher com mala" 
+                     class="w-[200px] sm:w-[280px] lg:w-[450px] xl:w-[400px] -mt-36 lg:-mt-24 object-contain object-bottom relative z-10 drop-shadow-2xl">
+            </div>
+            
+            <!-- Promo Text & Checklist -->
+            <div class="w-full max-w-xl relative z-10 text-center lg:text-left py-0 lg:py-12 order-2 lg:order-none">
+                <h2 class="text-2xl sm:text-3xl font-black mb-6 leading-tight">
+                    Parcele sua viagem no <span class="underline decoration-[#f2bd11] decoration-4">boleto</span> e realize seu sonho!
+                </h2>
+                
+                <ul class="space-y-3.5 inline-block text-left">
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                        <span class="font-semibold text-sm">Sem consulta ao SPC/Serasa</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                        <span class="font-semibold text-sm">Você escolhe a melhor data para pagar</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fas fa-check-circle text-[#f2bd11] text-lg"></i>
+                        <span class="font-semibold text-sm">Mais liberdade para planejar sua viagem</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Promo Stamp -->
+            <div class="relative z-10 flex flex-col items-center justify-center border-4 border-dashed border-white/40 p-6 rounded-xl bg-white/5 backdrop-blur-sm shrink-0 w-full sm:w-80 mb-8 lg:mb-0 lg:my-12 order-3 lg:order-none">
+                <i class="fas fa-barcode text-5xl mb-3 text-[#f2bd11]"></i>
+                <span class="text-xs uppercase tracking-widest font-medium text-green-100">Parcelamento</span>
+                <span class="text-xl uppercase font-black tracking-wider text-white">Facilitado</span>
+                <span class="text-sm uppercase font-bold text-[#f2bd11]">No Boleto</span>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
     <section class="py-16 bg-white border-t border-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             @if(isset($testimonials) && $testimonials->count() > 0)
@@ -302,8 +289,29 @@
             @endif
         </div>
     </section>
-    @if($ctaSession = $cta_session->firstWhere('order_position', 3))
-        <x-cta-session :cta="$ctaSession" />
-    @endif
+
+    <!-- PRONTO PARA VIAJAR -->
+    <section class="bg-[#f2bd11] py-8 text-[#002752]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+                <!-- Text block -->
+                <div class="flex items-center gap-4 text-center lg:text-left flex-col sm:flex-row">
+                    <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#109e4a] shrink-0">
+                        <i class="fab fa-whatsapp text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="block text-lg font-black uppercase tracking-wide">Pronto para viajar?</span>
+                        <span class="block text-sm font-medium">Fale agora com um consultor e receba sua proposta personalizada!</span>
+                    </div>
+                </div>
+                
+                <!-- Button -->
+                <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                    <span>(85) 9 9916-6421 Clique e fale no WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
 @endsection

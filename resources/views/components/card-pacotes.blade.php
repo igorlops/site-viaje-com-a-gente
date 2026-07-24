@@ -19,16 +19,27 @@
             <p class="text-gray-500 text-sm font-medium mb-3">
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
-            @if($pkg->tag)
-                <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
-                    {{ $pkg->tag }}
-                </span>
-            @endif
+            <div class="flex items-center gap-2 mb-2">
+                @if($pkg->tag)
+                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
+                        {{ $pkg->tag }}
+                    </span>
+                @endif
+            </div>
             <!-- Info Badge -->
-            <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
+            <div class="flex flex-row justify-between">
+                <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
                     <i class="far fa-calendar text-[#109e4a]"></i>
-                    <span>{{ $pkg->duration }} Dias @if($pkg->nights) e {{ $pkg->nights }} Noites @endif</span>
+                    <span>
+                        @if($pkg->duration) {{ $pkg->duration }} @if($pkg->duration > 1) Dias @else Dia @endif @endif @if($pkg->duration > 1) e {{ $pkg->nights }} Noites @else @if($pkg->nights > 1) e {{ $pkg->nights }} Noites @else  @endif @endif
+                    </span>
                 </div>
+                <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
+                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded">
+                        {{ $pkg->trip_type }}
+                    </span>
+                </div>
+            </div>
         </div>
         
         <div>

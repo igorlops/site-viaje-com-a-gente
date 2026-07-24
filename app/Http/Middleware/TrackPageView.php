@@ -61,7 +61,7 @@ class TrackPageView
             'destination.show'=> 'Detalhe do Destino',
             'services'        => 'Nossos Serviços',
             'service.show'    => 'Detalhe do Serviço',
-            'packages20262027'=> 'Pacotes 2026-2027',
+            // 'packages20262027'=> 'Pacotes 2026-2027',
             'short-trips'     => 'Bate e Volta',
             'group-trips'     => 'Viagens em Grupo',
             'faq'             => 'Perguntas Frequentes',

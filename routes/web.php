@@ -14,8 +14,9 @@ Route::get('/pacotes', [PageController::class, 'destinations'])->name('destinati
 // Páginas institucionais
 Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
 // Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
-Route::get('/pacotes-2026-2027', [PageController::class, 'packages20262027'])->name('packages20262027');
+// Route::get('/pacotes-2026-2027', [PageController::class, 'packages20262027'])->name('packages20262027');
 Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
+Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
 Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
 Route::get('/perguntas-frequentes', [PageController::class, 'faq'])->name('faq');
 Route::get('/contato', [PageController::class, 'contact'])->name('contact');
@@ -108,4 +109,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
         'update' => 'admin.faqs.update',
         'destroy' => 'admin.faqs.destroy',
     ]);
+
+    // CRUD Bate e Volta
+    Route::get('/bate-volta', [AdminController::class, 'bateVoltaIndex'])->name('admin.bate-volta.index');
+    Route::get('/bate-volta/create', [AdminController::class, 'bateVoltaCreate'])->name('admin.bate-volta.create');
+    Route::post('/bate-volta', [AdminController::class, 'bateVoltaStore'])->name('admin.bate-volta.store');
+    Route::get('/bate-volta/{destination}/edit', [AdminController::class, 'bateVoltaEdit'])->name('admin.bate-volta.edit');
+    Route::put('/bate-volta/{destination}', [AdminController::class, 'bateVoltaUpdate'])->name('admin.bate-volta.update');
+    Route::delete('/bate-volta/{destination}', [AdminController::class, 'bateVoltaDestroy'])->name('admin.bate-volta.destroy');
+    Route::post('/bate-volta/{destination}/duplicate', [AdminController::class, 'bateVoltaDuplicate'])->name('admin.bate-volta.duplicate');
 });

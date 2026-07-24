@@ -47,20 +47,20 @@ class PageController extends Controller
         return view('home', compact('banner', 'destinations', 'socialLinks', 'testimonials', 'cta_session','countCtaSessions'));
     }
 
-    public function packages20262027()
-    {
-        $breadcrumbs = [
-            [
-                'label' => 'Pacotes 2026-2027',
-                'link' => route('packages20262027')
-            ]
-        ];
-        $banner = $this->bannerService->bannerByPageSlug('pacotes-2026-2027');
-        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('pacotes-2026-2027');
-        $destinations = Destination::where('type', 'pacotes-2026-2027')->get();
-        $socialLinks = $this->getSocialLinks();
-        return view("pacotes-2026-2027", compact("socialLinks", "banner", "destinations", "breadcrumbs", "cta_session"));
-    }
+    // public function packages20262027()
+    // {
+    //     $breadcrumbs = [
+    //         [
+    //             'label' => 'Pacotes 2026-2027',
+    //             'link' => route('packages20262027')
+    //         ]
+    //     ];
+    //     $banner = $this->bannerService->bannerByPageSlug('pacotes-2026-2027');
+    //     [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('pacotes-2026-2027');
+    //     $destinations = Destination::where('type', 'pacotes-2026-2027')->get();
+    //     $socialLinks = $this->getSocialLinks();
+    //     return view("pacotes-2026-2027", compact("socialLinks", "banner", "destinations", "breadcrumbs", "cta_session"));
+    // }
 
     public function services()
     {
@@ -171,8 +171,12 @@ class PageController extends Controller
 
         $testimonials = $this->testimonialRepository->allActiveForDestination($destination->id);
 
+        if($destination->type === 'bate-e-volta') {
+            return view('destination.show-bate-e-volta', compact('destination', 'socialLinks', 'banner', 'breadcrumbs', 'testimonials', 'cta_session'));
+        }
         return view('destination.show', compact('destination', 'socialLinks', 'banner', 'breadcrumbs', 'testimonials', 'cta_session'));
     }
+
 
     public function destinations(\App\Http\Requests\DestinationsFilterRequest $request)
     {
@@ -193,4 +197,5 @@ class PageController extends Controller
 
         return view('destination.index', compact('destinations', 'socialLinks', 'banner', 'breadcrumbs', 'cta_session'));
     }
+
 }

@@ -31,7 +31,7 @@
                     <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
     
     <!-- Container da Imagem com efeito Zoom -->
-    <div class="relative h-64 overflow-hidden bg-gray-100">
+    <div class="relative h-full overflow-hidden bg-gray-100">
         <img src="{{ Storage::url($service->image_path) }}" 
              alt="{{ $service->title }}"
              class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out">

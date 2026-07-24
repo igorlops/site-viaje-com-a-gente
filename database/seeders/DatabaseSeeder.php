@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             SiteSettingsSeeder::class,
             PaymentMethodSeeder::class,
             FaqSeeder::class,
+            BateVoltaDestinationSeeder::class,
         ]);
     }
 }

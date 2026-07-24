@@ -32,7 +32,14 @@ class Destination extends Model
         'type',
         'title_card',
         'subtitle_card',
-        'text_label_banner'
+        'text_label_banner',
+        'description',
+        'departure_location',
+        'departure_time',
+        'return_time',
+        'child_policy',
+        'payment_info',
+        'urgency_badge',
     ];
 
     protected $casts = [

@@ -42,12 +42,12 @@
             
             <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
-                <span>Destinos</span>
+                <span>Destinos (Viagens)</span>
             </a>
             
-            <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
-                <i class="fas fa-share-nodes text-lg w-6 text-center"></i>
-                <span>Redes Sociais</span>
+            <a href="{{ route('admin.bate-volta.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.bate-volta.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
+                <span>Destinos (Bate e volta)</span>
             </a>
 
             <a href="{{ route('admin.services.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.services.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
