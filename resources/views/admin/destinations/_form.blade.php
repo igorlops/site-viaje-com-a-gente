@@ -627,31 +627,33 @@
                 </div>
 
                 <div id="observations-container" class="space-y-3">
-                    @forelse($destination->observations as $obsIndex => $observation)
-                        <div class="observation-row flex gap-3 items-start bg-amber-50/40 border border-amber-100 rounded-xl p-3">
-                            <input type="hidden" name="observations[{{ $obsIndex }}][id]" value="{{ $observation->id }}">
-                            <input type="hidden" name="observations[{{ $obsIndex }}][order]" value="{{ $observation->order }}">
-                            <div class="flex items-center justify-center shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-600 mt-1">
-                                <i class="fas fa-triangle-exclamation text-xs"></i>
+                    @if($destination)
+                        @forelse($destination?->observations as $obsIndex => $observation)
+                            <div class="observation-row flex gap-3 items-start bg-amber-50/40 border border-amber-100 rounded-xl p-3">
+                                <input type="hidden" name="observations[{{ $obsIndex }}][id]" value="{{ $observation->id }}">
+                                <input type="hidden" name="observations[{{ $obsIndex }}][order]" value="{{ $observation->order }}">
+                                <div class="flex items-center justify-center shrink-0 w-7 h-7 rounded-full bg-amber-100 text-amber-600 mt-1">
+                                    <i class="fas fa-triangle-exclamation text-xs"></i>
+                                </div>
+                                <textarea name="observations[{{ $obsIndex }}][text]"
+                                        placeholder="Ex: O passeio pode ser cancelado em caso de mau tempo."
+                                        rows="2" required
+                                        class="flex-1 border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 resize-none transition duration-200 bg-white">{{ $observation->text }}</textarea>
+                                <button type="button" onclick="removeRow(this)"
+                                        class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-1">
+                                    <i class="fas fa-times text-xs"></i>
+                                </button>
                             </div>
-                            <textarea name="observations[{{ $obsIndex }}][text]"
-                                      placeholder="Ex: O passeio pode ser cancelado em caso de mau tempo."
-                                      rows="2" required
-                                      class="flex-1 border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none rounded-xl px-3 py-2.5 text-sm text-gray-700 placeholder-gray-400 resize-none transition duration-200 bg-white">{{ $observation->text }}</textarea>
-                            <button type="button" onclick="removeRow(this)"
-                                    class="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors mt-1">
-                                <i class="fas fa-times text-xs"></i>
-                            </button>
-                        </div>
-                    @empty
-                        <div id="observations-empty" class="flex flex-col items-center justify-center py-10 text-center bg-amber-50/30 rounded-2xl border border-dashed border-amber-200">
-                            <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
-                                <i class="fas fa-triangle-exclamation text-amber-500 text-sm"></i>
+                        @empty
+                            <div id="observations-empty" class="flex flex-col items-center justify-center py-10 text-center bg-amber-50/30 rounded-2xl border border-dashed border-amber-200">
+                                <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mb-3">
+                                    <i class="fas fa-triangle-exclamation text-amber-500 text-sm"></i>
+                                </div>
+                                <p class="text-xs text-gray-500 font-semibold">Nenhuma observação adicionada.</p>
+                                <p class="text-[10px] text-gray-400 mt-0.5">Clique em "Adicionar Observação" para incluir avisos importantes.</p>
                             </div>
-                            <p class="text-xs text-gray-500 font-semibold">Nenhuma observação adicionada.</p>
-                            <p class="text-[10px] text-gray-400 mt-0.5">Clique em "Adicionar Observação" para incluir avisos importantes.</p>
-                        </div>
-                    @endforelse
+                        @endforelse
+                    @endif
                 </div>
             </div>
 
@@ -663,6 +665,7 @@
                 </div>
 
                 <div class="space-y-4">
+                    @if($destination)
                     @foreach($paymentMethods as $index => $method)
                         @php
                             $assigned = $destination->paymentMethods->where('payment_method_id', $method->id)->first();
@@ -705,6 +708,7 @@
                             </div>
                         </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
 

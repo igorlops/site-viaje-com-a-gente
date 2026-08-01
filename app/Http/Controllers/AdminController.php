@@ -225,6 +225,8 @@ public function dashboard()
             'buttons.*.id' => 'nullable|integer',
             'buttons.*.text' => 'nullable|string|max:255',
             'buttons.*.color' => 'nullable|string|max:255',
+            'buttons.*.bg_color' => 'nullable|string|max:255',
+            'buttons.*.bg_hover_color' => 'nullable|string|max:255',
             'buttons.*.url' => 'nullable|string|max:255',
             'buttons.*.target' => 'nullable|string|max:255',
             'buttons.*.order' => 'nullable|integer',

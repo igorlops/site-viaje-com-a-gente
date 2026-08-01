@@ -3,39 +3,51 @@
     'whatsappUrl',
 ])
 
-<div class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden flex flex-col group transition duration-300 transform hover:-translate-y-1">
+<div class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden flex flex-col group transition duration-300 transform hover:-translate-y-1 h-full">
     <!-- Card Image -->
     <div class="relative h-48 bg-gray-200 overflow-hidden shrink-0 w-full">
-        <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" src="{{ asset('storage/' . $pkg->image_path) }}" alt="{{ $pkg->title }}">
-
+        <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+             src="{{ asset('storage/' . $pkg->image_path) }}" 
+             alt="{{ $pkg->title }}"
+             onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
     </div>
     
     <!-- Card Body -->
     <div class="p-5 flex-grow flex flex-col justify-between">
         <div>
-            <h3 class="text-[#002752] text-xl font-bold leading-snug mb-1">
+            <!-- Título padronizado com altura fixa (máx 2 linhas) -->
+            <h3 class="text-[#002752] text-xl font-bold leading-snug mb-1 h-[3.5rem] line-clamp-2" title="{{ $pkg->title_card ?? $pkg->title }}">
                 {{ $pkg->title_card ?? $pkg->title }}
             </h3>
-            <p class="text-gray-500 text-sm font-medium mb-3">
+
+            <!-- Subtítulo padronizado com altura fixa (máx 3 linhas) -->
+            <p class="text-gray-500 text-sm font-medium mb-3 h-[3.75rem] line-clamp-3" title="{{ $pkg->subtitle_card ?? $pkg->subtitle }}">
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
-            <div class="flex items-center gap-2 mb-2">
-                @if($pkg->tag)
-                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded" style="width: 80%">
+
+            <div class="flex items-center gap-2 mb-2 min-h-[24px]">
+                @if(!empty($pkg->tag))
+                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded truncate max-w-full">
                         {{ $pkg->tag }}
                     </span>
                 @endif
             </div>
+
             <!-- Info Badge -->
-            <div class="flex flex-row justify-between">
-                <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
+            <div class="flex flex-row justify-between items-center gap-2 border-t border-b border-gray-100 py-1.5 mb-4 mt-1">
+                <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider">
                     <i class="far fa-calendar text-[#109e4a]"></i>
                     <span>
-                        @if($pkg->duration) {{ $pkg->duration }} @if($pkg->duration > 1) Dias @else Dia @endif @endif @if($pkg->duration > 1) e {{ $pkg->nights }} Noites @else @if($pkg->nights > 1) e {{ $pkg->nights }} Noites @else  @endif @endif
+                        @if($pkg->duration) 
+                            {{ $pkg->duration }} {{ $pkg->duration > 1 ? 'Dias' : 'Dia' }} 
+                        @endif 
+                        @if($pkg->nights > 0) 
+                            e {{ $pkg->nights }} {{ $pkg->nights > 1 ? 'Noites' : 'Noite' }} 
+                        @endif
                     </span>
                 </div>
-                <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider border-t border-b border-gray-100 py-1.5 w-full mb-4 mt-1">
-                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded">
+                <div class="inline-flex items-center">
+                    <span class="text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded">
                         {{ $pkg->trip_type }}
                     </span>
                 </div>
@@ -64,7 +76,7 @@
                 <a href="{{ route('destination.show', $pkg->slug) }}" target="_blank" class="flex-grow inline-flex justify-center items-center bg-[#109e4a] hover:bg-[#0d9648] text-white font-bold text-xs uppercase py-3 rounded-lg transition duration-200 gap-1.5 shadow-sm">
                     <span>Saiba mais</span>
                 </a>
-                <a href="{{ $pkgWhatsapp }}" target="_blank" class="w-10 h-10 inline-flex items-center justify-center border border-[#109e4a] hover:bg-[#109e4a] text-[#109e4a] hover:text-white rounded-lg transition duration-200">
+                <a href="{{ $pkgWhatsapp }}" target="_blank" class="w-10 h-10 shrink-0 inline-flex items-center justify-center border border-[#109e4a] hover:bg-[#109e4a] text-[#109e4a] hover:text-white rounded-lg transition duration-200">
                     <i class="fab fa-whatsapp text-lg"></i>
                 </a>
             </div>

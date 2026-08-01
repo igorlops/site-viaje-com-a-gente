@@ -148,7 +148,7 @@
                 <!-- Benefit 1 -->
                     @foreach ($benefits as $benefit)
                         <div class="text-center flex flex-col items-center">
-                            <div class="w-16 h-16 rounded-full bg-[#f2bd11] text-[#002752] flex items-center justify-center mb-4 shadow-md">
+                            <div class="w-16 h-16 rounded-full bg-[#109e4a] text-[#ffffff] flex items-center justify-center mb-4 shadow-md">
                                 <i class="{{ $benefit['icon'] }} text-2xl"></i>
                             </div>
                             <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">{{ $benefit['title'] }}</h3>
@@ -308,7 +308,7 @@
                 <!-- Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
-                    <span>(85) 9 9916-6421 Clique e fale no WhatsApp</span>
+                    <span>Consultor online</span>
                 </a>
             </div>
         </div>

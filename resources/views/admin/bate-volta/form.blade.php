@@ -89,6 +89,26 @@
                         @enderror
                     </div>
 
+                    <div>
+                        <label for="title" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Título do Card</label>
+                        <input type="text" name="title_card" id="title_card" value="{{ old('title_card', isset($destination) ? $destination->title_card : '') }}" required
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: Gramado">
+                        @error('title_card')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div>
+                        <label for="subtitle_card" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Subtítulo do Card</label>
+                        <input type="text" name="subtitle_card" id="subtitle_card" value="{{ old('subtitle_card', isset($destination) ? $destination->subtitle_card : '') }}"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
+                            placeholder="Ex: Canela + Bento Gonçalves">
+                        @error('subtitle_card')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
+
                     {{-- Slug --}}
                     <div>
                         <label for="bv_slug" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">

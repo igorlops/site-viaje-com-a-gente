@@ -211,8 +211,18 @@
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-3">
-                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hexadecimal</label>
-                                        <input type="text" name="buttons[{{ $buttonIndex }}][color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
+                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor do botão</label>
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
+                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor hover (ao passar mouse por cima)</label>
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_hover_color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
+                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor da letra</label>
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-5">
@@ -318,7 +328,17 @@
                     </div>
                     <div class="md:col-span-3">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hexadecimal</label>
-                        <input type="text" name="buttons[${buttonIndex}][color]" placeholder="#109e4a" required
+                        <input type="color" name="buttons[${buttonIndex}][bg_color]" placeholder="#109e4a" required
+                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                    </div>
+                    <div class="md:col-span-3">
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hover(Ao passar mouse por cima)</label>
+                        <input type="color" name="buttons[${buttonIndex}][bg_hover_color]" placeholder="#109e4a" required
+                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                    </div>
+                    <div class="md:col-span-3">
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor da letra</label>
+                        <input type="color" name="buttons[${buttonIndex}][color]" placeholder="#109e4a" required
                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                     </div>
                     <div class="md:col-span-5">

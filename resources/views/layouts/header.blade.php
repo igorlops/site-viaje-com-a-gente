@@ -35,13 +35,13 @@
             </p>
             
             <!-- Feature Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 mb-8">
                 <!-- Feature 1 -->
                 @if($banner && $banner->featureBanners && $banner->featureBanners->isNotEmpty())
                     @foreach($banner->featureBanners as $feature)
-                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-3.5 py-3 rounded-lg border border-white/10">
-                        <div class="w-10 h-10 rounded bg-[#109e4a] text-white flex items-center justify-center shrink-0">
-                            <i class="{{ $feature->icon }} text-xl"></i>
+                    <div class="flex items-center gap-1 p-3">
+                        <div class="p-3 rounded bg-[#109e4a] text-white flex items-center justify-center shrink-0 rounded-full">
+                            <i class="{{ $feature->icon }} text-4xl"></i>
                         </div>
                         <span class="text-[10px] sm:text-xs font-semibold leading-tight uppercase">{{ $feature->name }}</span>
                     </div>
@@ -53,7 +53,10 @@
             @if($banner && $banner->buttons && $banner->buttons->isNotEmpty())
                 <div class="flex flex-col sm:flex-row gap-4" id="orcamento">
                     @foreach($banner->buttons as $button)
-                        <a href="{{ $button->url }}" target="{{ $button->target }}" class="inline-flex justify-center items-center bg-{{ $button->color }} hover:bg-white text-{{ $button->color }} hover:text-{{ $button->color }} px-8 py-4 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-lg">
+                        <a href="{{ $button->url }}" 
+                        target="{{ $button->target }}" 
+                        style="--btn-bg: {{ $button->bg_color }}; --btn-hover: {{ $button->bg_hover_color }}; --btn-color: {{ $button->color }};"
+                        class="inline-flex justify-center items-center bg-[var(--btn-bg)] hover:bg-[var(--btn-hover)] text-[var(--btn-color)] px-8 py-4 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 shadow-lg">
                             {{ $button->text }}
                         </a>
                     @endforeach

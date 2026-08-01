@@ -51,7 +51,7 @@ class SocialLinkSeeder extends Seeder
   [
     'id' => 4,
     'name' => 'WhatsApp',
-    'url' => 'https://wa.me/5585999166421',
+    'url' => 'https://wa.me/'.env('PHONE_NUMBER'),
     'icon' => 'fab fa-whatsapp',
     'active' => 1,
     'created_at' => '2026-06-12 18:48:36',

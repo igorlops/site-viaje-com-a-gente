@@ -1,29 +1,29 @@
-<header class="bg-white text-[#001c3d] sticky top-0 z-50 shadow-md">
-    <!-- Top Bar: Estilizada com base na referência da CVC -->
-    <!-- Mudamos o fundo para uma cor clara/neutra e adicionamos uma borda sutil embaixo -->
-    <div class="bg-[#f3a908]/70 border-b border-[#f3a908]/90">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Usamos 'justify-center sm:justify-end' para alinhar tudo à direita em telas maiores -->
-            <div class="flex flex-wrap items-center justify-center sm:justify-end h-auto sm:h-10 py-2 sm:py-0 gap-x-6 gap-y-1 text-xs text-gray-600 font-medium">
-                
-                <!-- Item Telefone -->
-                <a href="tel:{{ env('PHONE_NUMBER') }}" class="flex items-center hover:text-[#002752] transition duration-150">
-                    <i class="fas fa-phone-alt text-[#002752] mr-2 text-[11px]"></i>
-                    <span class="text-[#002752]">Central de Atendimento: <strong class="text-[#002752] font-semibold">{{ env('PHONE_NUMBER') }}</strong></span>
-                </a>
-                
-                <!-- Divisor sutil entre os itens (visível a partir do mobile sm) -->
-                <span class="hidden sm:inline text-[#002752]">|</span>
+<div class="bg-[#f3a908]/70 border-b border-[#f3a908]/90">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Usamos 'justify-center sm:justify-end' para alinhar tudo à direita em telas maiores -->
+        <div class="flex flex-wrap items-center justify-center sm:justify-end h-auto sm:h-10 py-2 sm:py-0 gap-x-6 gap-y-1 text-xs text-gray-600 font-medium">
+            
+            <!-- Item Telefone -->
+            <a href="tel:{{ env('PHONE_NUMBER') }}" class="flex items-center hover:text-[#002752] transition duration-150">
+                <i class="fas fa-phone-alt text-[#002752] mr-2 text-[11px]"></i>
+                <span class="text-[#002752]">Central de Atendimento: <strong class="text-[#002752] font-semibold">{{ env('PHONE_NUMBER') }}</strong></span>
+            </a>
+            
+            <!-- Divisor sutil entre os itens (visível a partir do mobile sm) -->
+            <span class="hidden sm:inline text-[#002752]">|</span>
 
-                <!-- Item E-mail / Suporte -->
-                <a href="mailto:{{ env('EMAIL_ADDRESS') }}" class="flex items-center hover:text-[#002752] transition duration-150">
-                    <i class="far fa-envelope text-[#002752] mr-2 text-[11px]"></i>
-                    <span>Precisa de ajuda? <strong class="text-[#002752] font-semibold">{{ env('EMAIL_ADDRESS') }}</strong></span>
-                </a>
-                
-            </div>
+            <!-- Item E-mail / Suporte -->
+            <a href="mailto:{{ env('EMAIL_ADDRESS') }}" class="flex items-center hover:text-[#002752] transition duration-150">
+                <i class="far fa-envelope text-[#002752] mr-2 text-[11px]"></i>
+                <span>Precisa de ajuda? <strong class="text-[#002752] font-semibold">{{ env('EMAIL_ADDRESS') }}</strong></span>
+            </a>
+            
         </div>
     </div>
+</div>
+<header class="bg-[#001c3d] text-[#ffffff] sticky top-0 z-50 shadow-md">
+    <!-- Top Bar: Estilizada com base na referência da CVC -->
+    <!-- Mudamos o fundo para uma cor clara/neutra e adicionamos uma borda sutil embaixo -->
 
     <!-- Navbar Principal (Mantida e Ajustada) -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

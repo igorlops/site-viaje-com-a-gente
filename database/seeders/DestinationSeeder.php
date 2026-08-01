@@ -39,13 +39,13 @@ class DestinationSeeder extends Seeder
     'departure_date' => '05 de Junho 2027',
     'return_date' => '10 de Junho 2027',
     'departure_city' => 'Fortaleza - CE',
-    'trip_type' => 'Pacote Individual / Família', // ASSUMIDO: não informado na imagem
+    'trip_type' => 'Bate e Volta', // ASSUMIDO: não informado na imagem
     'highlights_icons' =>
     [
       0 => 'hotel',
       1 => 'plane',
     ],
-    'type' => 'pacote-principal', // ASSUMIDO: não informado na imagem
+    'type' => 'bate-e-volta', // ASSUMIDO: não informado na imagem
   ],
 ];
 

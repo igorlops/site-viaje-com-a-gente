@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ButtonBanner extends Model
 {
     protected $table = 'buttons_banner';
-    protected $fillable = ['text', 'color','url','target','order','banner_id'];
+    protected $fillable = ['text', 'color','url','target','order','banner_id', 'bg_color','bg_hover_color'];
 }
