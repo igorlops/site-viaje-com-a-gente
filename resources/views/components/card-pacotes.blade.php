@@ -9,7 +9,7 @@
         <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
              src="{{ asset('storage/' . $pkg->image_path) }}" 
              alt="{{ $pkg->title }}"
-             onerror="this.src='https://via.placeholder.com/400x300?text=Sem+Imagem'">
+             onerror="">
     </div>
     
     <!-- Card Body -->

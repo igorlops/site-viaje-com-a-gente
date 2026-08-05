@@ -31,7 +31,7 @@
             <!-- Logo -->
             <div class="flex-shrink-0">
                 <a href="{{ route('home') }}" class="flex items-center">
-                    <img class="h-14 w-auto object-contain rounded" src="{{ site_setting_image('logo_navbar', 'assets/images/logo.jpeg') }}" alt="Viaje com a Gente Logo">
+                    <img class="h-18 w-auto object-contain rounded" src="{{ site_setting_image('logo_navbar', 'assets/images/logo.jpeg') }}" alt="Viaje com a Gente Logo">
                 </a>
             </div>
             
