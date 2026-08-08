@@ -208,6 +208,7 @@ public function dashboard()
 
     public function bannerUpdate(Request $request, Banner $banner)
     {
+        dd($request->all());
         $data = $request->validate([
             'title' => 'nullable|string|max:255',
             'titulo_destaque' => 'nullable|string|max:255',
@@ -697,16 +698,6 @@ public function dashboard()
                         ]);
                         $keptIds[] = $listItem->id;
                     }
-                } else {
-                    // Criação de novo item
-                    $newListItem = $cta_session->cta_session_list()->create([
-                        'cta_session_id' => $cta_session->id,
-                        'title'  => $item['title'],
-                        'icon'   => $item['icon'] ?? 'fa-solid fa-circle-check',
-                        'order'  => $item['order'] ?? 0,
-                        'active' => isset($item['active']) ? (bool)$item['active'] : true,
-                    ]);
-                    $keptIds[] = $newListItem->id;
                 }
             }
         }
@@ -740,7 +731,56 @@ public function dashboard()
         return redirect()->route('admin.cta_session.index')->with('success', 'CTA Session duplicada com sucesso!');
     }
 
-    /* BATE E VOLTA CRUD */
+    /* PACOTES CRUD */
+
+    public function pacotes()
+    {
+        $destinations = Destination::where('type', 'pacotes')->latest()->get();
+        return view('admin.pacotes.index', compact('destinations'));
+    }
+
+    public function pacoteCreate()
+    {
+        $paymentMethods = \App\Models\PaymentMethod::all();
+        return view('admin.pacotes.create', compact('paymentMethods'));
+    }
+
+    public function pacoteStore(\App\Http\Requests\Admin\DestinationStoreRequest $request)
+    {
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->create($dto, $request);
+
+        return redirect()->route('admin.pacotes.index')->with('success', 'Pacote criado com sucesso!');
+    }
+
+    public function pacoteEdit(Destination $destination)
+    {
+        $destination->load(['includes', 'highlights', 'itineraryDays', 'observations', 'paymentMethods.method']);
+        $paymentMethods = \App\Models\PaymentMethod::all();
+        return view('admin.pacotes.edit', compact('destination', 'paymentMethods'));
+    }
+
+    public function pacoteUpdate(\App\Http\Requests\Admin\DestinationStoreRequest $request, Destination $destination)
+    {
+        $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
+        $this->destinationService->update($destination->id, $dto, $request);
+
+        return redirect()->route('admin.pacotes.index')->with('success', 'Pacote atualizado com sucesso!');
+    }
+
+    public function pacoteDestroy(Destination $destination)
+    {
+        $this->destinationService->destroy($destination->id);
+
+        return redirect()->route('admin.pacotes.index')->with('success', 'Pacote excluído com sucesso!');
+    }
+
+    public function pacoteDuplicate(Destination $destination)
+    {
+        $this->destinationService->duplicate($destination->id);
+
+        return redirect()->route('admin.pacotes.index')->with('success', 'Pacote duplicado com sucesso!');
+    }
 
     public function bateVoltaIndex()
     {

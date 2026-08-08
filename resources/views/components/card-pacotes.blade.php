@@ -25,14 +25,18 @@
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
 
-            <div class="flex items-center gap-2 mb-2 min-h-[24px]">
+            <div class="flex items-center gap-2 min-h-[10px]">
                 @if(!empty($pkg->tag))
                     <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded truncate max-w-full">
                         {{ $pkg->tag }}
                     </span>
                 @endif
             </div>
-
+            <div class="inline-flex items-center">
+                <span class="text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded">
+                    {{ $pkg->trip_type }}
+                </span>
+            </div>
             <!-- Info Badge -->
             <div class="flex flex-row justify-between items-center gap-2 border-t border-b border-gray-100 py-1.5 mb-4 mt-1">
                 <div class="inline-flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-wider">
@@ -46,11 +50,7 @@
                         @endif
                     </span>
                 </div>
-                <div class="inline-flex items-center">
-                    <span class="text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded">
-                        {{ $pkg->trip_type }}
-                    </span>
-                </div>
+                
             </div>
         </div>
         

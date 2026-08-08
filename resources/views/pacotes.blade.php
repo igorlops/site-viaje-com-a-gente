@@ -50,8 +50,7 @@
         <x-cta-session :cta="$ctaSession" />
     @endif
 
-    <!-- INFRAESTRUTURA & SEGURANÇA LOGÍSTICA -->
-   <section class="py-20 bg-gray-50 border-t border-gray-100">
+   <!-- <section class="py-20 bg-gray-50 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-[#002752] uppercase tracking-tight">
@@ -62,7 +61,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Info 1 -->
                 <div class="bg-white rounded-xl p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-full bg-[#002752]/5 text-[#002752] flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-bus-alt text-xl"></i>
@@ -73,7 +71,6 @@
                     </p>
                 </div>
 
-                <!-- Info 2 -->
                 <div class="bg-white rounded-xl p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-full bg-[#002752]/5 text-[#002752] flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-map-marked-alt text-xl"></i>
@@ -84,7 +81,6 @@
                     </p>
                 </div>
 
-                <!-- Info 3 -->
                 <div class="bg-white rounded-xl p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-full bg-[#002752]/5 text-[#002752] flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-umbrella-beach text-xl"></i>
@@ -95,7 +91,6 @@
                     </p>
                 </div>
 
-                <!-- Info 4 -->
                 <div class="bg-white rounded-xl p-6 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 rounded-full bg-[#002752]/5 text-[#002752] flex items-center justify-center mx-auto mb-4">
                         <i class="fas fa-clock text-xl"></i>
@@ -109,7 +104,6 @@
         </div>
     </section>
 
-    <!-- SESSÃO: O CHECKLIST DO VIAJANTE INTELIGENTE (Planejar vs Executar) -->
     <section class="py-20 bg-white border-t border-gray-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
@@ -121,7 +115,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Lado do Risco (Deixar para última hora) -->
                 <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                     <h4 class="font-black text-sm text-gray-700 uppercase tracking-wide mb-4 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-[#f3a908]"></span> O risco de deixar para depois:
@@ -134,7 +127,6 @@
                     </ul>
                 </div>
 
-                <!-- Lado do Benefício (Garantir Agora) -->
                 <div class="bg-[#109e4a]/5 rounded-2xl p-6 border border-[#109e4a]/20">
                     <h4 class="font-black text-sm text-[#002752] uppercase tracking-wide mb-4 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-[#109e4a]"></span> O que você ganha reservando hoje:
@@ -153,11 +145,9 @@
         <x-cta-session :cta="$ctaSession" />
     @endif
 
-    <!-- CTA FOOTER (Otimizado para Conversão e Esclarecimento de Prazos) -->
     <section class="bg-[#f3a908] py-8 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-                <!-- Text -->
                 <div class="text-center lg:text-left flex items-center gap-4 flex-col sm:flex-row">
                     <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#109e4a] shrink-0 shadow-sm">
                         <i class="fab fa-whatsapp text-3xl"></i>
@@ -168,13 +158,12 @@
                     </div>
                 </div>
                 
-                <!-- Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
                     <span>Garantir Tarifa de Hoje</span>
                 </a>
             </div>
-    </section>
+    </section> -->
 
     @if($ctaSession = $cta_session->firstWhere('order_position', 3))
         <x-cta-session :cta="$ctaSession" />

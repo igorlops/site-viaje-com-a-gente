@@ -178,6 +178,21 @@ class PageController extends Controller
     }
 
 
+    public function pacotes()
+    {
+        $breadcrumbs = [
+            [
+                'label' => 'Bate e Volta',
+                'link' => route('short-trips')
+            ]
+        ];
+        $banner = $this->bannerService->bannerByPageSlug('pacotes');
+        [$cta_session, $countCtaSessions] = $this->cta_sessionService->cta_sessionByPageSlug('pacotes');
+        $destinations = Destination::where('type', 'pacotes')->get();
+        $socialLinks = $this->getSocialLinks();
+
+        return view('pacotes', compact('destinations', 'socialLinks', 'banner', 'breadcrumbs', 'cta_session'));
+    }
     public function destinations(\App\Http\Requests\DestinationsFilterRequest $request)
     {
         $breadcrumbs = [

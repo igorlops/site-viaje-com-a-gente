@@ -86,8 +86,8 @@ class PageSeeder extends Seeder
   6 => 
   [
     'id' => 7,
-    'name' => 'Pacotes 2026/2027',
-    'slug' => 'pacotes-2026-2027',
+    'name' => 'Pacotes',
+    'slug' => 'pacotes',
     'created_at' => '2026-06-14 23:31:44',
     'updated_at' => '2026-06-14 23:31:44',
     'meta_title' => 'Pacotes de Viagem em Fortaleza | Viaje com a Gente',
@@ -98,12 +98,12 @@ class PageSeeder extends Seeder
   [
     'id' => 8,
     'name' => 'DESTINOS',
-    'slug' => 'pacotes',
+    'slug' => 'destinos',
     'created_at' => '2026-06-20 00:24:11',
     'updated_at' => '2026-06-20 00:24:11',
-    'meta_title' => 'Pacotes de Viagem em Fortaleza | Viaje com a Gente',
-    'meta_description' => 'Pacotes de viagem nacionais e internacionais saindo de Fortaleza. Parcelamos no boleto, sem juros. Fale agora no WhatsApp e monte seu roteiro!',
-    'meta_keywords' => 'pacotes de viagem Fortaleza, agência de viagens Fortaleza, viagens parceladas Ceará, pacotes de turismo Fortaleza, viagens baratas saindo de Fortaleza, agência de turismo Ceará',
+    'meta_title' => 'Destinos de Viagem em Fortaleza | Viaje com a Gente',
+    'meta_description' => 'Descubra os melhores destinos de viagem em Fortaleza. Pacotes turísticos, roteiros e dicas para sua próxima aventura!',
+    'meta_keywords' => 'destinos de viagem Fortaleza, turismo em Fortaleza, passeios em Fortaleza, agência de viagens Ceará, viagens para Fortaleza',
   ],
 ];
 

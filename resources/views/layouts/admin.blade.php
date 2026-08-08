@@ -18,7 +18,7 @@
         <!-- Brand/Logo -->
         <div class="h-20 flex items-center justify-center border-b border-white/10 px-6">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-                <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
+                <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.png') }}" alt="Logo">
                 <span class="font-extrabold uppercase text-sm tracking-wider text-[#f3a908]">Painel Admin</span>
             </a>
         </div>
@@ -43,6 +43,11 @@
             <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                 <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
                 <span>Destinos (Viagens)</span>
+            </a>
+
+            <a href="{{ route('admin.pacotes.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pacotes.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
+                <span>Destinos (Pacotes)</span>
             </a>
             
             <a href="{{ route('admin.bate-volta.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.bate-volta.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
@@ -128,7 +133,7 @@
             <aside class="w-64 bg-[#001c3d] h-full text-white flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out">
                 <div class="h-20 flex items-center justify-between border-b border-white/10 px-6">
                     <div class="flex items-center gap-3">
-                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
+                        <img class="h-10 w-auto bg-white p-1 rounded" src="{{ asset('assets/images/logo.png') }}" alt="Logo">
                         <span class="font-extrabold uppercase text-sm tracking-wider text-[#f3a908]">Painel Admin</span>
                     </div>
                     <button id="mobile-sidebar-close" class="text-white text-xl">
@@ -159,7 +164,12 @@
                     
                     <a href="{{ route('admin.destinations.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.destinations.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
                         <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
-                        <span>Destinos</span>
+                        <span>Destinos (Viagens)</span>
+                    </a>
+
+                    <a href="{{ route('admin.pacotes.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.pacotes.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">
+                        <i class="fas fa-map-marked-alt text-lg w-6 text-center"></i>
+                        <span>Destinos (Pacotes)</span>
                     </a>
                     
                     <a href="{{ route('admin.social.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-semibold transition duration-200 {{ Route::is('admin.social.*') ? 'bg-[#f3a908] text-[#00152b]' : 'hover:bg-white/5 text-gray-300 hover:text-white' }}">

@@ -16,7 +16,7 @@
     <div class="w-full max-w-md bg-white rounded-2xl shadow-2xl border border-white/10 overflow-hidden">
         <!-- Card Header -->
         <div class="bg-[#00152b] py-8 px-6 text-center border-b border-gray-100 flex flex-col items-center">
-            <img class="h-16 w-auto object-contain mb-3 bg-white p-1 rounded" src="{{ asset('assets/images/logo.jpeg') }}" alt="Logo">
+            <img class="h-16 w-auto object-contain mb-3 bg-white p-1 rounded" src="{{ asset('assets/images/logo.png') }}" alt="Logo">
             <h2 class="text-xl font-black text-white uppercase tracking-wider">Painel Administrativo</h2>
             <p class="text-xs text-gray-400 mt-1">Faça login para gerenciar o site</p>
         </div>

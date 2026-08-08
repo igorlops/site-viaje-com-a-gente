@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
             PaymentMethodSeeder::class,
             FaqSeeder::class,
             BateVoltaDestinationSeeder::class,
+            ViagemEmGrupoDestinationSeeder::class,
+            PacoteDestinationSeeder::class,
         ]);
     }
 }

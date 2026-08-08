@@ -10,10 +10,8 @@
         $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
     @endphp
 
-    <!-- SERVICES GRID -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
             <div class="text-center mb-16">
                 <div class="inline-flex items-center justify-center gap-2 mb-2 text-[#002752] uppercase font-black tracking-widest text-sm">
                     <span>O que fazemos por você</span>
@@ -25,38 +23,30 @@
                 <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
             </div>
 
-            <!-- Services Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach($services as $service)
                     <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
     
-    <!-- Container da Imagem com efeito Zoom -->
     <div class="relative h-full overflow-hidden bg-gray-100">
         <img src="{{ Storage::url($service->image_path) }}" 
              alt="{{ $service->title }}"
              class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out">
         
-        <!-- Gradiente sutil na base da imagem para dar acabamento -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
     </div>
 
-    <!-- Corpo do Card -->
     <div class="p-6 flex flex-col flex-1">
         
-        <!-- Título Elegante e Centralizado/Alinhado -->
         <h3 class="text-[#002752] font-black text-xl uppercase tracking-wide leading-tight text-center mb-3 group-hover:text-[#109e4a] transition-colors duration-300">
             {{ $service->title }}
         </h3>
         
-        <!-- Divisor sutil para organizar a leitura -->
         <div class="w-10 h-0.5 bg-[#f3a908] mx-auto mb-4 rounded"></div>
 
-        <!-- Descrição com tipografia leve -->
         <p class="text-gray-500 text-sm text-center leading-relaxed mb-6 flex-1 px-1">
             {{ $service->subtitle }}
         </p>
 
-        <!-- Botão Call to Action Otimizado -->
         <button type="button"
                 data-service="{{ $service->title }}"
                 onclick="selecionarServico(this)"
@@ -74,8 +64,7 @@
         <x-cta-session :cta="$ctaSession" />
     @endif
 
-    <!-- WHY CHOOSE US / EXTRAORDINARY COPY -->
-    <section class="relative py-24 bg-[#001c3d] overflow-hidden">
+    <!-- <section class="relative py-24 bg-[#001c3d] overflow-hidden">
         <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-[#109e4a]/10 blur-3xl"></div>
         <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-[#f3a908]/10 blur-3xl"></div>
 
@@ -92,7 +81,6 @@
                 Enquanto agências automatizadas entregam links e torcem para dar certo, a gente pega o telefone. Cada roteiro é desenhado por gente que já viajou, já resolveu imprevisto às 3h da manhã e sabe exatamente o que fazer diferente da próxima vez. É esse cuidado que transforma uma reserva em uma viagem tranquila do início ao fim.
             </p>
 
-            <!-- Stats -->
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <div class="bg-white/5 border border-white/10 rounded-2xl py-8 px-4 backdrop-blur-sm">
                     <span class="block text-3xl sm:text-4xl font-black text-[#f3a908] mb-1">+15</span>
@@ -114,11 +102,9 @@
         </div>
     </section>
 
-    <!-- LOGISTICS DIFFERENTIALS SECTION -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Text / Checklist -->
                 <div>
                     <div class="inline-flex items-center justify-center gap-2 mb-2 text-[#002752] uppercase font-black tracking-widest text-xs">
                         <span>Nosso Diferencial</span>
@@ -131,7 +117,6 @@
                         Diferente das agências 100% automatizadas e sem suporte humano, nós acreditamos que uma viagem perfeita exige um acompanhamento de perto. É por isso que desenhamos um ecossistema de atendimento completo.
                     </p>
 
-                    <!-- Checklist items -->
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <div class="w-6 h-6 rounded-full bg-[#109e4a]/10 text-[#109e4a] flex items-center justify-center shrink-0 mt-0.5">
@@ -171,14 +156,12 @@
                     </ul>
                 </div>
 
-                <!-- Graphic Display -->
                 <div class="bg-gradient-to-br from-[#002752] to-[#001c3d] rounded-2xl p-8 text-white relative shadow-xl overflow-hidden">
                     <div class="absolute -right-8 -bottom-8 w-64 h-64 rounded-full bg-blue-900/40 blur-2xl"></div>
                     <div class="relative z-10">
                         <span class="block text-[#f3a908] text-xs font-black uppercase tracking-widest mb-2">Compromisso</span>
                         <h4 class="text-2xl font-extrabold mb-6">Nosso Padrão de Atendimento</h4>
 
-                        <!-- Timeline structure -->
                         <div class="space-y-6">
                             <div class="relative pl-8 border-l border-white/20">
                                 <span class="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full bg-[#f3a908]"></span>
@@ -207,17 +190,14 @@
         <x-cta-session :cta="$ctaSession" />
     @endif
 
-    <!-- CALL TO ACTION (CTA) -->
     <section class="bg-[#f3a908] py-12 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-                <!-- Text block -->
                 <div class="text-center lg:text-left">
                     <span class="block text-lg font-black uppercase tracking-wide">Pronto para a sua próxima aventura?</span>
                     <span class="block text-sm font-medium opacity-90">Deixe o planejamento com quem entende e garanta o melhor preço e suporte do mercado.</span>
                 </div>
 
-                <!-- Action Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-4 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
                     <span>Conversar com um Consultor</span>
@@ -226,12 +206,10 @@
         </div>
     </section>
 
-    <!-- CONTACT FORM -->
     <section id="contato-form" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-5 rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
 
-                <!-- Left: Persuasive info panel -->
                 <div class="lg:col-span-2 bg-gradient-to-br from-[#002752] to-[#001c3d] text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
                     <div class="absolute -right-10 -top-10 w-56 h-56 rounded-full bg-[#109e4a]/20 blur-2xl"></div>
                     <div class="relative z-10">
@@ -267,7 +245,6 @@
                     </a>
                 </div>
 
-                <!-- Right: Form -->
                 <div class="lg:col-span-3 bg-white">
                     <form action="{{ route('contact.submit') }}" method="POST" class="p-8 sm:p-10 space-y-5">
                         @csrf
@@ -376,7 +353,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <script>
         // Preenche automaticamente o assunto e rola até o formulário

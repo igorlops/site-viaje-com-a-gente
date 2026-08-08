@@ -10,7 +10,7 @@
         [
             'order' => 1,
             'title' => 'Escolha seu destino',
-            'description' => 'Veja as opções de pacotes ou fale com um consultor.',
+            'description' => 'Veja as opções de pacotes ou fale com um de nossos consultores.',
             'icon' => 'fas fa-search',
             'colorText' => '#fff',
             'stepColor' => '#109e4a',
@@ -26,7 +26,7 @@
         [
             'order' => 3,
             'title' => 'Forma de pagamento',
-            'description' => 'Boleto, PIX ou cartão em até 12x.',
+            'description' => 'Boleto e PIX parcelado ou cartão em até 12x com pequeno ajuste.',
             'icon' => 'far fa-credit-card',
             'colorText' => '#fff',
             'stepColor' => '#109e4a',
@@ -54,43 +54,43 @@
             'title' => 'Parcelamento no Boleto',
             'description' => 'Mais facilidade para você realizar seu sonho.',
             'icon' => 'fas fa-barcode',
-            'colorText' => '#109e4a',
+            'colorText' => '#ffffff',
             'stepColor' => '#109e4a',
         ],
         [
-            'title' => 'Atendimento Humano',
+            'title' => 'Atendimento Humanizado',
             'description' => 'Fale com pessoas reais antes, durante e depois da viagem.',
             'icon' => 'fas fa-headset',
-            'colorText' => '#109e4a',
-            'stepColor' => '#109e4a',
+            'colorText' => '#002752',
+            'stepColor' => '#f2bd11',
         ],
         [
             'title' => 'Roteiros Completos',
             'description' => 'Tudo organizado para você não se preocupar com nada.',
             'icon' => 'fas fa-route',
-            'colorText' => '#109e4a',
+            'colorText' => '#ffffff',
             'stepColor' => '#109e4a',
         ],
         [
             'title' => 'Segurança e Confiança',
             'description' => 'Trabalhamos com os melhores fornecedores e parceiros.',
             'icon' => 'fas fa-shield-alt',
-            'colorText' => '#109e4a',
-            'stepColor' => '#109e4a',
+            'colorText' => '#002752',
+            'stepColor' => '#f2bd11',
         ],
         [
-            'title' => 'Grupo ou em Família',
-            'description' => 'Opções para todos os perfis: casal, família, amigos e grupos.',
+            'title' => 'Atendemos todos os públicos',
+            'description' => 'Opções para todos os perfis: solteiros, casais, família, amigos e grupos.',
             'icon' => 'fas fa-users-cog',
-            'colorText' => '#109e4a',
+            'colorText' => '#ffffff',
             'stepColor' => '#109e4a',
         ],
         [
             'title' => 'Suporte via WhatsApp',
             'description' => 'Tire dúvidas e receba suporte rápido e eficiente.',
             'icon' => 'fab fa-whatsapp',
-            'colorText' => '#109e4a',
-            'stepColor' => '#109e4a',
+            'colorText' => '#002752',
+            'stepColor' => '#f2bd11',
         ],
      ];
 @endphp
@@ -148,7 +148,7 @@
                 <!-- Benefit 1 -->
                     @foreach ($benefits as $benefit)
                         <div class="text-center flex flex-col items-center">
-                            <div class="w-16 h-16 rounded-full bg-[#109e4a] text-[#ffffff] flex items-center justify-center mb-4 shadow-md">
+                            <div class="w-16 h-16 rounded-full bg-[{{ $benefit['stepColor'] }}] text-[{{ $benefit['colorText'] }}] flex items-center justify-center mb-4 shadow-md">
                                 <i class="{{ $benefit['icon'] }} text-2xl"></i>
                             </div>
                             <h3 class="text-sm font-bold uppercase mb-2 tracking-wide text-white">{{ $benefit['title'] }}</h3>
@@ -197,14 +197,12 @@
         </div>
     </section>
 
-    <!-- PROMOTIONAL BANNER -->
-    <section class="bg-white py-12">
+<!-- PARCELE SUA VIAGEM -->
+<section class="bg-white py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Adicionado um mt-16 no card para garantir espaço para a imagem vazar para cima -->
-        <div class="bg-gradient-to-br from-[#109e4a] to-[#0b803a] rounded-2xl shadow-xl text-white relative flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 pt-28 lg:pt-0 pb-0 gap-8 lg:gap-4 mt-16">
+        <div class="bg-gradient-to-br from-[#109e4a] to-[#0b803a] rounded-2xl shadow-xl text-white relative flex flex-col lg:flex-row items-center justify-between px-6 lg:px-12 pt-16 lg:pt-0 pb-6 lg:pb-0 gap-8 lg:gap-4 mt-12 lg:mt-16">
             
-            <!-- Container da Imagem (self-end faz ela grudar em baixo no desktop) -->
+            <!-- Container da Imagem -->
             <div class="w-full hidden lg:block lg:w-auto flex justify-center lg:justify-start lg:self-end order-1 lg:order-none shrink-0">
                 <img src="{{ asset('assets/images/mulher_com_mala_e_tickets_viagem_fortaleza.png') }}" 
                      alt="Mulher com mala" 
@@ -212,7 +210,7 @@
             </div>
             
             <!-- Promo Text & Checklist -->
-            <div class="w-full max-w-xl relative z-10 text-center lg:text-left py-0 lg:py-12 order-2 lg:order-none">
+            <div class="w-full max-w-xl relative z-10 text-center lg:text-left py-0 lg:py-8 order-2 lg:order-none">
                 <h2 class="text-2xl sm:text-3xl font-black mb-6 leading-tight">
                     Parcele sua viagem no <span class="underline decoration-[#f2bd11] decoration-4">boleto</span> e realize seu sonho!
                 </h2>
@@ -234,7 +232,7 @@
             </div>
             
             <!-- Promo Stamp -->
-            <div class="relative z-10 flex flex-col items-center justify-center border-4 border-dashed border-white/40 p-6 rounded-xl bg-white/5 backdrop-blur-sm shrink-0 w-full sm:w-80 mb-8 lg:mb-0 lg:my-12 order-3 lg:order-none">
+            <div class="relative z-10 flex flex-col items-center justify-center border-4 border-dashed border-white/40 p-6 rounded-xl bg-white/5 backdrop-blur-sm shrink-0 w-full sm:w-80 mb-4 lg:mb-0 lg:my-12 order-3 lg:order-none">
                 <i class="fas fa-barcode text-5xl mb-3 text-[#f2bd11]"></i>
                 <span class="text-xs uppercase tracking-widest font-medium text-green-100">Parcelamento</span>
                 <span class="text-xl uppercase font-black tracking-wider text-white">Facilitado</span>
@@ -290,13 +288,14 @@
         </div>
     </section>
 
-    <!-- PRONTO PARA VIAJAR -->
-    <section class="bg-[#f2bd11] py-8 text-[#002752]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
+   <!-- PRONTO PARA VIAJAR -->
+<section class="bg-white py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-[#f2bd11] text-[#002752] rounded-2xl shadow-xl px-6 lg:px-12 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
                 <!-- Text block -->
-                <div class="flex items-center gap-4 text-center lg:text-left flex-col sm:flex-row">
-                    <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#109e4a] shrink-0">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#109e4a] shrink-0 shadow-sm">
                         <i class="fab fa-whatsapp text-3xl"></i>
                     </div>
                     <div>
@@ -312,6 +311,7 @@
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 @endsection

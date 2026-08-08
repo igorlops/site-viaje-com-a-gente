@@ -23,14 +23,25 @@
             </div>
 
             <!-- Grid de Pacotes (Abaixo do texto, direto e dinâmico) -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
-                @php
-                    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
-                @endphp
-
-                @foreach($destinations as $pkg)
-                   <x-card-pacotes :pkg="$pkg" :whatsappUrl="$whatsappUrl" />
-                @endforeach
+            @php
+                $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
+            @endphp
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                @forelse($destinations as $destination)
+                    <x-card-pacotes :pkg="$destination" :whatsappUrl="$whatsappUrl" />
+                @empty
+                    <div class="col-span-full text-center py-12 text-gray-500">
+                        Nenhum pacote em destaque cadastrado no momento.
+                    </div>
+                @endforelse
+            </div>
+            
+            <!-- More Packages Button -->
+            <div class="text-center">
+                <a href="{{ route('destination') }}" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
+                    <span>Ver Todos os Pacotes</span>
+                    <i class="fas fa-chevron-right text-xs"></i>
+                </a>
             </div>
             
     </section>
@@ -40,7 +51,7 @@
     @endif
 
     <!-- GROUP BENEFITS SECTION (Infraestrutura e Vantagens Exclusivas) -->
-    <section class="py-20 bg-gray-50 border-t border-gray-100">
+    <!-- <section class="py-20 bg-gray-50 border-t border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-[#002752] uppercase tracking-tight">
@@ -51,7 +62,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Benefit 1 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-user-tie text-xl text-[#002752]"></i>
@@ -62,7 +72,6 @@
                     </p>
                 </div>
 
-                <!-- Benefit 2 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-hand-holding-usd text-xl text-[#002752]"></i>
@@ -73,7 +82,6 @@
                     </p>
                 </div>
 
-                <!-- Benefit 3 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-cocktail text-xl text-[#002752]"></i>
@@ -84,7 +92,6 @@
                     </p>
                 </div>
 
-                <!-- Benefit 4 -->
                 <div class="bg-white rounded-xl p-8 border border-gray-100 text-center shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-14 h-14 rounded-full bg-[#f3a908]/10 text-[#002752] flex items-center justify-center mx-auto mb-4 font-black">
                         <i class="fas fa-heart text-xl text-[#002752]"></i>
@@ -98,7 +105,6 @@
         </div>
     </section>
 
-    <!-- SESSÃO: O CHECKLIST DO VIAJANTE INTELIGENTE (Quebra de Objeção por Esforço) -->
     <section class="py-20 bg-white border-t border-gray-100">
         <div class="max-w-4xl mx-auto px-4 sm:px-6">
             <div class="text-center mb-12">
@@ -110,7 +116,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Lado do Cliente -->
                 <div class="bg-gray-50 rounded-2xl p-6 border border-gray-200">
                     <h4 class="font-black text-sm text-gray-700 uppercase tracking-wide mb-4 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-[#f3a908]"></span> O que você traz:
@@ -123,7 +128,6 @@
                     </ul>
                 </div>
 
-                <!-- Lado da Agência -->
                 <div class="bg-[#109e4a]/5 rounded-2xl p-6 border border-[#109e4a]/20">
                     <h4 class="font-black text-sm text-[#002752] uppercase tracking-wide mb-4 flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-[#109e4a]"></span> O que nós garantimos:
@@ -142,11 +146,9 @@
         <x-cta-session :cta="$ctaSession" />
     @endif
 
-    <!-- CTA FOOTER -->
     <section class="bg-[#f3a908] py-8 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-6">
-                <!-- Text -->
                 <div class="text-center lg:text-left flex items-center gap-4 flex-col sm:flex-row">
                     <div class="w-14 h-14 rounded-full bg-white flex items-center justify-center text-[#109e4a] shrink-0 shadow-sm">
                         <i class="fab fa-whatsapp text-3xl"></i>
@@ -157,13 +159,12 @@
                     </div>
                 </div>
                 
-                <!-- Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
                     <span>Grupo Personalizado</span>
                 </a>
             </div>
-    </section>
+    </section> -->
 
     @if($ctaSession = $cta_session->firstWhere('order_position', 3))
         <x-cta-session :cta="$ctaSession" />

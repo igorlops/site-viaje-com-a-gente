@@ -3,7 +3,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                 <!-- Column 1: Brand -->
                 <div class="flex flex-col space-y-4">
-                    <img class="h-16 w-auto object-contain self-start p-1 rounded" src="{{ site_setting_image('logo_navbar', 'assets/images/logo.jpeg') }}" alt="Viaje com a Gente Logo">
+                    <img class="h-16 w-auto object-contain self-start p-1 rounded" src="{{ site_setting_image('logo_navbar', 'assets/images/logo.png') }}" alt="Viaje com a Gente Logo">
                     <p class="text-gray-400 text-sm leading-relaxed">
                         Viaje com segurança, parcele no boleto e conte com a gente do planejamento ao retorno.
                     </p>

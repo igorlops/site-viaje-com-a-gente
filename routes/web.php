@@ -9,12 +9,12 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Detalhe do pacote de viagem
 Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');
-Route::get('/pacotes', [PageController::class, 'destinations'])->name('destination');
+Route::get('/destinos', [PageController::class, 'destinations'])->name('destination');
 
 // Páginas institucionais
 Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
 // Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
-// Route::get('/pacotes-2026-2027', [PageController::class, 'packages20262027'])->name('packages20262027');
+Route::get('/pacotes', [PageController::class, 'pacotes'])->name('pacotes');
 Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
 Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
 Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
@@ -118,4 +118,13 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::put('/bate-volta/{destination}', [AdminController::class, 'bateVoltaUpdate'])->name('admin.bate-volta.update');
     Route::delete('/bate-volta/{destination}', [AdminController::class, 'bateVoltaDestroy'])->name('admin.bate-volta.destroy');
     Route::post('/bate-volta/{destination}/duplicate', [AdminController::class, 'bateVoltaDuplicate'])->name('admin.bate-volta.duplicate');
+
+    // CRUD Pacotes
+    Route::get('/pacotes', [AdminController::class, 'pacotes'])->name('admin.pacotes.index');
+    Route::get('/pacotes/create', [AdminController::class, 'pacoteCreate'])->name('admin.pacotes.create');
+    Route::post('/pacotes', [AdminController::class, 'pacoteStore'])->name('admin.pacotes.store');
+    Route::get('/pacotes/{destination}/edit', [AdminController::class, 'pacoteEdit'])->name('admin.pacotes.edit');
+    Route::put('/pacotes/{destination}', [AdminController::class, 'pacoteUpdate'])->name('admin.pacotes.update');
+    Route::delete('/pacotes/{destination}', [AdminController::class, 'pacoteDestroy'])->name('admin.pacotes.destroy');
+    Route::post('/pacotes/{destination}/duplicate', [AdminController::class, 'pacoteDuplicate'])->name('admin.pacotes.duplicate');
 });

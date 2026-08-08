@@ -27,7 +27,7 @@ class FeatureBannerSeeder extends Seeder
             ], 
             [
                 "id" => 2,
-                "name" => "Atendimento Humano Pelo WhatsApp",
+                "name" => "Atendimento Humanizado",
                 "icon" => "fas fa-headset",
                 "order" => 2,
                 "banner_id" => 1,

@@ -56,7 +56,7 @@ class BannerSeeder extends Seeder
   3 => 
   [
     'id' => 4,
-    'title' => 'Pacotes 2026/2027 com',
+    'title' => 'Pacotes com',
     'subtitle' => 'Garanta seu destino com preço fixo, parcelamento no boleto e todo o suporte da Viaje com a Gente, do planejamento até a volta pra casa.',
     'image_path' => 'banners/e4w6He7FZedBmwiqV92gURZn1FGNbhN9JLBFfNWf.jpg',
     'active' => 1,

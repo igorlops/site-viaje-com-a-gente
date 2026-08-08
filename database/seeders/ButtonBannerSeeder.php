@@ -18,7 +18,7 @@ class ButtonBannerSeeder extends Seeder
         $button = [[
 
             "id"=> 1,
-            "text"=> "Quero um Orçamento",
+            "text"=> "Solicite um orçamento",
             "color"=> "#000000",
             "url"=> "https://wa.me/" . env('PHONE_NUMBER'),
             "target"=> "_blank",
@@ -31,7 +31,7 @@ class ButtonBannerSeeder extends Seeder
         ],
         [            
             "id"=> 2,
-            "text"=> "Ver pacotes 2026/2027",
+            "text"=> "Nossos pacotes",
             "color"=> "#ffffff",
             "url"=> "https://wa.me/" .env('PHONE_NUMBER'),
             "target"=> "_blank",

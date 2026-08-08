@@ -13,7 +13,7 @@ class SiteSettingsSeeder extends Seeder
             // Grupo: Identidade
             [
                 'key'   => 'logo_navbar',
-                'value' => 'assets/images/logo.jpeg',
+                'value' => 'assets/images/logo.png',
                 'type'  => 'image',
                 'label' => 'Logo do Menu (Navbar)',
                 'group' => 'identidade',
@@ -21,7 +21,7 @@ class SiteSettingsSeeder extends Seeder
             ],
             [
                 'key'   => 'logo_head',
-                'value' => 'assets/images/logo.jpeg',
+                'value' => 'assets/images/logo.png',
                 'type'  => 'image',
                 'label' => 'Logo do Cabeçalho (Favicon / OG Image)',
                 'group' => 'identidade',
