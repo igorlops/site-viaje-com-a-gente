@@ -161,7 +161,7 @@
                         @if(isset($destination) && $destination->image_path)
                             <div class="shrink-0">
                                 <span class="block text-[10px] font-bold text-gray-400 mb-1">Imagem atual:</span>
-                                <img src="{{ asset('storage/' . $destination->image_path) }}" alt="{{ $destination->title }}" class="w-32 h-24 object-cover rounded-xl shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ $destination->image_path }}" alt="{{ $destination->title }}" tipo="miniatura" class="w-32 h-24 object-cover rounded-xl shadow-sm border border-gray-200" />
                             </div>
                         @endif
                         <div class="flex-grow w-full">

@@ -177,7 +177,7 @@
                         @if(isset($destination) && $destination->image_path)
                             <div class="shrink-0">
                                 <span class="block text-[10px] font-bold text-gray-400 mb-1">Imagem atual:</span>
-                                <img src="{{ asset('storage/' . $destination->image_path) }}" alt="{{ $destination->title }}" class="w-32 h-24 object-cover rounded-xl shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ $destination->image_path }}" alt="{{ $destination->title }}" tipo="miniatura" class="w-32 h-24 object-cover rounded-xl shadow-sm border border-gray-200" />
                             </div>
                         @endif
                         
@@ -279,7 +279,7 @@
                                         </div>
                                     </div>
                                     <div class="bg-slate-50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center">
-                                        <img src="{{ asset('storage/' . (isset($testimonial) ? $testimonial->author_photo : '')) }}" alt="Foto do Autor" class="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-200 shrink-0">
+                                        <x-imagem-responsiva nomeArquivo="{{ isset($testimonial) ? $testimonial->author_photo : '' }}" alt="Foto do Autor" tipo="miniatura" class="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-200 shrink-0" />
                                         <div class="flex-grow">
                                             <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Foto do Autor (Deixe em branco para manter atual)</label>
                                             <input type="file" name="testimonials[{{ $index }}][author_photo]" accept="image/*"
@@ -370,7 +370,7 @@
                         @if(isset($destination) ? $destination->banner_image_path : '')
                             <div class="shrink-0">
                                 <span class="block text-[10px] font-bold text-gray-400 mb-1">Banner atual:</span>
-                                <img src="{{ asset('storage/' . isset($destination) ? $destination->banner_image_path : '') }}" alt="Banner" class="w-48 h-20 object-cover rounded-xl shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ isset($destination) ? $destination->banner_image_path : '' }}" alt="Banner" tipo="miniatura" class="w-48 h-20 object-cover rounded-xl shadow-sm border border-gray-200" />
                             </div>
                         @endif
                         
@@ -503,7 +503,7 @@
                                     <div class="bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center transition-colors group-hover:bg-slate-50">
                                         @if(isset($highlight) ? $highlight->image_path : '')
                                             <div class="relative shrink-0 shadow-sm rounded-lg overflow-hidden border border-gray-200 bg-white">
-                                                <img src="{{ asset('storage/' . isset($highlight) ? $highlight->image_path : '') }}" alt="" class="w-14 h-14 object-cover">
+                                                 <x-imagem-responsiva nomeArquivo="{{ isset($highlight) ? $highlight->image_path : '' }}" alt="" tipo="miniatura" class="w-14 h-14 object-cover" />
                                             </div>
                                         @endif
                                         <div class="flex-grow">

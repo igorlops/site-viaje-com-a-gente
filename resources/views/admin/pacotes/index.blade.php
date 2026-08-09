@@ -34,7 +34,7 @@
                     @forelse($destinations as $dest)
                         <tr class="hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-4">
-                                <img src="{{ asset('storage/' . $dest->image_path) }}" alt="{{ $dest->title }}" class="w-16 h-12 object-cover rounded-lg shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ $dest->image_path }}" alt="{{ $dest->title }}" tipo="miniatura" class="w-16 h-12 object-cover rounded-lg shadow-sm border border-gray-200" />
                             </td>
                             <td class="px-6 py-4">
                                 <div class="font-bold text-[#002752]">{{ $dest->title }}</div>

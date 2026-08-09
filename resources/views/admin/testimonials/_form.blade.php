@@ -82,9 +82,7 @@
         <div class="flex items-start gap-5">
             @if(isset($testimonial) && $testimonial->author_photo)
                 <div class="shrink-0">
-                    <img src="{{ asset('storage/' . $testimonial->author_photo) }}"
-                         alt="{{ $testimonial->author_name }}"
-                         class="w-16 h-16 rounded-full object-cover border-2 border-gray-200">
+                    <x-imagem-responsiva nomeArquivo="{{ $testimonial->author_photo }}" alt="{{ $testimonial->author_name }}" tipo="miniatura" class="w-16 h-16 rounded-full object-cover border-2 border-gray-200" />
                     <p class="text-[10px] text-gray-400 text-center mt-1">Foto atual</p>
                 </div>
             @endif
@@ -92,7 +90,7 @@
                 <input type="file" name="author_photo" id="author_photo"
                        accept="image/jpeg,image/png,image/gif,image/webp"
                        class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-[#002752]/5 file:text-[#002752] hover:file:bg-[#002752]/10 transition duration-200 cursor-pointer">
-                <p class="text-[10px] text-gray-400 mt-1.5">JPEG, PNG ou WebP. Máx. 3MB. Será exibida em formato circular.</p>
+                <p class="text-[10px] text-gray-400 mt-1.5">JPEG, PNG ou WebP. Será exibida em formato circular.</p>
                 @error('author_photo')
                     <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                 @enderror

@@ -49,7 +49,7 @@
                         <tr class="hover:bg-orange-50/30 transition duration-150">
                             <td class="px-6 py-4">
                                 @if($dest->image_path)
-                                    <img src="{{ asset('storage/' . $dest->image_path) }}" alt="{{ $dest->title }}" class="w-16 h-12 object-cover rounded-lg shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ $dest->image_path }}" alt="{{ $dest->title }}" tipo="miniatura" class="w-16 h-12 object-cover rounded-lg shadow-sm border border-gray-200" />
                                 @else
                                     <div class="w-16 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-sun text-orange-400"></i>

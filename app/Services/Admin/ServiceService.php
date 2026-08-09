@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use App\DTOs\Admin\ServiceDTO;
 use App\Models\Service;
 use App\Repositories\ServiceRepository;
+use App\Services\ImageUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 class ServiceService
 {
     public function __construct(
-        private readonly ServiceRepository $repository
+        private readonly ServiceRepository $repository,
+        private readonly ImageUploadService $imageUploadService
     ) {}
 
     /**
@@ -68,16 +70,13 @@ class ServiceService
      */
     private function uploadImage(UploadedFile $file, string $directory): string
     {
-        return $file->store($directory, 'public');
+        return $this->imageUploadService->upload($file, $directory);
     }
 
-    /**
-     * Remove imagem antiga do storage se existir.
-     */
     private function deleteOldImage(?string $path): void
     {
         if ($path) {
-            Storage::disk('public')->delete($path);
+            $this->imageUploadService->delete($path);
         }
     }
 

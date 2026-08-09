@@ -6,10 +6,7 @@
 <div class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden flex flex-col group transition duration-300 transform hover:-translate-y-1 h-full">
     <!-- Card Image -->
     <div class="relative h-48 bg-gray-200 overflow-hidden shrink-0 w-full">
-        <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
-             src="{{ asset('storage/' . $pkg->image_path) }}" 
-             alt="{{ $pkg->title }}"
-             onerror="">
+        <x-imagem-responsiva nomeArquivo="{{ $pkg->image_path }}" alt="{{ $pkg->title }}" tipo="banner" class="h-48" />
     </div>
     
     <!-- Card Body -->

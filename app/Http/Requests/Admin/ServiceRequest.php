@@ -20,7 +20,7 @@ class ServiceRequest extends FormRequest
         return [
             'title'            => 'required|string|max:255',
             'subtitle'         => 'nullable|string|max:255',
-            'image'            => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
         ];
     }
 

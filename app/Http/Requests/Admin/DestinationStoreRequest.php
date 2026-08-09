@@ -17,7 +17,7 @@ class DestinationStoreRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'subtitle' => 'nullable|string|max:255',
-            'image' => $this->isMethod('POST') ? 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120' : 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'image' => $this->isMethod('POST') ? 'required|image|mimes:jpeg,png,jpg,gif,webp' : 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'duration' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
@@ -28,7 +28,7 @@ class DestinationStoreRequest extends FormRequest
             'slug' => 'nullable|string|max:255',
             
             // Novos campos adicionados na migration
-            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'full_price' => 'nullable|string|max:255',
             'date_range' => 'nullable|string|max:255',
             'nights' => 'nullable|string|max:255',
@@ -50,7 +50,7 @@ class DestinationStoreRequest extends FormRequest
             'highlights.*.id' => 'nullable|integer',
             'highlights.*.title' => 'required|string|max:255',
             'highlights.*.subtitle' => 'nullable|string|max:255',
-            'highlights.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'highlights.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'highlights.*.order' => 'nullable|integer',
 
             // Relações - Itinerary (Dia a Dia)
@@ -60,7 +60,7 @@ class DestinationStoreRequest extends FormRequest
             'itinerary.*.date' => 'nullable|string|max:255',
             'itinerary.*.label' => 'required|string|max:255',
             'itinerary.*.order' => 'nullable|integer',
-            'itinerary.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
+            'itinerary.*.image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'itinerary.*.activities' => 'nullable|array',
             'itinerary.*.activities.*' => 'required|string|max:255',
 
@@ -81,7 +81,7 @@ class DestinationStoreRequest extends FormRequest
             'testimonials' => 'nullable|array',
             'testimonials.*.id' => 'nullable|integer',
             'testimonials.*.author_name' => 'required|string|max:255',
-            'testimonials.*.author_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:3072',
+            'testimonials.*.author_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'testimonials.*.content' => 'required|string',
             'testimonials.*.rating' => 'required|integer|min:1|max:5',
             'testimonials.*.destination_id' => 'nullable|exists:destinations,id',

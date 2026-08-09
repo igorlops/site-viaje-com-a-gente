@@ -41,8 +41,7 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-3">
                                     @if($service->image_path)
-                                        <img src="{{ asset('storage/' . $service->image_path) }}" alt="{{ $service->title }}"
-                                             class="w-10 h-10 rounded-lg object-cover border border-gray-200 flex-shrink-0">
+                                        <x-imagem-responsiva nomeArquivo="{{ $service->image_path }}" alt="{{ $service->title }}" tipo="miniatura" class="w-10 h-10 rounded-lg object-cover border border-gray-200 flex-shrink-0" />
                                     @else
                                         <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0">
                                             <i class="fas fa-concierge-bell text-gray-400"></i>

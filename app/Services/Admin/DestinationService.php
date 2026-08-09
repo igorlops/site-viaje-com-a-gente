@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use App\DTOs\Admin\DestinationStoreDTO;
 use App\Models\Destination;
 use App\Repositories\DestinationRepository;
+use App\Services\ImageUploadService;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Storage;
 class DestinationService
 {
     public function __construct(
-        protected DestinationRepository $repository
+        protected DestinationRepository $repository,
+        protected ImageUploadService $imageUploadService
     ) {}
 
     public function create(DestinationStoreDTO $dto, Request $request): Destination
@@ -286,13 +288,13 @@ class DestinationService
 
     protected function uploadImage(UploadedFile $file, string $directory): string
     {
-        return $file->store($directory, 'public');
+        return $this->imageUploadService->upload($file, $directory);
     }
 
     protected function deleteOldImage(?string $path): void
     {
         if ($path && !in_array($path, ['destinations/porto.png', 'destinations/gramado.png', 'destinations/rio.png', 'destinations/foz.png'])) {
-            Storage::disk('public')->delete($path);
+            $this->imageUploadService->delete($path);
         }
     }
 

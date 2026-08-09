@@ -62,7 +62,7 @@
                     <select name="type" id="type"
                             class="w-full bg-slate-50 border border-slate-200 text-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/5 transition-all appearance-none cursor-pointer">
                         <option value="">Todos os Tipos</option>
-                        <option value="pacotes-2026-2027" {{ request('type') === 'pacotes-2026-2027' ? 'selected' : '' }}>Pacotes 2026-2027</option>
+                        <option value="pacotes" {{ request('type') === 'pacotes' ? 'selected' : '' }}>Pacotes de Viagens</option>
                         <option value="bate-e-volta" {{ request('type') === 'bate-e-volta' ? 'selected' : '' }}>Bate e Volta</option>
                         <option value="viagem-em-grupo" {{ request('type') === 'viagem-em-grupo' ? 'selected' : '' }}>Viagem em Grupo</option>
                     </select>

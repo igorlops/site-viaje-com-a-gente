@@ -38,11 +38,11 @@
             <!-- Menu Desktop -->
             <nav class="hidden xl:flex space-x-4 2xl:space-x-6 text-[11px] 2xl:text-xs font-semibold uppercase tracking-wider">
                 <a href="{{ route('home') }}" class=" {{ request()->routeIs('home') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Início</a>
-                <a href="{{ route('services') }}" class=" {{ request()->routeIs('services') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Serviços</a>
-                <a href="{{ route('pacotes') }}" class=" {{ request()->routeIs('pacotes') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Pacotes de viagem</a>
                 <a href="{{ route('group-trips') }}" class=" {{ request()->routeIs('group-trips') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Viagens em Grupo</a>
                 <a href="{{ route('short-trips') }}" class=" {{ request()->routeIs('short-trips') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Bate e Volta</a>
+                <a href="{{ route('pacotes') }}" class=" {{ request()->routeIs('pacotes') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Pacotes de viagens</a>
                 <a href="{{ route('destination') }}" class=" {{ request()->routeIs('destination') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Destinos</a>
+                <a href="{{ route('services') }}" class=" {{ request()->routeIs('services') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Serviços</a>
                 <a href="{{ route('faq') }}" class=" {{ request()->routeIs('faq') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Dúvidas</a>
                 <a href="{{ route('contact') }}" class=" {{ request()->routeIs('contact') ? 'text-[#f3a908]' : 'hover:text-[#f3a908]' }} transition duration-200">Contato</a>
             </nav>

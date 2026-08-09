@@ -66,9 +66,7 @@
                             <div class="flex items-center gap-4 mt-2">
                                 @if($setting->value)
                                     @if(str_starts_with($setting->value, 'settings/') || str_starts_with($setting->value, 'banners/'))
-                                        <img src="{{ asset('storage/' . $setting->value) }}"
-                                             alt="{{ $setting->label }}"
-                                             class="h-12 w-auto max-w-[120px] rounded-lg border border-gray-200 object-contain bg-gray-50 p-1">
+                                        <x-imagem-responsiva nomeArquivo="{{ $setting->value }}" alt="{{ $setting->label }}" tipo="miniatura" class="h-12 w-auto max-w-[120px] rounded-lg border border-gray-200 object-contain bg-gray-50 p-1" />
                                     @else
                                         <img src="{{ asset($setting->value) }}"
                                              alt="{{ $setting->label }}"

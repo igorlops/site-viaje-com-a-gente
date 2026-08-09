@@ -64,7 +64,7 @@
                         @endif
                         <div class="text-xs text-gray-400">
                             <p class="font-mono">{{ $setting->value ?: 'Nenhuma imagem' }}</p>
-                            <p class="mt-1">Formatos: JPEG, PNG, WebP, SVG — Máx. 2 MB</p>
+                            <p class="mt-1">Formatos: JPEG, PNG, WebP, SVG</p>
                         </div>
                     </div>
                 </div>

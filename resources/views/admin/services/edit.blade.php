@@ -67,14 +67,13 @@
                     </label>
                     @if($service->image_path)
                         <div class="mb-3">
-                            <img src="{{ asset('storage/' . $service->image_path) }}" alt="Imagem atual"
-                                 class="h-32 w-32 object-cover rounded-lg border border-gray-200">
+                            <x-imagem-responsiva nomeArquivo="{{ $service->image_path }}" alt="Imagem atual" tipo="miniatura" class="h-32 w-32 object-cover rounded-lg border border-gray-200" />
                             <p class="text-[10px] text-gray-400 mt-1">Imagem atual. Envie novo arquivo para substituir.</p>
                         </div>
                     @endif
                     <input type="file" name="image" id="image" accept="image/*"
                         class="w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-black file:uppercase file:bg-gray-100 file:text-[#002752] hover:file:bg-gray-200 file:cursor-pointer cursor-pointer border border-gray-300 rounded-lg p-1">
-                    <p class="text-[10px] text-gray-400 mt-1.5">Exibida no corpo da página. Máximo: 5MB.</p>
+                    <p class="text-[10px] text-gray-400 mt-1.5">Exibida no corpo da página.</p>
                     @error('image')
                         <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                     @enderror

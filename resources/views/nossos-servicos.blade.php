@@ -28,9 +28,7 @@
                     <div class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden flex flex-col">
     
     <div class="relative h-full overflow-hidden bg-gray-100">
-        <img src="{{ Storage::url($service->image_path) }}" 
-             alt="{{ $service->title }}"
-             class="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500 ease-out">
+        <x-imagem-responsiva nomeArquivo="{{ $service->image_path }}" alt="{{ $service->title }}" tipo="banner" class="h-full" />
         
         <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
     </div>

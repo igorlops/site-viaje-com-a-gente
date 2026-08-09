@@ -14,10 +14,10 @@
                     Conceito Bate e Volta
                 </span>
                 <h1 class="text-3xl sm:text-4xl font-black text-[#002752] tracking-tight mb-4">
-                    Menos rotina. Mais destinos. Tudo em 24 horas.
+                    Menos rotina, mais destinos. Tudo em 24 horas.
                 </h1>
                 <p class="text-base text-gray-600 leading-relaxed">
-                    O **Bate e Volta** é a pílula de escape para quem tem a rotina corrida, mas se recusa a passar o final de semana olhando para a parede. Uma viagem rápida, inteligente e revigorante: você embarca pela manhã em Fortaleza, vive um dia espetacular no litoral ou serra com tudo planejado, e volta a tempo de dormir no conforto da sua própria cama. **Sem precisar gastar com diárias de hotel ou pedir férias.**
+                    O Bate e Volta é a pílula de escape para quem tem a rotina corrida, mas se recusa a passar o final de semana olhando para a parede. Uma viagem rápida, inteligente e revigorante: você embarca pela manhã em Fortaleza, vive um dia espetacular no litoral ou serra com tudo planejado, e volta a tempo de dormir no conforto da sua própria cama. Sem precisar gastar com diárias de hotel ou pedir férias.
                 </p>
                 <div class="w-24 h-1 bg-[#f3a908] mx-auto mt-6 rounded"></div>
             </div>

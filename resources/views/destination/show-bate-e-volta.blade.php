@@ -37,14 +37,6 @@
                     <i class="fas fa-sun"></i> Bate e Volta
                 </span>
 
-                {{-- Alerta de urgência no topo da hero --}}
-                @if($urgencyText)
-                    <div class="inline-flex items-center gap-2 bg-red-500/90 text-white text-xs font-bold px-4 py-2 rounded-lg mb-4 backdrop-blur-sm">
-                        <i class="fas fa-fire animate-pulse"></i>
-                        <span>{{ $urgencyText }}</span>
-                    </div>
-                @endif
-
                 {{-- Título --}}
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#f3a908] leading-tight mb-3">
                     {{ $destination->title }}
@@ -65,33 +57,44 @@
                 @endif
 
                 {{-- Quick Info: Horários e Preço --}}
-                <div class="flex flex-wrap items-center gap-4 mb-8">
-                    @if($destination->date_range)
-                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                            <i class="fas fa-calendar-alt text-[#f3a908]"></i>
-                            <span class="text-sm font-semibold">{{ $destination->date_range }}</span>
-                        </div>
-                    @endif
-                    @if($destination->departure_date)
-                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                            <i class="fas fa-arrow-right text-emerald-400"></i>
-                            <span class="text-sm font-semibold">Saída: {{ $destination->departure_date }}</span>
-                        </div>
-                    @endif
-                    @if($destination->return_date)
-                        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                            <i class="fas fa-arrow-left text-blue-400"></i>
-                            <span class="text-sm font-semibold">Retorno: {{ $destination->return_date }}</span>
-                        </div>
-                    @endif
+                <div class="flex flex-col gap-6 items-start mb-6">
+                    <div class="flex flex-wrap items-center gap-4">
+                        @if($destination->date_range)
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <i class="fas fa-calendar-alt text-[#f3a908]"></i>
+                                <span class="text-lg font-semibold">{{ $destination->date_range }}</span>
+                            </div>
+                        @endif
+                        <!-- @if($destination->departure_date)
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <i class="fas fa-arrow-right text-emerald-400"></i>
+                                <span class="text-sm font-semibold">Saída: {{ $destination->departure_date }}</span>
+                            </div>
+                        @endif
+                        @if($destination->return_date)
+                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                <i class="fas fa-arrow-left text-blue-400"></i>
+                                <span class="text-sm font-semibold">Retorno: {{ $destination->return_date }}</span>
+                            </div>
+                        @endif -->
+                    </div>
+        
                     @if($destination->price)
-                        <div class="flex items-center gap-2 bg-[#f3a908] text-[#001c3d] px-5 py-2 rounded-lg shadow-lg">
+                        <div class="flex items-center gap-2 bg-[#f3a908] text-[#001c3d] px-5 py-2 rounded-lg shadow-lg text-3xl">
                             <i class="fas fa-tag font-black"></i>
-                            <span class="font-black text-xl">R$ {{ number_format($destination->price, 2, ',', '.') }}</span>
-                            <span class="text-xs font-bold opacity-70">por pessoa</span>
+                            <span class="font-black ">R$ {{ number_format($destination->price, 2, ',', '.') }}</span>
+                            <span class="text-lg font-bold opacity-70">por pessoa</span>
                         </div>
                     @endif
+                @if($urgencyText)
+                <div class="">
+                    <span class="inline-flex items-center gap-2 bg-red-500/90 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                        <i class="fas fa-fire animate-pulse text-red-200"></i>
+                        <span>{{ $urgencyText }}</span>
+                    </span>
                 </div>
+                @endif
+                
 
                 {{-- CTA Principal --}}
                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
@@ -122,7 +125,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Embarque / Desembarque</p>
-                            <p class="text-sm font-semibold text-white leading-relaxed">{{ $destination->departure_city }}</p>
+                            <p class="text-lg font-semibold text-white leading-relaxed">{{ $destination->departure_city }}</p>
                         </div>
                     </div>
                 @endif
@@ -167,11 +170,8 @@
             @if($includedItems->count() > 0)
                 <div class="mb-16">
                     <div class="text-center mb-10">
-                        <span class="text-[#109e4a] text-xs font-black uppercase tracking-widest bg-[#109e4a]/10 px-4 py-1.5 rounded-full inline-block mb-3">
-                            O que está incluso
-                        </span>
                         <h2 class="text-3xl font-black text-[#002752] uppercase tracking-tight">
-                            Tudo que você vai aproveitar
+                            O que está incluso
                         </h2>
                         <div class="w-20 h-1 bg-[#f3a908] mx-auto mt-4 rounded"></div>
                     </div>
@@ -247,7 +247,7 @@
             <div class="flex flex-col gap-4 mb-4">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold text-[#002752]">
-                        Informações
+                        INFORMAÇÕES
                     </h2>
                     <div class="w-20 h-1 bg-[#f3a908] mx-auto mt-4 rounded"></div>
                 </div>
@@ -295,7 +295,7 @@
                 <div class="mb-16">
                     <div class="text-center mb-10">
                         <h2 class="text-2xl font-black text-[#002752] uppercase tracking-tight">
-                            Informações Importantes
+                            OBSERVAÇÕES
                         </h2>
                         <div class="w-16 h-1 bg-[#109e4a] mx-auto mt-3 rounded"></div>
                     </div>
@@ -349,12 +349,7 @@
                     </div>
                 </div>
             @endif
-
-        </div>
-    </div>
-
-    {{-- ============================== CTA RODAPÉ ============================== --}}
-    <section class="bg-[#f3a908] py-10 text-[#002752]">
+                <section class="bg-[#f3a908] py-10 text-[#002752]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div class="text-center lg:text-left flex items-center gap-5 flex-col sm:flex-row">
@@ -378,6 +373,8 @@
             </div>
         </div>
     </section>
+        </div>
+    </div>
 
     @if(isset($cta_session) && ($ctaSession = $cta_session->firstWhere('order_position', 3)))
         <x-cta-session :cta="$ctaSession" />

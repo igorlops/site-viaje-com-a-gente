@@ -1,7 +1,6 @@
     @if(isset($breadcrumbs) && count($breadcrumbs) > 0)
-    <section class="relative bg-[#001c3d] py-4 overflow-hidden">
+    <!-- <section class="relative bg-[#001c3d] py-4 overflow-hidden">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-            <!-- Breadcrumbs -->
             <nav class="flex text-xs font-semibold uppercase tracking-wider text-gray-400">
                 <a href="{{ route('home') }}" class="hover:text-[#f3a908] transition duration-200">Início</a>
                 @if(isset($breadcrumbs) && count($breadcrumbs) > 0)
@@ -21,5 +20,5 @@
                 @endif
             </nav>
         </div>
-    </section>
+    </section> -->
     @endif

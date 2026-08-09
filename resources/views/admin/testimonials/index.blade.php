@@ -47,9 +47,7 @@
                                 <td class="px-6 py-4">
                                     <div class="flex items-center gap-3">
                                         @if($testimonial->author_photo)
-                                            <img src="{{ asset('storage/' . $testimonial->author_photo) }}"
-                                                 alt="{{ $testimonial->author_name }}"
-                                                 class="w-10 h-10 rounded-full object-cover shrink-0 border border-gray-200">
+                                            <x-imagem-responsiva nomeArquivo="{{ $testimonial->author_photo }}" alt="{{ $testimonial->author_name }}" tipo="miniatura" class="w-10 h-10 rounded-full object-cover shrink-0 border border-gray-200" />
                                         @else
                                             <div class="w-10 h-10 rounded-full bg-[#002752]/10 flex items-center justify-center shrink-0">
                                                 <i class="fas fa-user text-[#002752]/40 text-sm"></i>

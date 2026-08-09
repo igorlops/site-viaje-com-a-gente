@@ -15,13 +15,16 @@
             <!-- Descrição Conceitual dos Pacotes (Copy de Planejamento Inteligente) -->
             <div class="max-w-3xl mx-auto text-center mb-16">
                 <span class="text-[#109e4a] text-xs font-black uppercase tracking-widest bg-[#109e4a]/10 px-4 py-1.5 rounded-full inline-block mb-4">
-                    Temporada 2026 / 2027
+                    Os melhores pacotes de viagens
                 </span>
                 <h1 class="text-3xl sm:text-4xl font-black text-[#002752] tracking-tight mb-4">
-                    Quem planeja a próxima viagem compra memórias por metade do preço.
+                Garanta hoje a viagem que você quer viver amanhã.
                 </h1>
                 <p class="text-base text-gray-600 leading-relaxed">
-                    Viajar bem é, acima de tudo, viajar com inteligência. Ao garantir o seu lugar nas temporadas de **2026 e 2027**, você assume o controle do seu calendário de férias, bloqueia o aumento de preços e tarifas sazonais, e garante as melhores opções de hospedagem com total flexibilidade de pagamento. Escolha o seu destino e descubra como o planejamento transforma grandes roteiros em experiências incrivelmente econômicas e confortáveis.
+                    Os melhores momentos começam com planejamento. Na Viaje com a Gente, você pode garantir o bloqueio da sua viagem e parcelar em até 12x sem juros no cartão de crédito.
+                    E não é só sobre reservar uma viagem. É ter a tranquilidade de contar com suporte completo antes, durante e após o embarque.
+                    Seu destino escolhido. Sua vaga garantida. Seu pagamento facilitado.
+                    Agora só falta escolher para onde vamos.                
                 </p>
                 <div class="w-24 h-1 bg-[#f3a908] mx-auto mt-6 rounded"></div>
             </div>

@@ -28,7 +28,7 @@
                     @forelse($banners as $banner)
                         <tr class="hover:bg-gray-50 transition duration-150">
                             <td class="px-6 py-4">
-                                <img src="{{ asset('storage/' . $banner->image_path) }}" alt="Banner" class="w-24 h-14 object-cover rounded-lg shadow-sm border border-gray-200">
+                                <x-imagem-responsiva nomeArquivo="{{ $banner->image_path }}" alt="Banner" tipo="miniatura" class="w-24 h-14 object-cover rounded-lg shadow-sm border border-gray-200" />
                             </td>
                             <td class="px-6 py-4 font-semibold text-[#002752] max-w-xs truncate">
                                 {{ $banner->title ?: '(Sem título)' }}
