@@ -64,6 +64,18 @@
                 @enderror
             </div>
 
+            <!-- Google Ads Meta Tag -->
+            <div>
+                <label for="google_ads_meta" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Meta Tag Google Ads / Analytics</label>
+                <textarea name="google_ads_meta" id="google_ads_meta" rows="4"
+                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200 font-mono"
+                    placeholder='Ex: &lt;script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"&gt;&lt;/script&gt;'>{{ old('google_ads_meta', $page->google_ads_meta) }}</textarea>
+                <p class="text-[10px] text-gray-400 mt-1.5 font-medium">Cole o código HTML/script da meta tag do Google Ads ou Analytics. Deixe em branco para não exibir.</p>
+                @error('google_ads_meta')
+                    <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                @enderror
+            </div>
+
             <!-- Buttons -->
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
                 <button type="submit" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-wider transition duration-200 shadow-sm">

@@ -21,18 +21,13 @@ class ImageUploadService
         $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
         $relativePath = ltrim($directory, '/') . '/' . $fileName;
 
-        $image = $this->manager->read($file->getRealPath());
+        $image = $this->manager->decode($file);
 
         $this->ensureDirectoriesExist($directory);
 
-        $image->scale(width: 1920);
-        $image->toJpeg(90)->save(storage_path('app/public/grandes/' . $relativePath));
-
-        $image->scale(width: 800);
-        $image->toJpeg(90)->save(storage_path('app/public/medias/' . $relativePath));
-
-        $image->scale(width: 400);
-        $image->toJpeg(90)->save(storage_path('app/public/pequenas/' . $relativePath));
+        $image->scale(1920)->save(storage_path('app/public/grandes/' . $relativePath), quality: 90);
+        $image->scale(800)->save(storage_path('app/public/medias/' . $relativePath), quality: 90);
+        $image->scale(400)->save(storage_path('app/public/pequenas/' . $relativePath), quality: 90);
 
         return $relativePath;
     }

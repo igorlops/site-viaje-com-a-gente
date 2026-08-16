@@ -25,7 +25,7 @@
             <!-- Grid de Pacotes (Abaixo do texto, direto e dinâmico) -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-4">
                 @php
-                    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421';
+                    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
                 @endphp
 
                 @foreach($destinations as $pkg)

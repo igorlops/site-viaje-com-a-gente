@@ -39,6 +39,11 @@
                     <i class="fas fa-triangle-exclamation text-sm"></i>
                     <span>Regras e Alertas</span>
                 </button>
+                <button type="button" role="tab" aria-selected="false" aria-controls="bv-tab-highlights" onclick="switchTabBV(event, 'highlights')"
+                    class="bv-tab-btn inline-flex shrink-0 items-center gap-2 rounded-t-xl border border-transparent px-4 sm:px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-200 focus:outline-none text-gray-400 hover:text-[#001c3d] hover:bg-white/60">
+                    <i class="fas fa-star text-sm"></i>
+                    <span>Destaques</span>
+                </button>
             </nav>
         </div>
 
@@ -193,7 +198,7 @@
                         <input type="url" name="whatsapp_link" id="bv_whatsapp_link"
                             value="{{ old('whatsapp_link', isset($destination) ? $destination->whatsapp_link : '') }}"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
-                            placeholder="Ex: https://wa.me/5585999166421?text=Olá, quero o Bate e Volta...">
+                            placeholder="Ex: https://wa.me/+5585996811571?text=Olá, quero o Bate e Volta...">
                         <p class="text-[10px] text-gray-400 mt-1.5 font-medium">Se vazio, usa o link padrão do sistema.</p>
                     </div>
                     <div class="flex flex-col justify-center">
@@ -395,6 +400,77 @@
 
             </div>{{-- END TAB RULES --}}
 
+            {{-- ===================== TAB: DESTAQUES ===================== --}}
+            <div id="bv-tab-highlights" class="bv-tab-content space-y-6 hidden">
+                <div class="bg-slate-50/60 p-6 rounded-2xl border border-slate-100 backdrop-blur-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="text-sm font-extrabold text-[#001c3d] uppercase tracking-wide flex items-center gap-2">
+                                <i class="fas fa-images text-amber-500"></i> Destaques e Galeria Rápida
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Pontos turísticos marcantes e experiências com chamadas atraentes.</p>
+                        </div>
+                        <button type="button" onclick="bvAddHighlightRow()" class="bg-[#001c3d] hover:bg-[#001126] text-white px-4 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 shadow-md hover:shadow-lg focus:ring-2 focus:ring-[#001c3d]/20 inline-flex items-center gap-2 self-start sm:self-auto">
+                            <i class="fas fa-plus bg-white/20 p-1 rounded-lg text-[10px]"></i> Adicionar Destaque
+                        </button>
+                    </div>
+
+                    <div id="bv-highlights-container" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                        @if(!isset($destination) || $destination->highlights->isEmpty())
+                            <div class="col-span-full text-center py-12 text-slate-400">
+                                <i class="fas fa-star text-4xl mb-3"></i>
+                                <p class="text-sm font-bold">Nenhum destaque cadastrado</p>
+                                <p class="text-xs mt-1">Clique em "Adicionar Destaque" para incluir.</p>
+                            </div>
+                        @else
+                            @foreach($destination->highlights as $index => $highlight)
+                                <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] overflow-hidden highlight-row transition-all duration-300 flex flex-col justify-between group hover:border-gray-200">
+                                    <input type="hidden" name="highlights[{{ $index }}][id]" value="{{ isset($highlight) ? $highlight->id : '' }}">
+                                    <input type="hidden" name="highlights[{{ $index }}][order]" value="{{ isset($highlight) ? $highlight->order : '' }}">
+
+                                    <div class="flex items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                                        <span class="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-[#001c3d] uppercase tracking-widest">
+                                            <i class="fas fa-star text-[#f3a908]"></i> Bloco de Destaque
+                                        </span>
+                                        <button type="button" onclick="bvRemoveRow(this)" class="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover destaque">
+                                            <i class="fas fa-trash-alt text-xs"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="p-5 space-y-4 flex-grow">
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                            <div>
+                                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Título Principal</label>
+                                                <input type="text" name="highlights[{{ $index }}][title]" value="{{ isset($highlight) ? $highlight->title : '' }}" placeholder="Ex: Lago Negro"
+                                                    class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white" required>
+                                            </div>
+                                            <div>
+                                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Chamada Curta / Subtítulo</label>
+                                                <input type="text" name="highlights[{{ $index }}][subtitle]" value="{{ isset($highlight) ? $highlight->subtitle : '' }}" placeholder="Ex: Lindo passeio de pedalinho"
+                                                    class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center transition-colors group-hover:bg-slate-50">
+                                            @if(isset($highlight) ? $highlight->image_path : '')
+                                                <div class="relative shrink-0 shadow-sm rounded-lg overflow-hidden border border-gray-200 bg-white">
+                                                     <x-imagem-responsiva nomeArquivo="{{ isset($highlight) ? $highlight->image_path : '' }}" alt="" tipo="miniatura" class="w-14 h-14 object-cover" />
+                                                </div>
+                                            @endif
+                                            <div class="flex-grow">
+                                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Mudar Foto do Card</label>
+                                                <input type="file" name="highlights[{{ $index }}][image]" accept="image/*"
+                                                    class="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:bg-[#001c3d]/10 file:text-[#001c3d] hover:file:bg-[#001c3d]/20 file:transition-colors file:cursor-pointer bg-white rounded-lg border border-gray-200 p-1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+                </div>
+            </div>{{-- END TAB HIGHLIGHTS --}}
+
             {{-- Botões de Ação --}}
             <div class="flex items-center justify-end gap-3 pt-6 mt-6 border-t border-gray-100">
                 <a href="{{ route('admin.bate-volta.index') }}" class="border border-gray-200 hover:bg-gray-50 text-gray-500 px-6 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200">
@@ -426,7 +502,7 @@
         }
 
         function bvRemoveRow(btn) {
-            const row = btn.closest('.include-row, .observation-row');
+            const row = btn.closest('.include-row, .observation-row, .highlight-row');
             if (row) row.remove();
             const empty = document.getElementById('bv-includes-empty');
             if (empty && document.querySelectorAll('#bv-includes-container .include-row').length === 0) {
@@ -464,6 +540,50 @@
                     <button type="button" onclick="bvRemoveRow(this)" class="p-2.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-xl transition-all">
                         <i class="fas fa-trash-alt text-sm"></i>
                     </button>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function bvAddHighlightRow() {
+            const container = document.getElementById('bv-highlights-container');
+            const index = container.querySelectorAll('.highlight-row').length;
+            const html = `
+                <div class="rounded-2xl border border-gray-100 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.01)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.02)] overflow-hidden highlight-row transition-all duration-300 flex flex-col justify-between group hover:border-gray-200">
+                    <input type="hidden" name="highlights[${index}][id]" value="">
+                    <input type="hidden" name="highlights[${index}][order]" value="${index + 1}">
+
+                    <div class="flex items-center justify-between gap-2 px-4 py-3 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100">
+                        <span class="inline-flex items-center gap-1.5 text-[10px] font-extrabold text-[#001c3d] uppercase tracking-widest">
+                            <i class="fas fa-star text-[#f3a908]"></i> Bloco de Destaque
+                        </span>
+                        <button type="button" onclick="bvRemoveRow(this)" class="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors" title="Remover destaque">
+                            <i class="fas fa-trash-alt text-xs"></i>
+                        </button>
+                    </div>
+
+                    <div class="p-5 space-y-4 flex-grow">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Título Principal</label>
+                                <input type="text" name="highlights[${index}][title]" placeholder="Ex: Lago Negro"
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white" required>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Chamada Curta / Subtítulo</label>
+                                <input type="text" name="highlights[${index}][subtitle]" placeholder="Ex: Lindo passeio de pedalinho"
+                                    class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 text-xs font-semibold focus:outline-none transition-all bg-slate-50/30 focus:bg-white">
+                            </div>
+                        </div>
+                        
+                        <div class="bg-slate-50/50 p-3 rounded-xl border border-gray-100 flex gap-4 items-center transition-colors group-hover:bg-slate-50">
+                            <div class="flex-grow">
+                                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Mudar Foto do Card</label>
+                                <input type="file" name="highlights[${index}][image]" accept="image/*"
+                                    class="w-full text-xs text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:bg-[#001c3d]/10 file:text-[#001c3d] hover:file:bg-[#001c3d]/20 file:transition-colors file:cursor-pointer bg-white rounded-lg border border-gray-200 p-1">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `;
             container.insertAdjacentHTML('beforeend', html);

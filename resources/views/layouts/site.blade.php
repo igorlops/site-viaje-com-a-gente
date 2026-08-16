@@ -8,6 +8,9 @@
         <meta name="description" content="{{ $banner?->page?->meta_description ?? 'Viaje com a Gente - Viagens e Turismo' }}">
         <meta name="keywords" content="{{ $banner?->page?->meta_keywords ?? 'Viaje com a Gente - Viagens e Turismo' }}">
     @endif
+    @if($banner?->page?->google_ads_meta)
+        {!! $banner->page->google_ads_meta !!}
+    @endif
     <title>@yield('title', 'Viaje com a Gente - Viagens e Turismo')</title>
     
     <!-- Font Awesome -->

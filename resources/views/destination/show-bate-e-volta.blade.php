@@ -5,7 +5,7 @@
 @section('content')
     @php
         $whatsappUrl = $destination->whatsapp_link
-            ?? (isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/5585999166421');
+            ?? (isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571');
         $whatsappMsg = urlencode('Olá! Tenho interesse no passeio ' . $destination->title . ' – Bate e Volta. Quero saber mais!');
         $whatsappBtnUrl = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?') . 'text=' . $whatsappMsg;
         $bannerUrl = $destination->banner_image_path
@@ -80,7 +80,7 @@
                     </div>
         
                     @if($destination->price)
-                        <div class="flex items-center gap-2 bg-[#f3a908] text-[#001c3d] px-5 py-2 rounded-lg shadow-lg text-3xl">
+                        <div class="flex items-center gap-2 bg-[#f3a908] text-[#001c3d] px-5 py-2 rounded-lg shadow-lg text-xl">
                             <i class="fas fa-tag font-black"></i>
                             <span class="font-black ">R$ {{ number_format($destination->price, 2, ',', '.') }}</span>
                             <span class="text-lg font-bold opacity-70">por pessoa</span>
@@ -88,7 +88,7 @@
                     @endif
                 @if($urgencyText)
                 <div class="">
-                    <span class="inline-flex items-center gap-2 bg-red-500/90 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+                    <span class="inline-flex items-center gap-2 bg-red-500/90 text-white text-lg font-bold px-5 py-3 rounded-full shadow-md backdrop-blur-sm">
                         <i class="fas fa-fire animate-pulse text-red-200"></i>
                         <span>{{ $urgencyText }}</span>
                     </span>
@@ -98,8 +98,8 @@
 
                 {{-- CTA Principal --}}
                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-sm tracking-wider px-8 py-4 rounded-xl shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:scale-105 active:scale-95">
-                    <i class="fab fa-whatsapp text-2xl"></i>
+                   class="inline-flex items-center gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-sm tracking-wider px-5 py-2 rounded-xl shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:scale-105 active:scale-95">
+                    <i class="fab fa-whatsapp text-3xl"></i>
                     <span>Garantir Minha Vaga!</span>
                     <i class="fas fa-arrow-right text-sm opacity-70"></i>
                 </a>
@@ -218,7 +218,7 @@
                                     </li>
                                     <li class="flex items-center gap-2">
                                         <i class="fas fa-check-circle text-[#109e4a]"></i>
-                                        <span>Volta no mesmo dia para casa</span>
+                                        <span>Retorno no mesmo dia para casa</span>
                                     </li>
                                 </ul>
                             </div>
@@ -243,13 +243,59 @@
             @if(isset($cta_session) && ($ctaSession = $cta_session->firstWhere('order_position', 2)))
                 <x-cta-session :cta="$ctaSession" />
             @endif
+            @if($destination->highlights->count() > 0)
+                <!-- GLightbox CSS & JS -->
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+                <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
+                <div class="mb-5">
+                    <h2 class="text-3xl font-extrabold text-center text-[#002752] mb-2 uppercase">Conheça um pouco do destino</h2>
+                    <div class="w-16 h-1 bg-[#109e4a] rounded mb-8 mx-auto"></div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        @foreach($destination->highlights as $highlight)
+                            <a href="{{ asset('storage/' . $highlight->image_path) }}"
+                               class="glightbox group cursor-pointer block"
+                               data-gallery="galeria-fotos"
+                               data-title="{{ $highlight->title }}"
+                               @if($highlight->subtitle) data-description="{{ $highlight->subtitle }}" @endif>
+                                <div class="relative h-48 rounded-xl overflow-hidden mb-4">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
+                                         src="{{ asset('storage/' . $highlight->image_path) }}" 
+                                         alt="{{ $highlight->title }}">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#001c3d] to-transparent opacity-60"></div>
+                                    <div class="absolute bottom-4 left-4 right-4 text-white">
+                                        <h3 class="font-bold text-lg">{{ $highlight->title }}</h3>
+                                        @if($highlight->subtitle)
+                                            <p class="text-sm text-gray-200">{{ $highlight->subtitle }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const lightbox = GLightbox({
+                            selector: '.glightbox',
+                            touchNavigation: true,
+                            loop: true,
+                            zoomable: true,
+                            draggable: true,
+                        });
+                    });
+                </script>
+            @endif
+
 
             <div class="flex flex-col gap-4 mb-4">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold text-[#002752]">
                         INFORMAÇÕES
                     </h2>
-                    <div class="w-20 h-1 bg-[#f3a908] mx-auto mt-4 rounded"></div>
+                    <div class="w-20 h-1 bg-[#109e4a] mx-auto mt-4 rounded"></div>
                 </div>
                 @if($destination->departure_city)
                     <div class="flex flex-row items-center gap-3">
@@ -258,7 +304,7 @@
                         </div>
                         <div>
                             <p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1">Local de Embarque / Desembarque</p>
-                            <p class="text-sm font-semibold text-[#002752] leading-relaxed">{{ $destination->departure_city }}</p>
+                            <p class="text-2xl font-black text-[#002752] leading-relaxed">{{ $destination->departure_city }}</p>
                         </div>
                     </div>
                 @endif
@@ -349,7 +395,7 @@
                     </div>
                 </div>
             @endif
-                <section class="bg-[#f3a908] py-10 text-[#002752]">
+        <section class="bg-[#f3a908] py-10 text-[#002752] rounded-xl mt-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div class="text-center lg:text-left flex items-center gap-5 flex-col sm:flex-row">
@@ -361,7 +407,7 @@
                             Pronto para escapar da rotina?
                         </span>
                         <span class="block text-sm font-medium opacity-80">
-                            Fale com nossa equipe agora e garanta sua vaga no {{ $destination->title }}!
+                            Fale com nossa equipe agora e garanta sua vaga para {{ $destination->title }}!
                         </span>
                     </div>
                 </div>

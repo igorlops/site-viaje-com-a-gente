@@ -12,28 +12,16 @@
 
                 <!-- Column 2: Navigation Links -->
                 <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f3a908] mb-6">Navegação</h3>
+                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f3a908] mb-6">Páginas</h3>
                     <ul class="space-y-3.5 text-sm">
                         {{-- <li><a href="{{ route('packages20262027') }}" class="text-gray-400 hover:text-white transition duration-200">Pacotes 2026/2027</a></li> --}}
                         <li><a href="{{ route('short-trips') }}" class="text-gray-400 hover:text-white transition duration-200">Bate e Volta</a></li>
                         <li><a href="{{ route('group-trips') }}" class="text-gray-400 hover:text-white transition duration-200">Viagens em Grupo</a></li>
                         <li><a href="{{ route('destination') }}" class="text-gray-400 hover:text-white transition duration-200">Destinos</a></li>
                         <li><a href="{{ route('services') }}" class="text-gray-400 hover:text-white transition duration-200">Nossos Serviços</a></li>
-                        <li><a href="{{ route('home') }}#orcamento" class="text-gray-400 hover:text-white transition duration-200">Monte sua Viagem</a></li>
                         <li><a href="{{ route('home') }}#por-que-nos" class="text-gray-400 hover:text-white transition duration-200">Sobre Nós</a></li>
                         <li><a href="{{ route('faq') }}" class="text-gray-400 hover:text-white transition duration-200">Dúvidas Frequentes</a></li>
                         <li><a href="{{ route('contact') }}" class="text-gray-400 hover:text-white transition duration-200">Contato</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Information Links -->
-                <div>
-                    <h3 class="text-sm font-semibold uppercase tracking-wider text-[#f3a908] mb-6">Informações</h3>
-                    <ul class="space-y-3.5 text-sm">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Quem Somos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Política de Privacidade</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Termos de Uso</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-200">Formas de Pagamento</a></li>
                     </ul>
                 </div>
 
@@ -44,7 +32,7 @@
                         <li class="flex items-start gap-3">
                             <i class="fab fa-whatsapp text-lg text-green-500 mt-0.5"></i>
                             <div>
-                                <span class="block text-white font-semibold">(85) 9 9916-6421</span>
+                                <span class="block text-white font-semibold">(85) 9 9681-1571</span>
                                 <span class="text-xs">Clique e fale no WhatsApp</span>
                             </div>
                         </li>

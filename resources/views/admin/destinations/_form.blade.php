@@ -205,7 +205,7 @@
                     <label for="whatsapp_link" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Link WhatsApp Personalizado (Opcional)</label>
                     <input type="url" name="whatsapp_link" id="whatsapp_link" value="{{ old('whatsapp_link', isset($destination) ? $destination->whatsapp_link : '') }}"
                         class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
-                        placeholder="Ex: https://wa.me/5585999166421?text=Olá, tenho interesse...">
+                        placeholder="Ex: https://wa.me/+5585996811571?text=Olá, tenho interesse...">
                     <p class="text-[10px] text-gray-400 mt-1.5 font-medium">Se deixado em branco, o site usará o link padrão do WhatsApp.</p>
                     @error('whatsapp_link')
                         <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
