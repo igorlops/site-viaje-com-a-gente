@@ -17,16 +17,16 @@ class UserSeeder extends Seeder
         DB::table('users')->truncate();
 
         $data = [
-  0 => 
-  [
-    'id' => 1,
-    'name' => 'Administrador',
-    'email' => 'admin@viajecomagente.com.br',
-    'email_verified_at' => NULL,
-    'password' => '$2y$12$rQAXZA5AwJn/lNT4ohqCe.ceprcZNDVcFzYOgk9eqSQx9bipblqeG',
-    'remember_token' => '4jL8ZMKwKPL8dbf3hBgFBhrLKaDJ9LH623PXoGb3O25U7JJ02gu32QWtz0GN',
-    'created_at' => '2026-06-09 01:55:42',
-    'updated_at' => '2026-06-12 18:48:30',
+            0 => [
+                'id' => 1,
+                'name' => env('APP_NAME', 'Administrador'),
+                'email' => env('APP_EMAIL', 'admin@viajecomagente.com.br'),
+                'login' => env('APP_LOGIN', 'Viajecomagente'),
+                'email_verified_at' => NULL,
+                'password' => bcrypt(env('APP_PASSWORD', 'Admin1234#')),
+                'remember_token' => '',
+                'created_at' => '2026-06-09 01:55:42',
+                'updated_at' => '2026-06-12 18:48:30',
   ],
 ];
 
