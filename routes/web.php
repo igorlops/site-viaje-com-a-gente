@@ -9,10 +9,48 @@ use Spatie\Sitemap\SitemapGenerator;
 Route::get('/', [PageController::class, 'home'])->name('home');
 
 
-Route::get('/sitemap.xml', function () {
-    // Cria o sitemap varrendo todas as páginas do seu domínio local ou de produção
-    $sitemap = SitemapGenerator::create(config('app.url'))->getSitemap();
 
+Route::get('/sitemap.xml', function () {
+    // 1. Cria uma instância limpa do sitemap
+    $sitemap = Sitemap::create();
+
+    // 2. Adiciona as páginas estáticas e institucionais principais
+    $sitemap->add(Url::create(route('home'))->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY))
+            ->add(Url::create(route('destination'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+            ->add(Url::create(route('services'))->setPriority(0.7)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create(route('pacotes'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+            ->add(Url::create(route('short-trips'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+            ->add(Url::create(route('group-trips'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
+            ->add(Url::create(route('faq'))->setPriority(0.5)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
+            ->add(Url::create(route('contact'))->setPriority(0.6)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+
+    // 3. Adiciona dinamicamente os pacotes de viagem / destinos do banco de dados
+    // Certifique-se de ajustar o nome do Model se for diferente de 'Destination' ou 'Pacote'
+    if (class_exists(\App\Models\Destination::class)) {
+        $destinos = \App\Models\Destination::all();
+        foreach ($destinos as $destino) {
+            if (!empty($destino->slug)) {
+                $sitemap->add(Url::create(route('destination.show', $destino->slug))
+                    ->setPriority(0.9)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+            }
+        }
+    }
+
+    // 4. Adiciona dinamicamente as páginas de "bate-e-volta" do banco de dados
+    // Certifique-se de ajustar o nome do Model se for diferente de 'ShortTrip' ou 'BateVolta'
+    if (class_exists(\App\Models\ShortTrip::class)) {
+        $bateEVoltas = \App\Models\ShortTrip::all();
+        foreach ($bateEVoltas as $item) {
+            if (!empty($item->slug)) {
+                $sitemap->add(Url::create(route('bate-volta.show', $item->slug))
+                    ->setPriority(0.9)
+                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+            }
+        }
+    }
+
+    // 5. Retorna o XML renderizado na tela
     return Response::make($sitemap->render(), 200, [
         'Content-Type' => 'application/xml'
     ]);
