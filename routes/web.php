@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
 
@@ -16,14 +17,14 @@ Route::get('/sitemap.xml', function () {
     $sitemap = Sitemap::create();
 
     // 2. Adiciona as páginas estáticas e institucionais principais
-    $sitemap->add(Url::create(route('home'))->setPriority(1.0)->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY))
-            ->add(Url::create(route('destination'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
-            ->add(Url::create(route('services'))->setPriority(0.7)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
-            ->add(Url::create(route('pacotes'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
-            ->add(Url::create(route('short-trips'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
-            ->add(Url::create(route('group-trips'))->setPriority(0.8)->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY))
-            ->add(Url::create(route('faq'))->setPriority(0.5)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY))
-            ->add(Url::create(route('contact'))->setPriority(0.6)->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY));
+    $sitemap->add(URL::create(route('home'))->setPriority(1.0)->setChangeFrequency(URL::CHANGE_FREQUENCY_DAILY))
+            ->add(URL::create(route('destination'))->setPriority(0.8)->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY))
+            ->add(URL::create(route('services'))->setPriority(0.7)->setChangeFrequency(URL::CHANGE_FREQUENCY_MONTHLY))
+            ->add(URL::create(route('pacotes'))->setPriority(0.8)->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY))
+            ->add(URL::create(route('short-trips'))->setPriority(0.8)->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY))
+            ->add(URL::create(route('group-trips'))->setPriority(0.8)->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY))
+            ->add(URL::create(route('faq'))->setPriority(0.5)->setChangeFrequency(URL::CHANGE_FREQUENCY_MONTHLY))
+            ->add(URL::create(route('contact'))->setPriority(0.6)->setChangeFrequency(URL::CHANGE_FREQUENCY_MONTHLY));
 
     // 3. Adiciona dinamicamente os pacotes de viagem / destinos do banco de dados
     // Certifique-se de ajustar o nome do Model se for diferente de 'Destination' ou 'Pacote'
@@ -31,9 +32,9 @@ Route::get('/sitemap.xml', function () {
         $destinos = \App\Models\Destination::all();
         foreach ($destinos as $destino) {
             if (!empty($destino->slug)) {
-                $sitemap->add(Url::create(route('destination.show', $destino->slug))
+                $sitemap->add(URL::create(route('destination.show', $destino->slug))
                     ->setPriority(0.9)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+                    ->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY));
             }
         }
     }
@@ -44,9 +45,9 @@ Route::get('/sitemap.xml', function () {
         $bateEVoltas = \App\Models\ShortTrip::all();
         foreach ($bateEVoltas as $item) {
             if (!empty($item->slug)) {
-                $sitemap->add(Url::create(route('bate-volta.show', $item->slug))
+                $sitemap->add(URL::create(route('bate-volta.show', $item->slug))
                     ->setPriority(0.9)
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY));
+                    ->setChangeFrequency(URL::CHANGE_FREQUENCY_WEEKLY));
             }
         }
     }
