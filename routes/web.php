@@ -3,9 +3,20 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PageController;
+use Spatie\Sitemap\SitemapGenerator;
 
 // Rota pública do site (home)
 Route::get('/', [PageController::class, 'home'])->name('home');
+
+
+Route::get('/sitemap.xml', function () {
+    // Cria o sitemap varrendo todas as páginas do seu domínio local ou de produção
+    $sitemap = SitemapGenerator::create(config('app.url'))->getSitemap();
+
+    return Response::make($sitemap->render(), 200, [
+        'Content-Type' => 'application/xml'
+    ]);
+});
 
 // Detalhe do pacote de viagem
 Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');

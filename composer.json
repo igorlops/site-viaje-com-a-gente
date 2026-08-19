@@ -12,8 +12,8 @@
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",
         "league/commonmark": "^2.8",
-        "revolution/laravel-google-searchconsole": "^4.2",
-        "spatie/laravel-markdown": "^2.8"
+        "spatie/laravel-markdown": "^2.8",
+        "spatie/laravel-sitemap": "^8.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
