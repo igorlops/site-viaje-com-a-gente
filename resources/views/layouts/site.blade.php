@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="WKsXn1c8XduEpDJssqU9T_qD7ErNd26FQmW8EwRuAmQ" />
     @if($banner?->page)
         <meta name="title" content="{{ $banner?->page?->meta_title ?? 'Viaje com a Gente - Viagens e Turismo' }}">
         <meta name="description" content="{{ $banner?->page?->meta_description ?? 'Viaje com a Gente - Viagens e Turismo' }}">
