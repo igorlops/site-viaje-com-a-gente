@@ -27,16 +27,16 @@
 
             <!-- Email Input -->
             <div>
-                <label for="email" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Endereço de E-mail</label>
+                <label for="login" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">E-mail ou Login</label>
                 <div class="relative">
                     <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
                         <i class="far fa-envelope"></i>
                     </span>
-                    <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
+                    <input type="text" name="login" id="login" value="{{ old('login') }}" required autofocus
                         class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                        placeholder="contato@viajecomagente.com.br">
+                        placeholder="E-mail ou Login">
                 </div>
-                @error('email')
+                @error('login')
                     <p class="text-red-500 text-xs mt-1.5 font-medium">{{ $message }}</p>
                 @enderror
             </div>
