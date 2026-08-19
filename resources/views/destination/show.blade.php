@@ -4,7 +4,7 @@
 
 @section('content')
     @php
-        $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
+        $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
         $bannerUrl = $destination->banner_image_path ? asset('storage/' . $destination->banner_image_path) : asset('storage/' . $destination->image_path);
         $fullPrice = $destination->full_price ?? 'R$ ' . number_format($destination->price, 2, ',', '.');
     @endphp

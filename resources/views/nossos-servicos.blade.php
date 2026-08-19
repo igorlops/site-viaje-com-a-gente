@@ -7,7 +7,7 @@
     @php
         // $services é injetado pelo controller, ex:
         // Service::where('status', 'published')->get()
-        $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
+        $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
     @endphp
 
     <section class="py-20 bg-white">

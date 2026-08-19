@@ -5,7 +5,7 @@
 @section('content')
 
 @php
-    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
+    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
 @endphp
 
     <!-- SEÇÃO INTRODUTÓRIA + LISTAGEM DE PACOTES IMEDIATA -->

@@ -198,7 +198,7 @@
                         <input type="url" name="whatsapp_link" id="bv_whatsapp_link"
                             value="{{ old('whatsapp_link', isset($destination) ? $destination->whatsapp_link : '') }}"
                             class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
-                            placeholder="Ex: https://wa.me/+5585996811571?text=Olá, quero o Bate e Volta...">
+                            placeholder="Ex: https://wa.me/+5585999166421?text=Olá, quero o Bate e Volta...">
                         <p class="text-[10px] text-gray-400 mt-1.5 font-medium">Se vazio, usa o link padrão do sistema.</p>
                     </div>
                     <div class="flex flex-col justify-center">

@@ -32,14 +32,14 @@
                         <li class="flex items-start gap-3">
                             <i class="fab fa-whatsapp text-lg text-green-500 mt-0.5"></i>
                             <div>
-                                <span class="block text-white font-semibold">(85) 9 9681-1571</span>
+                                <span class="block text-white font-semibold">(85) 9 9916-6421</span>
                                 <span class="text-xs">Clique e fale no WhatsApp</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
                             <i class="far fa-envelope text-lg text-[#f3a908] mt-0.5"></i>
                             <div>
-                                <span class="block text-white">atendimento@viajecomagente.com.br</span>
+                                <span class="block text-white">contato@viajecomagente.com.br</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">

@@ -5,7 +5,7 @@
 @section('content')
     @php
         $whatsappUrl = $destination->whatsapp_link
-            ?? (isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571');
+            ?? (isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421');
         $whatsappMsg = urlencode('Olá! Tenho interesse no passeio ' . $destination->title . ' – Bate e Volta. Quero saber mais!');
         $whatsappBtnUrl = $whatsappUrl . (str_contains($whatsappUrl, '?') ? '&' : '?') . 'text=' . $whatsappMsg;
         $bannerUrl = $destination->banner_image_path

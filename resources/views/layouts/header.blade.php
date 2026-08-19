@@ -1,6 +1,6 @@
 <!-- HERO BANNER -->
 @php
-    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
+    $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
     $bannerUrl = $banner && $banner->image_path ? asset('storage/' . $banner->image_path) : asset('assets/images/page-home.jpeg');
     $bannerUrlMobile = $banner && $banner->image_path_mobile ? asset('storage/' . $banner->image_path_mobile) : $bannerUrl;
     $bannerTitle = $banner && $banner->title ? $banner->title : 'Sua próxima viagem está';

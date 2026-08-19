@@ -34,7 +34,7 @@
                     </span>
                     <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus
                         class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:border-[#002752] focus:ring-1 focus:ring-[#002752] focus:outline-none text-sm transition duration-200"
-                        placeholder="admin@viajecomagente.com.br">
+                        placeholder="contato@viajecomagente.com.br">
                 </div>
                 @error('email')
                     <p class="text-red-500 text-xs mt-1.5 font-medium">{{ $message }}</p>

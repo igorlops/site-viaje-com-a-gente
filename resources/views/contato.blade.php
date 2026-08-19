@@ -31,7 +31,7 @@
                         <div class="space-y-6">
                             <!-- WhatsApp Channel -->
                             @php
-                                $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585996811571';
+                                $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
                             @endphp
                             <a href="{{ $whatsappUrl }}" target="_blank" class="flex items-start gap-4 p-4 rounded-xl border border-gray-100 hover:border-[#109e4a]/30 hover:bg-[#109e4a]/5 transition duration-300 group">
                                 <div class="w-10 h-10 rounded-lg bg-[#109e4a]/10 text-[#109e4a] flex items-center justify-center shrink-0 group-hover:bg-[#109e4a] group-hover:text-white transition duration-300">
@@ -39,7 +39,7 @@
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">WhatsApp Comercial</span>
-                                    <span class="block text-base font-bold text-[#002752]">(85) 9 9681-1571</span>
+                                    <span class="block text-base font-bold text-[#002752]">(85) 9 9916-6421</span>
                                     <span class="block text-xs text-gray-400 mt-0.5">Clique para iniciar uma conversa imediata</span>
                                 </div>
                             </a>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div>
                                     <span class="block text-xs font-bold uppercase tracking-wider text-gray-400">E-mail de Suporte</span>
-                                    <span class="block text-base font-bold text-[#002752] break-all">atendimento@viajecomagente.com.br</span>
+                                    <span class="block text-base font-bold text-[#002752] break-all">contato@viajecomagente.com.br</span>
                                     <span class="block text-xs text-gray-400 mt-0.5">Respondemos suas solicitações em até 24h</span>
                                 </div>
                             </div>
