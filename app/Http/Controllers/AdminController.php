@@ -208,7 +208,7 @@ public function dashboard()
 
     public function bannerUpdate(Request $request, Banner $banner)
     {
-        dd($request->all());
+        //dd($request->all());
         $data = $request->validate([
             'title' => 'nullable|string|max:255',
             'titulo_destaque' => 'nullable|string|max:255',
