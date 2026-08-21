@@ -25,8 +25,7 @@
         })();
     </script>
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-[#001c3d]/95 via-[#001c3d]/80 to-[#001c3d]/40 md:to-transparent"></div>
-    
+    <div class="absolute inset-0 bg-gradient-to-r from-[#001c3d]/90 via-[#001c3d]/60 to-transparent"></div>
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
         <div class="max-w-xl lg:max-w-2xl text-white">
             <!-- Main Title -->

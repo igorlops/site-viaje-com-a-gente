@@ -38,7 +38,8 @@ class AdminController extends Controller
         protected SiteSettingRepository $siteSettingRepository,
         protected SiteSettingService $siteSettingService,
         protected TestimonialService $testimonialService,
-        protected TestimonialRepository $testimonialRepository
+        protected TestimonialRepository $testimonialRepository,
+        protected \App\Services\ImageUploadService $imageUploadService
     ) {}
     /**
      * Display the admin dashboard.
@@ -144,11 +145,11 @@ public function dashboard()
 
         // Upload da imagem
         if ($request->hasFile('image')) {
-            $data['image_path'] = $request->file('image')->store('banners', 'public');
+            $data['image_path'] = $this->imageUploadService->upload($request->file('image'), 'banners');
         }
 
         if ($request->hasFile('image_path_mobile')) {
-            $data['image_path_mobile'] = $request->file('image_path_mobile')->store('banners', 'public');
+            $data['image_path_mobile'] = $this->imageUploadService->upload($request->file('image_path_mobile'), 'banners');
         }
 
         // Tratamento dos botões (limpa vazios e aplica fallbacks)
@@ -239,16 +240,16 @@ public function dashboard()
         if ($request->hasFile('image')) {
             // Delete old image if it exists and is not the default seeder image
             if ($banner->image_path && $banner->image_path !== 'banners/page-home.jpeg') {
-                Storage::disk('public')->delete($banner->image_path);
+                $this->imageUploadService->delete($banner->image_path);
             }
-            $data['image_path'] = $request->file('image')->store('banners', 'public');
+            $data['image_path'] = $this->imageUploadService->upload($request->file('image'), 'banners');
         }
 
         if ($request->hasFile('image_path_mobile')) {
             if ($banner->image_path_mobile) {
-                Storage::disk('public')->delete($banner->image_path_mobile);
+                $this->imageUploadService->delete($banner->image_path_mobile);
             }
-            $data['image_path_mobile'] = $request->file('image_path_mobile')->store('banners', 'public');
+            $data['image_path_mobile'] = $this->imageUploadService->upload($request->file('image_path_mobile'), 'banners');
         }
 
         if (isset($data['buttons'])) {
@@ -613,7 +614,7 @@ public function dashboard()
 
         $data = $request->except(['_token', 'list_items', 'bg_image_url']);
         if ($request->hasFile('bg_image')) {
-            $data['bg_image'] = '/storage/' . $request->file('bg_image')->store('cta', 'public');
+            $data['bg_image'] = '/storage/' . $this->imageUploadService->upload($request->file('bg_image'), 'cta');
         } elseif ($request->filled('bg_image_url')) {
             $data['bg_image'] = $request->input('bg_image_url');
         }
@@ -676,11 +677,11 @@ public function dashboard()
 
         $data = $request->except(['_token', '_method', 'list_items', 'bg_image_url']);
         if ($request->hasFile('bg_image')) {
-            if ($cta_session->bg_image && \Illuminate\Support\Str::contains($cta_session->bg_image, '/storage/cta/')) {
+            if ($cta_session->bg_image && str_starts_with($cta_session->bg_image, '/storage/')) {
                 $oldPath = str_replace('/storage/', '', $cta_session->bg_image);
-                Storage::disk('public')->delete($oldPath);
+                $this->imageUploadService->delete($oldPath);
             }
-            $data['bg_image'] = '/storage/' . $request->file('bg_image')->store('cta', 'public');
+            $data['bg_image'] = '/storage/' . $this->imageUploadService->upload($request->file('bg_image'), 'cta');
         } elseif ($request->filled('bg_image_url')) {
             $data['bg_image'] = $request->input('bg_image_url');
         }

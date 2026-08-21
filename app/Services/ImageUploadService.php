@@ -25,9 +25,10 @@ class ImageUploadService
 
         $this->ensureDirectoriesExist($directory);
 
-        $image->scale(1920)->save(storage_path('app/public/grandes/' . $relativePath), quality: 90);
-        $image->scale(800)->save(storage_path('app/public/medias/' . $relativePath), quality: 90);
-        $image->scale(400)->save(storage_path('app/public/pequenas/' . $relativePath), quality: 90);
+        $image->save(public_path('storage/' . $relativePath), quality: 90);
+        $image->scale(1920)->save(public_path('storage/grandes/' . $relativePath), quality: 90);
+        $image->scale(800)->save(public_path('storage/medias/' . $relativePath), quality: 90);
+        $image->scale(400)->save(public_path('storage/pequenas/' . $relativePath), quality: 90);
 
         return $relativePath;
     }
@@ -39,6 +40,7 @@ class ImageUploadService
         }
 
         $paths = [
+            $path,
             'grandes/' . $path,
             'medias/' . $path,
             'pequenas/' . $path,
@@ -51,10 +53,13 @@ class ImageUploadService
 
     protected function ensureDirectoriesExist(string $directory): void
     {
+        $dirClean = ltrim($directory, '/');
         $directories = [
-            storage_path('app/public/grandes/' . ltrim($directory, '/')),
-            storage_path('app/public/medias/' . ltrim($directory, '/')),
-            storage_path('app/public/pequenas/' . ltrim($directory, '/')),
+            public_path('storage'),
+            public_path('storage/' . $dirClean),
+            public_path('storage/grandes/' . $dirClean),
+            public_path('storage/medias/' . $dirClean),
+            public_path('storage/pequenas/' . $dirClean),
         ];
 
         foreach ($directories as $dir) {

@@ -22,6 +22,14 @@
 
         $subfolderPath = $subfolder ? trim($subfolder, '/') . '/' . $file : $file;
         
+        if (file_exists(public_path('storage/' . $subfolderPath))) {
+            return asset('storage/' . $subfolderPath);
+        }
+        
+        if (file_exists(public_path('storage/' . $file))) {
+            return asset('storage/' . $file);
+        }
+
         if (file_exists(storage_path('app/public/' . $subfolderPath))) {
             return asset('storage/' . $subfolderPath);
         }
