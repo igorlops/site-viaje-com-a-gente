@@ -314,8 +314,9 @@ public function dashboard()
     {
         $dto = \App\DTOs\Admin\DestinationStoreDTO::fromRequest($request);
         $this->destinationService->update($destination->id, $dto, $request);
-
-        return redirect()->route('admin.destinations.index')->with('success', 'Destino atualizado com sucesso!');
+        return $destination->type == 'pacotes' ? 
+            redirect()->route('admin.pacotes.index') : 
+            redirect()->route('admin.destinations.index');
     }
 
     public function destinationDestroy(Destination $destination)

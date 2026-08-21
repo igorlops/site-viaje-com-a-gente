@@ -115,7 +115,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::get('/destinations/create', [AdminController::class, 'destinationCreate'])->name('admin.destinations.create');
     Route::post('/destinations', [AdminController::class, 'destinationStore'])->name('admin.destinations.store');
     Route::get('/destinations/{destination}/edit', [AdminController::class, 'destinationEdit'])->name('admin.destinations.edit');
-    Route::put('/destinations/{destination}', [AdminController::class, 'destinationUpdate'])->name('admin.destinations.update');
+    Route::post('/destinations/{destination}', [AdminController::class, 'destinationUpdate'])->name('admin.destinations.update');
     Route::delete('/destinations/{destination}', [AdminController::class, 'destinationDestroy'])->name('admin.destinations.destroy');
     Route::post('/destinations/{destination}/duplicate', [AdminController::class, 'destinationDuplicate'])->name('admin.destinations.duplicate');
 
