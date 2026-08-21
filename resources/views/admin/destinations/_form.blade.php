@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         function removeRow(btn) {
-            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row, .testimonial-row');
+            const row = btn.closest('.include-row, .highlight-row, .itinerary-day-row, .activity-row, .observation-row, .testimonial-row') || btn.parentElement;
             if (row) row.remove();
         }
 

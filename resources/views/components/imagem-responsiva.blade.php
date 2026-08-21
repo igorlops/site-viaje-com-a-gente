@@ -1,19 +1,53 @@
 @props([
     'nomeArquivo',
+    'nomeArquivoMobile' => null,
     'alt' => '',
     'tipo' => 'miniatura',
     'class' => '',
 ])
 
 @php
-    $path = ltrim($nomeArquivo, '/');
+    $rawPath = ltrim((string)$nomeArquivo, '/');
+    if (str_starts_with($rawPath, 'storage/')) {
+        $rawPath = substr($rawPath, 8);
+    }
+
+    $rawPathMobile = $nomeArquivoMobile ? ltrim((string)$nomeArquivoMobile, '/') : null;
+    if ($rawPathMobile && str_starts_with($rawPathMobile, 'storage/')) {
+        $rawPathMobile = substr($rawPathMobile, 8);
+    }
+
+    $resolvePath = function(string $subfolder, string $file) {
+        if (empty($file)) return '';
+
+        $subfolderPath = $subfolder ? trim($subfolder, '/') . '/' . $file : $file;
+        
+        if (file_exists(storage_path('app/public/' . $subfolderPath))) {
+            return asset('storage/' . $subfolderPath);
+        }
+        
+        if (file_exists(storage_path('app/public/' . $file))) {
+            return asset('storage/' . $file);
+        }
+
+        if (file_exists(public_path($file))) {
+            return asset($file);
+        }
+
+        return asset('storage/' . $file);
+    };
 
     if ($tipo === 'banner') {
-        $srcGrande = asset('storage/grandes/' . $path);
-        $srcMedia = asset('storage/medias/' . $path);
-        $srcPequena = asset('storage/pequenas/' . $path);
+        $srcGrande = $resolvePath('grandes', $rawPath);
+        $srcMedia = $resolvePath('medias', $rawPath);
+
+        if ($rawPathMobile) {
+            $srcPequena = $resolvePath('pequenas', $rawPathMobile);
+        } else {
+            $srcPequena = $resolvePath('pequenas', $rawPath);
+        }
     } else {
-        $src = asset('storage/pequenas/' . $path);
+        $src = $resolvePath('pequenas', $rawPath);
     }
 @endphp
 

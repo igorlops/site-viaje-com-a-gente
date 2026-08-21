@@ -212,25 +212,25 @@
                                     </div>
                                     <div class="md:col-span-3">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor do botão</label>
-                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
-                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_color]" value="{{ old('buttons.'.$buttonIndex.'.bg_color', $button->bg_color ?? '#109e4a') }}" required
+                                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-3">
-                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor hover (ao passar mouse por cima)</label>
-                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_hover_color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
-                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor hover (ao passar mouse)</label>
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][bg_hover_color]" value="{{ old('buttons.'.$buttonIndex.'.bg_hover_color', $button->bg_hover_color ?? '#0d9648') }}" required
+                                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                                     </div>
-                                    <div class="md:col-span-3">
+                                    <div class="md:col-span-2">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor da letra</label>
-                                        <input type="color" name="buttons[{{ $buttonIndex }}][color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color) }}" required
-                                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                                        <input type="color" name="buttons[{{ $buttonIndex }}][color]" value="{{ old('buttons.'.$buttonIndex.'.color', $button->color ?? '#ffffff') }}" required
+                                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                                     </div>
                                     <div class="md:col-span-5">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">URL / Link do Botão</label>
                                         <input type="text" name="buttons[{{ $buttonIndex }}][url]" value="{{ old('buttons.'.$buttonIndex.'.url', $button->url) }}" placeholder="Ex: https://..." required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                                     </div>
-                                    <div class="md:col-span-6">
+                                    <div class="md:col-span-4">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Target (Abertura)</label>
                                         <select name="buttons[{{ $buttonIndex }}][target]" required
                                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
@@ -238,7 +238,7 @@
                                             <option value="_blank" {{ old('buttons.'.$buttonIndex.'.target', $button->target) == '_blank' ? 'selected' : '' }}>Nova Aba (Guia externa)</option>
                                         </select>
                                     </div>
-                                    <div class="md:col-span-6">
+                                    <div class="md:col-span-3">
                                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Ordem</label>
                                         <input type="number" name="buttons[{{ $buttonIndex }}][order]" placeholder="Ex: 1" required
                                             value="{{ old('buttons.'.$buttonIndex.'.order', $button->order) }}"
@@ -327,26 +327,26 @@
                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                     </div>
                     <div class="md:col-span-3">
-                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hexadecimal</label>
-                        <input type="color" name="buttons[${buttonIndex}][bg_color]" placeholder="#109e4a" required
-                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor do botão</label>
+                        <input type="color" name="buttons[${buttonIndex}][bg_color]" value="#109e4a" required
+                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                     </div>
                     <div class="md:col-span-3">
-                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor Hover(Ao passar mouse por cima)</label>
-                        <input type="color" name="buttons[${buttonIndex}][bg_hover_color]" placeholder="#109e4a" required
-                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                        <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor hover (ao passar mouse)</label>
+                        <input type="color" name="buttons[${buttonIndex}][bg_hover_color]" value="#0d9648" required
+                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                     </div>
-                    <div class="md:col-span-3">
+                    <div class="md:col-span-2">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Cor da letra</label>
-                        <input type="color" name="buttons[${buttonIndex}][color]" placeholder="#109e4a" required
-                            class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
+                        <input type="color" name="buttons[${buttonIndex}][color]" value="#ffffff" required
+                            class="w-full h-10 p-1 rounded-lg border border-slate-200 focus:border-[#001c3d] cursor-pointer bg-slate-50/30">
                     </div>
                     <div class="md:col-span-5">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">URL / Link do Botão</label>
                         <input type="text" name="buttons[${buttonIndex}][url]" placeholder="Ex: https://..." required
                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
                     </div>
-                    <div class="md:col-span-6">
+                    <div class="md:col-span-4">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Target (Abertura)</label>
                         <select name="buttons[${buttonIndex}][target]" required
                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
@@ -354,7 +354,7 @@
                             <option value="_blank">Nova Aba (Guia externa)</option>
                         </select>
                     </div>
-                    <div class="md:col-span-6">
+                    <div class="md:col-span-3">
                         <label class="block text-[10px] font-bold text-gray-400 uppercase mb-1.5">Ordem</label>
                         <input type="number" name="buttons[${buttonIndex}][order]" placeholder="Ex: 1" required
                             class="w-full px-3.5 py-2.5 rounded-lg border border-slate-200 focus:border-[#001c3d] text-xs focus:outline-none transition-colors bg-slate-50/30">
@@ -369,10 +369,10 @@
 
     // Event Delegation Seguro para Remoção de Itens
     document.addEventListener('click', function (e) {
-        if (e.target.classList.contains('remove-feature')) {
+        if (e.target.classList.contains('remove-feature') || e.target.closest('.remove-feature')) {
             e.target.closest('.feature-item').remove();
         }
-        if (e.target.classList.contains('remove-button')) {
+        if (e.target.classList.contains('remove-button') || e.target.closest('.remove-button')) {
             e.target.closest('.button-item').remove();
         }
     });

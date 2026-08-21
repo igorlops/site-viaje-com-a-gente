@@ -122,7 +122,7 @@ public function dashboard()
             'subtitle' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'image_path_mobile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
-            'page_id' => 'nullable',
+            'page_id' => 'nullable|integer',
             'active' => 'boolean',
             
             // Incluindo a validação das Features (idêntico ao update)
@@ -135,6 +135,8 @@ public function dashboard()
             'buttons' => 'nullable|array',
             'buttons.*.text' => 'nullable|string|max:255',
             'buttons.*.color' => 'nullable|string|max:255',
+            'buttons.*.bg_color' => 'nullable|string|max:255',
+            'buttons.*.bg_hover_color' => 'nullable|string|max:255',
             'buttons.*.url' => 'nullable|string|max:255',
             'buttons.*.target' => 'nullable|string|max:255',
             'buttons.*.order' => 'nullable|integer',
@@ -232,6 +234,7 @@ public function dashboard()
             'buttons.*.target' => 'nullable|string|max:255',
             'buttons.*.order' => 'nullable|integer',
         ]);
+        // dd($data);
 
         if ($request->hasFile('image')) {
             // Delete old image if it exists and is not the default seeder image

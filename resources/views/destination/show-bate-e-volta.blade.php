@@ -254,14 +254,14 @@
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                         @foreach($destination->highlights as $highlight)
-                            <a href="{{ asset('storage/' . $highlight->image_path) }}"
+                            <a href="{{ asset('storage/medias/' . $highlight->image_path) }}"
                                class="glightbox group cursor-pointer block"
                                data-gallery="galeria-fotos"
                                data-title="{{ $highlight->title }}"
                                @if($highlight->subtitle) data-description="{{ $highlight->subtitle }}" @endif>
                                 <div class="relative h-48 rounded-xl overflow-hidden mb-4">
                                     <img class="w-full h-full object-cover group-hover:scale-105 transition duration-500" 
-                                         src="{{ asset('storage/' . $highlight->image_path) }}" 
+                                         src="{{ asset('storage/medias/' . $highlight->image_path) }}" 
                                          alt="{{ $highlight->title }}">
                                     <div class="absolute inset-0 bg-gradient-to-t from-[#001c3d] to-transparent opacity-60"></div>
                                     <div class="absolute bottom-4 left-4 right-4 text-white">
