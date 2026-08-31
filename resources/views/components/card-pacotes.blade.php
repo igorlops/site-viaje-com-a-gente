@@ -5,26 +5,26 @@
 
 <div class="bg-white rounded-xl shadow-md hover:shadow-xl border border-gray-100 overflow-hidden flex flex-col group transition duration-300 transform hover:-translate-y-1 h-full">
     <!-- Card Image -->
-    <div class="relative h-48 bg-gray-200 overflow-hidden shrink-0 w-full">
-        <x-imagem-responsiva nomeArquivo="{{ $pkg->image_path }}" alt="{{ $pkg->title }}" tipo="banner" class="h-48" />
+    <div class="relative h-64 bg-gray-200 overflow-hidden shrink-0 w-full">
+        <x-imagem-responsiva nomeArquivo="{{ $pkg->image_path }}" alt="{{ $pkg->title }}" tipo="banner" class="h-64" />
     </div>
     
     <!-- Card Body -->
     <div class="p-5 flex-grow flex flex-col justify-between">
         <div>
             <!-- Título padronizado com altura fixa (máx 2 linhas) -->
-            <h3 class="text-[#002752] text-xl font-bold leading-snug mb-1 h-[3.5rem] line-clamp-2" title="{{ $pkg->title_card ?? $pkg->title }}">
+            <h3 class="text-[#002752] text-xl font-bold leading-snug mb-1 h-[1.75rem] line-clamp-1" title="{{ $pkg->title_card ?? $pkg->title }}">
                 {{ $pkg->title_card ?? $pkg->title }}
             </h3>
 
             <!-- Subtítulo padronizado com altura fixa (máx 3 linhas) -->
-            <p class="text-gray-500 text-sm font-medium mb-3 h-[3.75rem] line-clamp-3" title="{{ $pkg->subtitle_card ?? $pkg->subtitle }}">
+            <p class="text-gray-500 text-sm font-medium mb-1 line-clamp-1" title="{{ $pkg->subtitle_card ?? $pkg->subtitle }}">
                 {{ $pkg->subtitle_card ?? $pkg->subtitle }}
             </p>
 
             <div class="flex items-center gap-2 min-h-[10px]">
                 @if(!empty($pkg->tag))
-                    <span class="relative text-[11px] px-2 bg-[#f3a908] text-white font-black tracking-wider py-1 rounded truncate max-w-full">
+                    <span class="relative text-[11px] px-2 bg-[#109e4a] text-white font-black tracking-wider py-1 rounded truncate max-w-full">
                         {{ $pkg->tag }}
                     </span>
                 @endif
@@ -54,7 +54,7 @@
         <div>
             <!-- Price -->
             <div class="mb-4">
-                <span class="block text-gray-400 text-xs font-medium">A partir de</span>
+                {{-- <span class="block text-gray-400 text-xs font-medium">A partir de</span> --}}
                 <div class="flex items-baseline gap-1">
                     <span class="text-[#109e4a] text-xs font-black">R$</span>
                     <span class="text-[#109e4a] text-2xl font-black">

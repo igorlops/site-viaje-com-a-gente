@@ -6,7 +6,9 @@
     @php
         $whatsappUrl = isset($socialLinks['whatsapp']) ? $socialLinks['whatsapp']->url : 'https://wa.me/+5585999166421';
         $bannerUrl = $destination->banner_image_path ? asset('storage/' . $destination->banner_image_path) : asset('storage/' . $destination->image_path);
-        $fullPrice = $destination->full_price ?? 'R$ ' . number_format($destination->price, 2, ',', '.');
+        $fullPrice = $destination->full_price 
+            ? (str_contains($destination->full_price, 'R$') ? $destination->full_price : 'R$ ' . $destination->full_price)
+            : 'R$ ' . number_format($destination->price, 2, ',', '.');
     @endphp
 
     <!-- HERO BANNER -->
@@ -118,7 +120,7 @@
                 <div class="mb-5">
                     <h2 class="text-3xl font-black text-[#002752] text-center mb-2 uppercase tracking-wider">Informações do pacote</h2>
                     <div class="w-24 h-1 bg-[#109e4a] mx-auto rounded mb-12"></div>
-                    <div class="flex flex-row itens-center gap-4 justify-between">
+                    <div class="flex flex-col lg:flex-row itens-center gap-4 justify-between">
                         <!-- Left Column: Includes -->
                         <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm w-full">
                             <span class="inline-block bg-[#109e4a] text-white px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
@@ -153,23 +155,40 @@
                             </div>
                             @endif
 
-                            <!-- Card: Formas de Pagamento -->
-                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm basis-1/2">
-                                <span class="inline-block bg-[#f3a908] text-black font-bold px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider mb-6">
-                                    Valor do pacote e formas de Pagamento
-                                </span>
-                                <ul class="space-y-6">
+                            <!-- Card: Formas de Pagamento (Estilo Ticket) -->
+                            <div class="relative bg-gradient-to-b from-[#008be3] to-[#0070be] text-white p-6 sm:p-8 rounded-3xl shadow-xl overflow-hidden border border-sky-400/30">
+                                {{-- Recortes laterais estilo Ticket (Ticket Notch) --}}
+                                <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-gray-50 rounded-full"></div>
+                                <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-gray-50 rounded-full"></div>
+
+                                {{-- Cabeçalho do Ticket --}}
+                                <div class="text-center pb-6">
+                                    <span class="inline-block border border-white/40 bg-white/10 backdrop-blur-md text-white font-black px-6 py-1.5 rounded-full text-xs uppercase tracking-widest mb-3">
+                                        VALOR DO PACOTE
+                                    </span>
+                                    <div class="flex items-baseline justify-center gap-1 font-black text-white drop-shadow-md">
+                                        <span class="text-2xl sm:text-3xl font-extrabold">R$</span>
+                                        <span class="text-5xl sm:text-6xl tracking-tight">{{ number_format($destination->price, 2, ',', '.') }}</span>
+                                    </div>
+                                    <p class="text-amber-300 font-bold text-sm tracking-wide mt-1">por pessoa</p>
+                                </div>
+
+                                {{-- Linha Divisória Tracejada --}}
+                                <div class="border-b-2 border-dashed border-white/30 my-2 -mx-6 sm:-mx-8"></div>
+
+                                {{-- Lista de Formas de Pagamento --}}
+                                <ul class="space-y-4 pt-4">
                                     @foreach($destination->paymentMethods as $payMethod)
-                                        <li class="flex items-center gap-4">
-                                            <div class="w-10 h-10 rounded-full bg-{{ $payMethod->method->icon_color == 'emerald' ? 'emerald' : 'blue' }}-50 flex items-center justify-center shrink-0">
-                                                <i class="{{ $payMethod->method->icon }} text-{{ $payMethod->method->icon_color == 'emerald' ? 'emerald' : 'blue' }}-600 text-lg"></i>
+                                        <li class="flex items-start gap-3.5">
+                                            <div class="w-7 h-7 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center shrink-0 mt-0.5 border border-white/20">
+                                                <i class="{{ $payMethod->method->icon ?? 'fas fa-credit-card' }} text-amber-300 text-sm"></i>
                                             </div>
-                                            <div>
-                                                <p class="text-gray-700 text-xs font-semibold leading-relaxed">
+                                            <div class="text-white">
+                                                <p class="text-sm font-semibold leading-snug text-white/95">
                                                     {!! $payMethod->text !!}
                                                 </p>
                                                 @if($payMethod->subtext)
-                                                    <p class="text-gray-500 text-[10px] mt-0.5">{!! $payMethod->subtext !!}</p>
+                                                    <p class="text-amber-200/90 text-xs mt-0.5 font-medium">{!! $payMethod->subtext !!}</p>
                                                 @endif
                                             </div>
                                         </li>
@@ -426,11 +445,11 @@
                                 <p class="text-xs text-amber-600/70 mt-0.5">Leia com atenção antes de reservar.</p>
                             </div>
                         </div>
-                        <ul class="space-y-3">
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             @foreach($destination->observations as $observation)
-                                <li class="flex items-start gap-3">
-                                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0"></span>
-                                    <span class="text-sm text-amber-900 font-medium leading-relaxed">{{ $observation->text }}</span>
+                                <li class="flex items-start gap-3 bg-white/60 p-3.5 rounded-xl border border-amber-200/60">
+                                    <span class="mt-1.5 w-2 h-2 rounded-full bg-amber-500 shrink-0"></span>
+                                    <span class="text-sm text-amber-950 font-medium leading-relaxed">{!! $observation->text !!}</span>
                                 </li>
                             @endforeach
                         </ul>
