@@ -57,30 +57,19 @@
                 @endif
 
                 {{-- Quick Info: Horários e Preço --}}
-                <div class="flex flex-col gap-6 items-start mb-6">
-                    <div class="flex flex-wrap items-center gap-4">
-                        @if($destination->date_range)
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-calendar-alt text-[#f3a908]"></i>
-                                <span class="text-lg font-semibold">{{ $destination->date_range }}</span>
-                            </div>
-                        @endif
-                        <!-- @if($destination->departure_date)
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-arrow-right text-emerald-400"></i>
-                                <span class="text-sm font-semibold">Saída: {{ $destination->departure_date }}</span>
-                            </div>
-                        @endif
-                        @if($destination->return_date)
-                            <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
-                                <i class="fas fa-arrow-left text-blue-400"></i>
-                                <span class="text-sm font-semibold">Retorno: {{ $destination->return_date }}</span>
-                            </div>
-                        @endif -->
-                    </div>
-        
+                <div class="flex flex-col gap-4 mb-6 w-full sm:w-[360px]">
+    
+                    @if($destination->date_range)
+                        {{-- Botão de Data (agora padronizado com os outros) --}}
+                        <div class="w-full inline-flex items-center justify-start gap-2 bg-white/10 backdrop-blur-sm px-6 py-3.5 rounded-2xl shadow-lg">
+                            <i class="fas fa-calendar-alt text-[#f3a908]"></i>
+                            <span class="text-lg font-semibold text-white">{{ $destination->date_range }}</span>
+                        </div>
+                    @endif
+
                     @if($destination->price)
-                        <div class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#f3a908] text-[#001c3d] px-6 py-3.5 rounded-2xl shadow-lg text-base sm:text-lg font-black">
+                        {{-- Botão de Preço --}}
+                        <div class="w-full inline-flex items-center justify-start gap-3 bg-[#f3a908] text-[#001c3d] px-6 py-3.5 rounded-2xl shadow-lg text-base sm:text-lg font-black">
                             <i class="fas fa-tag text-xl"></i>
                             <span>R$ {{ number_format($destination->price, 2, ',', '.') }}</span>
                             <span class="text-sm font-bold opacity-80">por pessoa</span>
@@ -88,7 +77,8 @@
                     @endif
 
                     @if($urgencyText)
-                        <div class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-red-500/90 text-white px-6 py-3.5 rounded-2xl shadow-lg backdrop-blur-sm text-base sm:text-lg font-bold">
+                        {{-- Botão de Urgência --}}
+                        <div class="w-full inline-flex items-center justify-start gap-3 bg-red-500/90 text-white px-6 py-3.5 rounded-2xl shadow-lg backdrop-blur-sm text-base sm:text-lg font-bold">
                             <i class="fas fa-fire animate-pulse text-red-200 text-xl"></i>
                             <span>{{ $urgencyText }}</span>
                         </div>
@@ -96,12 +86,15 @@
 
                     {{-- CTA Principal --}}
                     <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                       class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-base tracking-wider px-6 py-3.5 rounded-2xl shadow-lg shadow-emerald-500/30 transition-all duration-300 hover:scale-105 active:scale-95">
+                    class="w-full inline-flex items-center justify-start gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30">
                         <i class="fab fa-whatsapp text-2xl"></i>
                         <span>Garantir Minha Vaga!</span>
                         <i class="fas fa-arrow-right text-sm opacity-70"></i>
                     </a>
+                    
                 </div>
+
+
             </div>
         </div>
     </section>
@@ -229,7 +222,7 @@
                                 </div>
                                 <p class="text-gray-400 text-xs mb-6">Consulte formas de pagamento</p>
                                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                                   class="inline-flex items-center gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black text-sm uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30 w-full justify-center">
+                                   class="inline-flex items-center justify-center gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30 w-full sm:w-auto min-w-[220px]">
                                     <i class="fab fa-whatsapp text-2xl"></i>
                                     <span>Reservar Agora</span>
                                 </a>
@@ -384,9 +377,9 @@
                                 </div>
                                 <p class="text-sm text-red-700/80 font-medium leading-relaxed">{{ $urgencyText }}</p>
                                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                                   class="mt-auto inline-flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all duration-200">
-                                    <i class="fab fa-whatsapp text-base"></i>
-                                    Garantir minha vaga
+                                   class="mt-auto inline-flex items-center justify-center gap-3 bg-red-500 hover:bg-red-600 text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-red-500/30 w-full sm:w-auto min-w-[220px]">
+                                    <i class="fab fa-whatsapp text-2xl"></i>
+                                    <span>Garantir minha vaga</span>
                                 </a>
                             </div>
                         @endif
@@ -411,7 +404,7 @@
                     </div>
                 </div>
                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                   class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-10 py-4 rounded-xl font-black text-sm tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-3 shrink-0 hover:scale-105 active:scale-95">
+                   class="inline-flex items-center justify-center gap-3 bg-[#109e4a] hover:bg-[#0d9648] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30 w-full sm:w-auto min-w-[220px] shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
                     <span>Reservar pelo WhatsApp</span>
                 </a>
