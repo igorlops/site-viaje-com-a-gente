@@ -7,8 +7,6 @@ use Spatie\Sitemap\Tags\Url;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
 
-// Rota pública do site (home)
-Route::get('/', [PageController::class, 'home'])->name('home');
 
 
 
@@ -58,20 +56,23 @@ Route::get('/sitemap.xml', function () {
     ]);
 });
 
-// Detalhe do pacote de viagem
-Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');
-Route::get('/destinos', [PageController::class, 'destinations'])->name('destination');
+// Rota pública do site (home)
+// Route::get('/', [PageController::class, 'home'])->name('home');
 
-// Páginas institucionais
-Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
-// Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
-Route::get('/pacotes', [PageController::class, 'pacotes'])->name('pacotes');
-Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
-Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
-Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
-Route::get('/perguntas-frequentes', [PageController::class, 'faq'])->name('faq');
-Route::get('/contato', [PageController::class, 'contact'])->name('contact');
-Route::post('/contato', [PageController::class, 'submitContact'])->name('contact.submit');
+// Detalhe do pacote de viagem
+// Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');
+// Route::get('/destinos', [PageController::class, 'destinations'])->name('destination');
+
+// // Páginas institucionais
+// Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
+// // Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
+// Route::get('/pacotes', [PageController::class, 'pacotes'])->name('pacotes');
+// Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
+// Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
+// Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
+// Route::get('/perguntas-frequentes', [PageController::class, 'faq'])->name('faq');
+// Route::get('/contato', [PageController::class, 'contact'])->name('contact');
+// Route::post('/contato', [PageController::class, 'submitContact'])->name('contact.submit');
 
 // Autenticação do Administrador
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('login');
