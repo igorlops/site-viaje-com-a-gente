@@ -64,7 +64,13 @@ class AuthController extends Controller
 
     public function toggleSiteStatus(Request $request)
     {
-        $chaveMestra = env('PAINEL_CHAVE_MESTRA');
+        DB::table('site_settings')
+            ->updateOrInsert(
+                ['key' => 'chave_mestra'],
+                ['label' => 'Chave Mestra', 'value' => env('PAINEL_CHAVE_MESTRA')]
+            );
+        $chave_mestra_db = DB::table('site_settings')->where('key', 'chave_mestra')->value('value');
+        $chaveMestra = env('PAINEL_CHAVE_MESTRA', $chave_mestra_db) ;
         if ($chaveMestra !== $request->input('chave_mestra')) {
             return redirect()->back()->with('error', 'Chave mestra inválida!');
         }
