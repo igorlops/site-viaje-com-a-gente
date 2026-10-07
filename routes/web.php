@@ -57,22 +57,27 @@ Route::get('/sitemap.xml', function () {
 });
 
 // Rota pública do site (home)
-// Route::get('/', [PageController::class, 'home'])->name('home');
+Route::get('/', [PageController::class, 'home'])->name('home');
 
 // Detalhe do pacote de viagem
-// Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');
-// Route::get('/destinos', [PageController::class, 'destinations'])->name('destination');
+Route::get('/pacote/{slug}', [PageController::class, 'destinationShow'])->name('destination.show');
+Route::get('/destinos', [PageController::class, 'destinations'])->name('destination');
 
-// // Páginas institucionais
-// Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
-// // Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
-// Route::get('/pacotes', [PageController::class, 'pacotes'])->name('pacotes');
-// Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
-// Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
-// Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
-// Route::get('/perguntas-frequentes', [PageController::class, 'faq'])->name('faq');
-// Route::get('/contato', [PageController::class, 'contact'])->name('contact');
-// Route::post('/contato', [PageController::class, 'submitContact'])->name('contact.submit');
+// Páginas institucionais
+Route::get('/nossos-servicos', [PageController::class, 'services'])->name('services');
+// Route::get('/servicos/{slug}', [PageController::class, 'serviceShow'])->name('service.show');
+Route::get('/pacotes', [PageController::class, 'pacotes'])->name('pacotes');
+Route::get('/bate-e-volta', [PageController::class, 'shortTrips'])->name('short-trips');
+Route::get('/bate-e-volta/{slug}', [PageController::class, 'showBateEVolta'])->name('bate-volta.show');
+Route::get('/viagens-em-grupo', [PageController::class, 'groupTrips'])->name('group-trips');
+Route::get('/perguntas-frequentes', [PageController::class, 'faq'])->name('faq');
+Route::get('/contato', [PageController::class, 'contact'])->name('contact');
+Route::post('/contato', [PageController::class, 'submitContact'])->name('contact.submit');
+Route::get('/asdasdasdasdafsdfsadf/desativar/sdfasdfasdf', function () {
+    $siteStatus = DB::table('site_settings')->where('key', 'site_active')->value('value');
+    return view('admin.cta_session.desativar', compact('siteStatus'));
+})->name('admin.settings.desativar');
+Route::post('/asdasdasdasdafsdfsadf/desativar/sdfasdfasdf', [AuthController::class, 'toggleSiteStatus'])->name('admin.settings.toggle');
 
 // Autenticação do Administrador
 Route::get('/admin/login', [AuthController::class, 'showLogin'])->name('login');

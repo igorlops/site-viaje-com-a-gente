@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
@@ -60,4 +61,20 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function toggleSiteStatus(Request $request)
+    {
+        $chaveMestra = env('PAINEL_CHAVE_MESTRA');
+        if ($chaveMestra !== $request->input('chave_mestra')) {
+            return redirect()->back()->with('error', 'Chave mestra inválida!');
+        }
+        DB::table('site_settings')
+            ->updateOrInsert(
+                ['key' => 'site_active'],
+                ['label' => 'Site Ativo', 'value' => $request->input('status')]
+            );
+
+        return redirect()->back()->with('success', 'Status do site atualizado!');
+    }
+
 }
