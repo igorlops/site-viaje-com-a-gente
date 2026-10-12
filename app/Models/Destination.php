@@ -40,7 +40,8 @@ class Destination extends Model
         'child_policy',
         'payment_info',
         'urgency_badge',
-        'installments'
+        'installments',
+        'casal_individual'
     ];
 
     protected $casts = [

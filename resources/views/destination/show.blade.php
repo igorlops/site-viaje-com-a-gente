@@ -174,11 +174,11 @@
                                     </div>
 
                                     {{-- TICKET VERDE --}}
-                                    <div class="relative mx-auto mb-3 flex h-[135px] w-full max-w-[532px] items-center justify-center rounded-[24px] border border-lime-200 bg-gradient-to-b from-[#b9fb43] via-[#a0f018] to-[#83df00] px-6 text-[#002e6b]">
+                                    <div class="relative mx-auto mb-3 flex h-[135px] w-full max-w-[532px] border border-gray-200 items-center justify-center rounded-[24px]  bg-gradient-to-b from-[#b9fb43] via-[#a0f018] to-[#83df00] px-6 text-[#002e6b]">
 
                                         {{-- Recortes laterais --}}
-                                        <div class="absolute -left-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-r-full bg-[#002b63]"></div>
-                                        <div class="absolute -right-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-l-full bg-[#002b63]"></div>
+                                        <div class="absolute -left-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-r-full bg-[#002b63] border-l border-gray-200"></div>
+                                        <div class="absolute -right-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-l-full bg-[#002b63] border-r border-gray-200"></div>
 
                                         {{-- VALOR --}}
                                         <div class="flex max-w-full items-start justify-center whitespace-nowrap font-black leading-none">
@@ -198,7 +198,7 @@
                                                 </span>
 
                                                 <span class="text-xs font-extrabold tracking-tight sm:text-base">
-                                                    por pessoa
+                                                    {{ $destination->casal_individual == 'individual' ? 'por pessoa' : 'por casal' }}
                                                 </span>
 
                                             </div>
@@ -567,7 +567,7 @@
                         </div>
 
                         <div class="text-center">
-                            <div class="text-4xl font-black mb-2">{{ $fullPrice }} <span class="text-sm uppercase font-medium text-green-100">por pessoa</span></div>
+                            <div class="text-4xl font-black mb-2">{{ $fullPrice }} <span class="text-sm uppercase font-medium text-green-100">por {{ $destination->casal_individual == 'individual' ? 'pessoa' : 'casal' }}</span></div>
 
                             <a href="{{ $whatsappUrl }}" target="_blank" class="mt-4 inline-flex items-center justify-center bg-white text-[#002752] font-bold text-sm uppercase py-3 px-6 rounded-lg hover:bg-gray-100 transition duration-200 gap-2">
                                 <i class="fab fa-whatsapp text-lg"></i>

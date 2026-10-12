@@ -26,6 +26,7 @@ class DestinationStoreRequest extends FormRequest
             'whatsapp_link' => 'nullable|url|max:255',
             'type' => 'nullable|string|in:bate-e-volta,viagem-grupo,pacotes,viagem-em-grupo',
             'installments' => 'nullable|numeric|min:0',
+            'casal_individual' => 'nullable|string|in:individual,casal',
             'slug' => 'nullable|string|max:255',
             
             // Novos campos adicionados na migration

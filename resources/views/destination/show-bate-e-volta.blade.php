@@ -96,7 +96,7 @@
                     </div>
 
                     <span class="mt-0.5 text-[13px] font-bold">
-                        por pessoa
+                        {{ $destination->casal_individual == 'individual' ? 'por pessoa' : 'por casal' }}
                     </span>
 
                 </div>
@@ -261,7 +261,7 @@
                             </div>
 
                             <div class="text-center shrink-0">
-                                <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Valor por pessoa</p>
+                                <p class="text-gray-400 text-xs uppercase tracking-widest mb-2">Valor por {{$destination->casal_individual == 'individual' ? 'pessoa' : 'casal'}}</p>
                                 <div class="text-5xl sm:text-6xl font-black text-[#f3a908] mb-1">
                                     R$ {{ number_format($destination->price, 2, ',', '.') }}
                                 </div>
@@ -451,7 +451,7 @@
                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
                    class="inline-flex items-center justify-center gap-3 bg-[#109e4a] hover:bg-[#0d9648] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30 w-full sm:w-auto min-w-[220px] shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
-                    <span>FALAR COM UM CONSULTOR</span>
+                    <span>FALAR COM CONSULTOR</span>
                 </a>
             </div>
         </div>

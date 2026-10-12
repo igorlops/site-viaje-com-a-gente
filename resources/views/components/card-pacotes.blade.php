@@ -62,7 +62,7 @@
                     <span class="text-[#109e4a] text-2xl font-black">
                         {{ number_format($pkg->price, 2, ',', '.') }}
                     </span>
-                    <span class="text-[#109e4a] text-xs font-bold">/por pessoa</span>
+                    <span class="text-[#109e4a] text-xs font-bold">{{ $pkg->casal_individual == 'individual' ? '/por pessoa' : '/por casal' }}</span>
                 </div>
                 <span class="block text-gray-400 text-[10px] font-bold">Pagamento via PIX/BOLETO</span>
             </div>

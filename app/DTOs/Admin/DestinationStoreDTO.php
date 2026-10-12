@@ -36,6 +36,7 @@ class DestinationStoreDTO
         public readonly ?array $payment_methods,
         public readonly ?array $testimonials,
         public readonly ?int $installments,
+        public readonly string $casal_individual
     ) {}
 
     public static function fromRequest(DestinationStoreRequest $request): self
@@ -52,6 +53,7 @@ class DestinationStoreDTO
             type: $request->input('type'),
             slug: $request->input('slug'),
             installments: $request->input('installments'),
+            casal_individual: $request->input('casal_individual'),
             
             // Novos campos
             full_price: $request->input('full_price'),
@@ -88,8 +90,7 @@ class DestinationStoreDTO
             'type' => $this->type,
             'slug' => $this->slug,
             'installments' => $this->installments,
-            
-            // Novos campos
+            'casal_individual' => $this->casal_individual,
             'title_card' => $this->title_card,
             'subtitle_card' => $this->subtitle_card,
             'text_label_banner' => $this->text_label_banner,

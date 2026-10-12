@@ -180,6 +180,17 @@
                             <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div>
+                        <label for="casal_individual" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Por casal ou Individual</label>
+                        <select name="casal_individual" id="casal_individual"
+                            class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white">
+                            <option value="individual" {{ old('casal_individual', isset($destination) ? $destination->casal_individual : '') == 'individual' ? 'selected' : '' }}>Individual</option>
+                            <option value="casal" {{ old('casal_individual', isset($destination) ? $destination->casal_individual : '') == 'casal' ? 'selected' : '' }}>Casal</option>
+                        </select>
+                        @error('casal_individual')
+                            <p class="text-red-500 text-xs mt-1 font-medium">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <input type="hidden" name="type" id="pacotes" value="{{ $tripType ?? 'viagem-em-grupo' }}">
                 </div>
