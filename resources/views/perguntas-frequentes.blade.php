@@ -99,7 +99,7 @@
             <!-- Text block -->
             <div class="text-center lg:text-left">
                 <span class="block text-lg font-black uppercase tracking-wide">Ainda tem alguma dúvida específica?</span>
-                <span class="block text-sm font-medium opacity-90">Fale agora mesmo com nossos consultores e tenha um atendimento 100% humano!</span>
+                <span class="block text-sm font-medium opacity-90">Fale agora com um de nossos consultores e tenha um atendimento 100% humanizado.</span>
             </div>
             
             <!-- Action Button -->
@@ -108,7 +108,7 @@
             @endphp
             <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-4 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                 <i class="fab fa-whatsapp text-2xl"></i>
-                <span>Chamar no WhatsApp</span>
+                <span>FALAR COM UM CONSULTOR</span>
             </a>
         </div>
     </div>

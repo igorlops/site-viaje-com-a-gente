@@ -34,7 +34,8 @@ class DestinationStoreDTO
         public readonly ?array $itinerary,
         public readonly ?array $observations,
         public readonly ?array $payment_methods,
-        public readonly ?array $testimonials
+        public readonly ?array $testimonials,
+        public readonly ?int $installments,
     ) {}
 
     public static function fromRequest(DestinationStoreRequest $request): self
@@ -50,6 +51,7 @@ class DestinationStoreDTO
             whatsapp_link: $request->input('whatsapp_link'),
             type: $request->input('type'),
             slug: $request->input('slug'),
+            installments: $request->input('installments'),
             
             // Novos campos
             full_price: $request->input('full_price'),
@@ -85,6 +87,7 @@ class DestinationStoreDTO
             'whatsapp_link' => $this->whatsapp_link,
             'type' => $this->type,
             'slug' => $this->slug,
+            'installments' => $this->installments,
             
             // Novos campos
             'title_card' => $this->title_card,

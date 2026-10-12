@@ -56,43 +56,88 @@
                     </p>
                 @endif
 
-                {{-- Quick Info: Horários e Preço --}}
-                <div class="flex flex-col gap-4 mb-6 w-full sm:w-[360px]">
-    
-                    @if($destination->date_range)
-                        {{-- Botão de Data (agora padronizado com os outros) --}}
-                        <div class="w-full inline-flex items-center justify-start gap-2 bg-white/10 backdrop-blur-sm px-6 py-3.5 rounded-2xl shadow-lg">
-                            <i class="fas fa-calendar-alt text-[#f3a908]"></i>
-                            <span class="text-lg font-semibold text-white">{{ $destination->date_range }}</span>
-                        </div>
-                    @endif
 
-                    @if($destination->price)
-                        {{-- Botão de Preço --}}
-                        <div class="w-full inline-flex items-center justify-start gap-3 bg-[#f3a908] text-[#001c3d] px-6 py-3.5 rounded-2xl shadow-lg text-base sm:text-lg font-black">
-                            <i class="fas fa-tag text-xl"></i>
-                            <span>R$ {{ number_format($destination->price, 2, ',', '.') }}</span>
-                            <span class="text-sm font-bold opacity-80">por pessoa</span>
-                        </div>
-                    @endif
+{{-- Quick Info: Data, Preço, Urgência e CTA --}}
+<div class="w-full max-w-[360px] space-y-1.5">
 
-                    @if($urgencyText)
-                        {{-- Botão de Urgência --}}
-                        <div class="w-full inline-flex items-center justify-start gap-3 bg-red-500/90 text-white px-6 py-3.5 rounded-2xl shadow-lg backdrop-blur-sm text-base sm:text-lg font-bold">
-                            <i class="fas fa-fire animate-pulse text-red-200 text-xl"></i>
-                            <span>{{ $urgencyText }}</span>
-                        </div>
-                    @endif
+    {{-- PRIMEIRA LINHA: DATA + PREÇO --}}
+    <div class="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-1.5">
 
-                    {{-- CTA Principal --}}
-                    <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
-                    class="w-full inline-flex items-center justify-start gap-3 bg-[#109e4a] hover:bg-[#0d8c40] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30">
-                        <i class="fab fa-whatsapp text-2xl"></i>
-                        <span>Garantir Minha Vaga!</span>
-                        <i class="fas fa-arrow-right text-sm opacity-70"></i>
-                    </a>
-                    
+        {{-- DATA --}}
+        @if($destination->date_range)
+            <div class="flex min-h-[64px] min-w-0 items-center gap-2 rounded-xl border border-[#0066a8] bg-gradient-to-br from-[#003f83] to-[#001b46] px-2.5 py-2 shadow-md">
+
+                <i class="fas fa-calendar-alt shrink-0 text-[23px] text-[#ffcc00]"></i>
+
+                <span class="min-w-0 text-[15px] font-extrabold leading-[1.15] text-white">
+                    {{ $destination->date_range }}
+                </span>
+
+            </div>
+        @endif
+
+        {{-- PREÇO --}}
+        @if($destination->price)
+            <div class="flex min-h-[64px] min-w-0 items-center justify-center gap-1.5 rounded-xl bg-gradient-to-br from-[#ffbc00] via-[#ffcb00] to-[#ffe600] px-2 py-1.5 text-[#002252] shadow-md">
+
+                <i class="fas fa-tag shrink-0 self-center text-[17px]"></i>
+
+                <div class="flex min-w-0 flex-col items-center justify-center leading-none">
+
+                    <span class="text-[13px] font-semibold">
+                        A partir de
+                    </span>
+
+                    <div class="flex items-baseline whitespace-nowrap font-black tracking-[-0.06em]">
+                        <span class="mr-0.5 text-[15px]">R$</span>
+                        <span class="text-[39px] leading-[0.95]">
+                            {{ number_format($destination->price, 2, ',', '.') }}
+                        </span>
+                    </div>
+
+                    <span class="mt-0.5 text-[13px] font-bold">
+                        por pessoa
+                    </span>
+
                 </div>
+            </div>
+        @endif
+
+    </div>
+
+    {{-- SEGUNDA LINHA: URGÊNCIA --}}
+    @if($urgencyText)
+        <div class="flex min-h-[27px] w-full items-center gap-2 rounded-lg bg-gradient-to-r from-[#ff2849] via-[#e82042] to-[#9b2340] px-4.5 py-2 text-white shadow-sm">
+
+            <i class="fas fa-fire shrink-0 text-[15px]"></i>
+
+            <span class="text-[17px] font-extrabold leading-tight">
+                {{ $urgencyText }}
+            </span>
+
+        </div>
+    @endif
+
+    {{-- TERCEIRA LINHA: WHATSAPP --}}
+    <a
+        href="{{ $whatsappBtnUrl }}"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex min-h-[42px] w-full items-center justify-center py-3 gap-2.5 rounded-xl border border-[#00b957] bg-gradient-to-b from-[#09c75d] via-[#00a94e] to-[#00883e] px-3 py-2 text-white shadow-[0_4px_10px_rgba(0,0,0,0.25)] transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+    >
+
+        <i class="fab fa-whatsapp shrink-0 text-[23px]"></i>
+
+        <span class="text-center text-[17px] font-black uppercase tracking-tight">
+            Quero garantir minha vaga
+        </span>
+
+        <i class="fas fa-arrow-right shrink-0 text-[15px]"></i>
+
+    </a>
+
+</div>
+
 
 
             </div>
@@ -406,7 +451,7 @@
                 <a href="{{ $whatsappBtnUrl }}" target="_blank" rel="noopener"
                    class="inline-flex items-center justify-center gap-3 bg-[#109e4a] hover:bg-[#0d9648] text-white font-black uppercase text-sm tracking-wider px-6 py-3.5 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-emerald-500/30 w-full sm:w-auto min-w-[220px] shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
-                    <span>Reservar pelo WhatsApp</span>
+                    <span>FALAR COM UM CONSULTOR</span>
                 </a>
             </div>
         </div>

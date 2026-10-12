@@ -156,45 +156,120 @@
                             @endif
 
                             <!-- Card: Formas de Pagamento (Estilo Ticket) -->
-                            <div class="relative bg-gradient-to-b from-[#008be3] to-[#0070be] text-white p-6 sm:p-8 rounded-3xl shadow-xl overflow-hidden border border-sky-400/30">
-                                {{-- Recortes laterais estilo Ticket (Ticket Notch) --}}
-                                <div class="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-gray-50 rounded-full"></div>
-                                <div class="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-gray-50 rounded-full"></div>
 
-                                {{-- Cabeçalho do Ticket --}}
-                                <div class="text-center pb-6">
-                                    <span class="inline-block border border-white/40 bg-white/10 backdrop-blur-md text-white font-black px-6 py-1.5 rounded-full text-xs uppercase tracking-widest mb-3">
-                                        VALOR DO PACOTE
-                                    </span>
-                                    <div class="flex items-baseline justify-center gap-1 font-black text-white drop-shadow-md">
-                                        <span class="text-2xl sm:text-3xl font-extrabold">R$</span>
-                                        <span class="text-5xl sm:text-6xl tracking-tight">{{ number_format($destination->price, 2, ',', '.') }}</span>
-                                    </div>
-                                    <p class="text-amber-300 font-bold text-sm tracking-wide mt-1">por pessoa</p>
-                                </div>
 
-                                {{-- Linha Divisória Tracejada --}}
-                                <div class="border-b-2 border-dashed border-white/30 my-2 -mx-6 sm:-mx-8"></div>
+@php
+    $price = number_format($destination->price, 2, ',', '.');
+    $installments = max(1, (int) ($destination->installments ?? 10));
 
-                                {{-- Lista de Formas de Pagamento --}}
-                                <ul class="space-y-4 pt-4">
-                                    @foreach($destination->paymentMethods as $payMethod)
-                                        <li class="flex items-start gap-3.5">
-                                            <div class="w-7 h-7 rounded-lg bg-white/15 backdrop-blur-sm flex items-center justify-center shrink-0 mt-0.5 border border-white/20">
-                                                <i class="{{ $payMethod->method->icon ?? 'fas fa-credit-card' }} text-amber-300 text-sm"></i>
-                                            </div>
-                                            <div class="text-white">
-                                                <p class="text-sm font-semibold leading-snug text-white/95">
-                                                    {!! $payMethod->text !!}
-                                                </p>
-                                                @if($payMethod->subtext)
-                                                    <p class="text-amber-200/90 text-xs mt-0.5 font-medium">{!! $payMethod->subtext !!}</p>
-                                                @endif
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+    [$integer, $cents] = explode(',', $price);
+@endphp
+
+<div class="w-full min-w-0 overflow-hidden rounded-[26px] border border-blue-500 bg-gradient-to-b from-[#003575] via-[#00285c] to-[#001633] p-4 text-white shadow-xl sm:p-6">
+
+    {{-- TÍTULO --}}
+    <div class="mx-auto mb-4 flex h-11 w-full max-w-[340px] items-center justify-center rounded-full border-2 border-lime-400 bg-[#002b63] px-4">
+        <span class="text-center text-base font-extrabold tracking-wide sm:text-xl">
+            VALOR DO PACOTE
+        </span>
+    </div>
+
+    {{-- TICKET VERDE --}}
+    <div class="relative mx-auto mb-3 flex h-[135px] w-full max-w-[532px] items-center justify-center rounded-[24px] border border-lime-200 bg-gradient-to-b from-[#b9fb43] via-[#a0f018] to-[#83df00] px-6 text-[#002e6b]">
+
+        {{-- Recortes laterais --}}
+        <div class="absolute -left-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-r-full bg-[#002b63]"></div>
+        <div class="absolute -right-px top-1/2 h-9 w-[14px] -translate-y-1/2 rounded-l-full bg-[#002b63]"></div>
+
+        {{-- VALOR --}}
+        <div class="flex max-w-full items-start justify-center whitespace-nowrap font-black leading-none">
+
+            <span class="mt-3 mr-1 text-xl sm:text-3xl">
+                R$
+            </span>
+
+            <span class="text-[clamp(3.5rem,12cqw,7rem)] leading-[0.95] tracking-[-0.08em]">
+                {{ $integer }}
+            </span>
+
+            <div class="flex self-stretch flex-col justify-between pb-1 pl-1 pt-2">
+
+                <span class="text-[clamp(1.8rem,6cqw,3.5rem)] leading-none tracking-[-0.06em]">
+                    ,{{ $cents }}
+                </span>
+
+                <span class="text-xs font-extrabold tracking-tight sm:text-base">
+                    por pessoa
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+
+    {{-- BOX ÚNICO DE PAGAMENTO --}}
+    <div class="mx-auto grid w-full grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] items-center rounded-[24px] border-2 border-[#008bff] bg-gradient-to-b from-[#00458d] to-[#00265a] px-3 py-4 shadow-inner sm:px-5">
+
+        {{-- PARCELAMENTO --}}
+        <div class="flex min-w-0 items-center justify-center gap-2 pr-2">
+
+            <i class="far fa-credit-card shrink-0 text-2xl text-white sm:text-3xl"></i>
+
+            <span class="shrink-0 text-[clamp(2rem,7cqw,4rem)] font-black leading-none tracking-[-0.07em]">
+                {{ $installments }}x
+            </span>
+
+            <div class="min-w-0 text-[10px] font-semibold leading-tight sm:text-xs">
+                <p class="whitespace-nowrap text-white">
+                    sem juros
+                </p>
+                <p class="text-[#ffff00]">
+                    no boleto ou pix
+                </p>
+            </div>
+
+        </div>
+
+        {{-- DIVISOR VERTICAL --}}
+        <div class="h-12 w-px bg-white/60"></div>
+
+        {{-- PAGAMENTO FACILITADO --}}
+        <div class="flex min-w-0 items-center justify-center gap-2 pl-2">
+
+            <i class="far fa-calendar-alt shrink-0 text-2xl text-cyan-200 sm:text-3xl"></i>
+
+            <div class="min-w-0 text-[10px] font-medium leading-tight sm:text-xs">
+
+                <p class="text-white">
+                    Pagamento facilitado
+                </p>
+
+                <p class="font-bold text-[#ffff00]">
+                    para você viajar tranquilo
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {{-- RODAPÉ --}}
+    <div class="mx-auto mt-3 flex max-w-[570px] items-center justify-center gap-3">
+
+        <div class="h-px min-w-4 flex-1 bg-white/60"></div>
+
+        <p class="text-center text-[9px] leading-tight text-white/80 sm:text-[11px]">
+            Para pagamento no cartão de crédito falar com um de nossos consultores.
+        </p>
+
+        <div class="h-px min-w-4 flex-1 bg-white/60"></div>
+
+    </div>
+
+</div>
+
+
                         </div>
                     </div>
                 </div>

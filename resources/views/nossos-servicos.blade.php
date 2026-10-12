@@ -45,13 +45,20 @@
             {{ $service->subtitle }}
         </p>
 
-        <button type="button"
+        <a href="{{ $whatsappUrl . '?text=Olá, tenho interesse no serviço: ' . $service->title }}" target="_blank"
                 data-service="{{ $service->title }}"
                 onclick="selecionarServico(this)"
                 class="w-full cursor-pointer bg-[#109e4a] hover:bg-[#0d9648] text-white py-3.5 rounded-xl font-black text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-lg shadow-macro flex items-center justify-center gap-2 shrink-0 group-hover:translate-y-[-2px]">
             <span>Saiba Mais</span>
             <i class="fas fa-chevron-right text-[10px] transform group-hover:translate-x-1 transition-transform"></i>
-        </button>
+        </a>
+        {{-- <button type="button"
+                data-service="{{ $service->title }}"
+                onclick="selecionarServico(this)"
+                class="w-full cursor-pointer bg-[#109e4a] hover:bg-[#0d9648] text-white py-3.5 rounded-xl font-black text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:shadow-lg shadow-macro flex items-center justify-center gap-2 shrink-0 group-hover:translate-y-[-2px]">
+            <span>Saiba Mais</span>
+            <i class="fas fa-chevron-right text-[10px] transform group-hover:translate-x-1 transition-transform"></i>
+        </button> --}}
     </div>
 </div>
                 @endforeach

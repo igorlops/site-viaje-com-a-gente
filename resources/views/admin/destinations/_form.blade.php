@@ -162,7 +162,7 @@
                         <label for="price" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-2">Preço Mensal (Boleto)</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400 font-bold text-sm">R$</span>
-                            <input type="number" step="0.01" name="price" id="price" value="{{ old('price', isset($destination) ? $destination->price : '') }}"
+                            <input oninput="updatePriceInstallments(this)" type="number" step="0.01" name="price" id="price" value="{{ old('price', isset($destination) ? $destination->price : '') }}"
                                 class="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-[#001c3d] focus:ring-2 focus:ring-[#001c3d]/10 focus:outline-none text-sm transition duration-200 bg-gray-50/50 hover:bg-gray-50 focus:bg-white"
                                 placeholder="Ex: 69.99">
                         </div>
@@ -679,7 +679,21 @@
 
                 <div class="space-y-4">
                     @if($destination)
-                    @foreach($paymentMethods as $index => $method)
+                    <div class="space-y-2">
+                        <label for="installments" class="block text-sm font-extrabold text-gray-700 uppercase tracking-wide">Parcelamento</label>
+                        <input type="number" name="installments" id="installments" value="{{ $destination->installments }}"
+                            placeholder="Ex: 12"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all">
+                        <p class="text-xs text-gray-500">Defina o número máximo de parcelas (ex: 12 para 12x sem juros). Este valor será usado para gerar os boletos de forma automática.</p>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="installments" class="block text-sm font-extrabold text-gray-700 uppercase tracking-wide">Preço</label>
+                        <input type="number" id="price-installments" value="{{ $destination->price }}" disabled
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-100 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all">
+                        <p class="text-xs text-gray-500">Preço base preenchido na aba "Básico" no campo "Preço Mensal (Boleto)"</p>
+                    </div>
+                    
+                    {{-- @foreach($paymentMethods as $index => $method)
                         @php
                             $assigned = $destination->paymentMethods->where('payment_method_id', $method->id)->first();
                             $isActive = !empty($assigned);
@@ -720,7 +734,7 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach --}}
                     @endif
                 </div>
             </div>
@@ -1092,4 +1106,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     @endif
 });
+
+function updatePriceInstallments(element) {
+    const price = element.value;
+    const priceInstallment = document.getElementById('price-installments');
+    priceInstallment.value = price;
+}
 </script>

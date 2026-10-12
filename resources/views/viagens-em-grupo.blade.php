@@ -39,7 +39,7 @@
             <!-- More Packages Button -->
             <div class="text-center">
                 <a href="{{ route('destination') }}" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
-                    <span>Ver Todos os Pacotes</span>
+                    <span>NÃO ENCONTROU SEU DESTINO? <br/>FALE AGORA COM A GENTE</span>
                     <i class="fas fa-chevron-right text-xs"></i>
                 </a>
             </div>

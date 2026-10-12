@@ -125,7 +125,7 @@
             <!-- More Packages Button -->
             <div class="text-center">
                 <a href="{{ route('destination') }}" class="inline-flex items-center justify-center border-2 border-[#002752] text-[#002752] hover:bg-[#002752] hover:text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wide uppercase transition duration-300 gap-2">
-                    <span>Ver Todos os Pacotes</span>
+                    <span>NÃO ENCONTROU SEU DESTINO? <br/>FALE AGORA COM A GENTE</span>
                     <i class="fas fa-chevron-right text-xs"></i>
                 </a>
             </div>
@@ -298,14 +298,14 @@
                     </div>
                     <div>
                         <span class="block text-lg font-black uppercase tracking-wide">Pronto para viajar?</span>
-                        <span class="block text-sm font-medium">Fale agora com um consultor e receba sua proposta personalizada!</span>
+                        <span class="block text-sm font-medium">Escolha seu destino e fale agora com um de nossos consultores para tirar todas suas dúvidas.</span>
                     </div>
                 </div>
                 
                 <!-- Button -->
                 <a href="{{ $whatsappUrl }}" target="_blank" class="bg-[#109e4a] hover:bg-[#0d9648] text-white px-8 py-3.5 rounded-lg font-black text-sm tracking-wider uppercase transition duration-300 shadow-md flex items-center gap-3 shrink-0">
                     <i class="fab fa-whatsapp text-2xl"></i>
-                    <span>Consultor online</span>
+                    <span>Falar com consultor</span>
                 </a>
             </div>
         </div>

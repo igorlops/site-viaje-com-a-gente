@@ -54,7 +54,9 @@
         <div>
             <!-- Price -->
             <div class="mb-4">
-                {{-- <span class="block text-gray-400 text-xs font-medium">A partir de</span> --}}
+                @if($pkg->type !== 'bate-e-volta')
+                    <span class="block text-gray-400 text-xs font-medium">A partir de</span>
+                @endif
                 <div class="flex items-baseline gap-1">
                     <span class="text-[#109e4a] text-xs font-black">R$</span>
                     <span class="text-[#109e4a] text-2xl font-black">
